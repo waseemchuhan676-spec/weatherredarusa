@@ -1,35 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-<url>
-<loc>https://weatherredarusa.vercel.app/</loc>
-</url>
-<url>
-<loc>https://weatherredarusa.vercel.app/weather/chicago-il/</loc>
-</url>
-<url>
-<loc>https://weatherredarusa.vercel.app/weather/dallas-tx/</loc>
-</url>
-<url>
-<loc>https://weatherredarusa.vercel.app/weather/houston-tx/</loc>
-</url>
-<url>
-<loc>https://weatherredarusa.vercel.app/weather/los-angeles-ca/</loc>
-</url>
-<url>
-<loc>https://weatherredarusa.vercel.app/weather/miami-fl/</loc>
-</url>
-<url>
-<loc>https://weatherredarusa.vercel.app/weather/new-york-ny/</loc>
-</url>
-<url>
-<loc>https://weatherredarusa.vercel.app/weather/philadelphia-pa/</loc>
-</url>
-<url>
-<loc>https://weatherredarusa.vercel.app/weather/phoenix-az/</loc>
-</url>
-<url>
-<loc>https://weatherredarusa.vercel.app/weather/san-antonio-tx/</loc>
-</url>
-<url>
-<loc>https://weatherredarusa.vercel.app/weather/san-diego-ca/</loc>
-</url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/</loc>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/weather/new-york-ny/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/weather/los-angeles-ca/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/weather/chicago-il/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/weather/houston-tx/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/weather/phoenix-az/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/weather/philadelphia-pa/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/weather/san-antonio-tx/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/weather/san-diego-ca/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/weather/dallas-tx/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://weatherredarusa.vercel.app/weather/miami-fl/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
