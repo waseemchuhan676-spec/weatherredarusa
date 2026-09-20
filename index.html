@@ -613,6 +613,73 @@
                             <p id="tempOut" style="margin-top:10px;font-weight:600;"></p>
                         </div>
                     </div>
+
+                    <!-- NEW TOOL 1: Radar Color Legend -->
+                    <div class="tool-card">
+                        <h3>📡 Radar Color Legend</h3>
+                        <p>Understand what radar colors mean on the national mosaic.</p>
+                        <div style="font-size:0.85rem;line-height:1.7;margin-top:10px;">
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="width:18px;height:14px;background:#00e400;border-radius:3px;display:inline-block;"></span> Light rain / drizzle</div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="width:18px;height:14px;background:#ffff00;border-radius:3px;display:inline-block;"></span> Moderate rain</div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="width:18px;height:14px;background:#ff7f00;border-radius:3px;display:inline-block;"></span> Heavy rain</div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="width:18px;height:14px;background:#ff0000;border-radius:3px;display:inline-block;"></span> Very heavy / intense</div>
+                            <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px;"><span style="width:18px;height:14px;background:#ff00ff;border-radius:3px;display:inline-block;"></span> Extreme / hail possible</div>
+                            <div style="display:flex;align-items:center;gap:8px;"><span style="width:18px;height:14px;background:#ffffff;border:1px solid #ccc;border-radius:3px;display:inline-block;"></span> Snow / mixed (varies)</div>
+                        </div>
+                    </div>
+
+                    <!-- NEW TOOL 2: UV Index -->
+                    <div class="tool-card">
+                        <h3>☀️ UV Index Checker</h3>
+                        <p>Enter temperature (°F) and approximate cloud cover to estimate UV risk level.</p>
+                        <div style="margin-top:10px;">
+                            <input type="number" id="uvTemp" placeholder="Temp °F" style="width:48%;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);margin-bottom:8px;">
+                            <select id="uvCloud" style="width:48%;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);margin-bottom:8px;float:right;">
+                                <option value="1">Clear sky</option>
+                                <option value="0.7">Partly cloudy</option>
+                                <option value="0.4">Mostly cloudy</option>
+                                <option value="0.2">Overcast</option>
+                            </select>
+                            <button class="btn" onclick="calcUV()" style="width:100%;">Check UV Level</button>
+                            <p id="uvResult" style="margin-top:10px;font-weight:600;"></p>
+                        </div>
+                    </div>
+
+                    <!-- NEW TOOL 3: Heat Index / Wind Chill -->
+                    <div class="tool-card">
+                        <h3>🌡️ Heat Index / Wind Chill</h3>
+                        <p>Calculate real-feel temperature using temperature, humidity or wind speed.</p>
+                        <div style="margin-top:10px;">
+                            <input type="number" id="hiTemp" placeholder="Temp °F" style="width:100%;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);margin-bottom:6px;">
+                            <input type="number" id="hiHum" placeholder="Humidity %" style="width:48%;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);margin-bottom:6px;">
+                            <input type="number" id="hiWind" placeholder="Wind mph" style="width:48%;padding:8px;border-radius:8px;border:1px solid var(--border);background:var(--bg);color:var(--text);margin-bottom:6px;float:right;">
+                            <div style="display:flex;gap:8px;margin-top:6px;">
+                                <button class="btn" onclick="calcHeatIndex()" style="flex:1;">Heat Index</button>
+                                <button class="btn" onclick="calcWindChill()" style="flex:1;">Wind Chill</button>
+                            </div>
+                            <p id="hiResult" style="margin-top:10px;font-weight:600;"></p>
+                        </div>
+                    </div>
+
+                    <!-- NEW TOOL 4: Moon Phase -->
+                    <div class="tool-card">
+                        <h3>🌙 Current Moon Phase</h3>
+                        <p>See today's approximate moon phase and illumination.</p>
+                        <button class="btn" onclick="showMoonPhase()" style="margin-top:8px;">Show Moon Phase</button>
+                        <p id="moonResult" style="margin-top:12px;font-weight:600;font-size:1.05rem;"></p>
+                    </div>
+
+                    <!-- NEW TOOL 5: Severe Weather Quick Links -->
+                    <div class="tool-card">
+                        <h3>⚠️ Severe Weather Alerts</h3>
+                        <p>Official sources for watches, warnings and outlooks.</p>
+                        <div style="display:flex;flex-direction:column;gap:8px;margin-top:10px;">
+                            <a href="https://www.spc.noaa.gov/" target="_blank" rel="noopener noreferrer" class="btn">SPC Outlook →</a>
+                            <a href="https://www.weather.gov/alerts" target="_blank" rel="noopener noreferrer" class="btn">NWS Alerts →</a>
+                            <a href="https://www.nhc.noaa.gov/" target="_blank" rel="noopener noreferrer" class="btn">Hurricane Center →</a>
+                            <a href="https://www.weather.gov/" target="_blank" rel="noopener noreferrer" class="btn">weather.gov →</a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -938,6 +1005,90 @@
                 document.getElementById('tempOut').textContent = (val * 9/5 + 32).toFixed(1) + ' °F';
             }
         }
+
+        // ===== NEW TOOLS FUNCTIONS =====
+        function calcUV() {
+            const temp = parseFloat(document.getElementById('uvTemp').value);
+            const cloud = parseFloat(document.getElementById('uvCloud').value);
+            if (isNaN(temp)) {
+                document.getElementById('uvResult').textContent = 'Enter temperature';
+                return;
+            }
+            // Simple approximation based on season/temp + cloud factor
+            let base = 3;
+            if (temp >= 85) base = 9;
+            else if (temp >= 75) base = 7;
+            else if (temp >= 65) base = 5;
+            else if (temp >= 50) base = 3;
+            else base = 1;
+            const uv = Math.round(base * cloud);
+            let risk = 'Low';
+            let advice = 'No protection needed';
+            if (uv >= 11) { risk = 'Extreme'; advice = 'Avoid sun, full protection required'; }
+            else if (uv >= 8) { risk = 'Very High'; advice = 'Extra protection required'; }
+            else if (uv >= 6) { risk = 'High'; advice = 'Protection required'; }
+            else if (uv >= 3) { risk = 'Moderate'; advice = 'Take precautions'; }
+            document.getElementById('uvResult').textContent = `UV Index ≈ ${uv} (${risk}) – ${advice}`;
+        }
+
+        function calcHeatIndex() {
+            const T = parseFloat(document.getElementById('hiTemp').value);
+            const RH = parseFloat(document.getElementById('hiHum').value);
+            if (isNaN(T) || isNaN(RH)) {
+                document.getElementById('hiResult').textContent = 'Enter temp and humidity';
+                return;
+            }
+            // Rothfusz regression (simplified)
+            let HI = -42.379 + 2.04901523*T + 10.14333127*RH - 0.22475541*T*RH - 0.00683783*T*T - 0.05481717*RH*RH + 0.00122874*T*T*RH + 0.00085282*T*RH*RH - 0.00000199*T*T*RH*RH;
+            if (RH < 13 && T >= 80 && T <= 112) {
+                HI -= ((13-RH)/4) * Math.sqrt((17-Math.abs(T-95))/17);
+            }
+            if (RH > 85 && T >= 80 && T <= 87) {
+                HI += ((RH-85)/10) * ((87-T)/5);
+            }
+            if (T < 80) HI = T; // formula not valid below 80F
+            document.getElementById('hiResult').textContent = `Heat Index: ${Math.round(HI)}°F`;
+        }
+
+        function calcWindChill() {
+            const T = parseFloat(document.getElementById('hiTemp').value);
+            const V = parseFloat(document.getElementById('hiWind').value);
+            if (isNaN(T) || isNaN(V)) {
+                document.getElementById('hiResult').textContent = 'Enter temp and wind speed';
+                return;
+            }
+            if (T > 50 || V < 3) {
+                document.getElementById('hiResult').textContent = 'Wind chill valid only below 50°F and wind ≥ 3 mph';
+                return;
+            }
+            const WC = 35.74 + 0.6215*T - 35.75*Math.pow(V,0.16) + 0.4275*T*Math.pow(V,0.16);
+            document.getElementById('hiResult').textContent = `Wind Chill: ${Math.round(WC)}°F`;
+        }
+
+        function showMoonPhase() {
+            const now = new Date();
+            // Approximate moon phase using known new moon reference
+            const ref = new Date('2000-01-06T18:14:00Z'); // known new moon
+            const days = (now - ref) / (1000 * 60 * 60 * 24);
+            const synodic = 29.53058867;
+            const phase = ((days % synodic) + synodic) % synodic;
+            const illum = Math.round((1 - Math.cos(2 * Math.PI * phase / synodic)) / 2 * 100);
+
+            let name = '';
+            let emoji = '';
+            if (phase < 1.84566) { name = 'New Moon'; emoji = '🌑'; }
+            else if (phase < 5.53699) { name = 'Waxing Crescent'; emoji = '🌒'; }
+            else if (phase < 9.22831) { name = 'First Quarter'; emoji = '🌓'; }
+            else if (phase < 12.91963) { name = 'Waxing Gibbous'; emoji = '🌔'; }
+            else if (phase < 16.61096) { name = 'Full Moon'; emoji = '🌕'; }
+            else if (phase < 20.30228) { name = 'Waning Gibbous'; emoji = '🌖'; }
+            else if (phase < 23.99361) { name = 'Last Quarter'; emoji = '🌗'; }
+            else if (phase < 27.68493) { name = 'Waning Crescent'; emoji = '🌘'; }
+            else { name = 'New Moon'; emoji = '🌑'; }
+
+            document.getElementById('moonResult').textContent = `${emoji} ${name} • ~${illum}% illuminated`;
+        }
+        // ===== END NEW TOOLS =====
 
         // Quick city search from popular cities buttons
         function quickSearch(cityName) {
