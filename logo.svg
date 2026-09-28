@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 80" width="320" height="80">
+  <defs>
+    <linearGradient id="gradLogo" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0284c7" />
+      <stop offset="50%" stop-color="#2563eb" />
+      <stop offset="100%" stop-color="#4f46e5" />
+    </linearGradient>
+  </defs>
+  <!-- Icon -->
+  <g transform="translate(10, 10)">
+    <rect width="60" height="60" rx="14" fill="url(#gradLogo)" />
+    <circle cx="30" cy="30" r="22" fill="none" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" />
+    <circle cx="30" cy="30" r="14" fill="none" stroke="rgba(255,255,255,0.4)" stroke-width="1.5" />
+    <circle cx="30" cy="30" r="7" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" />
+    <path d="M 30 30 L 48 16 A 22 22 0 0 0 30 8 Z" fill="rgba(56,189,248,0.45)" />
+    <circle cx="30" cy="30" r="3" fill="#ffffff" />
+    <circle cx="40" cy="22" r="2.5" fill="#ef4444" />
+  </g>
+  <!-- Brand Text -->
+  <text x="82" y="38" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="20" font-weight="800" fill="#0f172a">Weather Radar</text>
+  <text x="82" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="800" fill="#0284c7">USA</text>
+  <text x="125" y="60" font-family="-apple-system, BlinkMacSystemFont, 'Inter', 'Segoe UI', Roboto, sans-serif" font-size="12" font-weight="500" fill="#64748b">• LIVE DOPPLER</text>
+</svg>
