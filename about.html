@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us | Weather Radar USA</title>
+    <meta name="description" content="About Weather Radar USA. Learn about our mission, our meteorological data sources including NOAA NEXRAD radar, and our commitment to fast real-time storm tracking.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://weatherradarusa.online/about.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-body: #0b1120;
+            --bg-header: rgba(15, 23, 42, 0.90);
+            --bg-card: #131c31;
+            --bg-elevated: #1e293b;
+            --border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-sub: #cbd5e1;
+            --primary: #2563eb;
+            --accent: #38bdf8;
+            --radius: 14px;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .container { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg-header); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header .container { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; font-family: 'Outfit', sans-serif; }
+        .logo-radar-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-radar-icon svg { width: 22px; height: 22px; }
+        .logo-text { color: var(--text-primary); }
+        .highlight {
+            background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav { display: flex; align-items: center; gap: 20px; }
+        .nav a { color: var(--text-muted); font-size: 0.92rem; font-weight: 500; }
+        .nav a:hover, .nav a.active { color: var(--text-primary); text-decoration: none; }
+        
+        .content-wrap { padding: 40px 0 60px; }
+        .about-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 36px 32px;
+        }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; margin-bottom: 10px; }
+        .subtitle { font-size: 1.1rem; color: var(--accent); margin-bottom: 24px; font-weight: 600; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 1.35rem; margin: 28px 0 12px; color: var(--text-primary); }
+        p { margin-bottom: 16px; color: var(--text-sub); font-size: 0.97rem; }
+        
+        .grid-cards {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 16px; margin: 24px 0;
+        }
+        .source-box {
+            background: var(--bg-elevated); border: 1px solid var(--border);
+            border-radius: 10px; padding: 20px;
+        }
+        .source-box h3 { font-size: 1.05rem; margin-bottom: 8px; color: var(--text-primary); }
+        .source-box p { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 0; }
+
+        .footer {
+            background: var(--bg-header); border-top: 1px solid var(--border);
+            padding: 30px 0; text-align: center; color: var(--text-muted); font-size: 0.85rem;
+        }
+        .footer a { color: var(--text-muted); margin: 0 10px; }
+        .footer a:hover { color: var(--accent); }
+    </style>
+</head>
+<body class="theme-dark">
+
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-radar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10"></path>
+                        <path d="M12 6a6 6 0 1 0 6 6"></path>
+                        <path d="M12 10a2 2 0 1 0 2 2"></path>
+                        <line x1="12" y1="12" x2="20" y2="4"></line>
+                    </svg>
+                </div>
+                <div class="logo-text">Weather Radar <span class="highlight">USA</span></div>
+            </a>
+            <nav class="nav">
+                <a href="/">Live Radar</a>
+                <a href="/national-radar-loop.html">Radar Loop (HD)</a>
+                <a href="/about.html" class="active">About</a>
+                <a href="/contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-wrap">
+        <div class="container">
+            <article class="about-card">
+                <h1>About Weather Radar USA</h1>
+                <div class="subtitle">Real-time meteorological tracking built for clarity, speed, and severe storm awareness.</div>
+
+                <p><strong>Weather Radar USA</strong> was founded with a straightforward mission: to provide the fastest, cleanest, and most intuitive live weather radar experience for residents, travelers, outdoor enthusiasts, and emergency planners across the United States.</p>
+                <p>Commercial weather portals have become cluttered with video popups, heavy scripts, and slow-loading bloat. When severe weather threatens your community, you need instant radar access — clear Doppler loops, immediate storm vectors, and active National Weather Service alerts without delay.</p>
+
+                <h2>Our Meteorological Data Sources</h2>
+                <p>We believe in complete transparency about where our weather data originates. Our application interfaces with reputable governmental and meteorological API endpoints:</p>
+
+                <div class="grid-cards">
+                    <div class="source-box">
+                        <h3>📡 NOAA NEXRAD WSR-88D</h3>
+                        <p>High-resolution Doppler radar reflectivity scans from more than 160 National Weather Service radar installations across the USA.</p>
+                    </div>
+                    <div class="source-box">
+                        <h3>🚨 National Weather Service (NWS)</h3>
+                        <p>Real-time active emergency alert feeds including Tornado Warnings, Severe Thunderstorm Warnings, Flash Flood Advisories, and Winter Storm Watches.</p>
+                    </div>
+                    <div class="source-box">
+                        <h3>🌦️ Open-Meteo & RainViewer</h3>
+                        <p>High-performance global weather forecast models and animated radar tile caches updating every 5 to 10 minutes.</p>
+                    </div>
+                </div>
+
+                <h2>Key Features We Deliver</h2>
+                <p>Our platform is engineered using modern web technologies to run smoothly on desktop, tablet, and smartphone browsers:</p>
+                <ul style="padding-left:22px;color:var(--text-sub);margin-bottom:18px;">
+                    <li><strong>Continuous 2-Hour Animated Radar Loop:</strong> See storm trajectory, speed, and cell intensification in real time.</li>
+                    <li><strong>Interactive Street-Level Zoom:</strong> Pan and zoom down to your specific neighborhood or county.</li>
+                    <li><strong>City & 5-Digit ZIP Search:</strong> Instant temperature, real-feel, wind gusts, hourly forecast, and 7-day outlook.</li>
+                    <li><strong>Real-Time US Air Quality Index (AQI):</strong> EPA-standard PM2.5 and Ozone health tracking.</li>
+                    <li><strong>Severe Storm Preparedness:</strong> Curated recommendations for emergency NOAA weather radios and storm backup equipment.</li>
+                </ul>
+
+                <h2>Editorial & Advertising Policy</h2>
+                <p>Weather Radar USA is free for all users. To support our server and bandwidth costs, we display non-intrusive advertisements through Google AdSense and earn affiliate commissions on select emergency gear recommendations. Our editorial recommendations remain independent and focused on community safety.</p>
+
+                <h2>Contact the Team</h2>
+                <p>We welcome feedback, meteorological inquiries, and feature suggestions from our users. Please visit our <a href="/contact.html">Contact Us</a> page or email <code>contact@weatherradarusa.online</code>.</p>
+            </article>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <a href="/">Home</a> •
+                <a href="/national-radar-loop.html">National Radar Loop</a> •
+                <a href="/privacy-policy.html">Privacy Policy</a> •
+                <a href="/terms-of-service.html">Terms of Service</a> •
+                <a href="/about.html">About Us</a> •
+                <a href="/contact.html">Contact Us</a>
+            </p>
+            <p style="margin-top:10px;">© 2026 Weather Radar USA • All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

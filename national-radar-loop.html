@@ -1,0 +1,975 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title targeting high-volume exact match queries: national radar loop, us doppler radar loop -->
+    <title>National Radar Loop | Live US Doppler Weather Map (HD)</title>
+    
+    <meta name="description" content="🔴 Watch the live national radar loop for the United States. Real-time animated NOAA NEXRAD Doppler radar, 2-hour storm loops, rain tracks & NWS alerts in HD.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Weather Radar USA">
+    <meta name="geo.region" content="US">
+    <meta name="theme-color" content="#0b1120">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://weatherradarusa.online/national-radar-loop.html">
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="National Radar Loop | Live US Doppler Weather Map (HD)">
+    <meta property="og:description" content="🔴 Watch live animated United States national radar loops. Real-time NOAA NEXRAD storm tracking, 2-hour Doppler loop, and active NWS severe alerts.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://weatherradarusa.online/national-radar-loop.html">
+    <meta property="og:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:site_name" content="Weather Radar USA">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="National Radar Loop | Live US Doppler Weather Map (HD)">
+    <meta name="twitter:description" content="🔴 Watch live animated United States national radar loops. Real-time NOAA NEXRAD storm tracking and Doppler radar map.">
+    <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+    <meta name="twitter:image:alt" content="Live National Doppler Weather Radar Loop for United States">
+    <meta property="og:image:alt" content="Live National Doppler Weather Radar Loop for United States">
+    <meta name="application-name" content="Weather Radar USA">
+    <meta name="apple-mobile-web-app-title" content="Weather Radar USA">
+    
+    <!-- Core Web Vitals Resource Hints -->
+    <link rel="dns-prefetch" href="https://tilecache.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.weather.gov">
+    <link rel="preconnect" href="https://tilecache.rainviewer.com" crossorigin>
+    
+    <!-- Google Fonts & Leaflet Map CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <!-- BreadcrumbList & WebApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://weatherradarusa.online/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "National Radar Loop",
+              "item": "https://weatherradarusa.online/national-radar-loop.html"
+            }
+          ]
+        },
+        {
+          "@type": "WebApplication",
+          "name": "Live US National Radar Loop & Doppler Weather Map",
+          "url": "https://weatherradarusa.online/national-radar-loop.html",
+          "applicationCategory": "WeatherApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Continuous 2-Hour Animated Radar Loop",
+            "Real-time NOAA NEXRAD Radar Frames",
+            "Custom Playback Loop Speeds (0.5x, 1x, 2x)",
+            "Regional US Radar Views",
+            "Interactive Zoom and Pan to Local Street Level"
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is a national radar loop?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A national radar loop is a sequenced composite animation of Doppler radar frames recorded over the past 1 to 2 hours across all 160+ NOAA NEXRAD stations in the United States. It reveals the direction, movement speed, and intensification of storms."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How often does the national radar loop update?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The animated radar loop receives new precipitation scan tiles every 5 to 10 minutes from live NEXRAD Doppler stations. The national mosaic refreshes every 2 minutes."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I control the radar loop animation speed?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Use the Speed dropdown selector below the radar player to choose 0.5x (slow analysis), 1x (normal speed), or 2x (fast overview). You can also drag the interactive timeline slider to inspect any specific timestamp frame."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-body: #0b1120;
+            --bg-header: rgba(15, 23, 42, 0.90);
+            --bg-card: #131c31;
+            --bg-elevated: #1e293b;
+            --border: rgba(255, 255, 255, 0.08);
+            --border-hover: rgba(56, 189, 248, 0.4);
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-sub: #cbd5e1;
+            --primary: #2563eb;
+            --primary-hover: #1d4ed8;
+            --accent: #38bdf8;
+            --accent-glow: rgba(56, 189, 248, 0.25);
+            --danger: #ef4444;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+        body.theme-light {
+            --bg-body: #f8fafc;
+            --bg-header: rgba(255, 255, 255, 0.92);
+            --bg-card: #ffffff;
+            --bg-elevated: #f1f5f9;
+            --border: #e2e8f0;
+            --border-hover: #38bdf8;
+            --text-primary: #0f172a;
+            --text-muted: #64748b;
+            --text-sub: #334155;
+            --shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.08);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+            transition: background 0.3s, color 0.3s;
+        }
+        .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+        a { color: var(--accent); text-decoration: none; transition: 0.2s; }
+        a:hover { color: #7dd3fc; }
+
+        /* Header */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg-header);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header .container { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; font-family: 'Outfit', sans-serif; }
+        .logo-radar-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-radar-icon svg { width: 22px; height: 22px; }
+        .logo-text { color: var(--text-primary); }
+        .highlight {
+            background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav { display: flex; align-items: center; gap: 20px; }
+        .nav a { color: var(--text-muted); font-weight: 500; font-size: 0.92rem; }
+        .nav a:hover, .nav a.active { color: var(--text-primary); }
+        .theme-btn {
+            background: var(--bg-elevated); border: 1px solid var(--border);
+            color: var(--text-primary); width: 36px; height: 36px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            padding: 14px 0 6px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .breadcrumbs a { color: var(--text-muted); }
+        .breadcrumbs a:hover { color: var(--accent); }
+        .breadcrumbs span { margin: 0 6px; }
+
+        /* Hero */
+        .loop-hero {
+            padding: 16px 0 20px;
+            text-align: center;
+        }
+        .loop-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .loop-hero p {
+            color: var(--text-muted);
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* Regional Quick-Zoom Bar */
+        .region-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 14px 0 20px;
+        }
+        .region-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-sub);
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .region-btn:hover, .region-btn.active {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            background: rgba(56, 189, 248, 0.12);
+        }
+
+        /* Radar Container */
+        .radar-box {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+        }
+        .radar-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .radar-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .radar-title-group h2 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+        .live-dot {
+            width: 8px; height: 8px; background: var(--danger); border-radius: 50%;
+            animation: pulseDot 1.4s infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.3); }
+        }
+        .badge {
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 999px; font-size: 0.78rem;
+            display: inline-flex; align-items: center; gap: 6px; font-weight: 600;
+        }
+
+        #radarMap {
+            width: 100%; height: 560px; background: #0b1120; position: relative;
+        }
+        #mosaicContainer {
+            width: 100%; height: 560px; background: #000; display: none;
+            align-items: center; justify-content: center;
+        }
+        #mosaicContainer img { max-height: 100%; width: 100%; object-fit: contain; }
+
+        /* Fullscreen */
+        :fullscreen .radar-box, :-webkit-full-screen .radar-box {
+            border-radius: 0; width: 100vw; height: 100vh; display: flex; flex-direction: column;
+        }
+        :fullscreen #radarMap, :-webkit-full-screen #radarMap {
+            flex: 1; height: calc(100vh - 120px) !important;
+        }
+
+        /* Toolbar */
+        .radar-toolbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 18px; background: var(--bg-elevated); border-top: 1px solid var(--border);
+            flex-wrap: wrap; gap: 12px;
+        }
+        .player-controls { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 280px; }
+        .play-btn {
+            background: var(--primary); color: #ffffff; border: none; border-radius: 8px;
+            padding: 8px 16px; font-weight: 700; font-size: 0.9rem; cursor: pointer;
+            transition: background 0.2s;
+        }
+        .play-btn:hover { background: var(--primary-hover); }
+        .time-slider-wrap { flex: 1; display: flex; align-items: center; gap: 10px; }
+        .time-slider {
+            flex: 1; -webkit-appearance: none; appearance: none;
+            height: 6px; border-radius: 3px; background: var(--border); outline: none; cursor: pointer;
+        }
+        .time-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 16px; height: 16px;
+            border-radius: 50%; background: var(--accent); cursor: pointer;
+        }
+        .time-badge {
+            font-size: 0.82rem; font-weight: 700; color: var(--accent);
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 6px; min-width: 110px; text-align: center;
+        }
+        .secondary-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .radar-ctrl-btn, .radar-ctrl-select {
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-sub);
+            padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+        }
+        .radar-ctrl-btn:hover, .radar-ctrl-select:hover { border-color: var(--accent); color: var(--text-primary); }
+
+        /* Guide & Content Sections */
+        .content-section {
+            padding: 30px 0 50px;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 28px;
+        }
+        @media (max-width: 860px) {
+            .content-grid { grid-template-columns: 1fr; }
+            #radarMap, #mosaicContainer { height: 420px; }
+            .nav { display: none; }
+        }
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 26px;
+        }
+        .article-card h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.45rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        .article-card h3 {
+            font-size: 1.15rem;
+            margin: 20px 0 8px;
+            color: var(--accent);
+        }
+        .article-card p {
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+        }
+        .article-card ul {
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        .article-card li { margin-bottom: 6px; }
+
+        .sidebar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px;
+            height: fit-content;
+        }
+        .sidebar-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .faq-question {
+            width: 100%; text-align: left; background: none; border: none;
+            padding: 14px 18px; color: var(--text-primary); font-weight: 600;
+            font-size: 0.95rem; display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer;
+        }
+        .faq-answer {
+            display: none; padding: 0 18px 14px;
+            color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;
+        }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-header);
+            border-top: 1px solid var(--border);
+            padding: 36px 0 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+        .footer-links {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 14px;
+        }
+
+        /* AdSense Responsive Slot Placeholders (Anti-CLS) */
+        .ad-slot-wrap {
+            width: 100%; max-width: 970px; margin: 18px auto; text-align: center;
+        }
+        .ad-slot-label {
+            font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 4px; display: block;
+        }
+        .ad-slot-box {
+            min-height: 90px; background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed rgba(255, 255, 255, 0.12); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); font-size: 0.82rem; padding: 10px;
+        }
+
+        /* Cookie Consent Banner */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border); padding: 14px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 16px; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(100%); transition: transform 0.3s ease;
+        }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-text { font-size: 0.86rem; color: var(--text-sub); line-height: 1.4; flex: 1; }
+        .cookie-text a { color: var(--accent); font-weight: 600; }
+        .cookie-btn {
+            background: var(--primary); color: #ffffff; border: none;
+            padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; white-space: nowrap; transition: background 0.2s;
+        }
+        .cookie-btn:hover { background: var(--primary-hover); }
+        @media (max-width: 600px) {
+            .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
+        }
+    </style>
+</head>
+<body class="theme-dark">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo" aria-label="Weather Radar USA Homepage">
+                <div class="logo-radar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10"></path>
+                        <path d="M12 6a6 6 0 1 0 6 6"></path>
+                        <path d="M12 10a2 2 0 1 0 2 2"></path>
+                        <line x1="12" y1="12" x2="20" y2="4"></line>
+                    </svg>
+                </div>
+                <div class="logo-text">Weather Radar <span class="highlight">USA</span></div>
+            </a>
+
+            <nav class="nav" aria-label="Navigation">
+                <a href="/">Full Weather Radar Map</a>
+                <a href="/national-radar-loop.html" class="active" style="color:var(--accent);font-weight:700;">National Radar Loop</a>
+                <a href="/#severe-alerts">NWS Alerts</a>
+                <a href="/#popular-cities">US Cities</a>
+                <a href="/#tools">Radar Tools</a>
+            </nav>
+
+            <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
+                🌙
+            </button>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>›</span>
+            <strong>National Radar Loop</strong>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="loop-hero">
+            <h1>National Radar Loop – Live US Doppler Weather Map</h1>
+            <p>Continuous 2-hour animated Doppler radar loop tracking storm cells, heavy rain, snowfall, and squall lines across the Continental United States in real-time HD.</p>
+        </section>
+
+        <!-- Regional Quick-Zoom Bar -->
+        <div class="region-bar" aria-label="Regional Radar Shortcuts">
+            <span style="font-size:0.8rem;color:var(--text-muted);font-weight:600;">QUICK REGIONS:</span>
+            <button class="region-btn active" onclick="zoomRegion('us')">🇺🇸 Entire USA</button>
+            <button class="region-btn" onclick="zoomRegion('southeast')">🏖️ Florida & Southeast</button>
+            <button class="region-btn" onclick="zoomRegion('texas')">🤠 Texas & Gulf Coast</button>
+            <button class="region-btn" onclick="zoomRegion('northeast')">🗽 Northeast Corridor</button>
+            <button class="region-btn" onclick="zoomRegion('midwest')">🌾 Midwest & Ohio Valley</button>
+            <button class="region-btn" onclick="zoomRegion('west')">🌴 West Coast & California</button>
+            <button class="region-btn" onclick="zoomRegion('plains')">🌪️ Central Plains</button>
+        </div>
+
+        <!-- Google AdSense: Top Leaderboard Ad Slot (728x90 / Responsive) -->
+        <div class="ad-slot-wrap" aria-label="Advertisement">
+            <span class="ad-slot-label">Advertisement</span>
+            <div class="ad-slot-box">
+                <span>⚡ Google AdSense Slot • 728×90 / Responsive Leaderboard</span>
+            </div>
+        </div>
+
+        <!-- Radar Map Box -->
+        <section class="radar-box">
+            <div class="radar-header-bar">
+                <div class="radar-title-group">
+                    <span class="live-dot"></span>
+                    <h2>United States Doppler Radar Loop</h2>
+                    <span class="badge" id="loopStatusBadge" style="background:rgba(56,189,248,0.12);color:var(--accent);border-color:var(--accent);">🔴 Loop Running</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <div style="display:flex;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+                        <button id="btnInteractiveView" class="region-btn active" style="border:none;border-radius:0;" onclick="switchRadarView('interactive')">Interactive HD Map</button>
+                        <button id="btnMosaicView" class="region-btn" style="border:none;border-radius:0;" onclick="switchRadarView('mosaic')">NOAA Mosaic (GIF)</button>
+                    </div>
+                    <button class="radar-ctrl-btn" onclick="toggleRadarFullscreen()" title="Fullscreen Mode">⛶ Fullscreen</button>
+                </div>
+            </div>
+
+            <!-- Leaflet Radar Map -->
+            <div id="radarMap" aria-label="Interactive Doppler Radar Loop"></div>
+
+            <!-- Mosaic Fallback -->
+            <div id="mosaicContainer" aria-label="NOAA National Radar Mosaic">
+                <img src="https://f5wx.com/radar/live/radar_us.gif" id="mosaicImg" alt="Live national Doppler radar USA weather map loop – Real-time NOAA NEXRAD storm mosaic" width="800" height="500" loading="lazy" decoding="async">
+            </div>
+
+            <!-- Interactive Player Toolbar -->
+            <div class="radar-toolbar">
+                <div class="player-controls">
+                    <button class="play-btn" id="playBtn" onclick="toggleRadarPlay()">⏸ Pause</button>
+                    <div class="time-slider-wrap">
+                        <input type="range" class="time-slider" id="radarTimeSlider" min="0" max="0" value="0" oninput="onTimeSliderChange(this.value)">
+                        <span class="time-badge" id="frameTimeBadge">Loading Loop…</span>
+                    </div>
+                </div>
+
+                <div class="secondary-controls">
+                    <select class="radar-ctrl-select" id="speedSelect" onchange="changeLoopSpeed(this.value)">
+                        <option value="800">Speed: 1x</option>
+                        <option value="1400">Speed: 0.5x (Slow)</option>
+                        <option value="400">Speed: 2x (Fast)</option>
+                    </select>
+                    <select class="radar-ctrl-select" id="layerSelect" onchange="changeRadarLayer(this.value)">
+                        <option value="radar">🌧️ Rain / Snow (Radar)</option>
+                        <option value="satellite">☁️ Satellite (Infrared)</option>
+                    </select>
+                    <button class="radar-ctrl-btn" onclick="zoomRegion('us')" title="Reset to Continental US">🇺🇸 Center US</button>
+                    <button class="radar-ctrl-btn" onclick="refreshRadarData()" title="Fetch newest frames">↻ Refresh</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Detailed Guide & FAQs -->
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="article-card">
+                    <h2>Understanding the US National Doppler Radar Loop</h2>
+                    <p>The <strong>national radar loop</strong> connects over 160 WSR-88D NEXRAD Doppler radar stations across the contiguous United States into a continuous, high-definition composite loop. By animating past radar reflectivity scans over a 2-hour window, you can determine:</p>
+                    
+                    <ul>
+                        <li><strong>Storm Velocity & Vector:</strong> How fast rain bands and thunderstorm cells are moving toward your city or county.</li>
+                        <li><strong>Cell Intensification:</strong> Whether radar echoes are transitioning from green (light rain) to yellow, orange, red (heavy downpours), or purple (severe hail/tornadic supercells).</li>
+                        <li><strong>Cold & Warm Fronts:</strong> Long narrow squall lines advancing across states from west to east or south to north.</li>
+                        <li><strong>Winter Precipitation Boundaries:</strong> The freezing rain and snowfall line during major winter storms.</li>
+                    </ul>
+
+                    <h3>How to Interpret Radar Reflectivity (dBZ)</h3>
+                    <p>The standard NEXRAD radar scale measures echo intensity in decibels of reflectivity (dBZ):</p>
+                    <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:18px;font-size:0.88rem;line-height:1.9;">
+                        <div><strong style="color:#00e400;">15 – 30 dBZ:</strong> Light rain, mist, or light snow showers</div>
+                        <div><strong style="color:#ffff00;">30 – 40 dBZ:</strong> Moderate rain, steady precipitation</div>
+                        <div><strong style="color:#ff7f00;">40 – 50 dBZ:</strong> Heavy rain, ponding on roadways</div>
+                        <div><strong style="color:#ff0000;">50 – 60 dBZ:</strong> Severe thunderstorm, high wind gusts, possible hail</div>
+                        <div><strong style="color:#ff00ff;">60+ dBZ:</strong> Extreme storm core, large damaging hail, potential tornado</div>
+                    </div>
+
+                    <h3>National Radar Loop FAQ</h3>
+                    <div class="faq-item open">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What is a national radar loop?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            A national radar loop is an animated composite of Doppler radar frames recorded over the past 2 hours from National Weather Service WSR-88D NEXRAD towers across the entire United States.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How often does this radar loop update?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            New Doppler radar scans are incorporated every 5 to 10 minutes as soon as individual radar towers complete their volume scans. The national NOAA mosaic updates every 2 minutes.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Can I zoom into my city or neighborhood?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes! Use your mouse wheel or the [+] and [-] buttons on the map to zoom all the way down to county and neighborhood street level, or click our <a href="/">homepage search bar</a> to search by city or 5-digit ZIP code.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sidebar -->
+                <div>
+                    <div class="sidebar-card">
+                        <h3>🚨 Active NWS Alerts</h3>
+                        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">Live watches & warnings across the US:</p>
+                        <div id="alertsFeed" style="display:flex;flex-direction:column;gap:10px;">
+                            <div style="font-size:0.85rem;color:var(--text-muted);">Fetching NOAA emergency warnings…</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card" style="margin-top:20px;">
+                        <h3>🔍 Search Local Forecast</h3>
+                        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">Want detailed hourly forecasts, temperature, UV, and Air Quality (AQI) for your location?</p>
+                        <a href="/" class="play-btn" style="text-align:center;display:block;text-decoration:none;">Go to City & ZIP Search →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/">Live Weather Radar Map</a>
+                <a href="/national-radar-loop.html">National Radar Loop (HD)</a>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/terms-of-service.html">Terms of Service</a>
+                <a href="/about.html">About Us</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+            <p>© 2026 Weather Radar USA • Data Source: NOAA / NWS NEXRAD & RainViewer API • Canonical: <a href="https://weatherradarusa.online/national-radar-loop.html">https://weatherradarusa.online/national-radar-loop.html</a></p>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie and Privacy Consent">
+        <div class="cookie-text">
+            🍪 <strong>Cookie & Privacy Notice:</strong> We use cookies to analyze radar traffic, remember preferences, and serve relevant Google advertisements. By using our site, you agree to our <a href="/privacy-policy.html">Privacy Policy</a> and <a href="/terms-of-service.html">Terms</a>.
+        </div>
+        <button class="cookie-btn" onclick="acceptCookieConsent()">Accept & Continue</button>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        let currentTheme = 'dark';
+        let map = null;
+        let radarTileLayer = null;
+        let baseTileLayer = null;
+        let radarFrames = [];
+        let currentFrameIndex = 0;
+        let isPlaying = false;
+        let playInterval = null;
+        let loopSpeed = 800;
+        let radarLayerType = 'radar';
+
+        // Regional Presets
+        const REGIONS = {
+            us: { center: [38.5, -96.5], zoom: 4 },
+            southeast: { center: [29.5, -84.0], zoom: 6 },
+            texas: { center: [31.0, -97.5], zoom: 6 },
+            northeast: { center: [41.5, -74.5], zoom: 6 },
+            midwest: { center: [41.0, -87.5], zoom: 6 },
+            west: { center: [37.0, -119.5], zoom: 6 },
+            plains: { center: [36.5, -97.5], zoom: 6 }
+        };
+
+        function zoomRegion(reg) {
+            const conf = REGIONS[reg] || REGIONS.us;
+            if (map) map.flyTo(conf.center, conf.zoom, { duration: 1.1 });
+            document.querySelectorAll('.region-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
+        }
+
+        function initTheme() {
+            const saved = localStorage.getItem('w_theme');
+            setTheme(saved === 'light' ? 'light' : 'dark');
+        }
+
+        function setTheme(theme) {
+            currentTheme = theme;
+            localStorage.setItem('w_theme', theme);
+            const btn = document.getElementById('themeToggleBtn');
+            if (theme === 'light') {
+                document.body.classList.remove('theme-dark');
+                document.body.classList.add('theme-light');
+                btn.textContent = '☀️';
+                updateBaseMap('light');
+            } else {
+                document.body.classList.remove('theme-light');
+                document.body.classList.add('theme-dark');
+                btn.textContent = '🌙';
+                updateBaseMap('dark');
+            }
+        }
+
+        function toggleTheme() {
+            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+        }
+
+        function initMap() {
+            map = L.map('radarMap', {
+                center: [38.5, -96.5],
+                zoom: 4,
+                minZoom: 3,
+                maxZoom: 12,
+                zoomControl: true,
+                attributionControl: false
+            });
+
+            L.control.attribution({ position: 'bottomright', prefix: false })
+                .addAttribution('&copy; CARTO &copy; OSM | Radar: <a href="https://www.rainviewer.com/">RainViewer</a>')
+                .addTo(map);
+
+            updateBaseMap(currentTheme);
+            loadRainViewer();
+        }
+
+        function updateBaseMap(theme) {
+            if (!map) return;
+            if (baseTileLayer) map.removeLayer(baseTileLayer);
+            const tileUrl = theme === 'light'
+                ? 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
+                : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+            baseTileLayer = L.tileLayer(tileUrl, { subdomains: 'abcd', maxZoom: 19 }).addTo(map);
+        }
+
+        async function loadRainViewer() {
+            try {
+                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
+                const data = await res.json();
+                if (data && data.radar && data.radar.past) {
+                    window._rvHost = data.host;
+                    window._rvRadarPast = data.radar.past;
+                    window._rvSatPast = (data.satellite && data.satellite.infrared) ? data.satellite.infrared : [];
+                    
+                    radarFrames = radarLayerType === 'satellite' ? window._rvSatPast : window._rvRadarPast;
+                    const slider = document.getElementById('radarTimeSlider');
+                    slider.max = radarFrames.length - 1;
+                    currentFrameIndex = 0;
+                    slider.value = 0;
+                    showFrame(0);
+
+                    // Auto-start continuous loop
+                    setTimeout(() => {
+                        startRadarLoop();
+                    }, 500);
+                }
+            } catch (err) {
+                console.error('RainViewer error:', err);
+                document.getElementById('frameTimeBadge').textContent = 'Radar Online';
+            }
+        }
+
+        function showFrame(index) {
+            if (!radarFrames.length || !map) return;
+            const frame = radarFrames[index];
+            if (!frame) return;
+
+            const path = frame.path;
+            const host = window._rvHost || 'https://tilecache.rainviewer.com';
+            const colorScheme = radarLayerType === 'satellite' ? 0 : 2;
+            const url = `${host}${path}/256/{z}/{x}/{y}/${colorScheme}/1_1.png`;
+
+            if (radarTileLayer) map.removeLayer(radarTileLayer);
+            radarTileLayer = L.tileLayer(url, { opacity: 0.75, zIndex: 10 }).addTo(map);
+
+            const date = new Date(frame.time * 1000);
+            const isLive = (index === radarFrames.length - 1);
+            const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+            document.getElementById('frameTimeBadge').textContent = isLive ? `🔴 ${timeStr} (Live)` : timeStr;
+            document.getElementById('radarTimeSlider').value = index;
+        }
+
+        function toggleRadarPlay() {
+            if (isPlaying) stopRadarLoop();
+            else startRadarLoop();
+        }
+
+        function startRadarLoop() {
+            if (!radarFrames.length) return;
+            isPlaying = true;
+            document.getElementById('playBtn').textContent = '⏸ Pause';
+            document.getElementById('loopStatusBadge').textContent = '🔴 Loop Running';
+            playInterval = setInterval(() => {
+                currentFrameIndex = (currentFrameIndex + 1) % radarFrames.length;
+                showFrame(currentFrameIndex);
+            }, loopSpeed);
+        }
+
+        function stopRadarLoop() {
+            isPlaying = false;
+            document.getElementById('playBtn').textContent = '▶ Play Loop';
+            document.getElementById('loopStatusBadge').textContent = '⏸ Loop Paused';
+            if (playInterval) clearInterval(playInterval);
+        }
+
+        function onTimeSliderChange(val) {
+            stopRadarLoop();
+            currentFrameIndex = parseInt(val, 10);
+            showFrame(currentFrameIndex);
+        }
+
+        function changeLoopSpeed(spd) {
+            loopSpeed = parseInt(spd, 10);
+            if (isPlaying) {
+                stopRadarLoop();
+                startRadarLoop();
+            }
+        }
+
+        function changeRadarLayer(type) {
+            radarLayerType = type;
+            stopRadarLoop();
+            radarFrames = radarLayerType === 'satellite' ? (window._rvSatPast || []) : (window._rvRadarPast || []);
+            const slider = document.getElementById('radarTimeSlider');
+            slider.max = radarFrames.length - 1;
+            currentFrameIndex = radarFrames.length - 1;
+            showFrame(currentFrameIndex);
+            startRadarLoop();
+        }
+
+        function refreshRadarData() {
+            loadRainViewer();
+            const img = document.getElementById('mosaicImg');
+            if (img) img.src = img.src.split('?')[0] + '?t=' + Date.now();
+        }
+
+        function switchRadarView(view) {
+            const mapEl = document.getElementById('radarMap');
+            const mosaicEl = document.getElementById('mosaicContainer');
+            const btnInteractive = document.getElementById('btnInteractiveView');
+            const btnMosaic = document.getElementById('btnMosaicView');
+
+            if (view === 'mosaic') {
+                mapEl.style.display = 'none';
+                mosaicEl.style.display = 'flex';
+                btnInteractive.classList.remove('active');
+                btnMosaic.classList.add('active');
+            } else {
+                mosaicEl.style.display = 'none';
+                mapEl.style.display = 'block';
+                btnMosaic.classList.remove('active');
+                btnInteractive.classList.add('active');
+                if (map) map.invalidateSize();
+            }
+        }
+
+        function toggleRadarFullscreen() {
+            const el = document.querySelector('.radar-box');
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (el.requestFullscreen) el.requestFullscreen();
+                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+        }
+        document.addEventListener('fullscreenchange', () => {
+            if (map) setTimeout(() => map.invalidateSize(), 200);
+        });
+
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        }
+
+        // Live NOAA Alerts for Sidebar
+        async function fetchSidebarAlerts() {
+            const feed = document.getElementById('alertsFeed');
+            try {
+                const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert&limit=5');
+                const data = await res.json();
+                const features = data.features || [];
+                if (!features.length) {
+                    feed.innerHTML = '<div style="font-size:0.85rem;color:var(--text-muted);">No major severe emergency alerts right now. Radar operations normal.</div>';
+                    return;
+                }
+                feed.innerHTML = features.map(f => {
+                    const p = f.properties;
+                    return `
+                        <div style="background:var(--bg-elevated);border-left:3px solid var(--danger);border-radius:6px;padding:8px 12px;font-size:0.82rem;">
+                            <strong style="color:var(--danger);">${p.event || 'Severe Alert'}</strong>
+                            <div style="color:var(--text-muted);margin-top:2px;">📍 ${p.areaDesc?.slice(0, 50) || 'USA'}</div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (err) {
+                feed.innerHTML = '<div style="font-size:0.85rem;color:var(--text-muted);">Alert feed active on radar.weather.gov</div>';
+            }
+        }
+
+        function checkCookieConsent() {
+            if (!localStorage.getItem('wr_cookie_consent')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookieBanner');
+                    if (banner) banner.classList.add('show');
+                }, 1200);
+            }
+        }
+
+        function acceptCookieConsent() {
+            localStorage.setItem('wr_cookie_consent', 'accepted');
+            const banner = document.getElementById('cookieBanner');
+            if (banner) banner.classList.remove('show');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            initMap();
+            fetchSidebarAlerts();
+            checkCookieConsent();
+        });
+    </script>
+</body>
+</html>
