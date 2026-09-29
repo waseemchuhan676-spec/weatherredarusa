@@ -11,7 +11,7 @@
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Weather Radar USA">
     <meta name="geo.region" content="US">
-    <meta name="theme-color" content="#0b1120">
+    <meta name="theme-color" content="#060913">
     <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     
     <!-- Strict Canonical Non-WWW -->
@@ -219,42 +219,42 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Dark Theme Default */
+        /* Modern Deep Obsidian Theme Default */
         :root {
-            --bg-body: #0b1120;
-            --bg-header: rgba(15, 23, 42, 0.88);
-            --bg-card: #131c31;
-            --bg-elevated: #1e293b;
-            --bg-card-hover: #1e2c4a;
+            --bg-body: #060913;
+            --bg-header: rgba(10, 15, 29, 0.88);
+            --bg-card: rgba(14, 21, 38, 0.82);
+            --bg-elevated: rgba(22, 33, 56, 0.75);
+            --bg-card-hover: rgba(28, 42, 74, 0.90);
             --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(56, 189, 248, 0.4);
+            --border-hover: rgba(56, 189, 248, 0.45);
             --text-primary: #f8fafc;
             --text-muted: #94a3b8;
             --text-sub: #cbd5e1;
             --primary: #2563eb;
             --primary-hover: #1d4ed8;
             --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.25);
+            --accent-glow: rgba(56, 189, 248, 0.30);
             --danger: #ef4444;
-            --danger-bg: rgba(239, 68, 68, 0.12);
+            --danger-bg: rgba(239, 68, 68, 0.14);
             --warning: #f59e0b;
-            --warning-bg: rgba(245, 158, 11, 0.12);
+            --warning-bg: rgba(245, 158, 11, 0.14);
             --success: #10b981;
             --radius-sm: 8px;
             --radius: 14px;
             --radius-lg: 20px;
-            --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
-            --shadow-glow: 0 0 25px rgba(56, 189, 248, 0.15);
+            --shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.65);
+            --shadow-glow: 0 0 35px rgba(56, 189, 248, 0.22);
         }
 
         /* Light Theme Overrides */
         body.theme-light {
             --bg-body: #f8fafc;
             --bg-header: rgba(255, 255, 255, 0.92);
-            --bg-card: #ffffff;
+            --bg-card: rgba(255, 255, 255, 0.92);
             --bg-elevated: #f1f5f9;
             --bg-card-hover: #e2e8f0;
-            --border: #e2e8f0;
+            --border: rgba(226, 232, 240, 0.95);
             --border-hover: #38bdf8;
             --text-primary: #0f172a;
             --text-muted: #64748b;
@@ -265,18 +265,31 @@
             --accent-glow: rgba(2, 132, 199, 0.15);
             --danger-bg: #fee2e2;
             --warning-bg: #fef3c7;
-            --shadow: 0 10px 30px -10px rgba(37, 99, 235, 0.08);
+            --shadow: 0 12px 32px -8px rgba(15, 23, 42, 0.08);
             --shadow-glow: 0 0 20px rgba(37, 99, 235, 0.10);
         }
 
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-body);
+            background-color: var(--bg-body);
+            background-image: 
+                radial-gradient(ellipse 90% 50% at 50% -10%, rgba(14, 165, 233, 0.16), transparent 75%),
+                radial-gradient(circle 600px at 10% 25%, rgba(37, 99, 235, 0.08), transparent 70%),
+                radial-gradient(circle 600px at 90% 65%, rgba(99, 102, 241, 0.06), transparent 70%);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
             transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        body.theme-light {
+            background-color: #f8fafc;
+            background-image: 
+                radial-gradient(ellipse 90% 40% at 50% -5%, rgba(56, 189, 248, 0.14), transparent 70%),
+                radial-gradient(circle 600px at 90% 20%, rgba(37, 99, 235, 0.06), transparent 70%);
         }
 
         .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
@@ -488,8 +501,17 @@
         /* Radar Section */
         .radar-section { padding: 14px 0 36px; }
         .radar-box {
-            background: var(--bg-card); border: 1px solid var(--border);
-            border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow);
+            background: var(--bg-card);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 0 35px -5px rgba(14, 165, 233, 0.22), var(--shadow);
+            position: relative;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .radar-box:hover {
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 0 45px -5px rgba(14, 165, 233, 0.30), var(--shadow);
         }
 
         /* Fullscreen styles */
@@ -524,7 +546,7 @@
 
         /* Leaflet Map Container */
         #radarMap {
-            width: 100%; height: 530px; background: #0b1120; z-index: 1; position: relative;
+            width: 100%; height: 530px; background: #060913; z-index: 1; position: relative;
         }
         #mosaicContainer {
             width: 100%; height: 530px; background: #000000; display: none;
@@ -534,19 +556,82 @@
             max-height: 100%; width: 100%; object-fit: contain;
         }
 
+        /* Floating On-Map dBZ Color Legend Bar */
+        .radar-legend-overlay {
+            position: absolute;
+            bottom: 22px;
+            left: 12px;
+            z-index: 500;
+            background: rgba(6, 9, 20, 0.88);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            padding: 7px 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            pointer-events: auto;
+            max-width: 320px;
+        }
+        .legend-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .legend-title {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+        }
+        .legend-scale-bar {
+            display: flex;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+        .scale-color {
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: #ffffff;
+            padding: 2px 5px;
+            flex: 1;
+            text-align: center;
+            line-height: 14px;
+            white-space: nowrap;
+        }
+        .legend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.64rem;
+            color: var(--text-muted);
+            padding-top: 1px;
+        }
+
         /* Radar Controls Toolbar */
         .radar-toolbar {
             display: flex; align-items: center; justify-content: space-between;
             padding: 12px 18px; background: var(--bg-elevated); border-top: 1px solid var(--border);
             flex-wrap: wrap; gap: 12px;
         }
-        .player-controls { display: flex; align-items: center; gap: 10px; flex: 1; min-width: 280px; }
+        .player-controls { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 290px; }
         .play-btn {
             background: var(--primary); color: #ffffff; border: none; border-radius: 8px;
-            padding: 8px 16px; font-weight: 700; font-size: 0.9rem; cursor: pointer;
+            padding: 8px 14px; font-weight: 700; font-size: 0.88rem; cursor: pointer;
             display: flex; align-items: center; gap: 6px; transition: background 0.2s;
+            white-space: nowrap;
         }
         .play-btn:hover { background: var(--primary-hover); }
+        .radar-step-btn {
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);
+            border-radius: 8px; padding: 8px 11px; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .radar-step-btn:hover { border-color: var(--accent); background: var(--bg-card-hover); color: var(--accent); }
         .time-slider-wrap { flex: 1; display: flex; align-items: center; gap: 10px; }
         .time-slider {
             flex: 1; -webkit-appearance: none; appearance: none;
@@ -562,13 +647,46 @@
             padding: 4px 10px; border-radius: 6px; min-width: 110px; text-align: center;
         }
 
-        .secondary-controls { display: flex; align-items: center; gap: 8px; }
+        .secondary-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
         .radar-ctrl-btn, .radar-ctrl-select {
             background: var(--bg-card); border: 1px solid var(--border); color: var(--text-sub);
             padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer;
-            outline: none;
+            outline: none; transition: all 0.2s;
         }
         .radar-ctrl-btn:hover, .radar-ctrl-select:hover { border-color: var(--accent); color: var(--text-primary); }
+
+        /* Severe Weather Radio Alert Callout */
+        .alert-gear-callout {
+            background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            border-radius: var(--radius);
+            padding: 12px 18px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+        .alert-gear-text {
+            font-size: 0.90rem;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .alert-gear-btn {
+            background: #ef4444;
+            color: #ffffff;
+            font-size: 0.83rem;
+            font-weight: 700;
+            padding: 7px 14px;
+            border-radius: 8px;
+            text-decoration: none;
+            white-space: nowrap;
+            transition: background 0.2s, transform 0.2s;
+        }
+        .alert-gear-btn:hover { background: #dc2626; transform: translateY(-1px); color: #ffffff; text-decoration: none; }
 
         /* Weather Results Card Section */
         .results-section { padding: 10px 0 40px; display: none; }
@@ -1000,7 +1118,29 @@
                     </div>
 
                     <!-- 1. Interactive Leaflet Radar Map -->
-                    <div id="radarMap" aria-label="Interactive Weather Radar Map"></div>
+                    <div id="radarMap" aria-label="Interactive Weather Radar Map">
+                        <!-- Floating On-Map dBZ Intensity Legend -->
+                        <div class="radar-legend-overlay" id="radarLegendOverlay" aria-label="Radar Reflectivity Scale">
+                            <div class="legend-header">
+                                <span class="legend-title">⚡ Precipitation (dBZ)</span>
+                            </div>
+                            <div class="legend-scale-bar">
+                                <span class="scale-color" style="background:#00e400;color:#000;" title="15-25 dBZ: Light Rain">15</span>
+                                <span class="scale-color" style="background:#009e00;color:#fff;" title="25-35 dBZ: Moderate Rain">30</span>
+                                <span class="scale-color" style="background:#ffff00;color:#000;" title="35-45 dBZ: Heavy Rain">40</span>
+                                <span class="scale-color" style="background:#ff7e00;color:#000;" title="45-50 dBZ: Very Heavy Rain">48</span>
+                                <span class="scale-color" style="background:#ff0000;color:#fff;" title="50-60 dBZ: Severe Storm">55</span>
+                                <span class="scale-color" style="background:#99004c;color:#fff;" title="60-70+ dBZ: Severe Hail Core">65+</span>
+                                <span class="scale-color" style="background:#00bfff;color:#000;" title="Snow / Freezing Mix">❄️</span>
+                            </div>
+                            <div class="legend-labels">
+                                <span>Light</span>
+                                <span>Mod</span>
+                                <span>Heavy</span>
+                                <span>Hail ⛈️</span>
+                            </div>
+                        </div>
+                    </div>
 
                     <!-- 2. Fallback NOAA Mosaic GIF -->
                     <div id="mosaicContainer" aria-label="NOAA National Radar Mosaic">
@@ -1010,7 +1150,9 @@
                     <!-- Interactive Player Toolbar -->
                     <div class="radar-toolbar" id="interactiveToolbar">
                         <div class="player-controls">
+                            <button class="radar-step-btn" onclick="stepRadarFrame(-1)" title="Step 1 frame backward">⏮</button>
                             <button class="play-btn" id="playBtn" onclick="toggleRadarPlay()">▶ Play Loop</button>
+                            <button class="radar-step-btn" onclick="stepRadarFrame(1)" title="Step 1 frame forward">⏭</button>
                             <div class="time-slider-wrap">
                                 <input type="range" class="time-slider" id="radarTimeSlider" min="0" max="0" value="0" oninput="onTimeSliderChange(this.value)">
                                 <span class="time-badge" id="frameTimeBadge">Loading…</span>
@@ -1019,14 +1161,17 @@
 
                         <div class="secondary-controls">
                             <select class="radar-ctrl-select" id="layerSelect" onchange="changeRadarLayer(this.value)">
-                                <option value="radar">🌧️ Rain / Snow (Radar)</option>
-                                <option value="satellite">☁️ Satellite (Infrared)</option>
+                                <option value="radar">🌧️ Rain / Snow (Doppler Loop)</option>
+                                <option value="noaa_nexrad">🇺🇸 NOAA NEXRAD Base (Live Gov Feed)</option>
+                                <option value="satellite">☁️ Satellite (Infrared Clouds)</option>
                             </select>
                             <select class="radar-ctrl-select" id="speedSelect" onchange="changeLoopSpeed(this.value)">
                                 <option value="800">Speed: 1x</option>
                                 <option value="1400">Speed: 0.5x</option>
                                 <option value="400">Speed: 2x</option>
                             </select>
+                            <button class="radar-ctrl-btn" id="toggleAlertsBtn" onclick="toggleAlertPolygons()" title="Toggle NWS Severe Storm Warning Polygons on Map">⚠️ Warnings: ON</button>
+                            <button class="radar-ctrl-btn" onclick="useMyLocation()" title="Zoom radar to my location">📍 My Radar</button>
                             <button class="radar-ctrl-btn" onclick="recenterUSA()" title="Reset view to whole United States">🇺🇸 Center US</button>
                             <button class="radar-ctrl-btn" onclick="refreshRadarData()" title="Reload latest radar frames">↻ Refresh</button>
                         </div>
@@ -1060,6 +1205,18 @@
                     <h2>🚨 Live NWS Severe Weather Alerts</h2>
                     <p>Real-time watches, warnings, and emergency advisories issued by the National Weather Service across the United States.</p>
                 </div>
+
+                <!-- Emergency Weather Radio Affiliate Callout -->
+                <div class="alert-gear-callout" role="complementary" aria-label="Severe Weather Preparedness">
+                    <div class="alert-gear-text">
+                        <span style="font-size:1.4rem;">📻</span>
+                        <div>
+                            <strong>Severe Weather Life-Safety Note:</strong> When severe storm cells knock out mobile phone towers or power lines, a certified NOAA Weather Radio delivers automatic life-saving emergency siren alerts 24/7.
+                        </div>
+                    </div>
+                    <a href="#gear-section" class="alert-gear-btn">View Certified NOAA Radios →</a>
+                </div>
+
                 <div class="alerts-feed-grid" id="alertsGrid">
                     <div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:24px;">
                         Fetching active weather warnings from NOAA / NWS…
@@ -1454,18 +1611,37 @@
 
     <!-- Main JavaScript Logic -->
     <script>
+        // ==========================================
+        // 🛰️ RADAR ENGINE & API CONFIGURATION
+        // ==========================================
+        const RADAR_CONFIG = {
+            // 🔑 Optional RainViewer Commercial API Key:
+            // Leave as empty string "" to use the 100% FREE public radar feed (no key required!).
+            // If you have a paid RainViewer API key or token, paste it inside the quotes below:
+            rainviewerApiKey: "",
+
+            // 🇺🇸 Iowa Environmental Mesonet (NOAA NEXRAD WSR-88D Composite):
+            // 100% Free, Official US Government radar data, unlimited access, never requires an API key!
+            enableNoaaNexrad: true,
+
+            // 🌪️ Real-Time NWS Severe Warning Polygons on Map:
+            showWarningPolygons: true
+        };
+
         // Global Application State
         let currentUnit = 'F';
         let currentTheme = 'dark';
         let map = null;
         let radarTileLayer = null;
         let baseTileLayer = null;
+        let alertsLayerGroup = null;
+        let showPolygons = true;
         let radarFrames = [];
         let currentFrameIndex = 0;
         let isPlaying = false;
         let playInterval = null;
         let loopSpeed = 800; // ms
-        let radarLayerType = 'radar'; // 'radar' or 'satellite'
+        let radarLayerType = 'radar'; // 'radar', 'noaa_nexrad', 'satellite'
         let cityMarker = null;
 
         // ==========================================
@@ -1539,8 +1715,11 @@
             });
 
             L.control.attribution({ position: 'bottomright', prefix: false })
-                .addAttribution('&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> | Radar: <a href="https://www.rainviewer.com/">RainViewer</a>')
+                .addAttribution('&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> | Radar: <a href="https://www.rainviewer.com/">RainViewer</a> &amp; <a href="https://mesonet.agron.iastate.edu/">NOAA NEXRAD</a>')
                 .addTo(map);
+
+            // Layer group for live warning polygons
+            alertsLayerGroup = L.layerGroup().addTo(map);
 
             updateMapBaseLayer(currentTheme);
             loadRainViewerData();
@@ -1562,7 +1741,9 @@
 
         async function loadRainViewerData() {
             try {
-                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
+                // If commercial API key is set, append it
+                const apiKeyParam = RADAR_CONFIG.rainviewerApiKey ? `?key=${encodeURIComponent(RADAR_CONFIG.rainviewerApiKey)}` : '';
+                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json' + apiKeyParam);
                 const data = await res.json();
                 
                 // Past radar frames + forecast frames
@@ -1575,7 +1756,7 @@
                     
                     // Auto-start loop so visitors immediately see animated radar loop
                     setTimeout(() => {
-                        if (!isPlaying && radarFrames.length > 1) {
+                        if (!isPlaying && radarFrames.length > 1 && radarLayerType !== 'noaa_nexrad') {
                             startRadarLoop();
                         }
                     }, 800);
@@ -1587,6 +1768,9 @@
         }
 
         function updateActiveFrames() {
+            if (radarLayerType === 'noaa_nexrad') {
+                return; // Handled directly in changeRadarLayer
+            }
             radarFrames = radarLayerType === 'satellite' ? (window._rvSatPast || []) : (window._rvRadarPast || []);
             if (!radarFrames.length) return;
 
@@ -1608,14 +1792,15 @@
             const colorScheme = radarLayerType === 'satellite' ? 0 : 2; // Scheme 2 is high contrast radar
             const smooth = 1;
             const snow = 1;
-            const url = `${host}${path}/256/{z}/{x}/{y}/${colorScheme}/${smooth}_${snow}.png`;
+            const keySuffix = RADAR_CONFIG.rainviewerApiKey ? `?key=${encodeURIComponent(RADAR_CONFIG.rainviewerApiKey)}` : '';
+            const url = `${host}${path}/256/{z}/{x}/{y}/${colorScheme}/${smooth}_${snow}.png${keySuffix}`;
 
             if (radarTileLayer) {
                 map.removeLayer(radarTileLayer);
             }
 
             radarTileLayer = L.tileLayer(url, {
-                opacity: 0.72,
+                opacity: 0.74,
                 zIndex: 10
             }).addTo(map);
 
@@ -1635,8 +1820,15 @@
             }
         }
 
+        function stepRadarFrame(step) {
+            if (!radarFrames.length || radarLayerType === 'noaa_nexrad') return;
+            stopRadarLoop();
+            currentFrameIndex = (currentFrameIndex + step + radarFrames.length) % radarFrames.length;
+            showFrame(currentFrameIndex);
+        }
+
         function startRadarLoop() {
-            if (!radarFrames.length) return;
+            if (!radarFrames.length || radarLayerType === 'noaa_nexrad') return;
             isPlaying = true;
             document.getElementById('playBtn').textContent = '⏸ Pause';
             const statusBadge = document.getElementById('loopStatusBadge');
@@ -1651,7 +1843,7 @@
             isPlaying = false;
             document.getElementById('playBtn').textContent = '▶ Play Loop';
             const statusBadge = document.getElementById('loopStatusBadge');
-            if (statusBadge) statusBadge.textContent = '⏸ Loop Paused';
+            if (statusBadge && radarLayerType !== 'noaa_nexrad') statusBadge.textContent = '⏸ Loop Paused';
             if (playInterval) clearInterval(playInterval);
         }
 
@@ -1697,7 +1889,27 @@
         function changeRadarLayer(type) {
             radarLayerType = type;
             stopRadarLoop();
-            updateActiveFrames();
+
+            if (type === 'noaa_nexrad') {
+                // Official US Government NOAA NEXRAD Base Reflectivity layer
+                if (radarTileLayer) map.removeLayer(radarTileLayer);
+                radarTileLayer = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png', {
+                    opacity: 0.78,
+                    zIndex: 10
+                }).addTo(map);
+
+                document.getElementById('frameTimeBadge').textContent = '🔴 NOAA NEXRAD (Live US Feed)';
+                const statusBadge = document.getElementById('loopStatusBadge');
+                if (statusBadge) statusBadge.textContent = '🇺🇸 NOAA Live Feed';
+                document.getElementById('playBtn').disabled = true;
+                document.getElementById('playBtn').style.opacity = '0.5';
+            } else {
+                document.getElementById('playBtn').disabled = false;
+                document.getElementById('playBtn').style.opacity = '1';
+                const statusBadge = document.getElementById('loopStatusBadge');
+                if (statusBadge) statusBadge.textContent = '🔴 2-Hr Loop';
+                updateActiveFrames();
+            }
         }
 
         function recenterUSA() {
@@ -1707,7 +1919,11 @@
         }
 
         function refreshRadarData() {
-            loadRainViewerData();
+            if (radarLayerType === 'noaa_nexrad') {
+                changeRadarLayer('noaa_nexrad');
+            } else {
+                loadRainViewerData();
+            }
             refreshMosaic();
         }
 
@@ -1744,7 +1960,7 @@
         }
 
         // ==========================================
-        // 3. NWS LIVE SEVERE WEATHER ALERTS FEED
+        // 3. NWS LIVE SEVERE WEATHER ALERTS FEED & MAP POLYGONS
         // ==========================================
         async function fetchNWSAlerts() {
             const grid = document.getElementById('alertsGrid');
@@ -1754,6 +1970,9 @@
                 const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert&limit=15');
                 const data = await res.json();
                 const features = data.features || [];
+
+                // Render active warning polygons on Leaflet Map
+                renderAlertPolygonsOnMap(data);
 
                 if (!features.length) {
                     ticker.textContent = 'No major emergency weather alerts active across the US right now.';
@@ -1787,6 +2006,78 @@
                 console.warn('NWS Alerts fetch error:', err);
                 ticker.textContent = 'NOAA NEXRAD Radar operational across the United States.';
                 grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:20px;">Active alerts feed temporarily unavailable. Please verify with weather.gov.</div>';
+            }
+        }
+
+        function renderAlertPolygonsOnMap(data) {
+            if (!map || !alertsLayerGroup) return;
+            alertsLayerGroup.clearLayers();
+            if (!data || !data.features || !RADAR_CONFIG.showWarningPolygons) return;
+
+            // Filter features with valid polygon geometry
+            const validFeatures = data.features.filter(f => f.geometry && (f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon'));
+
+            L.geoJSON({ type: 'FeatureCollection', features: validFeatures }, {
+                style: function(feature) {
+                    const p = feature.properties || {};
+                    const ev = (p.event || '').toLowerCase();
+                    let color = '#eab308'; // Default watch amber
+                    let fillColor = '#eab308';
+
+                    if (ev.includes('tornado')) {
+                        color = '#ef4444'; // Flashing red
+                        fillColor = '#dc2626';
+                    } else if (ev.includes('thunderstorm')) {
+                        color = '#f97316'; // Severe orange
+                        fillColor = '#ea580c';
+                    } else if (ev.includes('flood')) {
+                        color = '#10b981'; // Green flood
+                        fillColor = '#059669';
+                    } else if (ev.includes('winter') || ev.includes('snow') || ev.includes('blizzard')) {
+                        color = '#06b6d4'; // Cyan
+                        fillColor = '#0891b2';
+                    }
+
+                    return {
+                        color: color,
+                        weight: 2.2,
+                        opacity: 0.9,
+                        fillColor: fillColor,
+                        fillOpacity: 0.28,
+                        dashArray: ev.includes('tornado') ? '4, 4' : null
+                    };
+                },
+                onEachFeature: function(feature, layer) {
+                    const p = feature.properties || {};
+                    const eventName = p.event || 'Severe Weather Warning';
+                    const headline = p.headline || p.areaDesc || '';
+                    const expires = p.expires ? new Date(p.expires).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : 'Until further notice';
+                    
+                    layer.bindPopup(`
+                        <div style="font-family:'Inter',sans-serif;font-size:0.88rem;color:#0f172a;line-height:1.4;max-width:260px;">
+                            <div style="font-weight:800;color:#dc2626;font-size:0.95rem;margin-bottom:4px;">🚨 ${eventName}</div>
+                            <div style="font-weight:600;margin-bottom:4px;">${p.areaDesc || 'United States'}</div>
+                            <div style="font-size:0.8rem;color:#475569;margin-bottom:6px;">${headline}</div>
+                            <div style="font-size:0.75rem;color:#64748b;border-top:1px solid #e2e8f0;padding-top:4px;">Expires: <strong>${expires}</strong> • Source: NOAA NWS</div>
+                        </div>
+                    `);
+                }
+            }).addTo(alertsLayerGroup);
+        }
+
+        function toggleAlertPolygons() {
+            showPolygons = !showPolygons;
+            const btn = document.getElementById('toggleAlertsBtn');
+            if (alertsLayerGroup) {
+                if (showPolygons) {
+                    if (!map.hasLayer(alertsLayerGroup)) map.addLayer(alertsLayerGroup);
+                    btn.textContent = '⚠️ Warnings: ON';
+                    btn.style.color = 'var(--text-sub)';
+                } else {
+                    if (map.hasLayer(alertsLayerGroup)) map.removeLayer(alertsLayerGroup);
+                    btn.textContent = '⚠️ Warnings: OFF';
+                    btn.style.color = 'var(--text-muted)';
+                }
             }
         }
 

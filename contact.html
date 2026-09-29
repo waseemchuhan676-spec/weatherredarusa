@@ -18,10 +18,10 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --bg-body: #0b1120;
-            --bg-header: rgba(15, 23, 42, 0.90);
-            --bg-card: #131c31;
-            --bg-elevated: #1e293b;
+            --bg-body: #060913;
+            --bg-header: rgba(10, 15, 29, 0.88);
+            --bg-card: rgba(14, 21, 38, 0.82);
+            --bg-elevated: rgba(22, 33, 56, 0.75);
             --border: rgba(255, 255, 255, 0.08);
             --text-primary: #f8fafc;
             --text-muted: #94a3b8;
@@ -33,7 +33,12 @@
         }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: var(--bg-body);
+            background-color: var(--bg-body);
+            background-image: 
+                radial-gradient(ellipse 90% 50% at 50% -10%, rgba(14, 165, 233, 0.16), transparent 75%),
+                radial-gradient(circle 600px at 10% 25%, rgba(37, 99, 235, 0.08), transparent 70%);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
             color: var(--text-primary);
             line-height: 1.7;
             min-height: 100vh;
