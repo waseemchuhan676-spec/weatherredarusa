@@ -219,81 +219,51 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* USA Light Aero Theme (Default) */
+        /* Pure Blue Sky & Crisp White American Theme */
         :root {
-            --bg-body: #f1f5fa;
-            --bg-header: rgba(255, 255, 255, 0.94);
+            --bg-body: #f0f7ff;
+            --bg-header: rgba(255, 255, 255, 0.96);
             --bg-card: #ffffff;
-            --bg-elevated: #f8fafc;
-            --bg-card-hover: #eef5fc;
-            --border: rgba(203, 213, 225, 0.85);
+            --bg-elevated: #f0f7ff;
+            --bg-card-hover: #e0f2fe;
+            --border: #bae6fd;
             --border-hover: #0284c7;
             --text-primary: #0f172a;
             --text-muted: #475569;
             --text-sub: #1e293b;
-            --primary: #1d4ed8;
-            --primary-hover: #1e40af;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
             --accent: #0284c7;
             --accent-glow: rgba(2, 132, 199, 0.16);
             --danger: #dc2626;
             --danger-bg: #fee2e2;
             --warning: #d97706;
             --warning-bg: #fef3c7;
-            --success: #059669;
+            --success: #0284c7;
             --radius-sm: 8px;
             --radius: 14px;
             --radius-lg: 20px;
-            --shadow: 0 10px 30px -4px rgba(15, 35, 65, 0.07);
-            --shadow-glow: 0 0 25px rgba(2, 132, 199, 0.12);
-        }
-
-        /* Dark Theme Overrides (Optional toggle) */
-        body.theme-dark {
-            --bg-body: #060913;
-            --bg-header: rgba(10, 15, 29, 0.88);
-            --bg-card: rgba(14, 21, 38, 0.82);
-            --bg-elevated: rgba(22, 33, 56, 0.75);
-            --bg-card-hover: rgba(28, 42, 74, 0.90);
-            --border: rgba(255, 255, 255, 0.08);
-            --border-hover: rgba(56, 189, 248, 0.45);
-            --text-primary: #f8fafc;
-            --text-muted: #94a3b8;
-            --text-sub: #cbd5e1;
-            --primary: #2563eb;
-            --primary-hover: #1d4ed8;
-            --accent: #38bdf8;
-            --accent-glow: rgba(56, 189, 248, 0.30);
-            --danger: #ef4444;
-            --danger-bg: rgba(239, 68, 68, 0.14);
-            --warning: #f59e0b;
-            --warning-bg: rgba(245, 158, 11, 0.14);
-            --success: #10b981;
-            --shadow: 0 16px 40px -12px rgba(0, 0, 0, 0.65);
-            --shadow-glow: 0 0 35px rgba(56, 189, 248, 0.22);
+            --shadow: 0 10px 28px -4px rgba(2, 132, 199, 0.08);
+            --shadow-glow: 0 0 25px rgba(2, 132, 199, 0.15);
         }
 
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background-color: var(--bg-body);
-            background-image: 
-                radial-gradient(ellipse 90% 45% at 50% -8%, rgba(56, 189, 248, 0.22), transparent 75%),
-                radial-gradient(circle 750px at 12% 22%, rgba(37, 99, 235, 0.07), transparent 70%),
-                radial-gradient(circle 650px at 88% 65%, rgba(220, 38, 38, 0.035), transparent 70%);
+            background-color: #f0f7ff;
+            background: linear-gradient(180deg, #dbeafe 0%, #e0f2fe 180px, #f0f7ff 500px, #ffffff 1000px);
             background-attachment: fixed;
             background-repeat: no-repeat;
             color: var(--text-primary);
             line-height: 1.6;
             min-height: 100vh;
-            transition: background-color 0.3s ease, color 0.3s ease;
         }
 
-        body.theme-dark {
-            background-color: #060913;
-            background-image: 
-                radial-gradient(ellipse 90% 50% at 50% -10%, rgba(14, 165, 233, 0.16), transparent 75%),
-                radial-gradient(circle 600px at 10% 25%, rgba(37, 99, 235, 0.08), transparent 70%),
-                radial-gradient(circle 600px at 90% 65%, rgba(99, 102, 241, 0.06), transparent 70%);
+        /* Enforce Sky Blue & White so dark black can never show */
+        body.theme-dark, body.theme-light {
+            background-color: #f0f7ff !important;
+            background: linear-gradient(180deg, #dbeafe 0%, #e0f2fe 180px, #f0f7ff 500px, #ffffff 1000px) !important;
+            color: #0f172a !important;
         }
 
         .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
@@ -550,12 +520,11 @@
 
         /* Leaflet Map Container */
         #radarMap {
-            width: 100%; height: 530px; background: #e5edf5; z-index: 1; position: relative;
+            width: 100%; height: 530px; background: #e0f2fe; z-index: 1; position: relative;
         }
-        body.theme-dark #radarMap { background: #060913; }
 
         #mosaicContainer {
-            width: 100%; height: 530px; background: #000000; display: none;
+            width: 100%; height: 530px; background: #f0f7ff; display: none;
             align-items: center; justify-content: center; position: relative; overflow: hidden;
         }
         #mosaicContainer img {
@@ -574,17 +543,12 @@
             border: 1px solid var(--border);
             border-radius: 10px;
             padding: 7px 12px;
-            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.12);
+            box-shadow: 0 8px 24px rgba(2, 132, 199, 0.12);
             display: flex;
             flex-direction: column;
             gap: 4px;
             pointer-events: auto;
             max-width: 320px;
-        }
-        body.theme-dark .radar-legend-overlay {
-            background: rgba(6, 9, 20, 0.88);
-            border: 1px solid rgba(255, 255, 255, 0.12);
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
         }
         .legend-header {
             display: flex;
@@ -1067,9 +1031,6 @@
                     <button id="btnF" class="active" onclick="setUnit('F')">°F</button>
                     <button id="btnC" onclick="setUnit('C')">°C</button>
                 </div>
-                <button class="theme-btn" id="themeToggleBtn" onclick="toggleTheme()" title="Toggle Dark/Light Mode" aria-label="Toggle Theme">
-                    🌙
-                </button>
                 <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Toggle Navigation Menu">☰</button>
             </div>
         </div>
@@ -1688,42 +1649,25 @@
         // 1. THEME & UNIT MANAGEMENT
         // ==========================================
         function initTheme() {
-            const saved = localStorage.getItem('w_theme');
-            if (saved === 'dark') {
-                setTheme('dark');
-            } else {
-                setTheme('light');
-            }
+            try { localStorage.removeItem('w_theme'); } catch(e){}
+            currentTheme = 'light';
+            document.body.classList.remove('theme-dark');
+            document.body.classList.add('theme-light');
+            const metaTheme = document.querySelector('meta[name="theme-color"]');
+            if (metaTheme) metaTheme.setAttribute('content', '#dbeafe');
+            updateMapBaseLayer('light');
         }
 
         function setTheme(theme) {
-            currentTheme = theme;
-            localStorage.setItem('w_theme', theme);
-            const btn = document.getElementById('themeToggleBtn');
-            const metaTheme = document.querySelector('meta[name="theme-color"]');
-            if (theme === 'dark') {
-                document.body.classList.remove('theme-light');
-                document.body.classList.add('theme-dark');
-                if (btn) {
-                    btn.textContent = '☀️';
-                    btn.title = 'Switch to USA Light Mode';
-                }
-                if (metaTheme) metaTheme.setAttribute('content', '#060913');
-                updateMapBaseLayer('dark');
-            } else {
-                document.body.classList.remove('theme-dark');
-                document.body.classList.add('theme-light');
-                if (btn) {
-                    btn.textContent = '🌙';
-                    btn.title = 'Switch to Dark Mode';
-                }
-                if (metaTheme) metaTheme.setAttribute('content', '#f1f5fa');
-                updateMapBaseLayer('light');
-            }
+            try { localStorage.removeItem('w_theme'); } catch(e){}
+            currentTheme = 'light';
+            document.body.classList.remove('theme-dark');
+            document.body.classList.add('theme-light');
+            updateMapBaseLayer('light');
         }
 
         function toggleTheme() {
-            setTheme(currentTheme === 'dark' ? 'light' : 'dark');
+            updateMapBaseLayer('light');
         }
 
         function setUnit(u) {
