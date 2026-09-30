@@ -1712,34 +1712,48 @@
             // Layer group for live warning polygons
             alertsLayerGroup = L.layerGroup().addTo(map);
 
-            updateMapBaseLayer(currentTheme);
+            updateMapBaseLayer('light');
             loadRainViewerData();
+
+            // Guarantee Leaflet tiles load immediately on all screen sizes
+            setTimeout(() => { if (map) map.invalidateSize(); }, 150);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 600);
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
         }
 
         function updateMapBaseLayer(theme) {
             if (!map) return;
             if (baseTileLayer) map.removeLayer(baseTileLayer);
 
-            const tileUrl = theme === 'light'
-                ? 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
-                : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+            // High-definition clean Voyager Light Map
+            const tileUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
 
             baseTileLayer = L.tileLayer(tileUrl, {
                 subdomains: 'abcd',
                 maxZoom: 19
             }).addTo(map);
+
+            baseTileLayer.on('tileerror', function() {
+                if (!window._osmFallback) {
+                    window._osmFallback = true;
+                    map.removeLayer(baseTileLayer);
+                    baseTileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        maxZoom: 19
+                    }).addTo(map);
+                }
+            });
         }
 
         async function loadRainViewerData() {
             try {
-                // If commercial API key is set, append it
                 const apiKeyParam = RADAR_CONFIG.rainviewerApiKey ? `?key=${encodeURIComponent(RADAR_CONFIG.rainviewerApiKey)}` : '';
                 const res = await fetch('https://api.rainviewer.com/public/weather-maps.json' + apiKeyParam);
+                if (!res.ok) throw new Error('RainViewer API returned status ' + res.status);
                 const data = await res.json();
                 
                 // Past radar frames + forecast frames
-                if (data && data.radar && data.radar.past) {
-                    window._rvHost = data.host;
+                if (data && data.radar && data.radar.past && data.radar.past.length > 0) {
+                    window._rvHost = data.host || 'https://tilecache.rainviewer.com';
                     window._rvRadarPast = data.radar.past;
                     window._rvSatPast = (data.satellite && data.satellite.infrared) ? data.satellite.infrared : [];
 
@@ -1751,10 +1765,13 @@
                             startRadarLoop();
                         }
                     }, 800);
+                } else {
+                    throw new Error('No radar frames returned');
                 }
             } catch (err) {
-                console.error('RainViewer API load error:', err);
-                document.getElementById('frameTimeBadge').textContent = 'Live Radar Ready';
+                console.warn('RainViewer API load error, falling back to official NOAA NEXRAD feed:', err);
+                document.getElementById('frameTimeBadge').textContent = '🔴 NOAA Live Feed';
+                changeRadarLayer('noaa_nexrad');
             }
         }
 
@@ -1980,7 +1997,7 @@
             const ticker = document.getElementById('tickerText');
 
             try {
-                const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert&limit=15');
+                const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert');
                 const data = await res.json();
                 const features = data.features || [];
 

@@ -873,26 +873,38 @@
 
             alertsLayerGroup = L.layerGroup().addTo(map);
 
-            updateBaseMap(currentTheme);
+            updateBaseMap('light');
             loadRainViewer();
+
+            // Invalidate size after layout completes
+            setTimeout(() => { if (map) map.invalidateSize(); }, 150);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 600);
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
         }
 
         function updateBaseMap(theme) {
             if (!map) return;
             if (baseTileLayer) map.removeLayer(baseTileLayer);
-            const tileUrl = theme === 'light'
-                ? 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png'
-                : 'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png';
+            const tileUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
             baseTileLayer = L.tileLayer(tileUrl, { subdomains: 'abcd', maxZoom: 19 }).addTo(map);
+
+            baseTileLayer.on('tileerror', function() {
+                if (!window._osmFallback) {
+                    window._osmFallback = true;
+                    map.removeLayer(baseTileLayer);
+                    baseTileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+                }
+            });
         }
 
         async function loadRainViewer() {
             try {
                 const apiKeyParam = RADAR_CONFIG.rainviewerApiKey ? `?key=${encodeURIComponent(RADAR_CONFIG.rainviewerApiKey)}` : '';
                 const res = await fetch('https://api.rainviewer.com/public/weather-maps.json' + apiKeyParam);
+                if (!res.ok) throw new Error('RainViewer returned status ' + res.status);
                 const data = await res.json();
-                if (data && data.radar && data.radar.past) {
-                    window._rvHost = data.host;
+                if (data && data.radar && data.radar.past && data.radar.past.length > 0) {
+                    window._rvHost = data.host || 'https://tilecache.rainviewer.com';
                     window._rvRadarPast = data.radar.past;
                     window._rvSatPast = (data.satellite && data.satellite.infrared) ? data.satellite.infrared : [];
                     
@@ -900,19 +912,22 @@
                         radarFrames = radarLayerType === 'satellite' ? window._rvSatPast : window._rvRadarPast;
                         const slider = document.getElementById('radarTimeSlider');
                         slider.max = radarFrames.length - 1;
-                        currentFrameIndex = 0;
-                        slider.value = 0;
-                        showFrame(0);
+                        currentFrameIndex = radarFrames.length - 1;
+                        slider.value = currentFrameIndex;
+                        showFrame(currentFrameIndex);
 
                         // Auto-start continuous loop
                         setTimeout(() => {
                             startRadarLoop();
                         }, 500);
                     }
+                } else {
+                    throw new Error('No radar frames returned');
                 }
             } catch (err) {
-                console.error('RainViewer error:', err);
-                document.getElementById('frameTimeBadge').textContent = 'Radar Online';
+                console.warn('RainViewer error, falling back to NOAA NEXRAD:', err);
+                document.getElementById('frameTimeBadge').textContent = '🔴 NOAA Live Feed';
+                changeLayer('noaa_nexrad');
             }
         }
 
@@ -1069,7 +1084,7 @@
         async function fetchSidebarAlerts() {
             const feed = document.getElementById('alertsFeed');
             try {
-                const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert&limit=10');
+                const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert');
                 const data = await res.json();
                 const features = data.features || [];
 
