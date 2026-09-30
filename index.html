@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Title optimized for high-CTR & Exact Match Queries -->
-    <title>Live United States Weather Radar: Real-Time Doppler Loop (HD)</title>
+    <title>United States Weather Radar – Live Doppler Map & US Storm Radar</title>
     
-    <meta name="description" content="🔴 Watch live United States weather radar in real-time HD. Track animated Doppler radar loops, severe NWS storm warnings, rain & snow across the USA. 100% free.">
+    <meta name="description" content="Track live United States weather radar in real time. Interactive US Doppler radar map, severe NWS storm warnings, rain & snow loop, and local forecast by city or ZIP.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Weather Radar USA">
     <meta name="geo.region" content="US">
@@ -22,8 +22,8 @@
     <link rel="apple-touch-icon" href="favicon.svg">
     
     <!-- Open Graph (High CTR 1200x675 Preview) -->
-    <meta property="og:title" content="Live United States Weather Radar: Real-Time Doppler Loop (HD)">
-    <meta property="og:description" content="🔴 Watch live animated United States weather radar in real-time HD. Track Doppler radar loops, severe NWS storm warnings, and rain radar across the USA.">
+    <meta property="og:title" content="United States Weather Radar – Live Doppler Map & US Storm Radar">
+    <meta property="og:description" content="Track live United States weather radar in real time. Interactive US Doppler radar map, severe NWS storm warnings, rain & snow loop, and local forecast by city or ZIP.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://weatherradarusa.online/">
@@ -35,8 +35,8 @@
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Live United States Weather Radar: Real-Time Doppler Loop (HD)">
-    <meta name="twitter:description" content="🔴 Watch live animated United States weather radar in real-time HD. Track Doppler radar loops and severe storm warnings across the USA.">
+    <meta name="twitter:title" content="United States Weather Radar – Live Doppler Map & US Storm Radar">
+    <meta name="twitter:description" content="Track live United States weather radar in real time. Interactive US Doppler radar map, severe NWS storm warnings, rain & snow loop, and local forecast by city or ZIP.">
     <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
     <meta name="twitter:image:alt" content="Live United States Doppler Weather Radar Map and Real-Time Storm Loop">
     <meta property="og:image:alt" content="Live United States Doppler Weather Radar Map and Real-Time Storm Loop">
@@ -95,7 +95,7 @@
         {
           "@type": "WebApplication",
           "@id": "https://weatherradarusa.online/#webapp",
-          "name": "Live United States Weather Radar Map & Doppler Loop",
+          "name": "United States Weather Radar – Live Doppler Map & US Storm Radar",
           "url": "https://weatherradarusa.online/",
           "applicationCategory": "WeatherApplication",
           "operatingSystem": "All",
@@ -143,8 +143,8 @@
       "@type":"WebPage",
       "@id":"https://weatherradarusa.online/#webpage",
       "url":"https://weatherradarusa.online/",
-      "name":"Live United States Weather Radar: Real-Time Doppler Loop (HD)",
-      "description":"🔴 Watch live United States weather radar in real-time HD. Track animated Doppler radar loops, severe NWS storm warnings, rain & snow across the USA. 100% free.",
+      "name":"United States Weather Radar – Live Doppler Map & US Storm Radar",
+      "description":"Track live United States weather radar in real time. Interactive US Doppler radar map, severe NWS storm warnings, rain & snow loop, and local forecast by city or ZIP.",
       "isPartOf":{"@id":"https://weatherradarusa.online/#website"},
       "inLanguage":"en-US"
     }
@@ -655,6 +655,24 @@
         }
         .radar-ctrl-btn:hover, .radar-ctrl-select:hover { border-color: var(--accent); color: var(--text-primary); }
 
+        .regional-radar-bar {
+            display: flex; align-items: center; gap: 6px; padding: 9px 16px;
+            background: rgba(255, 255, 255, 0.02); border-bottom: 1px solid var(--border);
+            overflow-x: auto; white-space: nowrap; -webkit-overflow-scrolling: touch;
+        }
+        .regional-radar-label {
+            font-size: 0.76rem; font-weight: 700; color: var(--text-muted);
+            text-transform: uppercase; letter-spacing: 0.05em; margin-right: 4px;
+        }
+        .radar-chip-btn {
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-sub);
+            padding: 5px 12px; border-radius: 999px; font-size: 0.78rem; font-weight: 600;
+            cursor: pointer; transition: all 0.2s; white-space: nowrap; outline: none;
+        }
+        .radar-chip-btn:hover, .radar-chip-btn.active {
+            border-color: var(--accent); background: rgba(56, 189, 248, 0.14); color: var(--accent);
+        }
+
         /* Severe Weather Radio Alert Callout */
         .alert-gear-callout {
             background: linear-gradient(135deg, rgba(239, 68, 68, 0.12) 0%, rgba(245, 158, 11, 0.08) 100%);
@@ -1050,8 +1068,8 @@
         <!-- Hero Search Section -->
         <section class="hero" id="search-section">
             <div class="container">
-                <h1>Live United States Weather Radar Map & Doppler Loop</h1>
-                <p class="hero-subtitle">Real-time interactive Doppler radar loop, national mosaic, severe storm alerts, hourly precipitation, and 7-day forecasts across the United States.</p>
+                <h1>United States Weather Radar – Live Doppler Map & Storm Loop</h1>
+                <p class="hero-subtitle">Real-time interactive US Doppler radar loop, live USA weather map, severe storm alerts, hourly precipitation, and 7-day forecasts across the United States.</p>
 
                 <div class="search-wrap">
                     <div class="search-box">
@@ -1105,7 +1123,7 @@
                     <div class="radar-header-bar">
                         <div class="radar-title-group">
                             <span class="live-dot"></span>
-                            <h2>Live National Radar – United States</h2>
+                            <h2>Live US Weather Radar Map & Doppler Loop</h2>
                             <span class="badge" id="loopStatusBadge" style="font-size:0.75rem;padding:3px 8px;background:rgba(56,189,248,0.12);color:var(--accent);border-color:var(--accent);margin-left:4px;">🔴 2-Hr Loop</span>
                         </div>
                         <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
@@ -1115,6 +1133,17 @@
                             </div>
                             <button class="radar-ctrl-btn" onclick="toggleRadarFullscreen()" title="Toggle Fullscreen Radar Map">⛶ Fullscreen</button>
                         </div>
+                    </div>
+
+                    <!-- Quick Regional Radar Presets (Increases Dwell Time & Long-Tail Ranking) -->
+                    <div class="regional-radar-bar" aria-label="Quick Regional Weather Radar Jumper">
+                        <span class="regional-radar-label">Quick Jump:</span>
+                        <button type="button" class="radar-chip-btn active" onclick="jumpToRegion('all', this)" title="Show entire United States">🇺🇸 Whole USA</button>
+                        <button type="button" class="radar-chip-btn" onclick="jumpToRegion('southeast', this)" title="Florida & Southeast storm radar">⚡ Southeast & FL</button>
+                        <button type="button" class="radar-chip-btn" onclick="jumpToRegion('midwest', this)" title="Midwest & Texas Tornado Alley radar">🌪️ Midwest & TX</button>
+                        <button type="button" class="radar-chip-btn" onclick="jumpToRegion('northeast', this)" title="New York & Northeast radar">❄️ Northeast & NY</button>
+                        <button type="button" class="radar-chip-btn" onclick="jumpToRegion('west', this)" title="California & West Coast radar">🌊 West Coast / CA</button>
+                        <button type="button" class="radar-chip-btn" onclick="jumpToRegion('central', this)" title="Great Plains storm radar">🌾 Great Plains</button>
                     </div>
 
                     <!-- 1. Interactive Leaflet Radar Map -->
@@ -1915,6 +1944,28 @@
         function recenterUSA() {
             if (map) {
                 map.flyTo([38.5, -96.5], 4, { duration: 1.2 });
+            }
+        }
+
+        function jumpToRegion(region, btnEl) {
+            if (!map) return;
+            const regions = {
+                'all': { center: [38.5, -96.5], zoom: 4 },
+                'southeast': { center: [29.0, -83.0], zoom: 6 },
+                'midwest': { center: [35.5, -97.5], zoom: 6 },
+                'northeast': { center: [41.5, -74.5], zoom: 6 },
+                'west': { center: [37.5, -120.0], zoom: 6 },
+                'central': { center: [41.0, -98.5], zoom: 6 }
+            };
+            const r = regions[region];
+            if (r) {
+                map.flyTo(r.center, r.zoom, { duration: 1.2 });
+            }
+            if (btnEl) {
+                document.querySelectorAll('.radar-chip-btn').forEach(function(b) {
+                    b.classList.remove('active');
+                });
+                btnEl.classList.add('active');
             }
         }
 
