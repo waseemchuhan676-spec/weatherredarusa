@@ -546,7 +546,7 @@
         }
     </style>
 </head>
-<body class="theme-dark">
+<body class="theme-light">
 
     <!-- Header -->
     <header class="header">
@@ -791,20 +791,14 @@
         // 🛰️ RADAR ENGINE & API CONFIGURATION
         // ==========================================
         const RADAR_CONFIG = {
-            // 🔑 Optional RainViewer Commercial API Key:
-            // Leave as empty string "" to use the 100% FREE public radar feed (no key required!).
-            // If you have a paid RainViewer API key or token, paste it inside the quotes below:
-            rainviewerApiKey: "",
-
-            // 🇺🇸 Iowa Environmental Mesonet (NOAA NEXRAD WSR-88D Composite):
-            // 100% Free, Official US Government radar data, unlimited access, never requires an API key!
+            // Iowa Environmental Mesonet (NOAA NEXRAD WSR-88D Composite)
             enableNoaaNexrad: true,
 
-            // 🌪️ Real-Time NWS Severe Warning Polygons on Map:
+            // Real-Time NWS Severe Warning Polygons on Map
             showWarningPolygons: true
         };
 
-        let currentTheme = 'dark';
+        let currentTheme = 'light';
         let map = null;
         let radarTileLayer = null;
         let baseTileLayer = null;
@@ -899,8 +893,7 @@
 
         async function loadRainViewer() {
             try {
-                const apiKeyParam = RADAR_CONFIG.rainviewerApiKey ? `?key=${encodeURIComponent(RADAR_CONFIG.rainviewerApiKey)}` : '';
-                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json' + apiKeyParam);
+                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
                 if (!res.ok) throw new Error('RainViewer returned status ' + res.status);
                 const data = await res.json();
                 if (data && data.radar && data.radar.past && data.radar.past.length > 0) {
@@ -939,8 +932,7 @@
             const path = frame.path;
             const host = window._rvHost || 'https://tilecache.rainviewer.com';
             const colorScheme = radarLayerType === 'satellite' ? 0 : 2;
-            const keySuffix = RADAR_CONFIG.rainviewerApiKey ? `?key=${encodeURIComponent(RADAR_CONFIG.rainviewerApiKey)}` : '';
-            const url = `${host}${path}/256/{z}/{x}/{y}/${colorScheme}/1_1.png${keySuffix}`;
+            const url = `${host}${path}/256/{z}/{x}/{y}/${colorScheme}/1_1.png`;
 
             if (radarTileLayer) map.removeLayer(radarTileLayer);
             radarTileLayer = L.tileLayer(url, { opacity: 0.75, zIndex: 10 }).addTo(map);

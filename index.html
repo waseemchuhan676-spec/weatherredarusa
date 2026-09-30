@@ -988,7 +988,7 @@
         }
     </style>
 </head>
-<body class="theme-dark">
+<body class="theme-light">
 
     <!-- Top Live Severe Weather Alert Ticker -->
     <aside class="alert-ticker-wrap" id="alertTicker" onclick="scrollToAlerts()" role="alert" aria-label="National Weather Service Live Alerts">
@@ -1616,22 +1616,16 @@
         // 🛰️ RADAR ENGINE & API CONFIGURATION
         // ==========================================
         const RADAR_CONFIG = {
-            // 🔑 Optional RainViewer Commercial API Key:
-            // Leave as empty string "" to use the 100% FREE public radar feed (no key required!).
-            // If you have a paid RainViewer API key or token, paste it inside the quotes below:
-            rainviewerApiKey: "",
-
-            // 🇺🇸 Iowa Environmental Mesonet (NOAA NEXRAD WSR-88D Composite):
-            // 100% Free, Official US Government radar data, unlimited access, never requires an API key!
+            // Iowa Environmental Mesonet (NOAA NEXRAD WSR-88D Composite)
             enableNoaaNexrad: true,
 
-            // 🌪️ Real-Time NWS Severe Warning Polygons on Map:
+            // Real-Time NWS Severe Warning Polygons on Map
             showWarningPolygons: true
         };
 
         // Global Application State
         let currentUnit = 'F';
-        let currentTheme = 'dark';
+        let currentTheme = 'light';
         let map = null;
         let radarTileLayer = null;
         let baseTileLayer = null;
@@ -1746,8 +1740,7 @@
 
         async function loadRainViewerData() {
             try {
-                const apiKeyParam = RADAR_CONFIG.rainviewerApiKey ? `?key=${encodeURIComponent(RADAR_CONFIG.rainviewerApiKey)}` : '';
-                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json' + apiKeyParam);
+                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
                 if (!res.ok) throw new Error('RainViewer API returned status ' + res.status);
                 const data = await res.json();
                 
@@ -1800,8 +1793,7 @@
             const colorScheme = radarLayerType === 'satellite' ? 0 : 2; // Scheme 2 is high contrast radar
             const smooth = 1;
             const snow = 1;
-            const keySuffix = RADAR_CONFIG.rainviewerApiKey ? `?key=${encodeURIComponent(RADAR_CONFIG.rainviewerApiKey)}` : '';
-            const url = `${host}${path}/256/{z}/{x}/{y}/${colorScheme}/${smooth}_${snow}.png${keySuffix}`;
+            const url = `${host}${path}/256/{z}/{x}/{y}/${colorScheme}/${smooth}_${snow}.png`;
 
             if (radarTileLayer) {
                 map.removeLayer(radarTileLayer);
