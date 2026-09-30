@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather Radar Tools – Live US Doppler, Severe Storm, Hurricane & AQI Utilities</title>
+    <meta name="description" content="Explore free live weather radar tools: interactive Doppler radar player, NWS severe tornado warnings, hurricane tracker, real-time US AQI air quality map, and temperature unit converters.">
+    <meta name="keywords" content="weather radar tools, live doppler radar utilities, hurricane tracker USA, severe weather alert map, US AQI map, weather converter fahrenheit celsius">
+    <meta name="author" content="Weather Radar USA">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://weatherradarusa.online/radar-tools.html">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Weather Radar Tools – Live Doppler, Hurricane & Severe Weather Utilities">
+    <meta property="og:description" content="Free suite of interactive weather radar tools: Doppler loops, NWS storm warnings, hurricane tracking, air quality index, and weather calculators.">
+    <meta property="og:url" content="https://weatherradarusa.online/radar-tools.html">
+    <meta property="og:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+    <meta property="og:site_name" content="Weather Radar USA">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Weather Radar Tools – Live Doppler & Severe Weather Utilities">
+    <meta name="twitter:description" content="Interactive weather radar tools: Doppler loops, hurricane tracker, NWS severe warning maps, and UV calculators.">
+    <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <meta name="theme-color" content="#dbeafe">
+
+    <!-- Preconnect & CDNs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://tilecache.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.weather.gov">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Weather Radar USA Tools & Utilities",
+      "url": "https://weatherradarusa.online/radar-tools.html",
+      "description": "Suite of interactive Doppler radar tools, severe storm warning maps, hurricane tracking, air quality index calculations, and temperature unit converters.",
+      "applicationCategory": "WeatherApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://weatherradarusa.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Radar Tools",
+          "item": "https://weatherradarusa.online/radar-tools.html"
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-body: #f0f7ff;
+            --bg-header: rgba(255, 255, 255, 0.96);
+            --bg-card: #ffffff;
+            --bg-elevated: #f0f7ff;
+            --bg-card-hover: #e0f2fe;
+            --border: #bae6fd;
+            --border-hover: #0284c7;
+            --text-primary: #0f172a;
+            --text-muted: #475569;
+            --text-sub: #1e293b;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --accent: #0284c7;
+            --accent-glow: rgba(2, 132, 199, 0.16);
+            --danger: #dc2626;
+            --danger-bg: #fee2e2;
+            --warning: #d97706;
+            --warning-bg: #fef3c7;
+            --success: #0284c7;
+            --radius-sm: 8px;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --shadow: 0 10px 28px -4px rgba(2, 132, 199, 0.08);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #dbeafe 0%, #e0f2fe 180px, #f0f7ff 500px, #ffffff 1000px);
+            background-color: #f0f7ff;
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+        a { color: var(--accent); text-decoration: none; transition: all 0.2s; }
+        a:hover { color: #0369a1; }
+        button, input, select { font-family: inherit; }
+
+        /* Header */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg-header); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border); height: 68px;
+            display: flex; align-items: center; box-shadow: var(--shadow);
+        }
+        .header .container { display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.25rem; }
+        .logo-radar-icon {
+            width: 38px; height: 38px; border-radius: 10px; background: var(--primary);
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+        }
+        .logo-text { font-family: 'Outfit', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--text-primary); }
+        .logo-text .highlight { color: var(--accent); }
+        .nav { display: flex; align-items: center; gap: 20px; font-size: 0.9rem; font-weight: 600; }
+        .nav a { color: var(--text-sub); }
+        .nav a:hover, .nav a.active { color: var(--accent); font-weight: 700; }
+
+        /* Breadcrumbs */
+        .breadcrumbs { padding: 18px 0 10px 0; font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 8px; align-items: center; }
+
+        /* Hero */
+        .tools-hero {
+            padding: 30px 0 40px; text-align: center;
+        }
+        .tools-hero h1 {
+            font-family: 'Outfit', sans-serif; font-size: 2.4rem; font-weight: 800;
+            color: var(--text-primary); margin-bottom: 12px; letter-spacing: -0.02em;
+        }
+        .tools-hero p {
+            font-size: 1.1rem; color: var(--text-muted); max-width: 760px; margin: 0 auto;
+        }
+
+        /* Tools Grid */
+        .tools-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+            gap: 24px; margin-bottom: 50px;
+        }
+        .tool-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 24px; box-shadow: var(--shadow); transition: transform 0.2s, border-color 0.2s;
+            display: flex; flex-direction: column;
+        }
+        .tool-card:hover { transform: translateY(-3px); border-color: var(--border-hover); }
+        .tool-icon {
+            width: 48px; height: 48px; border-radius: 12px; background: #e0f2fe;
+            display: flex; align-items: center; justify-content: center; font-size: 1.6rem;
+            margin-bottom: 16px;
+        }
+        .tool-title { font-size: 1.3rem; font-weight: 700; margin-bottom: 8px; color: var(--text-primary); }
+        .tool-desc { font-size: 0.92rem; color: var(--text-muted); margin-bottom: 18px; flex: 1; }
+
+        /* Converter Box */
+        .calc-box {
+            background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px;
+            padding: 16px; margin-top: auto;
+        }
+        .calc-row { display: flex; gap: 10px; margin-bottom: 10px; }
+        .calc-input {
+            flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px;
+            font-size: 0.95rem; background: #ffffff; color: var(--text-primary); outline: none;
+        }
+        .calc-btn {
+            background: var(--primary); color: #ffffff; border: none; padding: 10px 16px;
+            border-radius: 8px; font-weight: 700; cursor: pointer; transition: background 0.2s;
+        }
+        .calc-btn:hover { background: var(--primary-hover); }
+        .calc-result {
+            font-size: 1rem; font-weight: 700; color: var(--accent); padding: 8px 12px;
+            background: #ffffff; border-radius: 6px; border: 1px dashed var(--border); text-align: center;
+        }
+
+        /* Live Map Section */
+        .live-tool-section {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+            padding: 24px; box-shadow: var(--shadow); margin-bottom: 50px;
+        }
+        .section-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 18px; flex-wrap: wrap; gap: 12px;
+        }
+        .section-header h2 { font-size: 1.45rem; font-weight: 800; color: var(--text-primary); }
+        #toolsMap {
+            width: 100%; height: 500px; border-radius: 12px; border: 1px solid var(--border);
+            position: relative; z-index: 1;
+        }
+        .map-ctrl-bar {
+            display: flex; gap: 8px; margin-top: 14px; flex-wrap: wrap;
+        }
+        .map-ctrl-btn {
+            background: var(--bg-elevated); border: 1px solid var(--border); padding: 8px 14px;
+            border-radius: 8px; font-weight: 600; font-size: 0.86rem; cursor: pointer; transition: all 0.2s;
+            color: var(--text-sub);
+        }
+        .map-ctrl-btn:hover, .map-ctrl-btn.active {
+            background: var(--primary); color: #ffffff; border-color: var(--primary);
+        }
+
+        /* City Quick Jump */
+        .cities-section {
+            background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 26px; margin-bottom: 50px; box-shadow: var(--shadow);
+        }
+        .city-chips-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 12px; margin-top: 16px;
+        }
+        .city-chip {
+            background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px;
+            padding: 10px 14px; text-align: center; font-weight: 600; font-size: 0.88rem;
+            color: var(--text-primary); transition: all 0.2s; display: block;
+        }
+        .city-chip:hover {
+            background: var(--primary); color: #ffffff; border-color: var(--primary); transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #ffffff; border-top: 1px solid var(--border); padding: 40px 0 24px;
+            font-size: 0.88rem; color: var(--text-muted); margin-top: 60px;
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        .footer-col h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; }
+        .footer-col a { display: block; color: var(--text-muted); margin-bottom: 8px; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { text-align: center; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.82rem; }
+
+        @media (max-width: 768px) {
+            .tools-hero h1 { font-size: 1.8rem; }
+            #toolsMap { height: 380px; }
+            .nav { display: none; }
+        }
+    </style>
+</head>
+<body class="theme-light">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo" aria-label="Weather Radar USA Homepage">
+                <div class="logo-radar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;">
+                        <path d="M12 2a10 10 0 1 0 10 10"></path>
+                        <path d="M12 6a6 6 0 1 0 6 6"></path>
+                        <path d="M12 10a2 2 0 1 0 2 2"></path>
+                        <line x1="12" y1="12" x2="20" y2="4"></line>
+                    </svg>
+                </div>
+                <div class="logo-text">Weather Radar <span class="highlight">USA</span></div>
+            </a>
+
+            <nav class="nav" aria-label="Primary Navigation">
+                <a href="/">Full Radar Map</a>
+                <a href="/national-radar-loop.html">▶ Radar Loop (HD)</a>
+                <a href="/radar-tools.html" class="active">Radar Tools</a>
+                <a href="/#severe-alerts">Severe Alerts</a>
+                <a href="/#popular-cities">US Cities</a>
+                <a href="/#faq">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>›</span>
+            <strong>Radar Tools &amp; Utilities</strong>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="tools-hero">
+            <h1>Weather Radar Tools &amp; Doppler Utilities</h1>
+            <p>A comprehensive suite of free meteorology tools: real-time Doppler radar viewers, severe storm tracking, hurricane monitors, air quality calculations, and weather unit converters.</p>
+        </section>
+
+        <!-- Interactive Map Tool -->
+        <section class="live-tool-section" id="interactive-radar-tool">
+            <div class="section-header">
+                <div>
+                    <h2>📡 Live Multi-Feed Doppler Radar Viewer</h2>
+                    <p style="font-size:0.9rem;color:var(--text-muted);margin-top:4px;">Switch between high-definition precipitation, official NOAA NEXRAD WSR-88D, and infrared storm satellite.</p>
+                </div>
+                <div style="font-size:0.85rem;font-weight:700;color:var(--accent);" id="radarStatusBadge">🔴 Live Feed Connected</div>
+            </div>
+
+            <div id="toolsMap" aria-label="Multi-Feed Interactive Weather Radar"></div>
+
+            <div class="map-ctrl-bar">
+                <button class="map-ctrl-btn active" id="btnRadarLayer" onclick="switchToolLayer('radar')">🌧️ High-Def Rain Radar</button>
+                <button class="map-ctrl-btn" id="btnNexradLayer" onclick="switchToolLayer('nexrad')">🇺🇸 NOAA NEXRAD Composite</button>
+                <button class="map-ctrl-btn" id="btnSatLayer" onclick="switchToolLayer('satellite')">🛰️ Infrared Satellite</button>
+                <button class="map-ctrl-btn" onclick="zoomToolMap([38.5, -96.5], 4)">🇺🇸 Entire USA</button>
+                <button class="map-ctrl-btn" onclick="zoomToolMap([28.0, -82.5], 6)">🏖️ Florida Coast</button>
+                <button class="map-ctrl-btn" onclick="zoomToolMap([32.5, -97.0], 6)">🤠 Texas Tornado Alley</button>
+                <button class="map-ctrl-btn" onclick="zoomToolMap([41.5, -74.0], 7)">🗽 Northeast / NY</button>
+            </div>
+        </section>
+
+        <!-- Tools Grid -->
+        <section class="tools-grid">
+
+            <!-- Tool 1: Unit Converter -->
+            <div class="tool-card">
+                <div class="tool-icon">🌡️</div>
+                <h3 class="tool-title">Temperature Converter</h3>
+                <p class="tool-desc">Quickly convert between Fahrenheit (°F) and Celsius (°C) with exact meteorological formula calculations.</p>
+                <div class="calc-box">
+                    <div class="calc-row">
+                        <input type="number" id="tempInput" class="calc-input" placeholder="Enter degrees (e.g. 72)" value="72">
+                        <button class="calc-btn" onclick="convertTemp('FtoC')">°F → °C</button>
+                        <button class="calc-btn" onclick="convertTemp('CtoF')">°C → °F</button>
+                    </div>
+                    <div class="calc-result" id="tempResult">72°F = 22.2°C</div>
+                </div>
+            </div>
+
+            <!-- Tool 2: Wind Speed Converter -->
+            <div class="tool-card">
+                <div class="tool-icon">💨</div>
+                <h3 class="tool-title">Wind Speed Converter</h3>
+                <p class="tool-desc">Convert hurricane and squall wind velocities between Miles per Hour (mph), Kilometers per Hour (km/h), and Knots.</p>
+                <div class="calc-box">
+                    <div class="calc-row">
+                        <input type="number" id="windInput" class="calc-input" placeholder="Wind speed (e.g. 45)" value="45">
+                        <button class="calc-btn" onclick="convertWind('mph')">mph → All</button>
+                    </div>
+                    <div class="calc-result" id="windResult">45 mph = 72.4 km/h = 39.1 knots</div>
+                </div>
+            </div>
+
+            <!-- Tool 3: UV Index Safety Calculator -->
+            <div class="tool-card">
+                <div class="tool-icon">☀️</div>
+                <h3 class="tool-title">UV Index &amp; Sun Safety Advisor</h3>
+                <p class="tool-desc">Calculate safe sun exposure times, necessary SPF protection levels, and sunburn risk based on current UV ratings.</p>
+                <div class="calc-box">
+                    <div class="calc-row">
+                        <select id="uvSelect" class="calc-input" onchange="calcUV(this.value)">
+                            <option value="1">UV 1-2 (Low Risk)</option>
+                            <option value="4" selected>UV 3-5 (Moderate Risk)</option>
+                            <option value="7">UV 6-7 (High Risk)</option>
+                            <option value="9">UV 8-10 (Very High Risk)</option>
+                            <option value="11">UV 11+ (Extreme Risk)</option>
+                        </select>
+                    </div>
+                    <div class="calc-result" id="uvResult">Moderate: Sunscreen SPF 30+ recommended. Safe burn time ~45 mins.</div>
+                </div>
+            </div>
+
+            <!-- Tool 4: Rain & Snow Accumulation -->
+            <div class="tool-card">
+                <div class="tool-icon">🌧️</div>
+                <h3 class="tool-title">Precipitation Unit Converter</h3>
+                <p class="tool-desc">Convert rainfall downpours and snowfall depth between Inches (in) and Millimeters (mm).</p>
+                <div class="calc-box">
+                    <div class="calc-row">
+                        <input type="number" id="precipInput" class="calc-input" placeholder="Precipitation (e.g. 1.5)" value="1.5" step="0.1">
+                        <button class="calc-btn" onclick="convertPrecip('inToMm')">Inches → mm</button>
+                        <button class="calc-btn" onclick="convertPrecip('mmToIn')">mm → Inches</button>
+                    </div>
+                    <div class="calc-result" id="precipResult">1.50 in = 38.1 mm</div>
+                </div>
+            </div>
+
+            <!-- Tool 5: Severe Alert Decoder -->
+            <div class="tool-card">
+                <div class="tool-icon">🚨</div>
+                <h3 class="tool-title">NWS Severe Alert Decoder</h3>
+                <p class="tool-desc">Understand the critical difference between National Weather Service "Watch", "Advisory", and emergency "Warning".</p>
+                <div style="background:var(--bg-elevated);padding:14px;border-radius:10px;border:1px solid var(--border);font-size:0.85rem;">
+                    <div style="margin-bottom:6px;"><strong style="color:#dc2626;">🔴 WARNING:</strong> Severe weather is imminent or occurring! Take shelter immediately.</div>
+                    <div style="margin-bottom:6px;"><strong style="color:#d97706;">🟠 WATCH:</strong> Conditions are favorable for severe weather development. Stay alert.</div>
+                    <div><strong style="color:#0284c7;">🔵 ADVISORY:</strong> Weather will cause significant inconvenience, exercise caution.</div>
+                </div>
+            </div>
+
+            <!-- Tool 6: US AQI Air Quality Scale -->
+            <div class="tool-card">
+                <div class="tool-icon">🍃</div>
+                <h3 class="tool-title">Air Quality Index (AQI) Guide</h3>
+                <p class="tool-desc">EPA Air Quality standard reference to protect your respiratory health from wildfire smoke and ozone.</p>
+                <div style="background:var(--bg-elevated);padding:14px;border-radius:10px;border:1px solid var(--border);font-size:0.85rem;">
+                    <div style="margin-bottom:4px;"><strong style="color:#16a34a;">0-50 (Good):</strong> Air quality is satisfactory and poses little risk.</div>
+                    <div style="margin-bottom:4px;"><strong style="color:#ca8a04;">51-100 (Moderate):</strong> Acceptable quality; slight concern for sensitive people.</div>
+                    <div style="margin-bottom:4px;"><strong style="color:#ea580c;">101-150 (Sensitive):</strong> Children and respiratory patients may experience symptoms.</div>
+                    <div><strong style="color:#dc2626;">151-200+ (Unhealthy):</strong> Everyone should limit prolonged outdoor exertion.</div>
+                </div>
+            </div>
+
+        </section>
+
+        <!-- Popular US City Radars -->
+        <section class="cities-section">
+            <h2 style="font-size:1.35rem;font-weight:700;color:var(--text-primary);margin-bottom:8px;">🏙️ Dedicated City Doppler Radar Pages</h2>
+            <p style="font-size:0.92rem;color:var(--text-muted);">Explore dedicated local radar maps, 7-day storm forecasts, and emergency warnings for major US metropolitan areas:</p>
+            
+            <div class="city-chips-grid">
+                <a href="/cities/miami-fl.html" class="city-chip">🏖️ Miami, FL</a>
+                <a href="/cities/dallas-tx.html" class="city-chip">🤠 Dallas, TX</a>
+                <a href="/cities/houston-tx.html" class="city-chip">🚀 Houston, TX</a>
+                <a href="/cities/chicago-il.html" class="city-chip">🌬️ Chicago, IL</a>
+                <a href="/cities/atlanta-ga.html" class="city-chip">🍑 Atlanta, GA</a>
+                <a href="/cities/new-york-ny.html" class="city-chip">🗽 New York, NY</a>
+                <a href="/cities/orlando-fl.html" class="city-chip">🏰 Orlando, FL</a>
+                <a href="/cities/denver-co.html" class="city-chip">🏔️ Denver, CO</a>
+                <a href="/cities/los-angeles-ca.html" class="city-chip">🌴 Los Angeles, CA</a>
+                <a href="/cities/phoenix-az.html" class="city-chip">☀️ Phoenix, AZ</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Weather Radar USA</h4>
+                    <p style="margin-bottom:10px;">Free interactive United States Doppler weather radar, hurricane tracking, and real-time NWS storm warnings.</p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">Data: NOAA / NWS NEXRAD &amp; RainViewer</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Radar Tools</h4>
+                    <a href="/national-radar-loop.html">National Radar Loop</a>
+                    <a href="/radar-tools.html">Weather Radar Tools</a>
+                    <a href="/#severe-alerts">NWS Severe Warnings</a>
+                    <a href="/#tools">Unit Converters</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Top City Radars</h4>
+                    <a href="/cities/miami-fl.html">Miami Weather Radar</a>
+                    <a href="/cities/dallas-tx.html">Dallas Doppler Radar</a>
+                    <a href="/cities/houston-tx.html">Houston Weather Radar</a>
+                    <a href="/cities/chicago-il.html">Chicago Weather Radar</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal &amp; Info</h4>
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/terms-of-service.html">Terms of Service</a>
+                    <a href="/about.html">About Us</a>
+                    <a href="/contact.html">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Weather Radar USA • <a href="https://weatherradarusa.online/">https://weatherradarusa.online/</a> • All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        let toolMap = null;
+        let baseLayer = null;
+        let radarLayer = null;
+        let currentLayerType = 'radar';
+
+        function initToolsMap() {
+            toolMap = L.map('toolsMap', {
+                center: [38.5, -96.5],
+                zoom: 4,
+                minZoom: 3,
+                maxZoom: 12,
+                zoomControl: true,
+                attributionControl: false
+            });
+
+            L.control.attribution({ position: 'bottomright', prefix: false })
+                .addAttribution('&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> | Radar: <a href="https://www.rainviewer.com/">RainViewer</a> &amp; <a href="https://mesonet.agron.iastate.edu/">NOAA NEXRAD</a>')
+                .addTo(toolMap);
+
+            baseLayer = L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(toolMap);
+
+            loadToolRadar('radar');
+
+            setTimeout(() => { if (toolMap) toolMap.invalidateSize(); }, 150);
+            setTimeout(() => { if (toolMap) toolMap.invalidateSize(); }, 600);
+            window.addEventListener('resize', () => { if (toolMap) toolMap.invalidateSize(); });
+        }
+
+        async function loadToolRadar(type) {
+            currentLayerType = type;
+            if (radarLayer) toolMap.removeLayer(radarLayer);
+
+            if (type === 'nexrad') {
+                radarLayer = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png', {
+                    opacity: 0.78,
+                    zIndex: 10
+                }).addTo(toolMap);
+                document.getElementById('radarStatusBadge').textContent = '🇺🇸 Official NOAA NEXRAD Feed';
+                return;
+            }
+
+            try {
+                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
+                const data = await res.json();
+                const host = data.host || 'https://tilecache.rainviewer.com';
+
+                if (type === 'satellite' && data.satellite && data.satellite.infrared) {
+                    const sat = data.satellite.infrared;
+                    const frame = sat[sat.length - 1];
+                    const url = `${host}${frame.path}/256/{z}/{x}/{y}/0/0_0.png`;
+                    radarLayer = L.tileLayer(url, { opacity: 0.78, zIndex: 10 }).addTo(toolMap);
+                    document.getElementById('radarStatusBadge').textContent = '🛰️ Live Infrared Satellite';
+                } else if (data.radar && data.radar.past && data.radar.past.length > 0) {
+                    const past = data.radar.past;
+                    const frame = past[past.length - 1];
+                    const url = `${host}${frame.path}/256/{z}/{x}/{y}/2/1_1.png`;
+                    radarLayer = L.tileLayer(url, { opacity: 0.75, zIndex: 10 }).addTo(toolMap);
+                    document.getElementById('radarStatusBadge').textContent = '🔴 Live HD Rain Radar';
+                }
+            } catch (err) {
+                console.warn('Fallback to NOAA NEXRAD:', err);
+                radarLayer = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png', {
+                    opacity: 0.78,
+                    zIndex: 10
+                }).addTo(toolMap);
+                document.getElementById('radarStatusBadge').textContent = '🇺🇸 NOAA Live Backup Feed';
+            }
+        }
+
+        function switchToolLayer(type) {
+            document.querySelectorAll('.map-ctrl-bar .map-ctrl-btn').forEach(b => b.classList.remove('active'));
+            if (type === 'radar') document.getElementById('btnRadarLayer').classList.add('active');
+            if (type === 'nexrad') document.getElementById('btnNexradLayer').classList.add('active');
+            if (type === 'satellite') document.getElementById('btnSatLayer').classList.add('active');
+            loadToolRadar(type);
+        }
+
+        function zoomToolMap(coords, zoom) {
+            if (toolMap) toolMap.flyTo(coords, zoom, { duration: 1.2 });
+        }
+
+        // Calculator Functions
+        function convertTemp(dir) {
+            const val = parseFloat(document.getElementById('tempInput').value);
+            const res = document.getElementById('tempResult');
+            if (isNaN(val)) { res.textContent = 'Please enter a valid number'; return; }
+            if (dir === 'FtoC') {
+                res.textContent = `${val}°F = ${((val - 32) * 5/9).toFixed(1)}°C`;
+            } else {
+                res.textContent = `${val}°C = ${(val * 9/5 + 32).toFixed(1)}°F`;
+            }
+        }
+
+        function convertWind(type) {
+            const val = parseFloat(document.getElementById('windInput').value);
+            const res = document.getElementById('windResult');
+            if (isNaN(val)) { res.textContent = 'Please enter a valid wind speed'; return; }
+            const kmh = (val * 1.60934).toFixed(1);
+            const knots = (val * 0.868976).toFixed(1);
+            res.textContent = `${val} mph = ${kmh} km/h = ${knots} knots`;
+        }
+
+        function convertPrecip(dir) {
+            const val = parseFloat(document.getElementById('precipInput').value);
+            const res = document.getElementById('precipResult');
+            if (isNaN(val)) { res.textContent = 'Please enter a valid amount'; return; }
+            if (dir === 'inToMm') {
+                res.textContent = `${val.toFixed(2)} in = ${(val * 25.4).toFixed(1)} mm`;
+            } else {
+                res.textContent = `${val.toFixed(1)} mm = ${(val / 25.4).toFixed(2)} in`;
+            }
+        }
+
+        function calcUV(val) {
+            const v = parseInt(val);
+            const res = document.getElementById('uvResult');
+            if (v <= 2) {
+                res.textContent = 'Low (UV 1-2): Minimal sun protection needed. Safe for outdoor activities.';
+            } else if (v <= 5) {
+                res.textContent = 'Moderate (UV 3-5): Sunscreen SPF 30+ recommended. Safe burn time ~45 mins.';
+            } else if (v <= 7) {
+                res.textContent = 'High (UV 6-7): Seek shade during midday. Wear sunglasses, hat & SPF 50+. Burn time ~25 mins.';
+            } else if (v <= 10) {
+                res.textContent = 'Very High (UV 8-10): Extra precaution needed. Unprotected skin can burn in 15 mins.';
+            } else {
+                res.textContent = 'Extreme (UV 11+): Take all precautions! Skin damage occurs within 10 minutes.';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initToolsMap();
+        });
+    </script>
+</body>
+</html>

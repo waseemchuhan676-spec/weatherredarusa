@@ -1022,7 +1022,7 @@
                 <a href="#results">Forecast</a>
                 <a href="#severe-alerts">Severe Alerts</a>
                 <a href="#popular-cities">US Cities</a>
-                <a href="#tools">Radar Tools</a>
+                <a href="/radar-tools.html">Radar Tools</a>
                 <a href="#faq">FAQ</a>
             </nav>
 
@@ -2621,12 +2621,28 @@
                 return;
             }
 
-            listEl.innerHTML = filtered.map(c => `
+            const CITY_SLUGS = {
+                'Miami, FL': 'miami-fl',
+                'Dallas, TX': 'dallas-tx',
+                'Houston, TX': 'houston-tx',
+                'Chicago, IL': 'chicago-il',
+                'Atlanta, GA': 'atlanta-ga',
+                'New York, NY': 'new-york-ny',
+                'Orlando, FL': 'orlando-fl',
+                'Denver, CO': 'denver-co',
+                'Los Angeles, CA': 'los-angeles-ca',
+                'Phoenix, AZ': 'phoenix-az'
+            };
+
+            listEl.innerHTML = filtered.map(c => {
+                const slug = CITY_SLUGS[c.name];
+                const pageLink = slug ? `<a href="/cities/${slug}.html" style="font-size:0.75rem;color:var(--accent);font-weight:700;margin-left:6px;" onclick="event.stopPropagation();" title="Dedicated ${c.name} radar page">Page ↗</a>` : '';
+                return `
                 <button class="city-pill-btn" onclick="quickSearchCoords('${c.name}', ${c.lat}, ${c.lon})">
                     <span>${c.name}</span>
-                    <span style="font-size:0.75rem;color:var(--accent);">Radar →</span>
-                </button>
-            `).join('');
+                    <span style="font-size:0.75rem;color:var(--accent);">Radar → ${pageLink}</span>
+                </button>`;
+            }).join('');
         }
 
         function filterCities(cat) {
