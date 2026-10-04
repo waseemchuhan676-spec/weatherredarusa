@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Title targeting high-volume exact match queries: national radar loop, us doppler radar loop -->
-    <title>National Radar Loop – Live US Doppler Weather Radar Map</title>
+    <title>National Radar Loop – Live US Doppler & NOAA Radar Loop (HD)</title>
     
-    <meta name="description" content="Watch the live national radar loop for the United States. Real-time animated NOAA NEXRAD Doppler radar, 2-hour storm tracking loop, rain tracks & NWS alerts.">
+    <meta name="description" content="Watch the live national radar loop for the US. 2-hour continuous NOAA NEXRAD Doppler radar animation tracking severe storms, rain & snow in real-time HD.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Weather Radar USA">
     <meta name="geo.region" content="US">
@@ -22,8 +22,8 @@
     <link rel="apple-touch-icon" href="favicon.svg">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="National Radar Loop – Live US Doppler Weather Radar Map">
-    <meta property="og:description" content="Watch the live national radar loop for the United States. Real-time animated NOAA NEXRAD Doppler radar, 2-hour storm tracking loop, rain tracks & NWS alerts.">
+    <meta property="og:title" content="National Radar Loop – Live US Doppler & NOAA Radar Loop (HD)">
+    <meta property="og:description" content="Watch the live national radar loop for the US. 2-hour continuous NOAA NEXRAD Doppler radar animation tracking severe storms, rain & snow in real-time HD.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://weatherradarusa.online/national-radar-loop.html">
@@ -35,8 +35,8 @@
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="National Radar Loop – Live US Doppler Weather Radar Map">
-    <meta name="twitter:description" content="Watch the live national radar loop for the United States. Real-time animated NOAA NEXRAD Doppler radar, 2-hour storm tracking loop, rain tracks & NWS alerts.">
+    <meta name="twitter:title" content="National Radar Loop – Live US Doppler & NOAA Radar Loop (HD)">
+    <meta name="twitter:description" content="Watch the live national radar loop for the US. 2-hour continuous NOAA NEXRAD Doppler radar animation tracking severe storms, rain & snow in real-time HD.">
     <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
     <meta name="twitter:image:alt" content="Live National Doppler Weather Radar Loop for United States">
     <meta property="og:image:alt" content="Live National Doppler Weather Radar Loop for United States">
@@ -79,7 +79,7 @@
         },
         {
           "@type": "WebApplication",
-          "name": "Live US National Radar Loop & Doppler Weather Map",
+          "name": "National Radar Loop – Live US Doppler & NOAA Radar Loop",
           "url": "https://weatherradarusa.online/national-radar-loop.html",
           "applicationCategory": "WeatherApplication",
           "operatingSystem": "All",
@@ -104,23 +104,31 @@
               "name": "What is a national radar loop?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "A national radar loop is a sequenced composite animation of Doppler radar frames recorded over the past 1 to 2 hours across all 160+ NOAA NEXRAD stations in the United States. It reveals the direction, movement speed, and intensification of storms."
+                "text": "A national radar loop is an animated composite of Doppler radar frames recorded over the past 2 hours from National Weather Service WSR-88D NEXRAD towers across the entire United States."
               }
             },
             {
               "@type": "Question",
-              "name": "How often does the national radar loop update?",
+              "name": "How often does this radar loop update?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "The animated radar loop receives new precipitation scan tiles every 5 to 10 minutes from live NEXRAD Doppler stations. The national mosaic refreshes every 2 minutes."
+                "text": "New Doppler radar scans are incorporated every 5 to 10 minutes as soon as individual radar towers complete their volume scans. The national NOAA mosaic updates every 2 minutes."
               }
             },
             {
               "@type": "Question",
-              "name": "How do I control the radar loop animation speed?",
+              "name": "How does the NOAA Doppler radar loop track storms across the United States?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "Use the Speed dropdown selector below the radar player to choose 0.5x (slow analysis), 1x (normal speed), or 2x (fast overview). You can also drag the interactive timeline slider to inspect any specific timestamp frame."
+                "text": "The loop sequences recent radar reflectivity scans over a 2-hour timeline, allowing you to see storm speed, track direction, rain intensity (in dBZ), and severe thunderstorm or tornado warnings in real time."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I zoom into my city or neighborhood?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes! Use your mouse wheel or the [+] and [-] buttons on the map to zoom all the way down to county and neighborhood street level, or click our homepage search bar to search by city or 5-digit ZIP code."
               }
             }
           ]
@@ -583,7 +591,7 @@
 
         <!-- Hero Section -->
         <section class="loop-hero">
-            <h1>National Radar Loop – Live US Doppler Weather Map</h1>
+            <h1>National Radar Loop – Live US Doppler & NOAA Storm Loop</h1>
             <p>Continuous 2-hour animated Doppler radar loop tracking storm cells, heavy rain, snowfall, and squall lines across the Continental United States in real-time HD.</p>
         </section>
 
@@ -726,6 +734,16 @@
                         </button>
                         <div class="faq-answer">
                             New Doppler radar scans are incorporated every 5 to 10 minutes as soon as individual radar towers complete their volume scans. The national NOAA mosaic updates every 2 minutes.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How does the NOAA Doppler radar loop track storms across the United States?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            The loop sequences recent radar reflectivity scans over a 2-hour timeline, allowing you to see storm speed, track direction, rain intensity (in dBZ), and severe thunderstorm or tornado warnings in real time.
                         </div>
                     </div>
 
