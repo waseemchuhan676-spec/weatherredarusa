@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Hurricane Tracker &amp; Atlantic Doppler Radar - Weather Radar USA</title>
+    <meta name="description" content="Track live Atlantic, Caribbean, and Gulf of Mexico hurricanes in real time. Interactive Doppler radar loop, National Hurricane Center (NHC) storm track cone, wind speeds, and coastal NOAA NWS warnings.">
+    <meta name="keywords" content="live hurricane tracker, Atlantic hurricane radar, Gulf of Mexico storm radar, NHC hurricane track, hurricane doppler radar, tropical storm tracker">
+    <meta name="author" content="Weather Radar USA">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://weatherradarusa.online/hurricane-tracker.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Live Hurricane Tracker &amp; Atlantic Doppler Radar - Weather Radar USA">
+    <meta property="og:description" content="Track live Atlantic, Caribbean, and Gulf of Mexico hurricanes with real-time interactive Doppler radar loops and NHC storm tracks.">
+    <meta property="og:url" content="https://weatherradarusa.online/hurricane-tracker.html">
+    <meta property="og:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+    <meta property="og:site_name" content="Weather Radar USA">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Live Hurricane Tracker &amp; Atlantic Doppler Radar">
+    <meta name="twitter:description" content="Real-time Atlantic and Gulf hurricane tracking map, precipitation loops, and coastal NOAA NWS alerts.">
+    <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#dbeafe">
+
+    <!-- CDNs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://tilecache.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.weather.gov">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Live Hurricane Tracker & Atlantic Doppler Radar",
+      "url": "https://weatherradarusa.online/hurricane-tracker.html",
+      "description": "Real-time interactive tropical storm and hurricane tracking radar covering the Atlantic Basin, Caribbean Sea, and Gulf of Mexico.",
+      "applicationCategory": "WeatherApplication",
+      "operatingSystem": "All",
+      "provider": {
+        "@type": "Organization",
+        "name": "Weather Radar USA",
+        "url": "https://weatherradarusa.online/"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://weatherradarusa.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Hurricane Tracker",
+          "item": "https://weatherradarusa.online/hurricane-tracker.html"
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How does Doppler radar track hurricanes when they are offshore?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Land-based coastal NEXRAD radars have an effective range of about 230 nautical miles (approx. 250 miles). As a hurricane approaches within range of coastal radars (such as Miami, Tampa, Key West, or Houston), the radar scans the eyewall and spiral rainbands in high resolution. When storms are further out at sea, meteorologists rely on geostationary weather satellites (GOES-East) and NOAA 'Hurricane Hunter' reconnaissance aircraft equipped with tail Doppler radar."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does the National Hurricane Center (NHC) Cone of Uncertainty mean?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The NHC forecast cone represents the probable track of the center of a tropical cyclone over the next 5 days. It is formed by enclosing the area that historically contains the storm center approximately 66% of the time. Critical note: Hazardous impacts such as storm surge, hurricane-force winds, and torrential rainfall frequently extend far outside the cone."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between a Hurricane Watch and a Hurricane Warning?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A Hurricane Watch is issued 48 hours before the anticipated onset of tropical-storm-force winds, alerting residents to prepare emergency supplies and review evacuation routes. A Hurricane Warning is issued 36 hours before onset, signifying that hurricane conditions (sustained winds of 74 mph or greater) are expected, and protective actions should be rushed to completion."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which NOAA NEXRAD stations monitor Atlantic and Gulf hurricanes?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Key coastal Doppler radar stations include KAMX (Miami, FL), KBYX (Key West, FL), KTBW (Tampa Bay, FL), KJAX (Jacksonville, FL), KTLH (Tallahassee, FL), KMOB (Mobile, AL), KLIX (New Orleans, LA), KLCH (Lake Charles, LA), KHGX (Houston, TX), and KBRO (Brownsville, TX)."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-body: #f0f7ff;
+            --bg-header: rgba(255, 255, 255, 0.96);
+            --bg-card: #ffffff;
+            --bg-elevated: #f0f7ff;
+            --bg-card-hover: #e0f2fe;
+            --border: #bae6fd;
+            --border-hover: #0284c7;
+            --text-primary: #0f172a;
+            --text-muted: #475569;
+            --text-sub: #1e293b;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --accent: #0284c7;
+            --danger: #dc2626;
+            --danger-bg: #fee2e2;
+            --radius-sm: 8px;
+            --radius: 14px;
+            --shadow: 0 10px 28px -4px rgba(2, 132, 199, 0.08);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header {
+            position: sticky; top: 0; z-index: 1000;
+            background: var(--bg-header);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+        .header-content { display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 34px; height: 34px; border-radius: 8px; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 1.2rem; }
+        .logo-text { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.25rem; }
+        .logo-text span { color: var(--primary); }
+        .nav-links { display: flex; align-items: center; gap: 18px; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.92rem; font-weight: 600; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+        /* Hero */
+        .hero-banner {
+            padding: 30px 0 20px;
+            background: linear-gradient(180deg, #e0f2fe 0%, var(--bg-body) 100%);
+            border-bottom: 1px solid var(--border);
+        }
+        .breadcrumbs { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+        .breadcrumbs a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .hero-title { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; }
+        .hero-desc { font-size: 1.05rem; color: var(--text-muted); max-width: 850px; }
+
+        /* Map Box */
+        .map-section { margin: 24px 0; }
+        .map-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .map-header {
+            padding: 14px 20px;
+            background: #0f172a;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .map-title { font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+        .map-ctrls { display: flex; align-items: center; gap: 10px; }
+        .ctrl-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .ctrl-btn:hover { background: rgba(255, 255, 255, 0.25); }
+        .time-badge { font-size: 0.82rem; font-weight: 600; color: #38bdf8; }
+        #hurricaneRadarMap { width: 100%; height: 560px; background: #e2e8f0; }
+
+        /* Saffir-Simpson Table */
+        .scale-section {
+            margin: 36px 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+        .scale-section h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 8px; }
+        .table-wrap { overflow-x: auto; margin-top: 16px; }
+        table.scale-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
+        table.scale-table th { background: #f8fafc; padding: 12px 14px; border-bottom: 2px solid var(--border); font-weight: 700; color: var(--text-primary); }
+        table.scale-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .cat-badge { display: inline-block; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.85rem; color: #fff; }
+        .cat-1 { background: #3b82f6; }
+        .cat-2 { background: #eab308; }
+        .cat-3 { background: #f97316; }
+        .cat-4 { background: #ef4444; }
+        .cat-5 { background: #7e22ce; }
+
+        /* Editorial Guide */
+        .guide-section {
+            margin: 36px 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+        .guide-section h2 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; margin-bottom: 12px; }
+        .guide-section h3 { font-size: 1.2rem; margin: 22px 0 8px; color: var(--text-primary); }
+        .guide-section p { color: var(--text-sub); margin-bottom: 14px; font-size: 0.95rem; }
+
+        /* FAQ Accordion */
+        .faq-section {
+            margin: 36px 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+        .faq-section h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 6px; }
+        .faq-accordion { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .faq-item summary {
+            padding: 14px 18px;
+            font-weight: 700;
+            cursor: pointer;
+            list-style: none;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-answer { padding: 14px 18px; font-size: 0.92rem; color: var(--text-sub); border-top: 1px solid var(--border); background: #ffffff; }
+
+        /* Coastal Links */
+        .coastal-cities {
+            margin: 36px 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 28px;
+        }
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .city-link {
+            display: block;
+            padding: 10px 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .city-link:hover {
+            border-color: var(--primary);
+            background: var(--bg-card-hover);
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .footer-col h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
+        .footer-col a { display: block; text-decoration: none; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 8px; }
+        .footer-col a:hover { color: var(--primary); }
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.84rem; color: var(--text-muted); text-align: center; }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+            #hurricaneRadarMap { height: 420px; }
+            .hero-title { font-size: 1.7rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">&#127744;</div>
+                <div class="logo-text">Weather Radar <span>USA</span></div>
+            </a>
+            <nav class="nav-links">
+                <a href="/">Live Radar</a>
+                <a href="/national-radar-loop.html">National Loop</a>
+                <a href="/hurricane-tracker.html" class="active">Hurricane Tracker</a>
+                <a href="/radar-tools.html">Radar Tools</a>
+                <a href="/#popular-cities">Top Cities</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="/">Home</a> &raquo; <span>Live Hurricane Tracker</span>
+            </div>
+            <h1 class="hero-title">&#127744; Live Hurricane Tracker &amp; Atlantic Doppler Radar</h1>
+            <p class="hero-desc">Real-time interactive tropical cyclone tracking map covering the Atlantic Basin, Caribbean Sea, and Gulf of Mexico. Monitor live precipitation loops, tropical storm intensity, and NOAA coastal Doppler radar.</p>
+        </div>
+    </section>
+
+    <!-- Main -->
+    <main class="container">
+        <!-- Map Card -->
+        <section class="map-section">
+            <div class="map-card">
+                <div class="map-header">
+                    <div class="map-title">&#128225; Atlantic &amp; Gulf Tropical Doppler Radar Loop</div>
+                    <div class="map-ctrls">
+                        <span class="time-badge" id="timeBadge">&#128308; Connecting to Radar...</span>
+                        <button class="ctrl-btn" id="playBtn" onclick="togglePlay()">&#9208; Pause</button>
+                        <button class="ctrl-btn" onclick="resetHurricaneView()">&#128506;&#65039; Reset View</button>
+                    </div>
+                </div>
+                <div id="hurricaneRadarMap"></div>
+            </div>
+        </section>
+
+        <!-- Saffir-Simpson Scale -->
+        <section class="scale-section">
+            <h2>&#127788;&#65039; Saffir-Simpson Hurricane Wind Scale Reference</h2>
+            <p style="color:var(--text-muted);font-size:0.92rem;">The Saffir-Simpson Hurricane Wind Scale classifies tropical cyclones into 5 categories based on their sustained wind speeds and estimated property damage potential:</p>
+            <div class="table-wrap">
+                <table class="scale-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Sustained Winds</th>
+                            <th>Central Pressure</th>
+                            <th>Storm Surge Potential</th>
+                            <th>Damage Level</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="cat-badge cat-1">Category 1</span></td>
+                            <td><strong>74 - 95 mph</strong></td>
+                            <td>&gt; 980 mb</td>
+                            <td>4 - 5 ft</td>
+                            <td>Very dangerous winds producing some structural damage, fallen tree branches, and power outages.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="cat-badge cat-2">Category 2</span></td>
+                            <td><strong>96 - 110 mph</strong></td>
+                            <td>965 - 979 mb</td>
+                            <td>6 - 8 ft</td>
+                            <td>Extremely dangerous winds causing substantial roof and siding damage, uprooted trees, and near-total power loss.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="cat-badge cat-3">Category 3 (Major)</span></td>
+                            <td><strong>111 - 129 mph</strong></td>
+                            <td>945 - 964 mb</td>
+                            <td>9 - 12 ft</td>
+                            <td>Devastating damage. Major structural roof damage, electricity and water unavailable for days to weeks.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="cat-badge cat-4">Category 4 (Major)</span></td>
+                            <td><strong>130 - 156 mph</strong></td>
+                            <td>920 - 944 mb</td>
+                            <td>13 - 18 ft</td>
+                            <td>Catastrophic damage. Well-built framed homes can sustain severe structural loss. Most of the area uninhabitable for months.</td>
+                        </tr>
+                        <tr>
+                            <td><span class="cat-badge cat-5">Category 5 (Major)</span></td>
+                            <td><strong>&ge; 157 mph</strong></td>
+                            <td>&lt; 920 mb</td>
+                            <td>&gt; 18 ft</td>
+                            <td>Total catastrophe. Complete building collapses, devastating coastal inundation, and catastrophic infrastructure destruction.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- Guide -->
+        <section class="guide-section">
+            <h2>&#128225; How Doppler Radar Tracks Approaching Hurricanes</h2>
+            <p>During the Atlantic hurricane season (June 1 through November 30), tracking tropical systems requires a multi-layered remote sensing network. When tropical depressions, tropical storms, or hurricanes are thousands of miles out in the open ocean, meteorologists rely primarily on NOAA geostationary satellites (GOES-East) and U.S. Air Force Reserve "Hurricane Hunter" reconnaissance flights that drop GPS dropsondes directly through the storm's eyewall.</p>
+
+            <h3>Coastal NEXRAD WSR-88D Network</h3>
+            <p>Once a hurricane approaches within 200 to 250 miles of the United States coastline, the National Weather Service's coastal network of WSR-88D Doppler radar stations takes over. Operating with dual-polarization S-band microwave pulses, stations like KAMX (Miami), KTBW (Tampa), and KHGX (Houston) scan storm circulation at multiple elevation angles:</p>
+            <ul style="padding-left:22px;color:var(--text-sub);margin-bottom:14px;">
+                <li style="margin-bottom:6px;"><strong>Eyewall Replacement Cycles (ERC):</strong> High-resolution radar reflectivity reveals when an outer rainband contracts around the inner eye, causing temporary intensity fluctuations.</li>
+                <li style="margin-bottom:6px;"><strong>Base Velocity &amp; Radial Wind Shear:</strong> Doppler shift measures extreme horizontal wind velocity toward or away from the radar dish, detecting embedded tornadoes in outer feeder bands.</li>
+                <li style="margin-bottom:6px;"><strong>Torrential Tropical Rainfall Rates:</strong> Dual-pol radar algorithms estimate precipitation accumulation with exceptional accuracy, warning emergency officials of inland flash flooding.</li>
+            </ul>
+
+            <h3>Understanding the NHC Forecast Cone of Uncertainty</h3>
+            <p>The National Hurricane Center (NHC) issues official forecast cones projecting the storm's center path over 3 to 5 days. It is crucial to remember that <strong>the cone only tracks the storm center</strong>. Tropical storm-force winds and destructive storm surge can extend more than 150 to 300 miles from the center, meaning communities well outside the cone can still experience catastrophic impacts.</p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section" id="faq">
+            <h2>Frequently Asked Questions: Hurricane Radar &amp; Tracking</h2>
+            <div class="faq-accordion">
+                <details class="faq-item" open>
+                    <summary>How does Doppler radar track hurricanes when they are offshore?</summary>
+                    <div class="faq-answer">
+                        Land-based coastal NEXRAD radars have an effective range of about 230 nautical miles (approx. 250 miles). As a hurricane approaches within range of coastal radars (such as Miami, Tampa, Key West, or Houston), the radar scans the eyewall and spiral rainbands in high resolution. When storms are further out at sea, meteorologists rely on geostationary weather satellites (GOES-East) and NOAA "Hurricane Hunter" reconnaissance aircraft equipped with tail Doppler radar.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does the National Hurricane Center (NHC) Cone of Uncertainty mean?</summary>
+                    <div class="faq-answer">
+                        The NHC forecast cone represents the probable track of the center of a tropical cyclone over the next 5 days. It is formed by enclosing the area that historically contains the storm center approximately 66% of the time. Critical note: Hazardous impacts such as storm surge, hurricane-force winds, and torrential rainfall frequently extend far outside the cone.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What is the difference between a Hurricane Watch and a Hurricane Warning?</summary>
+                    <div class="faq-answer">
+                        A Hurricane Watch is issued 48 hours before the anticipated onset of tropical-storm-force winds, alerting residents to prepare emergency supplies and review evacuation routes. A Hurricane Warning is issued 36 hours before onset, signifying that hurricane conditions (sustained winds of 74 mph or greater) are expected, and protective actions should be rushed to completion.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Which coastal NOAA NEXRAD stations monitor Atlantic and Gulf hurricanes?</summary>
+                    <div class="faq-answer">
+                        Key coastal Doppler radar stations include KAMX (Miami, FL), KBYX (Key West, FL), KTBW (Tampa Bay, FL), KJAX (Jacksonville, FL), KTLH (Tallahassee, FL), KMOB (Mobile, AL), KLIX (New Orleans, LA), KLCH (Lake Charles, LA), KHGX (Houston, TX), and KBRO (Brownsville, TX).
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Coastal Radars Grid -->
+        <section class="coastal-cities">
+            <h2 style="font-family:'Outfit',sans-serif;font-size:1.4rem;">&#127754; High-Risk Coastal Hurricane City Radars</h2>
+            <p style="color:var(--text-muted);font-size:0.88rem;margin-top:4px;">Direct access to high-definition local radar loops for hurricane-prone metropolitan areas:</p>
+            <div class="cities-grid">
+                <a href="/cities/miami-fl.html" class="city-link">&#127958;&#65039; Miami, FL</a>
+                <a href="/cities/tampa-fl.html" class="city-link">&#9889; Tampa, FL</a>
+                <a href="/cities/orlando-fl.html" class="city-link">&#127984; Orlando, FL</a>
+                <a href="/cities/jacksonville-fl.html" class="city-link">&#9875; Jacksonville, FL</a>
+                <a href="/cities/houston-tx.html" class="city-link">&#128640; Houston, TX</a>
+                <a href="/cities/san-antonio-tx.html" class="city-link">&#128002; San Antonio, TX</a>
+                <a href="/cities/charlotte-nc.html" class="city-link">&#127794; Charlotte, NC</a>
+                <a href="/cities/atlanta-ga.html" class="city-link">&#127825; Atlanta, GA</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Weather Radar USA</h4>
+                    <p style="margin-bottom:10px;color:var(--text-muted);font-size:0.88rem;">Free real-time interactive Doppler weather radar, hurricane tracking, and official NOAA NWS storm warnings across the United States.</p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">Data: NOAA / NWS NEXRAD &amp; RainViewer</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Radar Tools</h4>
+                    <a href="/national-radar-loop.html">National Radar Loop</a>
+                    <a href="/hurricane-tracker.html">Live Hurricane Tracker</a>
+                    <a href="/radar-tools.html">Weather Radar Tools</a>
+                    <a href="/#severe-alerts">NWS Severe Warnings</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Coastal City Radars</h4>
+                    <a href="/cities/miami-fl.html">Miami Weather Radar</a>
+                    <a href="/cities/tampa-fl.html">Tampa Weather Radar</a>
+                    <a href="/cities/houston-tx.html">Houston Weather Radar</a>
+                    <a href="/cities/jacksonville-fl.html">Jacksonville Radar</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal &amp; Trust</h4>
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/terms-of-service.html">Terms of Service</a>
+                    <a href="/about.html">About Us</a>
+                    <a href="/contact.html">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Weather Radar USA &bull; <a href="https://weatherradarusa.online/hurricane-tracker.html" style="color:var(--text-muted);">https://weatherradarusa.online/hurricane-tracker.html</a> &bull; All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        const BASIN_LAT = 26.0;
+        const BASIN_LON = -82.0;
+        const BASIN_ZOOM = 5;
+
+        let map = null;
+        let radarLayer = null;
+        let radarFrames = [];
+        let currentFrameIndex = 0;
+        let isPlaying = false;
+        let playInterval = null;
+
+        function initMap() {
+            map = L.map('hurricaneRadarMap', {
+                center: [BASIN_LAT, BASIN_LON],
+                zoom: BASIN_ZOOM,
+                minZoom: 4,
+                maxZoom: 12,
+                zoomControl: true,
+                attributionControl: false
+            });
+
+            L.control.attribution({ position: 'bottomright', prefix: false })
+                .addAttribution('&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> | Radar: RainViewer &amp; NOAA NEXRAD')
+                .addTo(map);
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(map);
+
+            loadRadarData();
+
+            setTimeout(() => { if (map) map.invalidateSize(); }, 200);
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
+        }
+
+        async function loadRadarData() {
+            try {
+                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
+                const data = await res.json();
+                if (data && data.radar && data.radar.past && data.radar.past.length > 0) {
+                    window._rvHost = data.host || 'https://tilecache.rainviewer.com';
+                    radarFrames = data.radar.past;
+                    currentFrameIndex = radarFrames.length - 1;
+                    showFrame(currentFrameIndex);
+                    setTimeout(() => startLoop(), 500);
+                } else {
+                    loadNoaaFallback();
+                }
+            } catch (err) {
+                console.warn('Falling back to NOAA NEXRAD:', err);
+                loadNoaaFallback();
+            }
+        }
+
+        function loadNoaaFallback() {
+            if (radarLayer) map.removeLayer(radarLayer);
+            radarLayer = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png', {
+                opacity: 0.78,
+                zIndex: 10
+            }).addTo(map);
+            document.getElementById('timeBadge').textContent = '\uD83D\uDD34 NOAA Live Coastal Feed';
+        }
+
+        function showFrame(index) {
+            if (!radarFrames.length || !map) return;
+            const frame = radarFrames[index];
+            if (!frame) return;
+
+            const host = window._rvHost || 'https://tilecache.rainviewer.com';
+            const url = `${host}${frame.path}/256/{z}/{x}/{y}/2/1_1.png`;
+
+            if (radarLayer) map.removeLayer(radarLayer);
+            radarLayer = L.tileLayer(url, { opacity: 0.76, zIndex: 10 }).addTo(map);
+
+            const date = new Date(frame.time * 1000);
+            const isLive = (index === radarFrames.length - 1);
+            const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+            document.getElementById('timeBadge').textContent = isLive ? `\uD83D\uDD34 ${timeStr} (Live)` : timeStr;
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                isPlaying = false;
+                clearInterval(playInterval);
+                document.getElementById('playBtn').textContent = '▶ Play Loop';
+            } else {
+                startLoop();
+            }
+        }
+
+        function startLoop() {
+            if (!radarFrames.length) return;
+            isPlaying = true;
+            document.getElementById('playBtn').textContent = '⏸ Pause';
+            if (playInterval) clearInterval(playInterval);
+            playInterval = setInterval(() => {
+                currentFrameIndex = (currentFrameIndex + 1) % radarFrames.length;
+                showFrame(currentFrameIndex);
+            }, 800);
+        }
+
+        function resetHurricaneView() {
+            if (map) map.flyTo([BASIN_LAT, BASIN_LON], BASIN_ZOOM, { duration: 1 });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initMap();
+        });
+    </script>
+</body>
+</html>
