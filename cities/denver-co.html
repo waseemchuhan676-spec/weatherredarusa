@@ -84,6 +84,46 @@
       ]
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I check live Doppler weather radar for Denver, CO?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can track live high-definition Denver weather radar right here on Weather Radar USA. Our interactive Doppler map updates every 5 to 10 minutes with precipitation loops, storm velocity, rain intensity, and official NOAA NWS storm alerts for Denver Metro & Colorado Front Range."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which NOAA NEXRAD radar station covers Denver, Colorado?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The primary National Weather Service Doppler radar serving Denver is station KFTG, located in Front Range / Denver, CO. It operates with high-frequency S-band dual-polarization technology to monitor severe storms, hail, and precipitation within a 230-nautical-mile radius."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I read precipitation radar colors on the Denver Doppler map?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Radar reflectivity is measured in dBZ: Light green (15-30 dBZ) signifies light rain or drizzle; yellow and orange (35-45 dBZ) represent moderate to heavy downpours; red, purple, and magenta (50-65+ dBZ) signal intense thunderstorms, hail cores, or severe tornadic supercells."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How can I see active tornado or severe thunderstorm warnings for Denver?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Active National Weather Service warnings for Denver and surrounding counties are automatically streamed directly above our radar map. You can also view active warning polygons and detailed bulletins across Colorado on our NWS Severe Alerts feed."
+          }
+        }
+      ]
+    }
+    </script>
 
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -271,6 +311,144 @@
         .footer-col a { display: block; color: var(--text-muted); margin-bottom: 8px; }
         .footer-col a:hover { color: var(--accent); }
         .footer-bottom { text-align: center; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.82rem; }
+        /* Local Weather Guide & FAQ Styles */
+        .city-guide-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 28px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+        .city-guide-section h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .city-guide-section h3 {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--text-sub);
+            margin: 20px 0 8px;
+        }
+        .city-guide-section p {
+            font-size: 0.94rem;
+            line-height: 1.68;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .radar-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+        .radar-meta-item {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+        }
+        .radar-meta-label {
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        .radar-meta-val {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .dbz-legend-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .dbz-pill {
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* FAQ Section */
+        .city-faq-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 28px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+        .city-faq-section h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .city-faq-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .city-faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-elevated);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        .faq-item[open] {
+            border-color: var(--border-hover);
+            background: var(--bg-card);
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
+        }
+        .faq-question {
+            padding: 16px 18px;
+            font-weight: 700;
+            font-size: 0.96rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+        }
+        .faq-question::-webkit-details-marker {
+            display: none;
+        }
+        .faq-question::after {
+            content: "+";
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .faq-item[open] .faq-question::after {
+            content: "âˆ’";
+            color: #dc2626;
+        }
+        .faq-answer {
+            padding: 0 18px 16px;
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+        }
 
         @media (max-width: 768px) {
             .city-hero h1 { font-size: 1.8rem; }
@@ -309,7 +487,7 @@
 
             <nav class="nav" aria-label="Primary Navigation">
                 <a href="/">Full Radar Map</a>
-                <a href="/national-radar-loop.html">â–¶ Radar Loop (HD)</a>
+                <a href="/national-radar-loop.html">▶ Radar Loop (HD)</a>
                 <a href="/radar-tools.html">Radar Tools</a>
                 <a href="/#severe-alerts">Severe Alerts</a>
                 <a href="/#popular-cities">US Cities</a>
@@ -322,23 +500,23 @@
         <!-- Breadcrumbs -->
         <nav class="breadcrumbs" aria-label="Breadcrumb">
             <a href="/">Home</a>
-            <span>â€º</span>
+            <span>›</span>
             <a href="/#popular-cities">US Cities</a>
-            <span>â€º</span>
+            <span>›</span>
             <strong>Denver, CO</strong>
         </nav>
 
         <!-- City Hero -->
         <section class="city-hero">
-            <div class="city-hero-badge">ðŸ“ NEXRAD Station: KFTG â€¢ Denver, Colorado</div>
-            <h1>Denver Weather Radar  -  Live Doppler Map (CO)</h1>
+            <div class="city-hero-badge">📍 NEXRAD Station: KFTG - Denver, Colorado</div>
+            <h1>Denver Weather Radar - Live Doppler Map (CO)</h1>
             <p>Real-time Doppler precipitation radar loop, storm cell trajectory, and severe weather warnings for Denver, Colorado. Tracking Rocky Mountain Front Range, severe hail storms, blizzard snow radar, and mountain squalls.</p>
         </section>
 
         <!-- Severe Weather Alert Box -->
         <div class="city-alert-box" id="cityAlertBox"></div>
 
-                <!-- Adsterra: Leaderboard / Native Display Banner Unit -->
+        <!-- Adsterra: Leaderboard / Native Display Banner Unit -->
         <div class="ad-slot-wrap" style="width:100%;max-width:970px;margin:18px auto;text-align:center;">
             <span style="font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;display:block;">Sponsored Advertisement</span>
             <div style="padding:6px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);min-height:90px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
@@ -355,9 +533,9 @@
                     <h2>Denver Doppler Radar (Live Loop)</h2>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;">
-                    <button class="radar-ctrl-btn" onclick="resetCityView()">ðŸŽ¯ Center Denver</button>
-                    <a href="/national-radar-loop.html" class="radar-ctrl-btn" style="background:var(--primary);color:#fff;border-color:var(--primary);">ðŸ‡ºðŸ‡¸ Entire USA Loop</a>
-                    <a href="https://araplhn.org/4/920a8ef71bb1d61836aecc6026504e68" target="_blank" rel="noopener noreferrer sponsored" class="radar-ctrl-btn" style="background:linear-gradient(135deg, #0284c7, #2563eb);color:#ffffff;border:none;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px;" title="Open Live Severe Weather & Storm Loop">âš¡ HD Storm Stream Â»</a>
+                    <button class="radar-ctrl-btn" onclick="resetCityView()">🎯 Center Denver</button>
+                    <a href="/national-radar-loop.html" class="radar-ctrl-btn" style="background:var(--primary);color:#fff;border-color:var(--primary);">🇺🇸 Entire USA Loop</a>
+                    <a href="/national-radar-loop.html" class="radar-ctrl-btn" style="background:linear-gradient(135deg, #0284c7, #2563eb);color:#ffffff;border:none;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px;" title="Open National Weather Radar Loop">⚡ National Loop »</a>
                 </div>
             </div>
 
@@ -367,7 +545,7 @@
             <!-- Toolbar -->
             <div class="radar-toolbar">
                 <div class="player-controls">
-                    <button class="play-btn" id="playBtn" onclick="togglePlay()">â–¶ Play Loop</button>
+                    <button class="play-btn" id="playBtn" onclick="togglePlay()">▶ Play Loop</button>
                     <span class="time-badge" id="timeBadge">Live Radar</span>
                 </div>
                 <div style="font-size:0.82rem;color:var(--text-muted);">
@@ -380,13 +558,13 @@
         <section class="stats-grid">
             <div class="stat-card">
                 <div class="stat-label">Current Temperature</div>
-                <div class="stat-val" id="statTemp">--Â°F</div>
-                <div class="stat-sub" id="statFeels">Feels like --Â°F</div>
+                <div class="stat-val" id="statTemp">--°F</div>
+                <div class="stat-sub" id="statFeels">Feels like --°F</div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">Precipitation &amp; Rain</div>
                 <div class="stat-val" id="statPrecip">0.0 in</div>
-                <div class="stat-sub" id="statCondition">Loading conditionsâ€¦</div>
+                <div class="stat-sub" id="statCondition">Loading conditions…</div>
             </div>
             <div class="stat-card">
                 <div class="stat-label">Wind Speed</div>
@@ -400,9 +578,8 @@
             </div>
         </section>
 
-        <!-- Sponsored Severe Weather Alert & Doppler Feed (Adsterra Direct Link) -->
+        <!-- Severe Weather Alert & Radar Link -->
         <div class="ad-slot-wrap" style="width:100%;max-width:970px;margin:24px auto;text-align:left;">
-            <span style="font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;display:block;">Sponsored Partner • Severe Weather Alert Feed</span>
             <div style="background:linear-gradient(135deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.95));border:1px solid rgba(56, 189, 248, 0.3);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;box-shadow:0 6px 24px rgba(0,0,0,0.18);">
                 <div style="display:flex;align-items:center;gap:14px;text-align:left;">
                     <div style="width:44px;height:44px;border-radius:10px;background:rgba(56, 189, 248, 0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">
@@ -418,36 +595,111 @@
                         </div>
                     </div>
                 </div>
-                <a href="https://araplhn.org/4/920a8ef71bb1d61836aecc6026504e68" target="_blank" rel="noopener noreferrer sponsored" style="background:#0284c7;color:#ffffff;padding:10px 18px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;white-space:nowrap;" onmouseover="this.style.background='#0369a1'" onmouseout="this.style.background='#0284c7'">
-                    Check Storm Feed Now →
+                <a href="/#severe-alerts" style="background:#0284c7;color:#ffffff;padding:10px 18px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;white-space:nowrap;" onmouseover="this.style.background='#0369a1'" onmouseout="this.style.background='#0284c7'">
+                    Check NWS Alerts →
                 </a>
             </div>
         </div>
 
         <!-- 7-Day Forecast -->
         <section class="forecast-section">
-            <h2 style="font-size:1.3rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">ðŸ“… Denver 7-Day Weather &amp; Storm Forecast</h2>
+            <h2 style="font-size:1.3rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">📅 Denver 7-Day Weather &amp; Storm Forecast</h2>
             <p style="font-size:0.88rem;color:var(--text-muted);">Upcoming precipitation outlook and high / low temperatures for Denver, Colorado.</p>
             <div class="forecast-grid" id="forecastGrid">
-                <div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);">Loading 7-day forecast dataâ€¦</div>
+                <div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);">Loading 7-day forecast data…</div>
+            </div>
+        </section>
+        <!-- Denver Weather & Radar Guide -->
+        <section class="city-guide-section">
+            <h2>&#127782;&#65039; Denver Weather &amp; Live Doppler Radar Guide</h2>
+            <p>Denver's position at the foot of the Rocky Mountains creates a semi-arid, high-altitude climate where weather can change with dramatic speed. Known for the Denver Cyclone vortex pattern and rapid thunderstorm development along the Palmer Divide and Cheyenne Ridge, the Front Range requires sensitive dual-pol radar detection to distinguish between high-altitude snow, graupel, and severe thunderstorm hail cores.</p>
+
+            <h3>&#128225; NOAA NEXRAD Station: KFTG (Front Range / Denver, CO)</h3>
+            <p>Our interactive Denver radar connects directly to NOAA's Level-III NEXRAD radar station <strong>KFTG</strong>, situated in Front Range / Denver, CO. KFTG transmits dual-polarization S-band Doppler microwave pulses that detect both horizontal and vertical hydrometeor dimensions, allowing meteorologists and residents to distinguish between light rain, hail cores, sleet, snow, and tornadic debris signatures.</p>
+
+            <div class="radar-meta-grid">
+                <div class="radar-meta-item">
+                    <div class="radar-meta-label">Radar Station</div>
+                    <div class="radar-meta-val">KFTG - Front Range / Denver, CO</div>
+                </div>
+                <div class="radar-meta-item">
+                    <div class="radar-meta-label">Coverage Radius</div>
+                    <div class="radar-meta-val">230 Nautical Miles</div>
+                </div>
+                <div class="radar-meta-item">
+                    <div class="radar-meta-label">Radar Frequency</div>
+                    <div class="radar-meta-val">Dual-Pol S-Band Doppler</div>
+                </div>
+                <div class="radar-meta-item">
+                    <div class="radar-meta-label">Serving Region</div>
+                    <div class="radar-meta-val">Denver Metro & Colorado Front Range</div>
+                </div>
+            </div>
+
+            <h3>&#127912; How to Read Doppler Reflectivity (dBZ Scale)</h3>
+            <p>Radar reflectivity measures precipitation density in decibels of Z (dBZ). Use this color reference when monitoring approaching storms on the Denver radar:</p>
+            <div class="dbz-legend-bar">
+                <div class="dbz-pill" style="background:rgba(34, 197, 94, 0.2);color:#15803d;border:1px solid #86efac;">15-30 dBZ: Light Rain</div>
+                <div class="dbz-pill" style="background:rgba(234, 179, 8, 0.2);color:#a16207;border:1px solid #fde047;">35-45 dBZ: Moderate Rain</div>
+                <div class="dbz-pill" style="background:rgba(239, 68, 68, 0.2);color:#b91c1c;border:1px solid #fca5a5;">50-55 dBZ: Heavy Storms</div>
+                <div class="dbz-pill" style="background:rgba(168, 85, 247, 0.2);color:#7e22ce;border:1px solid #d8b4fe;">60+ dBZ: Hail / Severe</div>
+            </div>
+
+            <h3>&#9888;&#65039; Seasonal Severe Storm Threats in Denver</h3>
+            <p>Late spring and summer (May through August) produce intense hail storms and severe microbursts across the High Plains, earning the region the nickname 'Hail Alley'. In fall, winter, and spring, upslope wind conditions can rapidly convert sunny skies into heavy mountain-wave blizzards delivering feet of snow across the metro area.</p>
+        </section>
+
+        <!-- Denver Weather Radar FAQ -->
+        <section class="city-faq-section" id="faq">
+            <h2>Frequently Asked Questions: Denver Weather Radar</h2>
+            <p class="city-faq-subtitle">Essential questions answered regarding Denver Doppler radar data, NOAA NEXRAD coverage, and severe storm tracking.</p>
+
+            <div class="city-faq-accordion">
+                <details class="faq-item" open>
+                    <summary class="faq-question">How do I check live Doppler weather radar for Denver, CO?</summary>
+                    <div class="faq-answer">
+                        You can track live high-definition Denver weather radar right here on Weather Radar USA. Our interactive Doppler map updates every 5 to 10 minutes with precipitation loops, storm velocity, rain intensity, and official NOAA NWS storm alerts for Denver Metro & Colorado Front Range.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Which NOAA NEXRAD radar station covers Denver, Colorado?</summary>
+                    <div class="faq-answer">
+                        The primary National Weather Service Doppler radar serving Denver is station <strong>KFTG</strong>, located in Front Range / Denver, CO. It operates with high-frequency S-band dual-polarization technology to monitor severe storms, hail, and precipitation within a 230-nautical-mile radius.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How do I read precipitation radar colors on the Denver Doppler map?</summary>
+                    <div class="faq-answer">
+                        Radar reflectivity is measured in dBZ: Light green (15-30 dBZ) signifies light rain or drizzle; yellow and orange (35-45 dBZ) represent moderate to heavy downpours; red, purple, and magenta (50-65+ dBZ) signal intense thunderstorms, hail cores, or severe tornadic supercells.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How can I see active tornado or severe thunderstorm warnings for Denver?</summary>
+                    <div class="faq-answer">
+                        Active National Weather Service warnings for Denver and surrounding counties are automatically streamed directly above our radar map. You can also view active warning polygons and detailed bulletins across Colorado on our NWS Severe Alerts feed.
+                    </div>
+                </details>
             </div>
         </section>
 
         <!-- Other US Cities -->
         <section class="other-cities-box">
-            <h2 style="font-size:1.25rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">ðŸ—ºï¸ Explore More US Doppler Radars</h2>
+            <h2 style="font-size:1.25rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">🗺️ Explore More US Doppler Radars</h2>
             <p style="font-size:0.88rem;color:var(--text-muted);">Jump directly to live weather radar maps for other high-traffic metropolitan areas:</p>
             <div class="cities-grid">
-                <a href="/cities/miami-fl.html" class="city-link">ðŸ–ï¸ Miami, FL</a>
-                <a href="/cities/dallas-tx.html" class="city-link">ðŸ¤  Dallas, TX</a>
-                <a href="/cities/houston-tx.html" class="city-link">ðŸš€ Houston, TX</a>
-                <a href="/cities/chicago-il.html" class="city-link">ðŸŒ¬ï¸ Chicago, IL</a>
-                <a href="/cities/atlanta-ga.html" class="city-link">ðŸ‘ Atlanta, GA</a>
-                <a href="/cities/new-york-ny.html" class="city-link">ðŸ—½ New York, NY</a>
-                <a href="/cities/orlando-fl.html" class="city-link">ðŸ° Orlando, FL</a>
-                <a href="/cities/denver-co.html" class="city-link">ðŸ”ï¸ Denver, CO</a>
-                <a href="/cities/los-angeles-ca.html" class="city-link">ðŸŒ´ Los Angeles, CA</a>
-                <a href="/cities/phoenix-az.html" class="city-link">â˜€ï¸ Phoenix, AZ</a>
+                <a href="/cities/miami-fl.html" class="city-link">🏖️ Miami, FL</a>
+                <a href="/cities/dallas-tx.html" class="city-link">🤠 Dallas, TX</a>
+                <a href="/cities/houston-tx.html" class="city-link">🚀 Houston, TX</a>
+                <a href="/cities/chicago-il.html" class="city-link">🌪️ Chicago, IL</a>
+                <a href="/cities/atlanta-ga.html" class="city-link">🍑 Atlanta, GA</a>
+                <a href="/cities/new-york-ny.html" class="city-link">🗽 New York, NY</a>
+                <a href="/cities/orlando-fl.html" class="city-link">🏰 Orlando, FL</a>
+                <a href="/cities/denver-co.html" class="city-link">🏔️ Denver, CO</a>
+                <a href="/cities/los-angeles-ca.html" class="city-link">🌴 Los Angeles, CA</a>
+                <a href="/cities/phoenix-az.html" class="city-link">☀️ Phoenix, AZ</a>
             </div>
         </section>
     </main>
@@ -484,7 +736,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Â© 2026 Weather Radar USA â€¢ <a href="https://weatherradarusa.online/cities/denver-co.html">https://weatherradarusa.online/cities/denver-co.html</a> â€¢ All rights reserved.</p>
+                <p>© 2026 Weather Radar USA • <a href="https://weatherradarusa.online/cities/denver-co.html">https://weatherradarusa.online/cities/denver-co.html</a> • All rights reserved.</p>
             </div>
         </div>
     </footer>
@@ -553,14 +805,13 @@
                 loadNoaaFallback();
             }
         }
-
         function loadNoaaFallback() {
             if (radarLayer) map.removeLayer(radarLayer);
             radarLayer = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png', {
                 opacity: 0.78,
                 zIndex: 10
             }).addTo(map);
-            document.getElementById('timeBadge').textContent = 'ðŸ”´ NOAA Live Feed';
+            document.getElementById('timeBadge').textContent = '\uD83D\uDD34 NOAA Live Feed';
         }
 
         function showFrame(index) {
@@ -569,7 +820,7 @@
             if (!frame) return;
 
             const host = window._rvHost || 'https://tilecache.rainviewer.com';
-            const url = \System.Management.Automation.Internal.Host.InternalHost\/256/{z}/{x}/{y}/2/1_1.png;
+            const url = `${host}${frame.path}/256/{z}/{x}/{y}/2/1_1.png`;
 
             if (radarLayer) map.removeLayer(radarLayer);
             radarLayer = L.tileLayer(url, { opacity: 0.76, zIndex: 10 }).addTo(map);
@@ -577,7 +828,7 @@
             const date = new Date(frame.time * 1000);
             const isLive = (index === radarFrames.length - 1);
             const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-            document.getElementById('timeBadge').textContent = isLive ? ðŸ”´ \ (Live) : timeStr;
+            document.getElementById('timeBadge').textContent = isLive ? `\uD83D\uDD34 ${timeStr} (Live)` : timeStr;
         }
 
         function togglePlay() {
@@ -608,8 +859,8 @@
         // Fetch Live Weather & 7-Day Forecast from Open-Meteo
         async function fetchCityWeather() {
             try {
-                const weatherUrl = https://api.open-meteo.com/v1/forecast?latitude=\&longitude=\&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_gusts_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum&forecast_days=7&timezone=auto&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch;
-                const aqiUrl = https://air-quality-api.open-meteo.com/v1/air-quality?latitude=\&longitude=\&current=us_aqi&timezone=auto;
+                const weatherUrl = `https://api.open-meteo.com/v1/forecast?latitude=${CITY_LAT}&longitude=${CITY_LON}&current=temperature_2m,relative_humidity_2m,apparent_temperature,precipitation,weather_code,wind_speed_10m,wind_gusts_10m&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum&forecast_days=7&timezone=auto&temperature_unit=fahrenheit&wind_speed_unit=mph&precipitation_unit=inch`;
+                const aqiUrl = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${CITY_LAT}&longitude=${CITY_LON}&current=us_aqi&timezone=auto`;
 
                 const [wRes, aqiRes] = await Promise.all([fetch(weatherUrl), fetch(aqiUrl)]);
                 const w = await wRes.json();
@@ -618,8 +869,8 @@
                 // Current Stats
                 const cur = w.current;
                 if (cur) {
-                    document.getElementById('statTemp').textContent = Math.round(cur.temperature_2m) + 'Â°F';
-                    document.getElementById('statFeels').textContent = 'Feels like ' + Math.round(cur.apparent_temperature) + 'Â°F';
+                    document.getElementById('statTemp').textContent = Math.round(cur.temperature_2m) + '°F';
+                    document.getElementById('statFeels').textContent = 'Feels like ' + Math.round(cur.apparent_temperature) + '°F';
                     document.getElementById('statPrecip').textContent = (cur.precipitation || 0) + ' in';
                     document.getElementById('statWind').textContent = Math.round(cur.wind_speed_10m) + ' mph';
                     document.getElementById('statGusts').textContent = 'Gusts: ' + Math.round(cur.wind_gusts_10m) + ' mph';
@@ -649,13 +900,18 @@
                     document.getElementById('forecastGrid').innerHTML = d.time.map((t, i) => {
                         const date = new Date(t + 'T00:00:00');
                         const dayName = i === 0 ? 'Today' : days[date.getDay()];
-                        return 
+                        const code = d.weather_code[i];
+                        const icon = iconForCode(code);
+                        const maxT = Math.round(d.temperature_2m_max[i]);
+                        const minT = Math.round(d.temperature_2m_min[i]);
+                        const pop = d.precipitation_probability_max[i] || 0;
+                        return `
                         <div class="forecast-card">
-                            <div class="forecast-day">\</div>
-                            <div class="forecast-icon">\</div>
-                            <div class="forecast-temp">\Â° / \Â°</div>
-                            <div class="forecast-pop">ðŸŒ§ï¸ \%</div>
-                        </div>;
+                            <div class="forecast-day">${dayName}</div>
+                            <div class="forecast-icon">${icon}</div>
+                            <div class="forecast-temp">${maxT}° / ${minT}°</div>
+                            <div class="forecast-pop">\uD83C\uDF27\uFE0F ${pop}%</div>
+                        </div>`;
                     }).join('');
                 }
             } catch (err) {
@@ -673,7 +929,7 @@
                 if (features.length > 0) {
                     const alert = features[0].properties;
                     box.style.display = 'block';
-                    box.innerHTML = <strong>ðŸš¨ ACTIVE CO ALERT:</strong> \  -  \;
+                    box.innerHTML = `<strong>\uD83D\uDEA8 ACTIVE CO ALERT:</strong> ${alert.event} - ${alert.headline || alert.areaDesc}`;
                 }
             } catch(e){}
         }
@@ -688,18 +944,21 @@
         }
 
         function iconForCode(code) {
-            if (code === 0) return 'â˜€ï¸';
-            if ([1, 2].includes(code)) return 'ðŸŒ¤ï¸';
-            if (code === 3) return 'â˜ï¸';
-            if ([51, 61, 63, 65, 80].includes(code)) return 'ðŸŒ§ï¸';
-            if ([71, 73, 75].includes(code)) return 'ðŸŒ¨ï¸';
-            if ([95, 96, 99].includes(code)) return 'â›ˆï¸';
-            return 'ðŸŒ¡ï¸';
+            if (code === 0) return '\u2600\uFE0F';
+            if ([1, 2].includes(code)) return '\uD83C\uDF24\uFE0F';
+            if (code === 3) return '\u2601\uFE0F';
+            if ([51, 61, 63, 65, 80].includes(code)) return '\uD83C\uDF27\uFE0F';
+            if ([71, 73, 75].includes(code)) return '\uD83C\uDF28\uFE0F';
+            if ([95, 96, 99].includes(code)) return '\u26C8\uFE0F';
+            return '\uD83C\uDF21\uFE0F';
         }
 
         window.addEventListener('DOMContentLoaded', () => {
             initMap();
             fetchCityWeather();
+            fetchCityAlerts();
+        });
+    fetchCityWeather();
             fetchCityAlerts();
         });
     </script>
