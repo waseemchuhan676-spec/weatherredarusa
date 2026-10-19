@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -692,7 +692,7 @@
             <p style="font-size:0.88rem;color:var(--text-muted);">Jump directly to live weather radar maps for other high-traffic metropolitan areas:</p>
             <div class="cities-grid">
                 <a href="/cities/miami-fl.html" class="city-link">ðŸ–ï¸ Miami, FL</a>
-                <a href="/cities/tampa-fl.html" class="city-link">âš¡ Tampa, FL</a>
+                <a href="/cities/tampa-fl.html" class="city-link">&#9889; Tampa, FL</a>
                 <a href="/cities/orlando-fl.html" class="city-link">ðŸ° Orlando, FL</a>
                 <a href="/cities/jacksonville-fl.html" class="city-link">âš“ Jacksonville, FL</a>
                 <a href="/cities/atlanta-ga.html" class="city-link">ðŸ‘ Atlanta, GA</a>
@@ -971,9 +971,6 @@
         window.addEventListener('DOMContentLoaded', () => {
             initMap();
             fetchCityWeather();
-            fetchCityAlerts();
-        });
-    fetchCityWeather();
             fetchCityAlerts();
         });
     </script>

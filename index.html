@@ -1034,6 +1034,7 @@
             <nav class="nav" id="mainNav" aria-label="Primary Navigation">
                 <a href="#live-radar">Live Radar</a>
                 <a href="national-radar-loop.html" style="color:var(--accent);font-weight:700;">▶ Radar Loop (HD)</a>
+                <a href="/hurricane-tracker.html" style="color:#ef4444;font-weight:700;">🌀 Hurricane Tracker</a>
                 <a href="#results">Forecast</a>
                 <a href="#severe-alerts">Severe Alerts</a>
                 <a href="#popular-cities">US Cities</a>
@@ -1162,7 +1163,7 @@
 
                     <!-- 2. Fallback NOAA Mosaic GIF -->
                     <div id="mosaicContainer" aria-label="NOAA National Radar Mosaic">
-                        <img src="https://f5wx.com/radar/live/radar_us.gif" id="mosaicImg" alt="Live national Doppler radar USA weather map – Real-time NOAA NEXRAD composite precipitation loop" width="800" height="500" loading="lazy" decoding="async">
+                        <img src="https://www.f5wx.com/radar/live/radar_us.gif" id="mosaicImg" alt="Live national Doppler radar USA weather map – Real-time NOAA NEXRAD composite precipitation loop" width="800" height="500" loading="lazy" decoding="async">
                     </div>
 
                     <!-- Interactive Player Toolbar -->
@@ -1648,6 +1649,7 @@
                     <h4>Navigation</h4>
                     <a href="#live-radar">Live Radar Map</a>
                     <a href="national-radar-loop.html">National Radar Loop</a>
+                    <a href="/hurricane-tracker.html" style="color:#ef4444;font-weight:700;">🌀 Hurricane Tracker</a>
                     <a href="#results">Local Forecast</a>
                     <a href="#severe-alerts">NWS Severe Alerts</a>
                     <a href="#popular-cities">Popular US Cities</a>
@@ -2715,7 +2717,22 @@
                 'Orlando, FL': 'orlando-fl',
                 'Denver, CO': 'denver-co',
                 'Los Angeles, CA': 'los-angeles-ca',
-                'Phoenix, AZ': 'phoenix-az'
+                'Phoenix, AZ': 'phoenix-az',
+                'Philadelphia, PA': 'philadelphia-pa',
+                'San Antonio, TX': 'san-antonio-tx',
+                'San Diego, CA': 'san-diego-ca',
+                'Tampa, FL': 'tampa-fl',
+                'Charlotte, NC': 'charlotte-nc',
+                'Nashville, TN': 'nashville-tn',
+                'Jacksonville, FL': 'jacksonville-fl',
+                'Austin, TX': 'austin-tx',
+                'Oklahoma City, OK': 'oklahoma-city-ok',
+                'Boston, MA': 'boston-ma',
+                'Seattle, WA': 'seattle-wa',
+                'Detroit, MI': 'detroit-mi',
+                'Minneapolis, MN': 'minneapolis-mn',
+                'Indianapolis, IN': 'indianapolis-in',
+                'Las Vegas, NV': 'las-vegas-nv'
             };
 
             listEl.innerHTML = filtered.map(c => {
