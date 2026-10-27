@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- Title targeting high-volume exact match queries: national radar loop, us doppler radar loop -->
-    <title>National Radar Loop – Live US Doppler & NOAA Radar Loop (HD)</title>
+    <!-- Title targeting high-volume exact match queries: national radar loop, noaa full loop, us doppler radar loop -->
+    <title>National Radar Loop – NOAA Full Loop &amp; US Doppler Radar (HD)</title>
     
-    <meta name="description" content="Watch the live national radar loop for the US. 2-hour continuous NOAA NEXRAD Doppler radar animation tracking severe storms, rain & snow in real-time HD.">
+    <meta name="description" content="Watch the live national radar loop for the US. 2-hour continuous NOAA full resolution loop &amp; US Doppler radar animation tracking severe storms, rain &amp; snow in HD.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Weather Radar USA">
     <meta name="geo.region" content="US">
@@ -22,8 +22,8 @@
     <link rel="apple-touch-icon" href="favicon.svg">
     
     <!-- Open Graph -->
-    <meta property="og:title" content="National Radar Loop – Live US Doppler & NOAA Radar Loop (HD)">
-    <meta property="og:description" content="Watch the live national radar loop for the US. 2-hour continuous NOAA NEXRAD Doppler radar animation tracking severe storms, rain & snow in real-time HD.">
+    <meta property="og:title" content="National Radar Loop – NOAA Full Loop &amp; US Doppler Radar (HD)">
+    <meta property="og:description" content="Watch the live national radar loop for the US. 2-hour continuous NOAA full resolution loop &amp; US Doppler radar animation tracking severe storms, rain &amp; snow in HD.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://weatherradarusa.online/national-radar-loop.html">
@@ -35,11 +35,11 @@
     
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="National Radar Loop – Live US Doppler & NOAA Radar Loop (HD)">
-    <meta name="twitter:description" content="Watch the live national radar loop for the US. 2-hour continuous NOAA NEXRAD Doppler radar animation tracking severe storms, rain & snow in real-time HD.">
+    <meta name="twitter:title" content="National Radar Loop – NOAA Full Loop &amp; US Doppler Radar (HD)">
+    <meta name="twitter:description" content="Watch the live national radar loop for the US. 2-hour continuous NOAA full resolution loop &amp; US Doppler radar animation tracking severe storms, rain &amp; snow in HD.">
     <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
-    <meta name="twitter:image:alt" content="Live National Doppler Weather Radar Loop for United States">
-    <meta property="og:image:alt" content="Live National Doppler Weather Radar Loop for United States">
+    <meta name="twitter:image:alt" content="Live National Doppler Weather Radar Loop &amp; NOAA Full Loop">
+    <meta property="og:image:alt" content="Live National Doppler Weather Radar Loop &amp; NOAA Full Loop">
     <meta name="application-name" content="Weather Radar USA">
     <meta name="apple-mobile-web-app-title" content="Weather Radar USA">
     
@@ -129,6 +129,22 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Yes! Use your mouse wheel or the [+] and [-] buttons on the map to zoom all the way down to county and neighborhood street level, or click our homepage search bar to search by city or 5-digit ZIP code."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is a NOAA full resolution radar loop?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "A NOAA full resolution radar loop is an uncompressed high-definition composite scan generated from National Weather Service NEXRAD WSR-88D dual-polarization radar sites. It shows detailed reflectivity, hail cores, and microbursts without downsampling artifacts."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How do I view the mosaic radar full resolution loop?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Click the 'NOAA Mosaic (GIF)' button in the radar view selector above. This immediately switches from the interactive vector map to the official NOAA National Mosaic full resolution image composite, refreshed automatically every 2 minutes."
               }
             }
           ]
@@ -606,19 +622,19 @@
 
         <!-- Hero Section -->
         <section class="loop-hero">
-            <h1>National Radar Loop – Live US Doppler & NOAA Storm Loop</h1>
-            <p>Continuous 2-hour animated Doppler radar loop tracking storm cells, heavy rain, snowfall, and squall lines across the Continental United States in real-time HD.</p>
+            <h1>National Radar Loop – NOAA Full Loop &amp; Live US Doppler Radar</h1>
+            <p>Continuous 2-hour animated NOAA full resolution loop and US Doppler radar map tracking severe storms, heavy rain bands, snow squalls, and precipitation across the United States in high-definition real time.</p>
         </section>
 
         <!-- Regional Quick-Zoom Bar -->
         <div class="region-bar" aria-label="Regional Radar Shortcuts">
             <span style="font-size:0.8rem;color:var(--text-muted);font-weight:600;">QUICK REGIONS:</span>
             <button class="region-btn active" onclick="zoomRegion('us')">🇺🇸 Entire USA</button>
-            <button class="region-btn" onclick="zoomRegion('southeast')">🏖️ Florida & Southeast</button>
-            <button class="region-btn" onclick="zoomRegion('texas')">🤠 Texas & Gulf Coast</button>
+            <button class="region-btn" onclick="zoomRegion('southeast')">🏖️ Florida &amp; Southeast</button>
+            <button class="region-btn" onclick="zoomRegion('texas')">🤠 Texas &amp; Gulf Coast</button>
             <button class="region-btn" onclick="zoomRegion('northeast')">🗽 Northeast Corridor</button>
-            <button class="region-btn" onclick="zoomRegion('midwest')">🌾 Midwest & Ohio Valley</button>
-            <button class="region-btn" onclick="zoomRegion('west')">🌴 West Coast & California</button>
+            <button class="region-btn" onclick="zoomRegion('midwest')">🌾 Midwest &amp; Ohio Valley</button>
+            <button class="region-btn" onclick="zoomRegion('west')">🌴 West Coast &amp; California</button>
             <button class="region-btn" onclick="zoomRegion('plains')">🌪️ Central Plains</button>
         </div>
 
@@ -636,7 +652,7 @@
             <div class="radar-header-bar">
                 <div class="radar-title-group">
                     <span class="live-dot"></span>
-                    <h2>United States Doppler Radar Loop</h2>
+                    <h2>United States Doppler Radar Loop (NOAA Full Resolution)</h2>
                     <span class="badge" id="loopStatusBadge" style="background:rgba(56,189,248,0.12);color:var(--accent);border-color:var(--accent);">🔴 Loop Running</span>
                 </div>
                 <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
@@ -795,6 +811,26 @@
                         </button>
                         <div class="faq-answer">
                             Yes! Use your mouse wheel or the [+] and [-] buttons on the map to zoom all the way down to county and neighborhood street level, or click our <a href="/">homepage search bar</a> to search by city or 5-digit ZIP code.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What is a NOAA full resolution radar loop?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            A NOAA full resolution radar loop is an uncompressed high-definition composite scan generated from National Weather Service NEXRAD WSR-88D dual-polarization radar sites. It shows detailed reflectivity, hail cores, and microbursts without downsampling artifacts.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How do I view the mosaic radar full resolution loop?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Click the 'NOAA Mosaic (GIF)' button in the radar view selector above. This immediately switches from the interactive vector map to the official NOAA National Mosaic full resolution image composite, refreshed automatically every 2 minutes.
                         </div>
                     </div>
                 </div>
