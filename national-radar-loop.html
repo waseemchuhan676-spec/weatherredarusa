@@ -146,6 +146,22 @@
                 "@type": "Answer",
                 "text": "Click the 'NOAA Mosaic (GIF)' button in the radar view selector above. This immediately switches from the interactive vector map to the official NOAA National Mosaic full resolution image composite, refreshed automatically every 2 minutes."
               }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the NWS radar mosaic?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The NWS radar mosaic is the National Weather Service composite that stitches all 160+ NEXRAD Doppler radar stations into one national image. On this page you can view it as the official NOAA National Mosaic full resolution loop, refreshed every 2 minutes, or as the interactive US radar loop built from the same underlying NWS radar data."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I watch a regional radar loop for the East Coast or Central US?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Use the region buttons above the map: Entire USA, Florida & Southeast, Texas & Gulf Coast, Northeast Corridor, Midwest & Ohio Valley, West Coast & California, and Central Plains. The Northeast Corridor and Florida & Southeast views cover the East Coast, the Central Plains view covers the Central US, and the West Coast & California view covers the Western US. You can also link directly to a region, for example with ?region=northeast."
+              }
             }
           ]
         }
@@ -773,6 +789,24 @@
                         <div><strong style="color:#ff00ff;">60+ dBZ:</strong> Extreme storm core, large damaging hail, potential tornado</div>
                     </div>
 
+                    <h3>NWS Radar Mosaic &amp; Regional Radar Loops</h3>
+                    <p>The loop on this page is built from the <strong>NWS radar mosaic</strong>: the National Weather
+                        Service composite that stitches all 160+ NEXRAD Doppler radar stations into one national image.
+                        Switch to the 'NOAA Mosaic (GIF)' view for the official NOAA National Mosaic full resolution
+                        loop, refreshed every 2 minutes, or stay on the interactive US radar loop, which animates the
+                        same underlying NWS radar data with new frames every 5 to 10 minutes and a 2-hour history.</p>
+                    <p>The national loop also works as a <strong>regional radar loop</strong>. Use the region buttons
+                        above the map to jump straight to a region: <a href="national-radar-loop.html?region=us">Entire USA</a>,
+                        <a href="national-radar-loop.html?region=southeast">Florida &amp; Southeast</a>,
+                        <a href="national-radar-loop.html?region=texas">Texas &amp; Gulf Coast</a>,
+                        <a href="national-radar-loop.html?region=northeast">Northeast Corridor</a>,
+                        <a href="national-radar-loop.html?region=midwest">Midwest &amp; Ohio Valley</a>,
+                        <a href="national-radar-loop.html?region=west">West Coast &amp; California</a>, or
+                        <a href="national-radar-loop.html?region=plains">Central Plains</a>. The Northeast Corridor
+                        and Florida &amp; Southeast views cover the East Coast radar loop, the Central Plains view
+                        covers the Central US radar loop, the West Coast &amp; California view covers the Western US
+                        radar loop, and the Texas &amp; Gulf Coast view covers the Southern US Gulf Coast.</p>
+
                     <h3>National Radar Loop FAQ</h3>
                     <div class="faq-item open">
                         <button class="faq-question" onclick="toggleFaq(this)">
@@ -831,6 +865,26 @@
                         </button>
                         <div class="faq-answer">
                             Click the 'NOAA Mosaic (GIF)' button in the radar view selector above. This immediately switches from the interactive vector map to the official NOAA National Mosaic full resolution image composite, refreshed automatically every 2 minutes.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What is the NWS radar mosaic?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            The NWS radar mosaic is the National Weather Service composite that stitches all 160+ NEXRAD Doppler radar stations into one national image. On this page you can view it as the official NOAA National Mosaic full resolution loop, refreshed every 2 minutes, or as the interactive US radar loop built from the same underlying NWS radar data.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Can I watch a regional radar loop for the East Coast or Central US?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes. Use the region buttons above the map: Entire USA, Florida &amp; Southeast, Texas &amp; Gulf Coast, Northeast Corridor, Midwest &amp; Ohio Valley, West Coast &amp; California, and Central Plains. The Northeast Corridor and Florida &amp; Southeast views cover the East Coast, the Central Plains view covers the Central US, and the West Coast &amp; California view covers the Western US. You can also link directly to a region, for example with ?region=northeast.
                         </div>
                     </div>
                 </div>
