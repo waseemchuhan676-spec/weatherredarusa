@@ -1,0 +1,850 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Southeast Weather Radar - Live Doppler Map for the Southeast</title>
+    <meta name="description" content="Track live Southeast weather radar in real time. Interactive Doppler loop, hurricane tracking and severe storm alerts for Florida, Georgia, the Carolinas, Alabama and Tennessee.">>
+    <meta name="keywords" content="Southeast weather radar, Southeast doppler radar live, Southeast rain radar">>
+    <meta name="author" content="Weather Radar USA">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+    <link rel="canonical" href="https://weatherradarusa.online/regions/southeast-radar.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Southeast Weather Radar - Live Doppler Map for the Southeast">>
+    <meta property="og:description" content="Track live Southeast weather radar in real time. Interactive Doppler loop, hurricane tracking and severe storm alerts for Florida, Georgia, the Carolinas, Alabama and Tennessee.">>
+    <meta property="og:url" content="https://weatherradarusa.online/regions/southeast-radar.html">>
+    <meta property="og:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+    <meta property="og:site_name" content="Weather Radar USA">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Southeast Weather Radar - Live Doppler Map for the Southeast">>
+    <meta name="twitter:description" content="Track live Southeast weather radar in real time. Interactive Doppler loop, hurricane tracking and severe storm alerts for Florida, Georgia, the Carolinas, Alabama and Tennessee.">>
+    <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#dbeafe">
+
+    <!-- CDNs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://tilecache.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.weather.gov">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Southeast Weather Radar - Live Doppler Map for the Southeast",
+      "url": "https://weatherradarusa.online/regions/southeast-radar.html",
+      "description": "Track live Southeast weather radar in real time. Interactive Doppler loop, hurricane tracking and severe storm alerts for Florida, Georgia, the Carolinas, Alabama and Tennessee.",
+      "provider": {
+        "@type": "Organization",
+        "@name": "Weather Radar USA",
+        "url": "https://weatherradarusa.online/"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://weatherradarusa.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "US Regions",
+          "item": "https://weatherradarusa.online/regions.html"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Southeast",
+          "item": "https://weatherradarusa.online/regions/southeast-radar.html"
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do I check live Doppler weather radar for the Southeast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can track live high-definition Southeast weather radar right here on Weather Radar USA. Our interactive Doppler map updates every 5 to 10 minutes with precipitation loops, storm velocity, rain intensity, and official NOAA NWS storm alerts for Florida, Georgia, the Carolinas, Alabama and Tennessee."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Which NOAA NEXRAD radar stations cover the Southeast?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The primary National Weather Service Doppler radar stations serving the Southeast include KAMX (Miami / South Florida), KTBW (Tampa Bay) and KJAX (Jacksonville). Each operates with high-frequency S-band dual-polarization technology to monitor severe storms, hail, and precipitation within a 230-nautical-mile radius."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When is hurricane season in the Southeast, and how does radar help?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Atlantic hurricane season runs June 1 to November 30, and the Southeast is the most frequent US landfall region. Doppler radar tracks eyewall structure, spiral rainbands and storm surge wind fields as tropical systems approach the Gulf and Atlantic coasts, and shows inland rainfall flooding after landfall."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I check radar for a specific Southeast city?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Use the city links below for live radar in Miami, Tampa, Orlando, Jacksonville, Atlanta, Charlotte and Nashville, or search any city or 5-digit ZIP code on our homepage map."
+          }
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-body: #f0f7ff;
+            --bg-header: rgba(255, 255, 255, 0.96);
+            --bg-card: #ffffff;
+            --bg-elevated: #f0f7ff;
+            --bg-card-hover: #e0f2fe;
+            --border: #bae6fd;
+            --border-hover: #0284c7;
+            --text-primary: #0f172a;
+            --text-muted: #475569;
+            --text-sub: #1e293b;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --accent: #0284c7;
+            --accent-glow: rgba(2, 132, 199, 0.16);
+            --danger: #dc2626;
+            --radius-sm: 8px;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --shadow: 0 10px 28px -4px rgba(2, 132, 199, 0.08);
+        }
+
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(180deg, #dbeafe 0%, #e0f2fe 180px, #f0f7ff 500px, #ffffff 1000px);
+            background-color: #f0f7ff;
+            background-attachment: fixed;
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+        a { color: var(--accent); text-decoration: none; transition: all 0.2s; }
+        a:hover { color: #0369a1; }
+        button, input { font-family: inherit; }
+
+        /* Header */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg-header); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border); height: 68px;
+            display: flex; align-items: center; box-shadow: var(--shadow);
+        }
+        .header .container { display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 800; font-size: 1.25rem; }
+        .logo-radar-icon {
+            width: 38px; height: 38px; border-radius: 10px; background: var(--primary);
+            display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
+        }
+        .logo-text { font-family: 'Outfit', sans-serif; font-size: 1.35rem; font-weight: 800; color: var(--text-primary); }
+        .logo-text .highlight { color: var(--accent); }
+        .nav { display: flex; align-items: center; gap: 20px; font-size: 0.9rem; font-weight: 600; }
+        .nav a { color: var(--text-sub); }
+        .nav a:hover, .nav a.active { color: var(--accent); font-weight: 700; }
+
+        /* Breadcrumbs */
+        .breadcrumbs { padding: 18px 0 10px 0; font-size: 0.85rem; color: var(--text-muted); display: flex; gap: 8px; align-items: center; }
+
+        /* City Hero */
+        .city-hero { padding: 20px 0 28px; }
+        .city-hero-badge {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: #e0f2fe; color: var(--accent); font-weight: 700; font-size: 0.82rem;
+            padding: 4px 12px; border-radius: 20px; margin-bottom: 10px; border: 1px solid var(--border);
+        }
+        .city-hero h1 {
+            font-family: 'Outfit', sans-serif; font-size: 2.3rem; font-weight: 800;
+            color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.02em;
+        }
+        .city-hero p { font-size: 1.05rem; color: var(--text-muted); max-width: 820px; }
+
+        /* Live Alert Banner */
+        .city-alert-box {
+            background: #fee2e2; border: 1px solid #f87171; border-radius: 10px;
+            padding: 12px 18px; margin-bottom: 24px; display: none; color: #991b1b; font-size: 0.9rem;
+        }
+
+        /* Radar Box */
+        .radar-box {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius-lg);
+            overflow: hidden; box-shadow: var(--shadow); margin-bottom: 36px;
+        }
+        .radar-header-bar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 20px; background: #ffffff; border-bottom: 1px solid var(--border);
+            flex-wrap: wrap; gap: 10px;
+        }
+        .radar-title-group { display: flex; align-items: center; gap: 10px; }
+        .radar-title-group h2 { font-size: 1.15rem; font-weight: 700; margin: 0; }
+        .live-dot {
+            width: 10px; height: 10px; border-radius: 50%; background: #ef4444;
+            display: inline-block; box-shadow: 0 0 8px #ef4444; animation: pulseDot 2s infinite;
+        }
+        @keyframes pulseDot { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+
+        #cityRadarMap {
+            width: 100%; height: 520px; background: #e0f2fe; position: relative; z-index: 1;
+        }
+
+        /* Player Toolbar */
+        .radar-toolbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 18px; background: var(--bg-elevated); border-top: 1px solid var(--border);
+            flex-wrap: wrap; gap: 12px;
+        }
+        .player-controls { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 290px; }
+        .play-btn {
+            background: var(--primary); color: #ffffff; border: none; border-radius: 8px;
+            padding: 8px 14px; font-weight: 700; font-size: 0.88rem; cursor: pointer;
+            transition: background 0.2s; white-space: nowrap;
+        }
+        .play-btn:hover { background: var(--primary-hover); }
+        .time-badge {
+            font-size: 0.82rem; font-weight: 700; color: var(--accent);
+            background: #ffffff; border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 6px; min-width: 110px; text-align: center;
+        }
+        .radar-ctrl-btn {
+            background: #ffffff; border: 1px solid var(--border); color: var(--text-sub);
+            padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+        }
+        .radar-ctrl-btn:hover { border-color: var(--accent); color: var(--primary); }
+
+        /* Weather Stats Grid */
+        .stats-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px; margin-bottom: 36px;
+        }
+        .stat-card {
+            background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 18px 20px; box-shadow: var(--shadow);
+        }
+        .stat-label { font-size: 0.82rem; font-weight: 600; color: var(--text-muted); margin-bottom: 4px; }
+        .stat-val { font-size: 1.6rem; font-weight: 800; color: var(--text-primary); }
+        .stat-sub { font-size: 0.8rem; color: var(--text-muted); margin-top: 4px; }
+
+        /* Forecast Cards */
+        .forecast-section {
+            background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 24px; box-shadow: var(--shadow); margin-bottom: 36px;
+        }
+        .forecast-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+            gap: 12px; margin-top: 16px;
+        }
+        .forecast-card {
+            background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 10px;
+            padding: 14px 10px; text-align: center;
+        }
+        .forecast-day { font-size: 0.85rem; font-weight: 700; color: var(--text-sub); }
+        .forecast-icon { font-size: 1.8rem; margin: 6px 0; }
+        .forecast-temp { font-size: 0.95rem; font-weight: 800; color: var(--text-primary); }
+        .forecast-pop { font-size: 0.75rem; color: var(--primary); font-weight: 600; margin-top: 4px; }
+
+        /* Other Cities Grid */
+        .other-cities-box {
+            background: #ffffff; border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 24px; box-shadow: var(--shadow); margin-bottom: 50px;
+        }
+        .cities-grid {
+            display: grid; grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+            gap: 12px; margin-top: 16px;
+        }
+        .city-link {
+            background: var(--bg-elevated); border: 1px solid var(--border); border-radius: 8px;
+            padding: 10px 14px; text-align: center; font-weight: 600; font-size: 0.88rem;
+            color: var(--text-primary); transition: all 0.2s; display: block;
+        }
+        .city-link:hover {
+            background: var(--primary); color: #ffffff; border-color: var(--primary); transform: translateY(-2px);
+        }
+
+        /* Footer */
+        .footer {
+            background: #ffffff; border-top: 1px solid var(--border); padding: 40px 0 24px;
+            font-size: 0.88rem; color: var(--text-muted); margin-top: 60px;
+        }
+        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 30px; margin-bottom: 30px; }
+        .footer-col h4 { font-size: 0.95rem; font-weight: 700; color: var(--text-primary); margin-bottom: 14px; }
+        .footer-col a { display: block; color: var(--text-muted); margin-bottom: 8px; }
+        .footer-col a:hover { color: var(--accent); }
+        .footer-bottom { text-align: center; border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.82rem; }
+        /* Local Weather Guide & FAQ Styles */
+        .city-guide-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 28px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+        .city-guide-section h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .city-guide-section h3 {
+            font-size: 1.08rem;
+            font-weight: 700;
+            color: var(--text-sub);
+            margin: 20px 0 8px;
+        }
+        .city-guide-section p {
+            font-size: 0.94rem;
+            line-height: 1.68;
+            color: var(--text-muted);
+            margin-bottom: 14px;
+        }
+        .radar-meta-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+            gap: 12px;
+            margin: 18px 0;
+        }
+        .radar-meta-item {
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 12px 16px;
+        }
+        .radar-meta-label {
+            font-size: 0.74rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 4px;
+            font-weight: 700;
+        }
+        .radar-meta-val {
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .dbz-legend-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 10px;
+            margin: 16px 0;
+        }
+        .dbz-pill {
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            text-align: center;
+        }
+
+        /* FAQ Section */
+        .city-faq-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 28px 0;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.04);
+        }
+        .city-faq-section h2 {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 6px;
+        }
+        .city-faq-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+        .city-faq-accordion {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--bg-elevated);
+            overflow: hidden;
+            transition: all 0.2s ease;
+        }
+        .faq-item[open] {
+            border-color: var(--border-hover);
+            background: var(--bg-card);
+            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.08);
+        }
+        .faq-question {
+            padding: 16px 18px;
+            font-weight: 700;
+            font-size: 0.96rem;
+            color: var(--text-primary);
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            user-select: none;
+        }
+        .faq-question::-webkit-details-marker {
+            display: none;
+        }
+        .faq-question::after {
+            content: "+";
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .faq-item[open] .faq-question::after {
+            content: "âˆ’";
+            color: #dc2626;
+        }
+        .faq-answer {
+            padding: 0 18px 16px;
+            font-size: 0.92rem;
+            line-height: 1.65;
+            color: var(--text-muted);
+        }
+
+        @media (max-width: 768px) {
+            .city-hero h1 { font-size: 1.8rem; }
+            #cityRadarMap { height: 380px; }
+            .nav { display: none; }
+        }
+    </style>
+    <!-- Monetag Site Verification -->
+    <meta name="monetag" content="30aaf71eab099197f934568b5d3c17d0">
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "yvkks26wwu");
+    </script>
+    <!-- Adsterra Monetization Script (Social Bar) -->
+    <script data-cfasync="false" src="https://bauval.org/14/38a872a5126d119c08717b9adf6fc253"></script>
+</head>
+<body class="theme-light">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo" aria-label="Weather Radar USA Homepage">
+                <div class="logo-radar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="width:22px;height:22px;">
+                        <path d="M12 2a10 10 0 1 0 10 10"></path>
+                        <path d="M12 6a6 6 0 1 0 6 6"></path>
+                        <path d="M12 10a2 2 0 1 0 2 2"></path>
+                        <line x1="12" y1="12" x2="20" y2="4"></line>
+                    </svg>
+                </div>
+                <div class="logo-text">Weather Radar <span class="highlight">USA</span></div>
+            </a>
+
+            <nav class="nav" aria-label="Primary Navigation">
+                <a href="/">Full Radar Map</a>
+                <a href="/national-radar-loop.html">▶ Radar Loop (HD)</a>
+                <a href="/radar-tools.html">Radar Tools</a>
+                <a href="/#severe-alerts">Severe Alerts</a>
+                <a href="/regions.html">US Regions</a>
+                <a href="/#faq">FAQ</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>›</span>
+            <a href="/regions.html">US Regions</a>
+            <span>›</span>
+            <strong>Southeast</strong>
+        </nav>
+
+        <!-- City Hero -->
+        <section class="city-hero">
+            <div class="city-hero-badge">📍 Regional Radar: Florida & the Southeast</div>
+            <h1>Southeast Weather Radar - Live Doppler Map</h1>
+            <p>Real-time Doppler precipitation radar loop, hurricane tracking, and severe weather warnings for the Southeast. Tracking Gulf and Atlantic tropical systems, daily sea-breeze thunderstorms, and flash flooding across Florida, Georgia, the Carolinas, Alabama and Tennessee.</p>
+        </section>
+
+        <!-- Severe Weather Alert Box -->
+        <div class="city-alert-box" id="cityAlertBox"></div>
+
+        <!-- Adsterra: Leaderboard / Native Display Banner Unit -->
+        <div class="ad-slot-wrap" style="width:100%;max-width:970px;margin:18px auto;text-align:center;">
+            <span style="font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;display:block;">Sponsored Advertisement</span>
+            <div style="padding:6px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);min-height:90px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                <div id="container-3b6f409a46a74a66ee65f44221bce59b"></div>
+                <script async="async" data-cfasync="false" src="https://bauval.org/21/3b6f409a46a74a66ee65f44221bce59b"></script>
+            </div>
+        </div>
+
+        <!-- Radar Box -->
+        <section class="radar-box">
+            <div class="radar-header-bar">
+                <div class="radar-title-group">
+                    <span class="live-dot"></span>
+                    <h2>Southeast Doppler Radar (Live Loop)</h2>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;">
+                    <button class="radar-ctrl-btn" onclick="resetCityView()">🎯 Center Southeast</button>
+                    <a href="/national-radar-loop.html" class="radar-ctrl-btn" style="background:var(--primary);color:#fff;border-color:var(--primary);">🇺🇸 Entire USA Loop</a>
+                    <a href="/#severe-alerts" class="radar-ctrl-btn" style="background:linear-gradient(135deg, #dc2626, #b91c1c);color:#ffffff;border:none;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px;" title="View Live Severe Weather Warnings">⚡ Live Warnings</a>
+                </div>
+            </div>
+
+            <!-- Leaflet Radar Map -->
+            <div id="cityRadarMap" aria-label="Southeast Doppler Radar Map"></div>
+
+            <!-- Toolbar -->
+            <div class="radar-toolbar">
+                <div class="player-controls">
+                    <button class="play-btn" id="playBtn" onclick="togglePlay()">▶ Play Loop</button>
+                    <span class="time-badge" id="timeBadge">Live Radar</span>
+                </div>
+                <div style="font-size:0.82rem;color:var(--text-muted);">
+                    Data: NOAA NEXRAD &amp; RainViewer HD
+                </div>
+            </div>
+        </section>
+
+<!-- Severe Weather Alert & Radar Link -->
+        <div class="ad-slot-wrap" style="width:100%;max-width:970px;margin:24px auto;text-align:left;">
+            <div style="background:linear-gradient(135deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.95));border:1px solid rgba(56, 189, 248, 0.3);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;box-shadow:0 6px 24px rgba(0,0,0,0.18);">
+                <div style="display:flex;align-items:center;gap:14px;text-align:left;">
+                    <div style="width:44px;height:44px;border-radius:10px;background:rgba(56, 189, 248, 0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">
+                        ⛈️
+                    </div>
+                    <div>
+                        <div style="font-weight:700;font-size:1rem;color:#f8fafc;display:flex;align-items:center;gap:8px;">
+                            Live US Severe Storm & Emergency Doppler Feed
+                            <span style="font-size:0.68rem;padding:2px 6px;border-radius:4px;background:#ef4444;color:#fff;font-weight:700;">LIVE</span>
+                        </div>
+                        <div style="font-size:0.84rem;color:#94a3b8;margin-top:2px;">
+                            High-resolution radar loops, localized flash flood alerts, and instant severe storm updates.
+                        </div>
+                    </div>
+                </div>
+                <a href="/#severe-alerts" style="background:#0284c7;color:#ffffff;padding:10px 18px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;white-space:nowrap;" onmouseover="this.style.background='#0369a1'" onmouseout="this.style.background='#0284c7'">
+                    Check NWS Alerts →
+                </a>
+            </div>
+        </div>
+
+        <!-- Regional Weather & Radar Guide -->
+        <section class="city-guide-section">
+            <h2>🌇️ Southeast Weather &amp; Live Doppler Radar Guide</h2>
+            <p>The Southeast has a humid subtropical climate: long, hot, humid summers and short, mild winters. Warm, moist air from the Gulf of Mexico and the Atlantic meets daily sea-breeze circulations, producing some of the most frequent thunderstorms in the United States, especially across Florida and the Gulf Coast. From June through November the region is also the primary US landfall zone for Atlantic hurricanes and tropical storms.</p>
+
+            <h3>📡 NOAA NEXRAD Stations: KAMX, KTBW & KJAX (Miami, Tampa Bay & Jacksonville)</h3>
+            <p>Our interactive Southeast radar connects directly to NOAA Level-III NEXRAD stations across the region, including <strong>KAMX</strong> (Miami / South Florida), <strong>KTBW</strong> (Tampa Bay) and <strong>KJAX</strong> (Jacksonville). These dual-polarization S-band Doppler radars detect horizontal and vertical hydrometeor dimensions, allowing meteorologists and residents to distinguish between light rain, hail cores, sleet, snow, and tornadic debris signatures.</p>
+
+            <div class="radar-meta-grid">
+                <div class="radar-meta-item">
+                    <div class="radar-meta-label">Radar Stations</div>
+                    <div class="radar-meta-val">KAMX - Miami, KTBW - Tampa Bay, KJAX - Jacksonville</div>
+                </div>
+                <div class="radar-meta-item">
+                    <div class="radar-meta-label">Coverage Radius</div>
+                    <div class="radar-meta-val">230 Nautical Miles</div>
+                </div>
+                <div class="radar-meta-item">
+                    <div class="radar-meta-label">Radar Frequency</div>
+                    <div class="radar-meta-val">Dual-Pol S-Band Doppler</div>
+                </div>
+                <div class="radar-meta-item">
+                    <div class="radar-meta-label">Serving Region</div>
+                    <div class="radar-meta-val">Florida, Georgia, South Carolina, North Carolina, Alabama & Tennessee</div>
+                </div>
+            </div>
+
+            <h3>🎨 How to Read Doppler Reflectivity (dBZ Scale)</h3>
+            <p>Radar reflectivity measures precipitation density in decibels of Z (dBZ). Use this color reference when monitoring approaching storms on the Southeast radar:</p>
+            <div class="dbz-legend-bar">
+                <div class="dbz-pill" style="background:rgba(34, 197, 94, 0.2);color:#15803d;border:1px solid #86efac;">15-30 dBZ: Light Rain</div>
+                <div class="dbz-pill" style="background:rgba(234, 179, 8, 0.2);color:#a16207;border:1px solid #fde047;">35-45 dBZ: Moderate Rain</div>
+                <div class="dbz-pill" style="background:rgba(239, 68, 68, 0.2);color:#b91c1c;border:1px solid #fca5a5;">50-55 dBZ: Heavy Storms</div>
+                <div class="dbz-pill" style="background:rgba(168, 85, 247, 0.2);color:#7e22ce;border:1px solid #d8b4fe;">60+ dBZ: Hail / Severe</div>
+            </div>
+
+            <h3>⚠️ Seasonal Severe Storm Threats in Southeast</h3>
+            <p>The Atlantic hurricane season (June 1 to November 30) is the defining threat for the Southeast: storm surge, destructive winds and inland flooding from landfalling tropical systems. Outside hurricane season, Doppler radar tracks daily summer thunderstorms, slow-moving tropical downpours that cause urban street flooding, and tornadoes across the Deep South, including the tornado-prone corridor of Alabama, Georgia and Tennessee.</p>
+        </section>
+
+        <!-- Regional Weather Radar FAQ -->
+        <section class="city-faq-section" id="faq">
+            <h2>Frequently Asked Questions: Southeast Weather Radar</h2>
+            <p class="city-faq-subtitle">Essential questions answered regarding Southeast Doppler radar data, NOAA NEXRAD coverage, and severe storm tracking.</p>
+
+            <div class="city-faq-accordion">
+                <details class="faq-item" open>
+                    <summary class="faq-question">How do I check live Doppler weather radar for the Southeast?</summary>
+                    <div class="faq-answer">
+                        You can track live high-definition Southeast weather radar right here on Weather Radar USA. Our interactive Doppler map updates every 5 to 10 minutes with precipitation loops, storm velocity, rain intensity, and official NOAA NWS storm alerts for Florida, Georgia, the Carolinas, Alabama and Tennessee.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Which NOAA NEXRAD radar stations cover the Southeast?</summary>
+                    <div class="faq-answer">
+                        The primary National Weather Service Doppler radar stations serving the Southeast include KAMX (Miami / South Florida), KTBW (Tampa Bay) and KJAX (Jacksonville). Each operates with high-frequency S-band dual-polarization technology to monitor severe storms, hail, and precipitation within a 230-nautical-mile radius.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">When is hurricane season in the Southeast, and how does radar help?</summary>
+                    <div class="faq-answer">
+                        The Atlantic hurricane season runs June 1 to November 30, and the Southeast is the most frequent US landfall region. Doppler radar tracks eyewall structure, spiral rainbands and storm surge wind fields as tropical systems approach the Gulf and Atlantic coasts, and shows inland rainfall flooding after landfall.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">Can I check radar for a specific Southeast city?</summary>
+                    <div class="faq-answer">
+                        Yes. Use the city links below for live radar in Miami, Tampa, Orlando, Jacksonville, Atlanta, Charlotte and Nashville, or search any city or 5-digit ZIP code on our homepage map.
+                    </div>
+                </details>
+
+            </div>
+        </section>
+
+        <!-- Region Cities & Other Regions -->
+        <section class="other-cities-box">
+            <h2 style="font-size:1.25rem;font-weight:700;color:var(--text-primary);margin-bottom:4px;">🗺️ Cities in Southeast</h2>
+            <p style="font-size:0.88rem;color:var(--text-muted);">Jump directly to live weather radar maps for major cities in this region:</p>
+            <div class="cities-grid">
+                <a href="/cities/miami-fl.html" class="city-link">🏖️ Miami, FL</a>
+                <a href="/cities/tampa-fl.html" class="city-link">⚡ Tampa, FL</a>
+                <a href="/cities/orlando-fl.html" class="city-link">🍊 Orlando, FL</a>
+                <a href="/cities/jacksonville-fl.html" class="city-link">⚓ Jacksonville, FL</a>
+                <a href="/cities/atlanta-ga.html" class="city-link">👑 Atlanta, GA</a>
+                <a href="/cities/charlotte-nc.html" class="city-link">🌲 Charlotte, NC</a>
+                <a href="/cities/nashville-tn.html" class="city-link">🎵 Nashville, TN</a>
+            </div>
+            <h2 style="font-size:1.25rem;font-weight:700;color:var(--text-primary);margin-bottom:16px;margin-top:24px;">🗺️ Explore More Regional Radars</h2>
+            <div class="cities-grid">
+                <a href="/regions/texas-gulf-coast-radar.html" class="city-link">🗺️ Texas & Gulf Coast Radar</a>
+                <a href="/regions/northeast-radar.html" class="city-link">🗺️ Northeast Radar</a>
+                <a href="/regions/midwest-ohio-valley-radar.html" class="city-link">🗺️ Midwest & Ohio Valley Radar</a>
+                <a href="/regions/west-coast-radar.html" class="city-link">🗺️ West Coast & California Radar</a>
+                <a href="/regions/central-plains-radar.html" class="city-link">🗺️ Central Plains Radar</a>
+            </div>
+        </section>
+</main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Weather Radar USA</h4>
+                    <p style="margin-bottom:10px;">Free interactive United States Doppler weather radar, hurricane tracking, and real-time NWS storm warnings.</p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">Data: NOAA / NWS NEXRAD &amp; RainViewer</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Radar Tools</h4>
+                    <a href="/national-radar-loop.html">National Radar Loop</a>
+                    <a href="/hurricane-tracker.html" style="color:#ef4444;font-weight:700;">Live Hurricane Tracker</a>
+                    <a href="/radar-tools.html">Weather Radar Tools</a>
+                    <a href="/#severe-alerts">NWS Severe Warnings</a>
+                    <a href="/#tools">Unit Converters</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Top City Radars</h4>
+                    <a href="/cities/miami-fl.html">Miami Weather Radar</a>
+                    <a href="/cities/dallas-tx.html">Dallas Doppler Radar</a>
+                    <a href="/cities/houston-tx.html">Houston Weather Radar</a>
+                    <a href="/cities/chicago-il.html">Chicago Weather Radar</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal &amp; Info</h4>
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/terms-of-service.html">Terms of Service</a>
+                    <a href="/about.html">About Us</a>
+                    <a href="/contact.html">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2026 Weather Radar USA • <a href="https://weatherradarusa.online/regions/southeast-radar.html">https://weatherradarusa.online/regions/southeast-radar.html</a> • All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        const CITY_LAT = 29.5;
+        const CITY_LON = -84.0;
+        const CITY_ZOOM = 6;
+
+        let map = null;
+        let radarLayer = null;
+        let radarFrames = [];
+        let currentFrameIndex = 0;
+        let isPlaying = false;
+        let playInterval = null;
+
+        function initMap() {
+            map = L.map('cityRadarMap', {
+                center: [CITY_LAT, CITY_LON],
+                zoom: CITY_ZOOM,
+                minZoom: 5,
+                maxZoom: 13,
+                zoomControl: true,
+                attributionControl: false
+            });
+
+            L.control.attribution({ position: 'bottomright', prefix: false })
+                .addAttribution('&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> | Radar: RainViewer &amp; NOAA NEXRAD')
+                .addTo(map);
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(map);
+
+            // City center marker
+            L.marker([CITY_LAT, CITY_LON]).addTo(map)
+                .bindPopup('<b>Southeast</b><br>Live Doppler Radar Center')
+                .openPopup();
+
+            loadRadarData();
+
+            setTimeout(() => { if (map) map.invalidateSize(); }, 150);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 600);
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
+        }
+
+        async function loadRadarData() {
+            try {
+                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
+                const data = await res.json();
+                if (data && data.radar && data.radar.past && data.radar.past.length > 0) {
+                    window._rvHost = data.host || 'https://tilecache.rainviewer.com';
+                    radarFrames = data.radar.past;
+                    currentFrameIndex = radarFrames.length - 1;
+                    showFrame(currentFrameIndex);
+                    setTimeout(() => startLoop(), 500);
+                } else {
+                    loadNoaaFallback();
+                }
+            } catch (err) {
+                console.warn('Falling back to NOAA NEXRAD:', err);
+                loadNoaaFallback();
+            }
+        }
+        function loadNoaaFallback() {
+            if (radarLayer) map.removeLayer(radarLayer);
+            radarLayer = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png', {
+                opacity: 0.78,
+                zIndex: 10
+            }).addTo(map);
+            document.getElementById('timeBadge').textContent = '\uD83D\uDD34 NOAA Live Feed';
+        }
+
+        function showFrame(index) {
+            if (!radarFrames.length || !map) return;
+            const frame = radarFrames[index];
+            if (!frame) return;
+
+            const host = window._rvHost || 'https://tilecache.rainviewer.com';
+            const url = `${host}${frame.path}/256/{z}/{x}/{y}/2/1_1.png`;
+
+            if (radarLayer) map.removeLayer(radarLayer);
+            radarLayer = L.tileLayer(url, { opacity: 0.76, zIndex: 10 }).addTo(map);
+
+            const date = new Date(frame.time * 1000);
+            const isLive = (index === radarFrames.length - 1);
+            const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+            document.getElementById('timeBadge').textContent = isLive ? `\uD83D\uDD34 ${timeStr} (Live)` : timeStr;
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                isPlaying = false;
+                clearInterval(playInterval);
+                document.getElementById('playBtn').textContent = 'â–¶ Play Loop';
+            } else {
+                startLoop();
+            }
+        }
+
+        function startLoop() {
+            if (!radarFrames.length) return;
+            isPlaying = true;
+            document.getElementById('playBtn').textContent = 'â¸ Pause';
+            if (playInterval) clearInterval(playInterval);
+            playInterval = setInterval(() => {
+                currentFrameIndex = (currentFrameIndex + 1) % radarFrames.length;
+                showFrame(currentFrameIndex);
+            }, 800);
+        }
+
+        function resetCityView() {
+            if (map) map.flyTo([CITY_LAT, CITY_LON], CITY_ZOOM, { duration: 1 });
+        }
+
+        // Live NWS Alerts for State
+        async function fetchCityAlerts() {
+            try {
+                const res = await fetch('https://api.weather.gov/alerts/active?area=FL,GA,SC,NC,AL,TN');
+                const data = await res.json();
+                const features = data.features || [];
+                const box = document.getElementById('cityAlertBox');
+                if (features.length > 0) {
+                    const alert = features[0].properties;
+                    box.style.display = 'block';
+                    box.innerHTML = `<strong>\uD83D\uDEA8 ACTIVE SOUTHEAST ALERT:</strong> ${alert.event} - ${alert.headline || alert.areaDesc}`;
+                }
+            } catch(e){}
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initMap();
+            fetchCityAlerts();
+        });
+    </script>
+</body>
+</html>
