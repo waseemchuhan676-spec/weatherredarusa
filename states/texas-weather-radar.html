@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Texas Weather Radar – Live Doppler Map for Texas - Weather Radar USA</title>
+    <meta name="description" content="Live Texas weather radar with Doppler loop and current NWS warnings. Follow Dallas, Houston, Austin, and San Antonio radar, severe storms, and Gulf Coast weather.">
+    <meta name="keywords" content="Texas weather radar, Dallas radar, Houston radar, Austin radar, San Antonio radar, Texas doppler loop">
+    <meta name="author" content="Weather Radar USA">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+        <!-- Monetag Site Verification -->
+    <meta name="monetag" content="30aaf71eab099197f934568b5d3c17d0">
+    <link rel="canonical" href="https://weatherradarusa.online/states/texas-weather-radar.html">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Texas Weather Radar – Live Doppler Map for Texas - Weather Radar USA">
+    <meta property="og:description" content="Live Texas Doppler radar and warnings: Dallas, Houston, Austin, and San Antonio radar loops, severe storms, and Gulf Coast tracking.">
+    <meta property="og:url" content="https://weatherradarusa.online/states/texas-weather-radar.html">
+    <meta property="og:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+    <meta property="og:site_name" content="Weather Radar USA">
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Texas Weather Radar – Live Doppler Map for Texas - Weather Radar USA">
+    <meta name="twitter:description" content="Live Texas Doppler radar and warnings: Dallas, Houston, Austin, and San Antonio radar loops, severe storms, and Gulf Coast tracking.">
+    <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <meta name="theme-color" content="#dbeafe">
+
+    <!-- CDNs -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="dns-prefetch" href="https://tilecache.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.weather.gov">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="">
+
+    <!-- Schema Markup -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Texas Weather Radar – Live Doppler Map for Texas",
+      "url": "https://weatherradarusa.online/states/texas-weather-radar.html",
+      "description": "Live Texas weather radar with Doppler loop and current NWS warnings. Follow Dallas, Houston, Austin, and San Antonio radar, severe storms, and Gulf Coast weather.",
+      "applicationCategory": "WeatherApplication",
+      "operatingSystem": "All",
+      "provider": {
+        "@type": "Organization",
+        "name": "Weather Radar USA",
+        "url": "https://weatherradarusa.online/"
+      }
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://weatherradarusa.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Texas Weather Radar",
+          "item": "https://weatherradarusa.online/states/texas-weather-radar.html"
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Where can I see live Texas weather radar?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "This page shows a live Texas Doppler radar loop at the top, with current National Weather Service warnings for Texas below it. For street-level detail, open a city radar for Dallas, Houston, Austin, or San Antonio from the links below."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Which Texas cities flood most easily?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Austin and San Antonio sit in Flash Flood Alley, where steep terrain and intense Gulf moisture produce some of the fastest-rising floods in the country. Houston also floods frequently because of slow-moving tropical downpours over flat, urbanized ground. Never drive through flooded roads."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What severe weather is most common in Texas?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Texas sees severe thunderstorms, large hail, tornadoes, flash flooding, and Gulf hurricanes. North Texas faces the most tornado and hail threats in spring, central Texas faces flash flooding year-round, and the Gulf Coast faces tropical storms and hurricanes in summer and autumn."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How is the Texas radar different from the national radar loop?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The Texas radar loop on this page is centered on Texas so you can follow state storms in detail, while the national radar loop shows the whole country at a glance. Use the state view for Texas storms and the national view to see where the next system is coming from."
+      }
+    }
+  ]
+}
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-body: #f0f7ff;
+            --bg-header: rgba(255, 255, 255, 0.96);
+            --bg-card: #ffffff;
+            --bg-elevated: #f0f7ff;
+            --bg-card-hover: #e0f2fe;
+            --border: #bae6fd;
+            --border-hover: #0284c7;
+            --text-primary: #0f172a;
+            --text-muted: #475569;
+            --text-sub: #1e293b;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --accent: #0284c7;
+            --danger: #dc2626;
+            --danger-bg: #fee2e2;
+            --radius-sm: 8px;
+            --radius: 14px;
+            --shadow: 0 10px 28px -4px rgba(2, 132, 199, 0.08);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        /* Header */
+        .header {
+            position: sticky; top: 0; z-index: 1000;
+            background: var(--bg-header);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+            padding: 12px 0;
+        }
+        .header-content { display: flex; align-items: center; justify-content: space-between; }
+        .logo { display: flex; align-items: center; gap: 10px; text-decoration: none; color: inherit; }
+        .logo-icon { width: 34px; height: 34px; border-radius: 8px; background: var(--primary); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 800; font-size: 1.2rem; }
+        .logo-text { font-family: 'Outfit', sans-serif; font-weight: 800; font-size: 1.25rem; }
+        .logo-text span { color: var(--primary); }
+        .nav-links { display: flex; align-items: center; gap: 18px; }
+        .nav-links a { text-decoration: none; color: var(--text-muted); font-size: 0.92rem; font-weight: 600; transition: color 0.2s; }
+        .nav-links a:hover, .nav-links a.active { color: var(--primary); }
+
+        /* Hero */
+        .hero-banner {
+            padding: 30px 0 20px;
+            background: linear-gradient(180deg, #e0f2fe 0%, var(--bg-body) 100%);
+            border-bottom: 1px solid var(--border);
+        }
+        .breadcrumbs { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 10px; }
+        .breadcrumbs a { color: var(--primary); text-decoration: none; font-weight: 500; }
+        .hero-title { font-family: 'Outfit', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--text-primary); margin-bottom: 8px; }
+        .hero-desc { font-size: 1.05rem; color: var(--text-muted); max-width: 850px; }
+
+        /* Map Box */
+        .map-section { margin: 24px 0; }
+        .map-card {
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+        .map-header {
+            padding: 14px 20px;
+            background: #0f172a;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        .map-title { font-weight: 700; font-size: 1.05rem; display: flex; align-items: center; gap: 8px; }
+        .map-ctrls { display: flex; align-items: center; gap: 10px; }
+        .ctrl-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: var(--radius-sm);
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .ctrl-btn:hover { background: rgba(255, 255, 255, 0.25); }
+        .time-badge { font-size: 0.82rem; font-weight: 600; color: #38bdf8; }
+        #texasRadarMap { width: 100%; height: 560px; background: #e2e8f0; }
+
+        /* Saffir-Simpson Table */
+        .scale-section {
+            margin: 36px 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 28px;
+            box-shadow: var(--shadow);
+        }
+        .scale-section h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 8px; }
+        .table-wrap { overflow-x: auto; margin-top: 16px; }
+        table.scale-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; text-align: left; }
+        table.scale-table th { background: #f8fafc; padding: 12px 14px; border-bottom: 2px solid var(--border); font-weight: 700; color: var(--text-primary); }
+        table.scale-table td { padding: 12px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+        .cat-badge { display: inline-block; padding: 4px 10px; border-radius: 6px; font-weight: 800; font-size: 0.85rem; color: #fff; }
+        .cat-1 { background: #3b82f6; }
+        .cat-2 { background: #eab308; }
+        .cat-3 { background: #f97316; }
+        .cat-4 { background: #ef4444; }
+        .cat-5 { background: #7e22ce; }
+
+        /* Editorial Guide */
+        .guide-section {
+            margin: 36px 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+        .guide-section h2 { font-family: 'Outfit', sans-serif; font-size: 1.6rem; margin-bottom: 12px; }
+        .guide-section h3 { font-size: 1.2rem; margin: 22px 0 8px; color: var(--text-primary); }
+        .guide-section p { color: var(--text-sub); margin-bottom: 14px; font-size: 0.95rem; }
+
+        /* FAQ Accordion */
+        .faq-section {
+            margin: 36px 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 32px;
+            box-shadow: var(--shadow);
+        }
+        .faq-section h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 6px; }
+        .faq-accordion { margin-top: 20px; display: flex; flex-direction: column; gap: 12px; }
+        .faq-item {
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .faq-item summary {
+            padding: 14px 18px;
+            font-weight: 700;
+            cursor: pointer;
+            list-style: none;
+            background: #f8fafc;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .faq-item summary::-webkit-details-marker { display: none; }
+        .faq-item summary::after { content: '+'; font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+        .faq-item[open] summary::after { content: '−'; }
+        .faq-answer { padding: 14px 18px; font-size: 0.92rem; color: var(--text-sub); border-top: 1px solid var(--border); background: #ffffff; }
+
+        /* Coastal Links */
+        .coastal-cities {
+            margin: 36px 0;
+            background: var(--bg-card);
+            border-radius: var(--radius);
+            border: 1px solid var(--border);
+            padding: 28px;
+        }
+        .cities-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+            gap: 10px;
+            margin-top: 16px;
+        }
+        .city-link {
+            display: block;
+            padding: 10px 14px;
+            background: var(--bg-elevated);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-sm);
+            text-decoration: none;
+            color: var(--text-primary);
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+        .city-link:hover {
+            border-color: var(--primary);
+            background: var(--bg-card-hover);
+            color: var(--primary);
+        }
+
+        /* Footer */
+        .footer {
+            background: #ffffff;
+            border-top: 1px solid var(--border);
+            padding: 40px 0 20px;
+            margin-top: 50px;
+        }
+        .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 30px; margin-bottom: 30px; }
+        .footer-col h4 { font-size: 0.95rem; font-weight: 700; margin-bottom: 12px; color: var(--text-primary); }
+        .footer-col a { display: block; text-decoration: none; color: var(--text-muted); font-size: 0.88rem; margin-bottom: 8px; }
+        .footer-col a:hover { color: var(--primary); }
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 20px; font-size: 0.84rem; color: var(--text-muted); text-align: center; }
+
+        @media (max-width: 768px) {
+            .footer-grid { grid-template-columns: 1fr; gap: 20px; }
+            #texasRadarMap { height: 420px; }
+            .hero-title { font-size: 1.7rem; }
+        }
+    
+        /* Alerts feed (same pattern as index.html alerts grid) */
+        .alerts-section { margin: 36px 0; background: var(--bg-card); border-radius: var(--radius); border: 1px solid var(--border); padding: 28px; box-shadow: var(--shadow); }
+        .alerts-section h2 { font-family: 'Outfit', sans-serif; font-size: 1.5rem; margin-bottom: 6px; }
+        .alerts-status { color: var(--text-muted); font-size: 0.9rem; margin-bottom: 16px; }
+        .alerts-feed-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+        .alert-card { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px 16px; background: #f8fafc; }
+        .alert-headline { font-weight: 700; font-size: 0.95rem; margin-bottom: 4px; }
+        .alert-area { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
+        .alert-desc { font-size: 0.88rem; color: var(--text-sub); }
+
+    </style>
+    <!-- Adsterra Monetization Script (Social Bar) -->
+    <script data-cfasync="false" src="https://bauval.org/14/38a872a5126d119c08717b9adf6fc253"></script>
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "yvkks26wwu");
+    </script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container header-content">
+            <a href="/" class="logo">
+                <div class="logo-icon">&#127744;</div>
+                <div class="logo-text">Weather Radar <span>USA</span></div>
+            </a>
+            <nav class="nav-links">
+                <a href="/">Live Radar</a>
+                <a href="/national-radar-loop.html">National Loop</a>
+                <a href="/hurricane-tracker.html">Hurricane Tracker</a>
+                <a href="/radar-tools.html">Radar Tools</a>
+                <a href="/#popular-cities">Top Cities</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero-banner">
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="/">Home</a> &raquo; <span>Texas Weather Radar</span>
+            </div>
+            <h1 class="hero-title">📡 Texas Weather Radar – Live Doppler Map for Texas</h1>
+            <p class="hero-desc">Live Texas weather radar with a statewide Doppler loop and current National Weather Service warnings. Follow storms from Dallas and Houston to Austin and San Antonio, and watch Gulf Coast systems as they move inland.</p>
+        </div>
+    </section>
+
+    <!-- Main -->
+    <main class="container">
+        <!-- Adsterra: Top Leaderboard / Native Display Banner Unit -->
+        <div class="ad-slot-wrap" style="width:100%;max-width:970px;margin:18px auto;text-align:center;">
+            <span style="font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;display:block;">Sponsored Advertisement</span>
+            <div style="padding:6px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);min-height:90px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                <div id="container-3b6f409a46a74a66ee65f44221bce59b"></div>
+                <script async="async" data-cfasync="false" src="https://bauval.org/21/3b6f409a46a74a66ee65f44221bce59b"></script>
+            </div>
+        </div>
+
+        <!-- Map Card -->
+        <section class="map-section">
+            <div class="map-card">
+                <div class="map-header">
+                    <div class="map-title">📡 Live Texas Doppler Radar Loop</div>
+                    <div class="map-ctrls">
+                        <span class="time-badge" id="timeBadge">&#128308; Connecting to Radar...</span>
+                        <button class="ctrl-btn" id="playBtn" onclick="togglePlay()">&#9208; Pause</button>
+                        <button class="ctrl-btn" onclick="resetView()">&#128506;&#65039; Reset View</button>
+                    </div>
+                </div>
+                <div id="texasRadarMap"></div>
+            </div>
+        </section>
+
+        <!-- Live NWS Alerts -->
+        <section class="alerts-section">
+            <h2>Live Texas Weather Warnings (NWS)</h2>
+            <p class="alerts-status" id="alertsStatus">Loading live National Weather Service alerts...</p>
+            <div class="alerts-feed-grid" id="alertsGrid"></div>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:14px;">Alerts are fetched live in your browser from the official National Weather Service API (api.weather.gov). Always confirm warnings with weather.gov and local emergency officials.</p>
+        </section>
+
+        <!-- Guide -->
+        <section class="guide-section">
+            <h2>Texas Weather Radar by City</h2>
+<h3>Dallas</h3><p>North Texas radar covers the Dallas-Fort Worth metroplex, where severe thunderstorms, large hail, and tornadoes are a regular spring threat. The Dallas radar is the one to watch when storms roll in from the west and northwest.</p><h3>Houston</h3><p>Houston radar tracks Gulf moisture, tropical downpours, and hurricane-season storms along the upper Texas coast. Slow-moving storms over the metro area can drop very heavy rain in a short time.</p><h3>Austin</h3><p>Austin sits in Flash Flood Alley, where Hill Country terrain turns heavy rain into fast-rising floods. The Austin radar is essential viewing during any slow-moving storm or tropical moisture surge.</p><h3>San Antonio</h3><p>San Antonio radar covers south-central Texas, where storms moving up from Mexico and the Gulf meet Hill Country terrain. Flash flooding and severe thunderstorms are the main threats to follow here.</p>
+        </section>
+
+        <!-- Guide -->
+        <section class="guide-section">
+            <h2>How to Use This Texas Radar Hub</h2>
+<p>Start with the statewide radar loop above for the big picture, then open a city radar below for street-level detail. The live warnings feed shows current National Weather Service alerts for Texas, so you can see at a glance whether any part of the state is under a warning right now.</p><p>For a wider view, the regional radar page covers neighboring states and the same storm systems from a different angle. During hurricane season, coastal city radars are the ones to watch first; during severe weather season, inland city radars show storms as they develop.</p>
+        </section>
+
+        <!-- FAQ -->
+        <section class="faq-section" id="faq">
+            <h2>Frequently Asked Questions: Texas Weather Radar</h2>
+            <div class="faq-accordion">
+                <details class="faq-item" open>
+                    <summary>Where can I see live Texas weather radar?</summary>
+                    <div class="faq-answer">
+                        This page shows a live Texas Doppler radar loop at the top, with current National Weather Service warnings for Texas below it. For street-level detail, open a city radar for Dallas, Houston, Austin, or San Antonio from the links below.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Which Texas cities flood most easily?</summary>
+                    <div class="faq-answer">
+                        Austin and San Antonio sit in Flash Flood Alley, where steep terrain and intense Gulf moisture produce some of the fastest-rising floods in the country. Houston also floods frequently because of slow-moving tropical downpours over flat, urbanized ground. Never drive through flooded roads.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What severe weather is most common in Texas?</summary>
+                    <div class="faq-answer">
+                        Texas sees severe thunderstorms, large hail, tornadoes, flash flooding, and Gulf hurricanes. North Texas faces the most tornado and hail threats in spring, central Texas faces flash flooding year-round, and the Gulf Coast faces tropical storms and hurricanes in summer and autumn.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How is the Texas radar different from the national radar loop?</summary>
+                    <div class="faq-answer">
+                        The Texas radar loop on this page is centered on Texas so you can follow state storms in detail, while the national radar loop shows the whole country at a glance. Use the state view for Texas storms and the national view to see where the next system is coming from.
+                    </div>
+                </details>
+            </div>
+        </section>
+
+        <!-- Links Grid -->
+        <section class="coastal-cities">
+            <h2 style="font-family:'Outfit',sans-serif;font-size:1.4rem;">📡 Texas City & Region Radars</h2>
+            <p style="color:var(--text-muted);font-size:0.88rem;margin-top:4px;">Jump straight to a Texas city radar or the wider Gulf Coast regional view:</p>
+            <div class="cities-grid">
+                <a href="/cities/dallas-tx.html" class="city-link">Dallas, TX</a>
+                <a href="/cities/houston-tx.html" class="city-link">Houston, TX</a>
+                <a href="/cities/austin-tx.html" class="city-link">Austin, TX</a>
+                <a href="/cities/san-antonio-tx.html" class="city-link">San Antonio, TX</a>
+                <a href="/regions/texas-gulf-coast-radar.html" class="city-link">Texas & Gulf Coast Radar</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h4>Weather Radar USA</h4>
+                    <p style="margin-bottom:10px;color:var(--text-muted);font-size:0.88rem;">Free real-time interactive Doppler weather radar, hurricane tracking, and official NOAA NWS storm warnings across the United States.</p>
+                    <p style="font-size:0.8rem;color:var(--text-muted);">Data: NOAA / NWS NEXRAD &amp; RainViewer</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Radar Tools</h4>
+                    <a href="/national-radar-loop.html">National Radar Loop</a>
+                    <a href="/hurricane-tracker.html">Live Hurricane Tracker</a>
+                    <a href="/tornado-tracker.html">Live Tornado Tracker</a>
+                    <a href="/severe-thunderstorm-warnings.html">Severe Thunderstorm Warnings</a>
+                    <a href="/flood-alerts.html">Flash Flood Alerts</a>
+                    <a href="/snow-blizzard-radar.html">Snow & Blizzard Radar</a>
+                    <a href="/radar-tools.html">Weather Radar Tools</a>
+                </div>
+                <div class="footer-col">
+                    <h4>City &amp; Region Radars</h4>
+                    <a href="/cities/dallas-tx.html">Dallas, TX</a>
+                    <a href="/cities/houston-tx.html">Houston, TX</a>
+                    <a href="/cities/austin-tx.html">Austin, TX</a>
+                    <a href="/cities/san-antonio-tx.html">San Antonio, TX</a>
+                </div>
+                <div class="footer-col">
+                    <h4>Legal &amp; Trust</h4>
+                    <a href="/privacy-policy.html">Privacy Policy</a>
+                    <a href="/terms-of-service.html">Terms of Service</a>
+                    <a href="/about.html">About Us</a>
+                    <a href="/contact.html">Contact Us</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Weather Radar USA &bull; <a href="https://weatherradarusa.online/states/texas-weather-radar.html" style="color:var(--text-muted);">https://weatherradarusa.online/states/texas-weather-radar.html</a> &bull; All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        const BASIN_LAT = 31.0;
+        const BASIN_LON = -99.0;
+        const BASIN_ZOOM = 6;
+
+        let map = null;
+        let radarLayer = null;
+        let radarFrames = [];
+        let currentFrameIndex = 0;
+        let isPlaying = false;
+        let playInterval = null;
+
+        function initMap() {
+            map = L.map('texasRadarMap', {
+                center: [BASIN_LAT, BASIN_LON],
+                zoom: BASIN_ZOOM,
+                minZoom: 4,
+                maxZoom: 12,
+                zoomControl: true,
+                attributionControl: false
+            });
+
+            L.control.attribution({ position: 'bottomright', prefix: false })
+                .addAttribution('&copy; <a href="https://carto.com/">CARTO</a> &copy; <a href="https://www.openstreetmap.org/copyright">OSM</a> | Radar: RainViewer &amp; NOAA NEXRAD')
+                .addTo(map);
+
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+                subdomains: 'abcd',
+                maxZoom: 19
+            }).addTo(map);
+
+            loadRadarData();
+            fetchTopicAlerts();
+
+            setTimeout(() => { if (map) map.invalidateSize(); }, 200);
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
+        }
+
+        async function loadRadarData() {
+            try {
+                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
+                const data = await res.json();
+                if (data && data.radar && data.radar.past && data.radar.past.length > 0) {
+                    window._rvHost = data.host || 'https://tilecache.rainviewer.com';
+                    radarFrames = data.radar.past;
+                    currentFrameIndex = radarFrames.length - 1;
+                    showFrame(currentFrameIndex);
+                    setTimeout(() => startLoop(), 500);
+                } else {
+                    loadNoaaFallback();
+                }
+            } catch (err) {
+                console.warn('Falling back to NOAA NEXRAD:', err);
+                loadNoaaFallback();
+            }
+        }
+
+        function loadNoaaFallback() {
+            if (radarLayer) map.removeLayer(radarLayer);
+            radarLayer = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png', {
+                opacity: 0.78,
+                zIndex: 10
+            }).addTo(map);
+            document.getElementById('timeBadge').textContent = '\uD83D\uDD34 NOAA Live Feed';
+        }
+
+        function showFrame(index) {
+            if (!radarFrames.length || !map) return;
+            const frame = radarFrames[index];
+            if (!frame) return;
+
+            const host = window._rvHost || 'https://tilecache.rainviewer.com';
+            const url = `${host}${frame.path}/256/{z}/{x}/{y}/2/1_1.png`;
+
+            if (radarLayer) map.removeLayer(radarLayer);
+            radarLayer = L.tileLayer(url, { opacity: 0.76, zIndex: 10 }).addTo(map);
+
+            const date = new Date(frame.time * 1000);
+            const isLive = (index === radarFrames.length - 1);
+            const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+            document.getElementById('timeBadge').textContent = isLive ? `\uD83D\uDD34 ${timeStr} (Live)` : timeStr;
+        }
+
+        function togglePlay() {
+            if (isPlaying) {
+                isPlaying = false;
+                clearInterval(playInterval);
+                document.getElementById('playBtn').textContent = '\u25B6 Play Loop';
+            } else {
+                startLoop();
+            }
+        }
+
+        function startLoop() {
+            if (!radarFrames.length) return;
+            isPlaying = true;
+            document.getElementById('playBtn').textContent = '\u23F8 Pause';
+            if (playInterval) clearInterval(playInterval);
+            playInterval = setInterval(() => {
+                currentFrameIndex = (currentFrameIndex + 1) % radarFrames.length;
+                showFrame(currentFrameIndex);
+            }, 800);
+        }
+
+        function resetView() {
+            if (map) map.flyTo([BASIN_LAT, BASIN_LON], BASIN_ZOOM, { duration: 1 });
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initMap();
+        });
+        // ---- NWS live alerts (same pattern as index.html: api.weather.gov active alerts, client-side filter) ----
+        async function fetchTopicAlerts() {
+            const grid = document.getElementById('alertsGrid');
+            const status = document.getElementById('alertsStatus');
+            const KEYWORDS = [];
+            try {
+                const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert&area=TX');
+                const data = await res.json();
+                let features = data.features || [];
+                if (KEYWORDS.length) {
+                    features = features.filter(f => {
+                        const ev = (f.properties && f.properties.event ? f.properties.event : '').toLowerCase();
+                        return KEYWORDS.some(k => ev.includes(k));
+                    });
+                }
+                if (!features.length) {
+                    status.textContent = "No weather warnings are active in Texas right now.";
+                    grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:24px;">' + "No weather warnings are active in Texas right now." + ' Radar operations continue normally.</div>';
+                    return;
+                }
+                status.textContent = features.length + ' active alert(s) from the National Weather Service.';
+                grid.innerHTML = features.slice(0, 9).map(f => {
+                    const p = f.properties || {};
+                    return '<div class="alert-card"><div class="alert-headline">' + (p.event || 'Weather Alert') + '</div>'
+                        + '<div class="alert-area">\uD83D\uDCCD ' + (p.areaDesc || 'United States Area') + '</div>'
+                        + '<div class="alert-desc">' + (p.headline || (p.description ? p.description.slice(0, 160) + '\u2026' : '')) + '</div></div>';
+                }).join('');
+            } catch (err) {
+                console.warn('NWS Alerts fetch error:', err);
+                status.textContent = 'Alerts feed temporarily unavailable. Please verify with weather.gov.';
+                grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:20px;">Active alerts feed temporarily unavailable. Please verify with weather.gov.</div>';
+            }
+        }
+    </script>
+</body>
+</html>
