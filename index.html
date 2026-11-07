@@ -2251,6 +2251,7 @@
                                 <span class="time-badge" id="frameTimeBadge">Loading…</span>
                             </div>
                         </div>
+                        <p id="radarUpdated" style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 0;">Radar data: loading latest frames&hellip;</p>
 
                         <div class="secondary-controls">
                             <select class="radar-ctrl-select" id="layerSelect" onchange="changeRadarLayer(this.value)">
@@ -2333,6 +2334,7 @@
                     <h2>🚨 Live NWS Severe Weather Alerts</h2>
                     <p>Real-time watches, warnings, and emergency advisories issued by the National Weather Service
                         across the United States.</p>
+                    <p id="alertsUpdated" style="font-size:0.85rem;color:var(--text-muted);margin-top:6px;">Alerts feed: checking live data from the National Weather Service&hellip;</p>
                 </div>
 
                 <!-- Emergency Weather Radio Affiliate Callout -->
@@ -3164,7 +3166,7 @@
 
                     // Auto-start loop so visitors immediately see animated radar loop
                     setTimeout(() => {
-                        if (!isPlaying && radarFrames.length > 1 && radarLayerType !== 'noaa_nexrad') {
+                        if (!isPlaying && radarFrames.length > 1 && radarLayerType !== 'noaa_nexrad' && !window._radarPausedByUser) {
                             startRadarLoop();
                         }
                     }, 800);
@@ -3219,6 +3221,10 @@
             const isLive = (index === radarFrames.length - 1);
             const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
             document.getElementById('frameTimeBadge').textContent = isLive ? `🔴 ${timeStr} (Live)` : timeStr;
+            if (isLive) {
+                const upd = document.getElementById('radarUpdated');
+                if (upd) upd.textContent = 'Radar data updated: ' + date.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + ' \u2022 Source: RainViewer / NOAA NEXRAD';
+            }
             document.getElementById('radarTimeSlider').value = index;
         }
 
@@ -3240,6 +3246,7 @@
         function startRadarLoop() {
             if (!radarFrames.length || radarLayerType === 'noaa_nexrad') return;
             isPlaying = true;
+            window._radarPausedByUser = false;
             document.getElementById('playBtn').textContent = '⏸ Pause';
             const statusBadge = document.getElementById('loopStatusBadge');
             if (statusBadge) statusBadge.textContent = '🔴 Loop Playing';
@@ -3251,6 +3258,7 @@
 
         function stopRadarLoop() {
             isPlaying = false;
+            window._radarPausedByUser = true;
             document.getElementById('playBtn').textContent = '▶ Play Loop';
             const statusBadge = document.getElementById('loopStatusBadge');
             if (statusBadge && radarLayerType !== 'noaa_nexrad') statusBadge.textContent = '⏸ Loop Paused';
@@ -3309,6 +3317,8 @@
                 }).addTo(map);
 
                 document.getElementById('frameTimeBadge').textContent = '🔴 NOAA NEXRAD (Live US Feed)';
+                const updNoaa = document.getElementById('radarUpdated');
+                if (updNoaa) updNoaa.textContent = 'Radar data updated: ' + formatFeedTime(new Date()) + ' \u2022 Source: NOAA NEXRAD live feed';
                 const statusBadge = document.getElementById('loopStatusBadge');
                 if (statusBadge) statusBadge.textContent = '🇺🇸 NOAA Live Feed';
                 document.getElementById('playBtn').disabled = true;
@@ -3394,14 +3404,31 @@
         // ==========================================
         // 3. NWS LIVE SEVERE WEATHER ALERTS FEED & MAP POLYGONS
         // ==========================================
-        async function fetchNWSAlerts() {
+        // Step 1 fix (2026-11-07): the alerts feed used to fetch once with no
+        // retry and no timestamp, so one transient NWS failure left the page
+        // stuck on "temporarily unavailable" forever. Now it retries twice,
+        // refreshes every 5 minutes, and always shows a real last-updated time.
+        let lastAlertsUpdate = null;
+        function formatFeedTime(date) {
+            return date.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+        }
+        function setAlertsUpdated(text) {
+            const el = document.getElementById('alertsUpdated');
+            if (el) el.textContent = text;
+        }
+        async function fetchNWSAlerts(attempt) {
+            attempt = attempt || 0;
             const grid = document.getElementById('alertsGrid');
             const ticker = document.getElementById('tickerText');
+            if (!grid) return;
 
             try {
                 const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert');
+                if (!res.ok) throw new Error('NWS alerts API returned status ' + res.status);
                 const data = await res.json();
                 const features = data.features || [];
+                lastAlertsUpdate = new Date();
+                setAlertsUpdated('Alerts last updated: ' + formatFeedTime(lastAlertsUpdate) + ' \u2022 Source: National Weather Service (api.weather.gov)');
 
                 // Render active warning polygons on Leaflet Map
                 renderAlertPolygonsOnMap(data);
@@ -3429,15 +3456,21 @@
                     return `
                     <div class="alert-card ${typeClass}">
                         <div class="alert-headline">${p.event || 'Severe Weather Alert'}</div>
-                        <div class="alert-area">📍 ${p.areaDesc || 'United States Area'}</div>
-                        <div class="alert-desc">${p.headline || p.description?.slice(0, 160) + '…'}</div>
+                        <div class="alert-area">\uD83D\uDCCD ${p.areaDesc || 'United States Area'}</div>
+                        <div class="alert-desc">${p.headline || p.description?.slice(0, 160) + '\u2026'}</div>
                     </div>`;
                 }).join('');
 
             } catch (err) {
                 console.warn('NWS Alerts fetch error:', err);
+                if (attempt < 2) {
+                    setTimeout(() => fetchNWSAlerts(attempt + 1), 3000);
+                    return;
+                }
                 ticker.textContent = 'NOAA NEXRAD Radar operational across the United States.';
-                grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:20px;">Active alerts feed temporarily unavailable. Please verify with weather.gov.</div>';
+                const lastOk = lastAlertsUpdate ? ' Last successful update: ' + formatFeedTime(lastAlertsUpdate) + '.' : '';
+                grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:20px;">Active alerts feed temporarily unavailable. Last checked: ' + formatFeedTime(new Date()) + '.' + lastOk + ' Retrying automatically &mdash; please verify with weather.gov.</div>';
+                setTimeout(() => fetchNWSAlerts(0), 60000);
             }
         }
 
@@ -4140,6 +4173,8 @@
             initTheme();
             initRadarMap();
             fetchNWSAlerts();
+            setInterval(fetchNWSAlerts, 300000);
+            setInterval(() => { if (radarLayerType !== 'noaa_nexrad') loadRainViewerData(); }, 300000);
             renderRecentChips();
             renderCitiesList();
             checkCookieConsent();

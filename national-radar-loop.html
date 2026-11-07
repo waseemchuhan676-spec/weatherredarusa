@@ -722,6 +722,7 @@
                         <span class="time-badge" id="frameTimeBadge">Loading Loop…</span>
                     </div>
                 </div>
+                <p id="radarUpdated" style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 0;">Radar data: loading latest frames&hellip;</p>
 
                 <div class="secondary-controls">
                     <select class="radar-ctrl-select" id="layerSelect" onchange="changeRadarLayer(this.value)">
@@ -902,6 +903,7 @@
                     <div class="sidebar-card">
                         <h3>🚨 Active NWS Alerts</h3>
                         <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">Live watches & warnings across the US:</p>
+                        <p id="alertsUpdated" style="font-size:0.8rem;color:var(--text-muted);margin:0 0 12px;">Alerts feed: checking live data from the National Weather Service&hellip;</p>
                         <div id="alertsFeed" style="display:flex;flex-direction:column;gap:10px;">
                             <div style="font-size:0.85rem;color:var(--text-muted);">Fetching NOAA emergency warnings…</div>
                         </div>
@@ -1075,7 +1077,7 @@
 
                         // Auto-start continuous loop
                         setTimeout(() => {
-                            startRadarLoop();
+                            if (!window._radarPausedByUser) startRadarLoop();
                         }, 500);
                     }
                 } else {
@@ -1084,7 +1086,7 @@
             } catch (err) {
                 console.warn('RainViewer error, falling back to NOAA NEXRAD:', err);
                 document.getElementById('frameTimeBadge').textContent = '🔴 NOAA Live Feed';
-                changeLayer('noaa_nexrad');
+                changeRadarLayer('noaa_nexrad');
             }
         }
 
@@ -1105,6 +1107,10 @@
             const isLive = (index === radarFrames.length - 1);
             const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
             document.getElementById('frameTimeBadge').textContent = isLive ? `🔴 ${timeStr} (Live)` : timeStr;
+            if (isLive) {
+                const upd = document.getElementById('radarUpdated');
+                if (upd) upd.textContent = 'Radar data updated: ' + date.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + ' \u2022 Source: RainViewer / NOAA NEXRAD';
+            }
             document.getElementById('radarTimeSlider').value = index;
         }
 
@@ -1123,6 +1129,7 @@
         function startRadarLoop() {
             if (!radarFrames.length || radarLayerType === 'noaa_nexrad') return;
             isPlaying = true;
+            window._radarPausedByUser = false;
             document.getElementById('playBtn').textContent = '⏸ Pause';
             document.getElementById('loopStatusBadge').textContent = '🔴 Loop Running';
             playInterval = setInterval(() => {
@@ -1133,6 +1140,7 @@
 
         function stopRadarLoop() {
             isPlaying = false;
+            window._radarPausedByUser = true;
             document.getElementById('playBtn').textContent = '▶ Play Loop';
             if (radarLayerType !== 'noaa_nexrad') {
                 document.getElementById('loopStatusBadge').textContent = '⏸ Loop Paused';
@@ -1166,6 +1174,8 @@
                 }).addTo(map);
 
                 document.getElementById('frameTimeBadge').textContent = '🔴 NOAA NEXRAD (Live US Feed)';
+                const updNoaa = document.getElementById('radarUpdated');
+                if (updNoaa) updNoaa.textContent = 'Radar data updated: ' + formatFeedTime(new Date()) + ' \u2022 Source: NOAA NEXRAD live feed';
                 const statusBadge = document.getElementById('loopStatusBadge');
                 if (statusBadge) statusBadge.textContent = '🇺🇸 NOAA Live Feed';
                 document.getElementById('playBtn').disabled = true;
@@ -1237,12 +1247,26 @@
         }
 
         // Live NOAA Alerts for Sidebar & Map Polygons
-        async function fetchSidebarAlerts() {
+        // Step 1 fix (2026-11-07): retry transient NWS failures (was one-shot,
+        // no retry, no timestamp) and auto-refresh every 5 minutes, with a real
+        // last-updated time. Also fixes the RainViewer-fallback call below,
+        // which used the undefined changeLayer() instead of changeRadarLayer().
+        let lastAlertsUpdate = null;
+        function formatFeedTime(date) {
+            return date.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+        }
+        async function fetchSidebarAlerts(attempt) {
+            attempt = attempt || 0;
             const feed = document.getElementById('alertsFeed');
+            if (!feed) return;
+            const upd = document.getElementById('alertsUpdated');
             try {
                 const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert');
+                if (!res.ok) throw new Error('NWS alerts API returned status ' + res.status);
                 const data = await res.json();
                 const features = data.features || [];
+                lastAlertsUpdate = new Date();
+                if (upd) upd.textContent = 'Alerts last updated: ' + formatFeedTime(lastAlertsUpdate) + ' \u2022 Source: National Weather Service (api.weather.gov)';
 
                 renderAlertPolygonsOnMap(data);
 
@@ -1255,12 +1279,19 @@
                     return `
                         <div style="background:var(--bg-elevated);border-left:3px solid var(--danger);border-radius:6px;padding:8px 12px;font-size:0.82rem;">
                             <strong style="color:var(--danger);">${p.event || 'Severe Alert'}</strong>
-                            <div style="color:var(--text-muted);margin-top:2px;">📍 ${p.areaDesc?.slice(0, 50) || 'USA'}</div>
+                            <div style="color:var(--text-muted);margin-top:2px;">\uD83D\uDCCD ${p.areaDesc?.slice(0, 50) || 'USA'}</div>
                         </div>
                     `;
                 }).join('');
             } catch (err) {
-                feed.innerHTML = '<div style="font-size:0.85rem;color:var(--text-muted);">Alert feed active on radar.weather.gov</div>';
+                console.warn('NWS Alerts fetch error:', err);
+                if (attempt < 2) {
+                    setTimeout(() => fetchSidebarAlerts(attempt + 1), 3000);
+                    return;
+                }
+                const lastOk = lastAlertsUpdate ? ' Last successful update: ' + formatFeedTime(lastAlertsUpdate) + '.' : '';
+                feed.innerHTML = '<div style="font-size:0.85rem;color:var(--text-muted);">Alert feed temporarily unavailable. Last checked: ' + formatFeedTime(new Date()) + '.' + lastOk + ' Retrying automatically &mdash; see radar.weather.gov.</div>';
+                setTimeout(() => fetchSidebarAlerts(0), 60000);
             }
         }
 
@@ -1354,6 +1385,8 @@
             initTheme();
             initMap();
             fetchSidebarAlerts();
+            setInterval(fetchSidebarAlerts, 300000);
+            setInterval(refreshRadarData, 300000);
             checkCookieConsent();
 
             try {
