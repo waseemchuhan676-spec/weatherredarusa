@@ -1144,7 +1144,7 @@
         function updateBaseMap(theme) {
             if (!map) return;
             if (baseTileLayer) map.removeLayer(baseTileLayer);
-            const tileUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png';
+            const tileUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_552e_1_9ae0169e1876e5cd9d3919cd';
             baseTileLayer = L.tileLayer(tileUrl, { subdomains: 'abcd', maxZoom: 19 }).addTo(map);
 
             baseTileLayer.on('tileerror', function() {
