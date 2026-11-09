@@ -3270,6 +3270,7 @@
 
         function startRadarLoop() {
             if (!radarFrames.length || (radarLayerType === 'noaa_nexrad' && radarTimeframe !== 'future')) return;
+            if (playInterval) clearInterval(playInterval); // idempotent: never run two loops at once
             isPlaying = true;
             window._radarPausedByUser = false;
             document.getElementById('playBtn').textContent = '⏸ Pause';
@@ -3412,14 +3413,20 @@
                 if (upd) upd.textContent = futureRadarUpdatedText(radarFrames[0].runInit);
                 if (statusBadge) statusBadge.textContent = '🔮 Future Radar • Next 2 Hours';
                 if (playBtn) { playBtn.disabled = false; playBtn.style.opacity = '1'; }
-                setTimeout(() => { if (radarTimeframe === 'future' && !window._radarPausedByUser) startRadarLoop(); }, 500);
+                // Switching views is an explicit request to watch this loop:
+                // restart playback (stopRadarLoop above sets _radarPausedByUser,
+                // which would otherwise block the auto-start forever).
+                window._radarPausedByUser = false;
+                setTimeout(() => { if (radarTimeframe === 'future') startRadarLoop(); }, 500);
             } else {
                 radarTimeframe = 'past';
                 if (btnFuture) btnFuture.classList.remove('active');
                 if (btnPast) btnPast.classList.add('active');
                 if (layerSelect) { layerSelect.disabled = false; layerSelect.title = ''; }
                 if (statusBadge && radarLayerType !== 'noaa_nexrad') statusBadge.textContent = '🔴 2-Hr Loop';
+                window._radarPausedByUser = false;
                 restorePastFrames();
+                startRadarLoop();
             }
         }
 
