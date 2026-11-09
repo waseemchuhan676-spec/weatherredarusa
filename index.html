@@ -2254,6 +2254,10 @@
                         <p id="radarUpdated" style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 0;">Radar data: loading latest frames&hellip;</p>
 
                         <div class="secondary-controls">
+                            <div class="radar-view-tabs" role="group" aria-label="Radar time direction">
+                                <button type="button" id="btnPastRadar" class="active" onclick="switchRadarTimeframe('past')" title="Observed radar: past 2 hours">⏪ Past 2 hours</button>
+                                <button type="button" id="btnFutureRadar" onclick="switchRadarTimeframe('future')" title="Forecast radar: next 2 hours (NOAA HRRR model)">⏩ Next 2 hours</button>
+                            </div>
                             <select class="radar-ctrl-select" id="layerSelect" onchange="changeRadarLayer(this.value)">
                                 <option value="radar">🌧️ Rain / Snow (Doppler Loop)</option>
                                 <option value="noaa_nexrad">🇺🇸 NOAA NEXRAD Base (Live Gov Feed)</option>
@@ -2269,6 +2273,10 @@
                             <button class="radar-ctrl-btn" onclick="recenterUSA()" title="Reset view to whole United States">🇺🇸 Center US</button>
                             <button class="radar-ctrl-btn" onclick="refreshRadarData()" title="Reload latest radar frames">↻ Refresh</button>
                         </div>
+                    </div>
+                    <div style="border-top:1px solid var(--border);padding:12px 16px;font-size:0.85rem;color:var(--text-muted);">
+                        <strong style="color:var(--text-primary);">🔮 Future radar — next 2 hours:</strong>
+                        Switch to “Next 2 hours” above the map to see where rain is expected next. This view is a NOAA HRRR weather-model forecast (simulated radar reflectivity, new model run every hour via Iowa State University’s IEM service) — a forecast, not observed radar. It is most accurate for steady, organized rain in the first 30–60 minutes, and less reliable for fast-developing scattered thunderstorms. RainViewer’s free public radar API publishes past radar only, so the future view uses NOAA HRRR instead.
                     </div>
                 </div>
             </div>
@@ -3046,6 +3054,7 @@
         let playInterval = null;
         let loopSpeed = 800; // ms
         let radarLayerType = 'radar'; // 'radar', 'noaa_nexrad', 'satellite'
+        let radarTimeframe = 'past'; // Step 4 (2026-11-09): 'past' = observed RainViewer loop, 'future' = NOAA HRRR forecast
         let cityMarker = null;
 
         // ==========================================
@@ -3156,17 +3165,19 @@
                 if (!res.ok) throw new Error('RainViewer API returned status ' + res.status);
                 const data = await res.json();
 
-                // Past radar frames + forecast frames
+                // Past radar frames only — RainViewer's free public API publishes
+                // no nowcast frames (live JSON returns "nowcast":[]); future radar
+                // comes from NOAA HRRR instead (see Step 4 block below).
                 if (data && data.radar && data.radar.past && data.radar.past.length > 0) {
                     window._rvHost = data.host || 'https://tilecache.rainviewer.com';
                     window._rvRadarPast = data.radar.past;
                     window._rvSatPast = (data.satellite && data.satellite.infrared) ? data.satellite.infrared : [];
 
-                    updateActiveFrames();
+                    if (radarTimeframe !== 'future') updateActiveFrames();
 
                     // Auto-start loop so visitors immediately see animated radar loop
                     setTimeout(() => {
-                        if (!isPlaying && radarFrames.length > 1 && radarLayerType !== 'noaa_nexrad' && !window._radarPausedByUser) {
+                        if (!isPlaying && radarFrames.length > 1 && radarLayerType !== 'noaa_nexrad' && radarTimeframe !== 'future' && !window._radarPausedByUser) {
                             startRadarLoop();
                         }
                     }, 800);
@@ -3184,6 +3195,9 @@
             if (radarLayerType === 'noaa_nexrad') {
                 return; // Handled directly in changeRadarLayer
             }
+            if (radarTimeframe === 'future') {
+                return; // Future frames are HRRR, not RainViewer past frames
+            }
             radarFrames = radarLayerType === 'satellite' ? (window._rvSatPast || []) : (window._rvRadarPast || []);
             if (!radarFrames.length) return;
 
@@ -3200,12 +3214,18 @@
             const frame = radarFrames[index];
             if (!frame) return;
 
-            const path = frame.path;
-            const host = window._rvHost || 'https://tilecache.rainviewer.com';
-            const colorScheme = radarLayerType === 'satellite' ? 0 : 2; // Scheme 2 is high contrast radar
-            const smooth = 1;
-            const snow = 1;
-            const url = `${host}${path}/256/{z}/{x}/{y}/${colorScheme}/${smooth}_${snow}.png`;
+            let url;
+            if (frame.hrrr) {
+                // Step 4: NOAA HRRR forecast reflectivity (IEM tile service)
+                url = hrrrTileUrl(frame);
+            } else {
+                const path = frame.path;
+                const host = window._rvHost || 'https://tilecache.rainviewer.com';
+                const colorScheme = radarLayerType === 'satellite' ? 0 : 2; // Scheme 2 is high contrast radar
+                const smooth = 1;
+                const snow = 1;
+                url = `${host}${path}/256/{z}/{x}/{y}/${colorScheme}/${smooth}_${snow}.png`;
+            }
 
             if (radarTileLayer) {
                 map.removeLayer(radarTileLayer);
@@ -3218,12 +3238,17 @@
 
             // Update time badge
             const date = new Date(frame.time * 1000);
-            const isLive = (index === radarFrames.length - 1);
             const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
-            document.getElementById('frameTimeBadge').textContent = isLive ? `🔴 ${timeStr} (Live)` : timeStr;
-            if (isLive) {
-                const upd = document.getElementById('radarUpdated');
-                if (upd) upd.textContent = 'Radar data updated: ' + date.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + ' \u2022 Source: RainViewer / NOAA NEXRAD';
+            if (frame.hrrr) {
+                const minsAhead = Math.max(0, Math.round((frame.time * 1000 - Date.now()) / 60000));
+                document.getElementById('frameTimeBadge').textContent = '🔮 Forecast • ' + timeStr + ' (in ~' + minsAhead + ' min)';
+            } else {
+                const isLive = (index === radarFrames.length - 1);
+                document.getElementById('frameTimeBadge').textContent = isLive ? `🔴 ${timeStr} (Live)` : timeStr;
+                if (isLive) {
+                    const upd = document.getElementById('radarUpdated');
+                    if (upd) upd.textContent = 'Radar data updated: ' + date.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + ' \u2022 Source: RainViewer / NOAA NEXRAD';
+                }
             }
             document.getElementById('radarTimeSlider').value = index;
         }
@@ -3237,19 +3262,19 @@
         }
 
         function stepRadarFrame(step) {
-            if (!radarFrames.length || radarLayerType === 'noaa_nexrad') return;
+            if (!radarFrames.length || (radarLayerType === 'noaa_nexrad' && radarTimeframe !== 'future')) return;
             stopRadarLoop();
             currentFrameIndex = (currentFrameIndex + step + radarFrames.length) % radarFrames.length;
             showFrame(currentFrameIndex);
         }
 
         function startRadarLoop() {
-            if (!radarFrames.length || radarLayerType === 'noaa_nexrad') return;
+            if (!radarFrames.length || (radarLayerType === 'noaa_nexrad' && radarTimeframe !== 'future')) return;
             isPlaying = true;
             window._radarPausedByUser = false;
             document.getElementById('playBtn').textContent = '⏸ Pause';
             const statusBadge = document.getElementById('loopStatusBadge');
-            if (statusBadge) statusBadge.textContent = '🔴 Loop Playing';
+            if (statusBadge) statusBadge.textContent = radarTimeframe === 'future' ? '🔮 Future Radar • Next 2 Hours' : '🔴 Loop Playing';
             playInterval = setInterval(() => {
                 currentFrameIndex = (currentFrameIndex + 1) % radarFrames.length;
                 showFrame(currentFrameIndex);
@@ -3304,7 +3329,112 @@
             }
         }
 
+        // ==========================================
+        // STEP 4 — FUTURE RADAR: NEXT 2 HOURS (2026-11-09)
+        // ==========================================
+        // RainViewer's free public Weather Maps API publishes PAST radar only.
+        // Verified 9 Nov 2026: the live weather-maps.json returns "nowcast":[]
+        // and RainViewer's own API-example README states "Past radar data only
+        // (no forecast/nowcast, no satellite)" for the personal-use API. The
+        // 30-min nowcast is a free-APP feature and 120-min is a paid app plan —
+        // neither is served by the public API. So the future view below uses
+        // NOAA's HRRR model instead (documented working alternative):
+        // simulated reflectivity tiles from Iowa State University's IEM service
+        // (mesonet.agron.iastate.edu) — the same service that already serves
+        // this site's NOAA NEXRAD layer. Docs:
+        // https://mesonet.agron.iastate.edu/GIS/model.phtml
+        // Template hrrr::REFD-FXXXX-0, FXXXX = forecast minute (15-min steps,
+        // out to 18 h). The latest run is available ~:50 past the hour for the
+        // previous hour's initialization, so the run init is computed that way.
+        // The four frames are picked dynamically: the first forecast minute
+        // strictly ahead of now (+15 min buffer) on the 15-min grid, then
+        // +30 min steps — so every frame is genuinely in the future and the
+        // view covers roughly the next 2 hours. Never replays the past as
+        // "future": the badge shows each frame's valid time and minutes ahead.
+        function hrrrRunInit() {
+            const now = new Date();
+            const init = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), 0, 0));
+            if (now.getUTCMinutes() < 50) init.setUTCHours(init.getUTCHours() - 1);
+            return init;
+        }
+        function hrrrFrames() {
+            const init = hrrrRunInit();
+            const initSec = Math.floor(init.getTime() / 1000);
+            const nowSec = Math.floor(Date.now() / 1000);
+            let first = Math.ceil((nowSec + 900 - initSec) / 900) * 15;
+            if (first < 15) first = 15;
+            return [first, first + 30, first + 60, first + 90].map(function (m) {
+                return {
+                    time: initSec + m * 60,
+                    minutes: m,
+                    hrrr: true,
+                    layer: 'hrrr::REFD-F' + String(m).padStart(4, '0') + '-0',
+                    runInit: init
+                };
+            });
+        }
+        function hrrrTileUrl(frame) {
+            return 'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/' + frame.layer + '/{z}/{x}/{y}.png';
+        }
+        function formatHrrrRunTime(date) {
+            return date.toLocaleString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+        }
+        function futureRadarUpdatedText(runInit) {
+            return 'Forecast radar: NOAA HRRR model run ' + formatHrrrRunTime(runInit) + ' UTC \u2022 Simulated reflectivity \u2014 a forecast, not observed radar \u2022 Source: NOAA HRRR via Iowa State IEM';
+        }
+        function restorePastFrames() {
+            if (radarLayerType === 'noaa_nexrad') {
+                changeRadarLayer('noaa_nexrad');
+            } else {
+                updateActiveFrames();
+            }
+        }
+        function switchRadarTimeframe(dir) {
+            if (dir === radarTimeframe) return;
+            stopRadarLoop();
+            const btnPast = document.getElementById('btnPastRadar');
+            const btnFuture = document.getElementById('btnFutureRadar');
+            const layerSelect = document.getElementById('layerSelect');
+            const statusBadge = document.getElementById('loopStatusBadge');
+            const playBtn = document.getElementById('playBtn');
+            if (dir === 'future') {
+                radarTimeframe = 'future';
+                if (btnPast) btnPast.classList.remove('active');
+                if (btnFuture) btnFuture.classList.add('active');
+                if (layerSelect) { layerSelect.disabled = true; layerSelect.title = 'Layers apply to the past radar loop'; }
+                radarFrames = hrrrFrames();
+                const slider = document.getElementById('radarTimeSlider');
+                slider.max = radarFrames.length - 1;
+                currentFrameIndex = 0;
+                slider.value = 0;
+                showFrame(0);
+                const upd = document.getElementById('radarUpdated');
+                if (upd) upd.textContent = futureRadarUpdatedText(radarFrames[0].runInit);
+                if (statusBadge) statusBadge.textContent = '🔮 Future Radar • Next 2 Hours';
+                if (playBtn) { playBtn.disabled = false; playBtn.style.opacity = '1'; }
+                setTimeout(() => { if (radarTimeframe === 'future' && !window._radarPausedByUser) startRadarLoop(); }, 500);
+            } else {
+                radarTimeframe = 'past';
+                if (btnFuture) btnFuture.classList.remove('active');
+                if (btnPast) btnPast.classList.add('active');
+                if (layerSelect) { layerSelect.disabled = false; layerSelect.title = ''; }
+                if (statusBadge && radarLayerType !== 'noaa_nexrad') statusBadge.textContent = '🔴 2-Hr Loop';
+                restorePastFrames();
+            }
+        }
+
         function changeRadarLayer(type) {
+            if (radarTimeframe === 'future') {
+                // Leaving the future view: restore the past-view toggle state
+                // (inline reset, no recursion into switchRadarTimeframe).
+                radarTimeframe = 'past';
+                const btnPast = document.getElementById('btnPastRadar');
+                const btnFuture = document.getElementById('btnFutureRadar');
+                if (btnPast) btnPast.classList.add('active');
+                if (btnFuture) btnFuture.classList.remove('active');
+                const layerSelect = document.getElementById('layerSelect');
+                if (layerSelect) { layerSelect.disabled = false; layerSelect.title = ''; }
+            }
             radarLayerType = type;
             stopRadarLoop();
 
@@ -3361,7 +3491,13 @@
         }
 
         function refreshRadarData() {
-            if (radarLayerType === 'noaa_nexrad') {
+            if (radarTimeframe === 'future') {
+                // Rebuild future frames from the latest HRRR run (new run every hour).
+                radarFrames = hrrrFrames();
+                showFrame(currentFrameIndex);
+                const upd = document.getElementById('radarUpdated');
+                if (upd) upd.textContent = futureRadarUpdatedText(radarFrames[0].runInit);
+            } else if (radarLayerType === 'noaa_nexrad') {
                 changeRadarLayer('noaa_nexrad');
             } else {
                 loadRainViewerData();
@@ -4174,7 +4310,7 @@
             initRadarMap();
             fetchNWSAlerts();
             setInterval(fetchNWSAlerts, 300000);
-            setInterval(() => { if (radarLayerType !== 'noaa_nexrad') loadRainViewerData(); }, 300000);
+            setInterval(() => { if (radarLayerType !== 'noaa_nexrad' && radarTimeframe !== 'future') loadRainViewerData(); }, 300000);
             renderRecentChips();
             renderCitiesList();
             checkCookieConsent();
