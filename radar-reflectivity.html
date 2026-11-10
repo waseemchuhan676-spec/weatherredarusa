@@ -1,0 +1,1511 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title targeting high-volume exact match queries: national radar loop, noaa full loop, us doppler radar loop -->
+    <title>Radar Reflectivity (dBZ) – Live US Reflectivity Radar Map</title>
+    
+    <meta name="description" content="Live radar reflectivity map for the United States: watch rain, snow and hail in dBZ, learn the reflectivity scale, and how NEXRAD Doppler radar is made.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Weather Radar USA">
+    <meta name="keywords" content="radar reflectivity, reflectivity radar, dBZ scale, live reflectivity map, NEXRAD reflectivity, base reflectivity, composite reflectivity">
+    <meta name="geo.region" content="US">
+    <meta name="theme-color" content="#f1f5fa">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://weatherradarusa.online/radar-reflectivity.html">
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Radar Reflectivity (dBZ) – Live US Reflectivity Radar Map">
+    <meta property="og:description" content="Live radar reflectivity map for the United States: watch rain, snow and hail in dBZ, learn the reflectivity scale, and how NEXRAD Doppler radar is made.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://weatherradarusa.online/radar-reflectivity.html">
+    <meta property="og:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:site_name" content="Weather Radar USA">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Radar Reflectivity (dBZ) – Live US Reflectivity Radar Map">
+    <meta name="twitter:description" content="Live radar reflectivity map for the United States: watch rain, snow and hail in dBZ, learn the reflectivity scale, and how NEXRAD Doppler radar is made.">
+    <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+    <meta name="twitter:image:alt" content="Live US Radar Reflectivity Map (dBZ) &amp; NOAA NEXRAD">
+    <meta property="og:image:alt" content="Live US Radar Reflectivity Map (dBZ) &amp; NOAA NEXRAD">
+    <meta name="application-name" content="Weather Radar USA">
+    <meta name="apple-mobile-web-app-title" content="Weather Radar USA">
+    
+    <!-- Core Web Vitals Resource Hints -->
+    <link rel="dns-prefetch" href="https://tilecache.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.rainviewer.com">
+    <link rel="dns-prefetch" href="https://api.weather.gov">
+    <link rel="preconnect" href="https://tilecache.rainviewer.com" crossorigin>
+    
+    <!-- Google Fonts & Leaflet Map CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <!-- BreadcrumbList & WebApplication Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Home",
+              "item": "https://weatherradarusa.online/"
+            },
+            {
+              "@type": "ListItem",
+              "position": 2,
+              "name": "Radar Reflectivity",
+              "item": "https://weatherradarusa.online/radar-reflectivity.html"
+            }
+          ]
+        },
+        {
+          "@type": "WebApplication",
+          "name": "Radar Reflectivity (dBZ) – Live US Reflectivity Radar Map",
+          "url": "https://weatherradarusa.online/radar-reflectivity.html",
+          "applicationCategory": "WeatherApplication",
+          "operatingSystem": "All",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD"
+          },
+          "featureList": [
+            "Live US Radar Reflectivity Map (dBZ)",
+            "2-Hour Animated Reflectivity Loop (Past + Future)",
+            "NOAA JetStream dBZ Reflectivity Scale",
+            "Base & Composite Reflectivity Explained",
+            "Interactive Zoom and Pan to Local Street Level"
+          ]
+        },
+                {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "What is radar reflectivity?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Radar reflectivity is a measure of how much of a radar pulse bounces back from rain, snow, hail and other particles in the air, measured in dBZ (decibels of reflectivity). The National Weather Service WSR-88D NEXRAD radars sweep the sky and draw the returning energy as the colors on the map: the stronger the return, the heavier the precipitation or the larger the particles."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the difference between base reflectivity and composite reflectivity?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Base reflectivity is the lowest radar sweep, taken at a 0.5-degree elevation angle, and shows precipitation near the ground around each radar. Composite reflectivity shows the strongest echo at any height in a vertical column, so it reveals the most intense part of a thunderstorm even if it is high in the cloud. The live map on this page is a composite reflectivity mosaic; switch the layer selector to NOAA NEXRAD to see the live base reflectivity feed."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What dBZ value means hail?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "According to NOAA JetStream, 50 to 65 dBZ is heavy precipitation or some hail, and above 65 dBZ is extremely heavy precipitation including water-coated hail. A value of 60 to 65 dBZ is about the level where 3/4-inch hail can occur. Reflectivity alone does not prove hail, though — very heavy rain can reach the same values — so always check the National Weather Service warnings for your area."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can reflectivity tell rain from snow?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Not by itself. The same reflectivity value can mean different things: 20 dBZ is roughly light rain or moderate to heavy snow, and snow generally returns less energy than rain falling at the same rate. To tell rain from snow, use the reflectivity map together with the surface temperature and the forecast — the colors alone cannot separate rain, snow and sleet."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does the radar sometimes show rain when it is not raining?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Several non-weather targets bounce radar energy back: ground clutter from buildings, hills, birds and insects; anomalous propagation, where the beam bends down to the ground on calm clear nights; virga, rain that evaporates before it reaches the ground; and the bright band, where melting snowflakes look extra bright. The national mosaic filters out much of this, but a lone bright patch on an otherwise clear day is usually not rain."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Is the reflectivity map on this page live?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. The map animates the past 2 hours of observed reflectivity, with new frames every 5 to 10 minutes, and the layer selector also offers the live NOAA NEXRAD feed. The 'Next 2 hours' view is different: it is a NOAA HRRR model forecast of simulated reflectivity, not observed radar, and it is most accurate in the first 30 to 60 minutes."
+              }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        /* Pure Blue Sky & Crisp White American Theme */
+        :root {
+            --bg-body: #f0f7ff;
+            --bg-header: rgba(255, 255, 255, 0.96);
+            --bg-card: #ffffff;
+            --bg-elevated: #f0f7ff;
+            --border: #bae6fd;
+            --border-hover: #0284c7;
+            --text-primary: #0f172a;
+            --text-muted: #475569;
+            --text-sub: #1e293b;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --accent: #0284c7;
+            --accent-glow: rgba(2, 132, 199, 0.16);
+            --danger: #dc2626;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --shadow: 0 10px 28px -4px rgba(2, 132, 199, 0.08);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f0f7ff;
+            background: linear-gradient(180deg, #dbeafe 0%, #e0f2fe 180px, #f0f7ff 500px, #ffffff 1000px);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        body.theme-dark, body.theme-light {
+            background-color: #f0f7ff !important;
+            background: linear-gradient(180deg, #dbeafe 0%, #e0f2fe 180px, #f0f7ff 500px, #ffffff 1000px) !important;
+            color: #0f172a !important;
+        }
+        .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+        a { color: var(--accent); text-decoration: none; transition: 0.2s; }
+        a:hover { color: #7dd3fc; }
+
+        /* Header */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg-header);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header .container { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; font-family: 'Outfit', sans-serif; }
+        .logo-radar-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-radar-icon svg { width: 22px; height: 22px; }
+        .logo-text { color: var(--text-primary); }
+        .highlight {
+            background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav { display: flex; align-items: center; gap: 20px; }
+        .nav a { color: var(--text-muted); font-weight: 500; font-size: 0.92rem; }
+        .nav a:hover, .nav a.active { color: var(--text-primary); }
+        .theme-btn {
+            background: var(--bg-elevated); border: 1px solid var(--border);
+            color: var(--text-primary); width: 36px; height: 36px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            padding: 14px 0 6px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .breadcrumbs a { color: var(--text-muted); }
+        .breadcrumbs a:hover { color: var(--accent); }
+        .breadcrumbs span { margin: 0 6px; }
+
+        /* Hero */
+        .loop-hero {
+            padding: 16px 0 20px;
+            text-align: center;
+        }
+        .loop-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .loop-hero p {
+            color: var(--text-muted);
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* Regional Quick-Zoom Bar */
+        .region-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 14px 0 20px;
+        }
+        .region-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-sub);
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .region-btn:hover, .region-btn.active {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            background: rgba(56, 189, 248, 0.12);
+        }
+
+        /* Radar Container */
+        .radar-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 0 35px -5px rgba(14, 165, 233, 0.22), var(--shadow);
+            margin-bottom: 30px;
+            position: relative;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .radar-box:hover {
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 0 45px -5px rgba(14, 165, 233, 0.30), var(--shadow);
+        }
+        .radar-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .radar-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .radar-title-group h2 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+        .live-dot {
+            width: 8px; height: 8px; background: var(--danger); border-radius: 50%;
+            animation: pulseDot 1.4s infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.3); }
+        }
+        .badge {
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 999px; font-size: 0.78rem;
+            display: inline-flex; align-items: center; gap: 6px; font-weight: 600;
+        }
+
+        #radarMap {
+            width: 100%; height: 560px; background: #e0f2fe; position: relative;
+        }
+        #mosaicContainer {
+            width: 100%; height: 560px; background: #f0f7ff; display: none;
+            align-items: center; justify-content: center;
+        }
+        #mosaicContainer img { max-height: 100%; width: 100%; object-fit: contain; }
+
+        /* Floating On-Map dBZ Color Legend Bar */
+        .radar-legend-overlay {
+            position: absolute;
+            bottom: 22px;
+            left: 12px;
+            z-index: 500;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 7px 12px;
+            box-shadow: 0 8px 24px rgba(2, 132, 199, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            pointer-events: auto;
+            max-width: 320px;
+        }
+        .legend-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .legend-title {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+        }
+        .legend-scale-bar {
+            display: flex;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+        .scale-color {
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: #ffffff;
+            padding: 2px 5px;
+            flex: 1;
+            text-align: center;
+            line-height: 14px;
+            white-space: nowrap;
+        }
+        .legend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.64rem;
+            color: var(--text-muted);
+            padding-top: 1px;
+        }
+
+        /* Fullscreen */
+        :fullscreen .radar-box, :-webkit-full-screen .radar-box {
+            border-radius: 0; width: 100vw; height: 100vh; display: flex; flex-direction: column;
+        }
+        :fullscreen #radarMap, :-webkit-full-screen #radarMap {
+            flex: 1; height: calc(100vh - 120px) !important;
+        }
+
+        /* Toolbar */
+        .radar-toolbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 18px; background: var(--bg-elevated); border-top: 1px solid var(--border);
+            flex-wrap: wrap; gap: 12px;
+        }
+        .player-controls { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 290px; }
+        .play-btn {
+            background: var(--primary); color: #ffffff; border: none; border-radius: 8px;
+            padding: 8px 14px; font-weight: 700; font-size: 0.88rem; cursor: pointer;
+            transition: background 0.2s; white-space: nowrap;
+        }
+        .play-btn:hover { background: var(--primary-hover); }
+        .radar-step-btn {
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);
+            border-radius: 8px; padding: 8px 11px; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .radar-step-btn:hover { border-color: var(--accent); background: var(--bg-card-hover); color: var(--accent); }
+        .time-slider-wrap { flex: 1; display: flex; align-items: center; gap: 10px; }
+        .time-slider {
+            flex: 1; -webkit-appearance: none; appearance: none;
+            height: 6px; border-radius: 3px; background: var(--border); outline: none; cursor: pointer;
+        }
+        .time-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 16px; height: 16px;
+            border-radius: 50%; background: var(--accent); cursor: pointer;
+        }
+        .time-badge {
+            font-size: 0.82rem; font-weight: 700; color: var(--accent);
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 6px; min-width: 110px; text-align: center;
+        }
+        .secondary-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .radar-ctrl-btn, .radar-ctrl-select {
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-sub);
+            padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .radar-ctrl-btn:hover, .radar-ctrl-select:hover { border-color: var(--accent); color: var(--text-primary); }
+
+        /* Guide & Content Sections */
+        .content-section {
+            padding: 30px 0 50px;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 28px;
+        }
+        @media (max-width: 860px) {
+            .content-grid { grid-template-columns: 1fr; }
+            #radarMap, #mosaicContainer { height: 420px; }
+            .nav { display: none; }
+        }
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 26px;
+        }
+        .article-card h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.45rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        .article-card h3 {
+            font-size: 1.15rem;
+            margin: 20px 0 8px;
+            color: var(--accent);
+        }
+        .article-card p {
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+        }
+        .article-card ul {
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        .article-card li { margin-bottom: 6px; }
+
+        .sidebar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px;
+            height: fit-content;
+        }
+        .sidebar-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .faq-question {
+            width: 100%; text-align: left; background: none; border: none;
+            padding: 14px 18px; color: var(--text-primary); font-weight: 600;
+            font-size: 0.95rem; display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer;
+        }
+        .faq-answer {
+            display: none; padding: 0 18px 14px;
+            color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;
+        }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-header);
+            border-top: 1px solid var(--border);
+            padding: 36px 0 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+        .footer-links {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 14px;
+        }
+
+        /* AdSense Responsive Slot Placeholders (Anti-CLS) */
+        .ad-slot-wrap {
+            width: 100%; max-width: 970px; margin: 18px auto; text-align: center;
+        }
+        .ad-slot-label {
+            font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 4px; display: block;
+        }
+        .ad-slot-box {
+            min-height: 90px; background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed rgba(255, 255, 255, 0.12); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); font-size: 0.82rem; padding: 10px;
+        }
+
+        /* Cookie Consent Banner */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border); padding: 14px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 16px; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(100%); transition: transform 0.3s ease;
+        }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-text { font-size: 0.86rem; color: var(--text-sub); line-height: 1.4; flex: 1; }
+        .cookie-text a { color: var(--accent); font-weight: 600; }
+        .cookie-btn {
+            background: var(--primary); color: #ffffff; border: none;
+            padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; white-space: nowrap; transition: background 0.2s;
+        }
+        .cookie-btn:hover { background: var(--primary-hover); }
+        @media (max-width: 600px) {
+            .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
+        }
+    </style>
+
+    <!-- Monetag Site Verification -->
+    <meta name="monetag" content="30aaf71eab099197f934568b5d3c17d0">
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "yvkks26wwu");
+    </script>
+    <!-- Adsterra Monetization Script (Social Bar) -->
+    <script data-cfasync="false" src="https://bauval.org/14/38a872a5126d119c08717b9adf6fc253"></script>
+</head>
+<body class="theme-light">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo" aria-label="Weather Radar USA Homepage">
+                <div class="logo-radar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10"></path>
+                        <path d="M12 6a6 6 0 1 0 6 6"></path>
+                        <path d="M12 10a2 2 0 1 0 2 2"></path>
+                        <line x1="12" y1="12" x2="20" y2="4"></line>
+                    </svg>
+                </div>
+                <div class="logo-text">Weather Radar <span class="highlight">USA</span></div>
+            </a>
+
+            <nav class="nav" aria-label="Navigation">
+                <a href="/">Full Weather Radar Map</a>
+                <a href="/national-radar-loop.html">National Radar Loop</a>
+                <a href="/hurricane-tracker.html" style="color:#ef4444;font-weight:700;">🌀 Hurricane Tracker</a>
+                <a href="/#severe-alerts">NWS Alerts</a>
+                <a href="/#popular-cities">US Cities</a>
+                <a href="/radar-tools.html">Radar Tools</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>›</span>
+            <strong>Radar Reflectivity</strong>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="loop-hero">
+            <h1>Radar Reflectivity – Live US Reflectivity Radar Map (dBZ)</h1>
+            <p>Live radar reflectivity for the entire United States: the same NEXRAD Doppler radar picture forecasters use, with the dBZ scale explained below — what each color means, what reflectivity is for, and how the radar image is made.</p>
+        </section>
+
+        <!-- Regional Quick-Zoom Bar -->
+        <div class="region-bar" aria-label="Regional Radar Shortcuts">
+            <span style="font-size:0.8rem;color:var(--text-muted);font-weight:600;">QUICK REGIONS:</span>
+            <button class="region-btn active" onclick="zoomRegion('us')">🇺🇸 Entire USA</button>
+            <button class="region-btn" onclick="zoomRegion('southeast')">🏖️ Florida &amp; Southeast</button>
+            <button class="region-btn" onclick="zoomRegion('texas')">🤠 Texas &amp; Gulf Coast</button>
+            <button class="region-btn" onclick="zoomRegion('northeast')">🗽 Northeast Corridor</button>
+            <button class="region-btn" onclick="zoomRegion('midwest')">🌾 Midwest &amp; Ohio Valley</button>
+            <button class="region-btn" onclick="zoomRegion('west')">🌴 West Coast &amp; California</button>
+            <button class="region-btn" onclick="zoomRegion('plains')">🌪️ Central Plains</button>
+        </div>
+
+        <!-- Adsterra: Top Leaderboard / Native Display Banner Unit -->
+        <div class="ad-slot-wrap" aria-label="Sponsored Advertisement">
+            <span class="ad-slot-label">Sponsored Advertisement</span>
+            <div class="ad-slot-box" style="padding:6px;border:1px solid var(--border);background:var(--bg-card);min-height:90px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                <div id="container-3b6f409a46a74a66ee65f44221bce59b"></div>
+                <script async="async" data-cfasync="false" src="https://bauval.org/21/3b6f409a46a74a66ee65f44221bce59b"></script>
+            </div>
+        </div>
+
+        <!-- Radar Map Box -->
+        <section class="radar-box">
+            <div class="radar-header-bar">
+                <div class="radar-title-group">
+                    <span class="live-dot"></span>
+                    <h2>Live US Radar Reflectivity Map (dBZ)</h2>
+                    <span class="badge" id="loopStatusBadge" style="background:rgba(56,189,248,0.12);color:var(--accent);border-color:var(--accent);">🔴 Loop Running</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                    <div style="display:flex;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden;">
+                        <button id="btnInteractiveView" class="region-btn active" style="border:none;border-radius:0;" onclick="switchRadarView('interactive')">Interactive HD Map</button>
+                        <button id="btnMosaicView" class="region-btn" style="border:none;border-radius:0;" onclick="switchRadarView('mosaic')">NOAA Mosaic (GIF)</button>
+                    </div>
+                    <button class="radar-ctrl-btn" onclick="toggleRadarFullscreen()" title="Fullscreen Mode">⛶ Fullscreen</button>
+                    <a href="/radar-tools.html" class="radar-ctrl-btn" style="background:linear-gradient(135deg, #0284c7, #2563eb);color:#ffffff;border:none;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 8px rgba(37,99,235,0.3);" title="Open Weather Radar Tools & Utilities">⚡ Radar Tools »</a>
+                    <a href="/national-radar-loop.html" class="radar-ctrl-btn" style="background:var(--bg-card);border:1px solid var(--border);color:var(--text-sub);font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px;" title="Open the full 2-hour National Radar Loop">📡 National HD Loop »</a>
+                </div>
+            </div>
+
+            <!-- Leaflet Radar Map -->
+            <div id="radarMap" aria-label="Interactive Doppler Radar Loop">
+                <!-- Floating On-Map dBZ Intensity Legend -->
+                <div class="radar-legend-overlay" id="radarLegendOverlay" aria-label="Radar Reflectivity Scale">
+                    <div class="legend-header">
+                        <span class="legend-title">⚡ Precipitation (dBZ)</span>
+                    </div>
+                    <div class="legend-scale-bar">
+                        <span class="scale-color" style="background:#00e400;color:#000;" title="15-25 dBZ: Light Rain">15</span>
+                        <span class="scale-color" style="background:#009e00;color:#fff;" title="25-35 dBZ: Moderate Rain">30</span>
+                        <span class="scale-color" style="background:#ffff00;color:#000;" title="35-45 dBZ: Heavy Rain">40</span>
+                        <span class="scale-color" style="background:#ff7e00;color:#000;" title="45-50 dBZ: Very Heavy Rain">48</span>
+                        <span class="scale-color" style="background:#ff0000;color:#fff;" title="50-60 dBZ: Severe Storm">55</span>
+                        <span class="scale-color" style="background:#99004c;color:#fff;" title="60-70+ dBZ: Severe Hail Core">65+</span>
+                        <span class="scale-color" style="background:#00bfff;color:#000;" title="Snow / Freezing Mix">❄️</span>
+                    </div>
+                    <div class="legend-labels">
+                        <span>Light</span>
+                        <span>Mod</span>
+                        <span>Heavy</span>
+                        <span>Hail ⛈️</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mosaic Fallback -->
+            <div id="mosaicContainer" aria-label="NOAA National Radar Mosaic">
+                <img src="https://www.f5wx.com/radar/live/radar_us.gif" id="mosaicImg" alt="Live US radar reflectivity map – Real-time NOAA NEXRAD storm mosaic" width="800" height="500" loading="lazy" decoding="async">
+            </div>
+
+            <!-- Interactive Player Toolbar -->
+            <div class="radar-toolbar">
+                <div class="player-controls">
+                    <button class="radar-step-btn" onclick="stepRadarFrame(-1)" title="Step 1 frame backward">⏮</button>
+                    <button class="play-btn" id="playBtn" onclick="toggleRadarPlay()">⏸ Pause</button>
+                    <button class="radar-step-btn" onclick="stepRadarFrame(1)" title="Step 1 frame forward">⏭</button>
+                    <div class="time-slider-wrap">
+                        <input type="range" class="time-slider" id="radarTimeSlider" min="0" max="0" value="0" oninput="onTimeSliderChange(this.value)">
+                        <span class="time-badge" id="frameTimeBadge">Loading Loop…</span>
+                    </div>
+                </div>
+                <p id="radarUpdated" style="font-size:0.8rem;color:var(--text-muted);margin:6px 0 0;">Radar data: loading latest frames&hellip;</p>
+
+                <div class="secondary-controls">
+                    <div style="display:flex;background:var(--bg-card);border:1px solid var(--border);border-radius:8px;overflow:hidden;" role="group" aria-label="Radar time direction">
+                        <button type="button" id="btnPastRadar" class="region-btn active" style="border:none;border-radius:0;" onclick="switchRadarTimeframe('past')" title="Observed radar: past 2 hours">⏪ Past 2 hours</button>
+                        <button type="button" id="btnFutureRadar" class="region-btn" style="border:none;border-radius:0;" onclick="switchRadarTimeframe('future')" title="Forecast radar: next 2 hours (NOAA HRRR model)">⏩ Next 2 hours</button>
+                    </div>
+                    <select class="radar-ctrl-select" id="layerSelect" onchange="changeRadarLayer(this.value)">
+                        <option value="radar">🌧️ Rain / Snow (Doppler Loop)</option>
+                        <option value="noaa_nexrad">🇺🇸 NOAA NEXRAD Base (Live Gov Feed)</option>
+                        <option value="satellite">☁️ Satellite (Infrared Clouds)</option>
+                    </select>
+                    <select class="radar-ctrl-select" id="speedSelect" onchange="changeLoopSpeed(this.value)">
+                        <option value="800">Speed: 1x</option>
+                        <option value="1400">Speed: 0.5x (Slow)</option>
+                        <option value="400">Speed: 2x (Fast)</option>
+                    </select>
+                    <button class="radar-ctrl-btn" id="toggleAlertsBtn" onclick="toggleAlertPolygons()" title="Toggle NWS Severe Storm Warning Polygons on Map">⚠️ Warnings: ON</button>
+                    <button class="radar-ctrl-btn" onclick="zoomRegion('us')" title="Reset to Continental US">🇺🇸 Center US</button>
+                    <button class="radar-ctrl-btn" onclick="refreshRadarData()" title="Fetch newest frames">↻ Refresh</button>
+                </div>
+            </div>
+            <div style="border-top:1px solid var(--border);padding:12px 16px;font-size:0.85rem;color:var(--text-muted);">
+                <strong style="color:var(--text-primary);">🔮 Future radar — next 2 hours:</strong>
+                Switch to “Next 2 hours” above the map to see where rain is expected next. This view is a NOAA HRRR weather-model forecast (simulated radar reflectivity, new model run every hour via Iowa State University’s IEM service) — a forecast, not observed radar. It is most accurate for steady, organized rain in the first 30–60 minutes, and less reliable for fast-developing scattered thunderstorms. RainViewer’s free public radar API publishes past radar only, so the future view uses NOAA HRRR instead.
+            </div>
+        </section>
+
+        <!-- Sponsored Severe Weather Alert & Doppler Feed (Adsterra Direct Link) -->
+        <div class="ad-slot-wrap" aria-label="Sponsored Weather Partner">
+            <span class="ad-slot-label">Sponsored Partner • Severe Weather Alert Feed</span>
+            <div style="background:linear-gradient(135deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.95));border:1px solid rgba(56, 189, 248, 0.3);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;box-shadow:0 6px 24px rgba(0,0,0,0.18);">
+                <div style="display:flex;align-items:center;gap:14px;text-align:left;">
+                    <div style="width:44px;height:44px;border-radius:10px;background:rgba(56, 189, 248, 0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">
+                        ⛈️
+                    </div>
+                    <div>
+                        <div style="font-weight:700;font-size:1rem;color:#f8fafc;display:flex;align-items:center;gap:8px;">
+                            Live US Severe Storm & Emergency Doppler Feed
+                            <span style="font-size:0.68rem;padding:2px 6px;border-radius:4px;background:#ef4444;color:#fff;font-weight:700;">LIVE</span>
+                        </div>
+                        <div style="font-size:0.84rem;color:#94a3b8;margin-top:2px;">
+                            High-resolution radar loops, localized flash flood alerts, and instant severe storm updates.
+                        </div>
+                    </div>
+                </div>
+                <a href="/#severe-alerts" style="background:#0284c7;color:#ffffff;padding:10px 18px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;white-space:nowrap;" onmouseover="this.style.background='#0369a1'" onmouseout="this.style.background='#0284c7'">
+                    Check NWS Alerts →
+                </a>
+            </div>
+        </div>
+
+        <!-- Detailed Guide & FAQs -->
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="article-card">
+                    <h2>What Radar Reflectivity Shows</h2>
+                    <p>The map above is the <strong>reflectivity layer</strong> — the radar picture most people mean when they say "the radar". Every colored pixel measures how much of the radar's pulse bounced back from something in the air: rain, snow, sleet, hail, and sometimes birds, insects, or hills. The stronger the return, the brighter and warmer the color. Green and blue mean light precipitation, yellow and orange mean moderate to heavy rain, and red, pink, and purple mark the most intense storm cores, where hail is likely. Where the map is blank, the radar sees no precipitation at all.</p>
+                    <p>Reflectivity is one of the three base products of a pulsed Doppler radar, and it is the one the public knows best — the other two, velocity and spectrum width, describe wind motion and turbulence. This page shows the composite reflectivity mosaic for the whole United States, built from the National Weather Service NEXRAD network.</p>
+
+                    <h3>How to Read It: The dBZ Scale</h3>
+                    <p>Reflectivity is measured in <strong>dBZ</strong> — decibels of reflectivity (Z). The raw values span an enormous range, from tiny drizzle droplets to giant hailstones, so the logarithmic dBZ scale compresses them into a range of about -35 to +85 dBZ. The higher the number, the heavier the precipitation or the larger the particles. The scale below follows the National Oceanic and Atmospheric Administration's JetStream guide:</p>
+                    <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:18px;font-size:0.88rem;line-height:1.9;">
+                        <div><strong style="color:#38bdf8;">-35 – 0 dBZ:</strong> Extremely light — drizzle or very light snow</div>
+                        <div><strong style="color:#00e400;">0 – 20 dBZ:</strong> Very light precipitation — or ground clutter, not rain</div>
+                        <div><strong style="color:#22c55e;">20 – 40 dBZ:</strong> Light precipitation</div>
+                        <div><strong style="color:#ffff00;">40 – 50 dBZ:</strong> Moderate precipitation</div>
+                        <div><strong style="color:#ff7f00;">50 – 65 dBZ:</strong> Heavy precipitation, or some hail</div>
+                        <div><strong style="color:#ff00ff;">65+ dBZ:</strong> Extremely heavy precipitation, including water-coated hail</div>
+                    </div>
+                    <p>Two things to keep in mind. First, the radar does <strong>not</strong> measure rainfall directly — it measures returned power, and a rainfall rate is only estimated from it with a Z–R relationship. Hail inflates that estimate, because a water-coated hailstone reflects far more energy than the same amount of rain. Second, colors are a guide, not a verdict: a 55 dBZ core means a strong storm, but only a National Weather Service warning tells you it is officially dangerous. Always pair the map with the live warnings feed on this page.</p>
+
+                    <h3>What Reflectivity Is For</h3>
+                    <ul>
+                        <li><strong>Is it raining now?</strong> The fastest use of the map: green over your town means light rain, red means a downpour is overhead.</li>
+                        <li><strong>Tracking storms:</strong> Animating the loop shows how fast a rain band or thunderstorm cell is moving and where it is headed next.</li>
+                        <li><strong>Spotting hail and severe cores:</strong> Pink and purple cores above 60 dBZ are where large hail and damaging winds are most likely.</li>
+                        <li><strong>Finding fronts and squall lines:</strong> Long narrow lines of yellow and red mark cold fronts and squall lines advancing across states.</li>
+                        <li><strong>Winter weather:</strong> The same scale tracks snow bands and the rain–snow line during winter storms — snow usually shows lower dBZ than rain at the same rate.</li>
+                        <li><strong>Planning around weather:</strong> Commutes, outdoor work, and events — check the loop, not just a single frame, to see whether rain is arriving or clearing.</li>
+                    </ul>
+
+                    <h3>How Reflectivity Is Made</h3>
+                    <p>The picture starts at more than 160 <strong>WSR-88D NEXRAD</strong> Doppler radar stations across the United States, jointly operated by the National Weather Service, the Department of Defense, and the Federal Aviation Administration. Each radar sends out pulses of microwave energy and listens for the echo. The strength of the returning energy at each point is the reflectivity, and modern dual-polarization radars send both horizontal and vertical pulses, which helps tell rain from hail, snow, and non-weather targets.</p>
+                    <p>Two views come from the same scans. <strong>Base reflectivity</strong> is the lowest sweep, at a 0.5-degree elevation angle, and shows precipitation near the ground around one radar. <strong>Composite reflectivity</strong> takes the strongest echo at any height in a vertical column, so it shows the most intense part of a thunderstorm wherever it sits in the cloud. The National Weather Service stitches every station's scans into one national mosaic, refreshed every few minutes.</p>
+                    <p>The live map on this page is that composite reflectivity mosaic, served through RainViewer's radar API as an animated 2-hour loop, with the official NOAA NEXRAD base reflectivity feed available in the layer selector (via Iowa State University's IEM service). The "Next 2 hours" view is different: it is simulated reflectivity from the NOAA HRRR weather model, a forecast rather than an observation.</p>
+
+                    <h3>What Reflectivity Can't Tell You</h3>
+                    <ul>
+                        <li><strong>Exact rainfall amounts:</strong> Radar estimates rain from reflectivity; only a rain gauge measures it. Hail makes the estimate run high.</li>
+                        <li><strong>Rain versus snow, from color alone:</strong> Light rain and steady snow can share the same dBZ. Temperature and the forecast decide which it is.</li>
+                        <li><strong>Weather behind the beam:</strong> The beam rises with distance and the Earth curves away, so far from a radar the beam can overshoot low rain — and hills can block it entirely.</li>
+                        <li><strong>Rain that never lands:</strong> Virga — rain evaporating on the way down — lights up the radar while the ground stays dry.</li>
+                        <li><strong>False echoes:</strong> The bright band of melting snow, ground clutter, and anomalous propagation can all paint colors where there is no weather. A lone bright patch on a clear day is usually one of these, not rain.</li>
+                    </ul>
+                    <p>For the full beginner's guide to reading a radar map — velocity colors, loop controls, and common storm patterns — see <a href="/guides/how-to-read-doppler-radar.html">How to Read Doppler Radar</a>. For the animated national loop, open the <a href="/national-radar-loop.html">National Radar Loop</a>.</p>
+
+                    <h3>Radar Reflectivity FAQ</h3>
+                    <div class="faq-item open">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What is radar reflectivity?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Radar reflectivity is a measure of how much of a radar pulse bounces back from rain, snow, hail and other particles in the air, measured in dBZ (decibels of reflectivity). The National Weather Service WSR-88D NEXRAD radars sweep the sky and draw the returning energy as the colors on the map: the stronger the return, the heavier the precipitation or the larger the particles.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What is the difference between base reflectivity and composite reflectivity?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Base reflectivity is the lowest radar sweep, taken at a 0.5-degree elevation angle, and shows precipitation near the ground around each radar. Composite reflectivity shows the strongest echo at any height in a vertical column, so it reveals the most intense part of a thunderstorm even if it is high in the cloud. The live map on this page is a composite reflectivity mosaic; switch the layer selector to NOAA NEXRAD to see the live base reflectivity feed.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What dBZ value means hail?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            According to NOAA JetStream, 50 to 65 dBZ is heavy precipitation or some hail, and above 65 dBZ is extremely heavy precipitation including water-coated hail. A value of 60 to 65 dBZ is about the level where 3/4-inch hail can occur. Reflectivity alone does not prove hail, though — very heavy rain can reach the same values — so always check the National Weather Service warnings for your area.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Can reflectivity tell rain from snow?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Not by itself. The same reflectivity value can mean different things: 20 dBZ is roughly light rain or moderate to heavy snow, and snow generally returns less energy than rain falling at the same rate. To tell rain from snow, use the reflectivity map together with the surface temperature and the forecast — the colors alone cannot separate rain, snow and sleet.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Why does the radar sometimes show rain when it is not raining?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Several non-weather targets bounce radar energy back: ground clutter from buildings, hills, birds and insects; anomalous propagation, where the beam bends down to the ground on calm clear nights; virga, rain that evaporates before it reaches the ground; and the bright band, where melting snowflakes look extra bright. The national mosaic filters out much of this, but a lone bright patch on an otherwise clear day is usually not rain.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Is the reflectivity map on this page live?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes. The map animates the past 2 hours of observed reflectivity, with new frames every 5 to 10 minutes, and the layer selector also offers the live NOAA NEXRAD feed. The 'Next 2 hours' view is different: it is a NOAA HRRR model forecast of simulated reflectivity, not observed radar, and it is most accurate in the first 30 to 60 minutes.
+                        </div>
+                    </div>
+
+                    <h3>About This Page</h3>
+                    <p style="font-size:0.88rem;">Published: 10 November 2026 &bull; Updated: 10 November 2026. Sources: NOAA JetStream &mdash; Radar Images: Reflectivity (noaa.gov/jetstream/reflectivity); National Weather Service &mdash; NEXRAD radar (radar.weather.gov); RainViewer radar API; Iowa State University IEM NEXRAD tile service. Radar data updates every 5 to 10 minutes; the "Next 2 hours" view is a NOAA HRRR forecast, not observed radar.</p>
+                </div>
+
+                <!-- Sidebar -->
+                <div>
+                    <div class="sidebar-card">
+                        <h3>🚨 Active NWS Alerts</h3>
+                        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">Live watches & warnings across the US:</p>
+                        <p id="alertsUpdated" style="font-size:0.8rem;color:var(--text-muted);margin:0 0 12px;">Alerts feed: checking live data from the National Weather Service&hellip;</p>
+                        <div id="alertsFeed" style="display:flex;flex-direction:column;gap:10px;">
+                            <div style="font-size:0.85rem;color:var(--text-muted);">Fetching NOAA emergency warnings…</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card" style="margin-top:20px;">
+                        <h3>🔍 Search Local Forecast</h3>
+                        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">Want detailed hourly forecasts, temperature, UV, and Air Quality (AQI) for your location?</p>
+                        <a href="/" class="play-btn" style="text-align:center;display:block;text-decoration:none;">Go to City & ZIP Search →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/">Live Weather Radar Map</a>
+                <a href="/national-radar-loop.html">National Radar Loop (HD)</a>
+                <a href="/hurricane-tracker.html" style="color:#ef4444;font-weight:700;">Live Hurricane Tracker</a>
+                <a href="/radar-tools.html">Radar Tools</a>
+                <a href="/cities/miami-fl.html">Miami Radar</a>
+                <a href="/cities/tampa-fl.html">Tampa Radar</a>
+                <a href="/cities/houston-tx.html">Houston Radar</a>
+                <a href="/cities/chicago-il.html">Chicago Radar</a>
+                <a href="/cities/oklahoma-city-ok.html">Oklahoma City Radar</a>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/terms-of-service.html">Terms of Service</a>
+                <a href="/about.html">About Us</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+            <p>© 2026 Weather Radar USA • Data Source: NOAA / NWS NEXRAD & RainViewer API • Canonical: <a href="https://weatherradarusa.online/radar-reflectivity.html">https://weatherradarusa.online/radar-reflectivity.html</a></p>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie and Privacy Consent">
+        <div class="cookie-text">
+            🍪 <strong>Cookie & Privacy Notice:</strong> We use cookies to analyze radar traffic, remember preferences, and serve relevant Google advertisements. By using our site, you agree to our <a href="/privacy-policy.html">Privacy Policy</a> and <a href="/terms-of-service.html">Terms</a>.
+        </div>
+        <button class="cookie-btn" onclick="acceptCookieConsent()">Accept & Continue</button>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        // ==========================================
+        // 🛰️ RADAR ENGINE & API CONFIGURATION
+        // ==========================================
+        const RADAR_CONFIG = {
+            // Iowa Environmental Mesonet (NOAA NEXRAD WSR-88D Composite)
+            enableNoaaNexrad: true,
+
+            // Real-Time NWS Severe Warning Polygons on Map
+            showWarningPolygons: true
+        };
+
+        let currentTheme = 'light';
+        let map = null;
+        let radarTileLayer = null;
+        let baseTileLayer = null;
+        let alertsLayerGroup = null;
+        let showPolygons = true;
+        let radarFrames = [];
+        let currentFrameIndex = 0;
+        let isPlaying = false;
+        let playInterval = null;
+        let loopSpeed = 800;
+        let radarLayerType = 'radar';
+        let radarTimeframe = 'past'; // Step 4 (2026-11-09): 'past' = observed RainViewer loop, 'future' = NOAA HRRR forecast
+
+        // Regional Presets
+        const REGIONS = {
+            us: { center: [38.5, -96.5], zoom: 4 },
+            southeast: { center: [29.5, -84.0], zoom: 6 },
+            texas: { center: [31.0, -97.5], zoom: 6 },
+            northeast: { center: [41.5, -74.5], zoom: 6 },
+            midwest: { center: [41.0, -87.5], zoom: 6 },
+            west: { center: [37.0, -119.5], zoom: 6 },
+            plains: { center: [36.5, -97.5], zoom: 6 }
+        };
+
+        function zoomRegion(reg) {
+            const conf = REGIONS[reg] || REGIONS.us;
+            if (map) map.flyTo(conf.center, conf.zoom, { duration: 1.1 });
+            document.querySelectorAll('.region-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
+        }
+
+        function initTheme() {
+            try { localStorage.removeItem('w_theme'); } catch(e){}
+            currentTheme = 'light';
+            document.body.classList.remove('theme-dark');
+            document.body.classList.add('theme-light');
+            const metaTheme = document.querySelector('meta[name="theme-color"]');
+            if (metaTheme) metaTheme.setAttribute('content', '#dbeafe');
+            updateBaseMap('light');
+        }
+
+        function setTheme(theme) {
+            try { localStorage.removeItem('w_theme'); } catch(e){}
+            currentTheme = 'light';
+            document.body.classList.remove('theme-dark');
+            document.body.classList.add('theme-light');
+            updateBaseMap('light');
+        }
+
+        function toggleTheme() {
+            updateBaseMap('light');
+        }
+
+        function initMap() {
+            map = L.map('radarMap', {
+                center: [38.5, -96.5],
+                zoom: 4,
+                minZoom: 3,
+                maxZoom: 12,
+                zoomControl: true,
+                attributionControl: false
+            });
+
+            L.control.attribution({ position: 'bottomright', prefix: false })
+                .addAttribution('&copy; CARTO &copy; OSM | Radar: <a href="https://www.rainviewer.com/">RainViewer</a> &amp; <a href="https://mesonet.agron.iastate.edu/">NOAA NEXRAD</a>')
+                .addTo(map);
+
+            alertsLayerGroup = L.layerGroup().addTo(map);
+
+            updateBaseMap('light');
+            loadRainViewer();
+
+            // Invalidate size after layout completes
+            setTimeout(() => { if (map) map.invalidateSize(); }, 150);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 600);
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
+        }
+
+        function updateBaseMap(theme) {
+            if (!map) return;
+            if (baseTileLayer) map.removeLayer(baseTileLayer);
+            const tileUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_552e_1_9ae0169e1876e5cd9d3919cd';
+            baseTileLayer = L.tileLayer(tileUrl, { subdomains: 'abcd', maxZoom: 19 }).addTo(map);
+
+            baseTileLayer.on('tileerror', function() {
+                if (!window._osmFallback) {
+                    window._osmFallback = true;
+                    map.removeLayer(baseTileLayer);
+                    baseTileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+                }
+            });
+        }
+
+        async function loadRainViewer() {
+            try {
+                const res = await fetch('https://api.rainviewer.com/public/weather-maps.json');
+                if (!res.ok) throw new Error('RainViewer returned status ' + res.status);
+                const data = await res.json();
+                if (data && data.radar && data.radar.past && data.radar.past.length > 0) {
+                    window._rvHost = data.host || 'https://tilecache.rainviewer.com';
+                    window._rvRadarPast = data.radar.past;
+                    window._rvSatPast = (data.satellite && data.satellite.infrared) ? data.satellite.infrared : [];
+
+                    // Step 4: never clobber HRRR future frames with RainViewer past
+                    // frames (RainViewer's free API publishes no nowcast frames).
+                    if (radarLayerType !== 'noaa_nexrad' && radarTimeframe !== 'future') {
+                        radarFrames = radarLayerType === 'satellite' ? window._rvSatPast : window._rvRadarPast;
+                        const slider = document.getElementById('radarTimeSlider');
+                        slider.max = radarFrames.length - 1;
+                        currentFrameIndex = radarFrames.length - 1;
+                        slider.value = currentFrameIndex;
+                        showFrame(currentFrameIndex);
+
+                        // Auto-start continuous loop
+                        setTimeout(() => {
+                            if (!window._radarPausedByUser) startRadarLoop();
+                        }, 500);
+                    }
+                } else {
+                    throw new Error('No radar frames returned');
+                }
+            } catch (err) {
+                console.warn('RainViewer error, falling back to NOAA NEXRAD:', err);
+                document.getElementById('frameTimeBadge').textContent = '🔴 NOAA Live Feed';
+                changeRadarLayer('noaa_nexrad');
+            }
+        }
+
+        function showFrame(index) {
+            if (!radarFrames.length || !map) return;
+            const frame = radarFrames[index];
+            if (!frame) return;
+
+            let url;
+            if (frame.hrrr) {
+                // Step 4: NOAA HRRR forecast reflectivity (IEM tile service)
+                url = hrrrTileUrl(frame);
+            } else {
+                const path = frame.path;
+                const host = window._rvHost || 'https://tilecache.rainviewer.com';
+                const colorScheme = radarLayerType === 'satellite' ? 0 : 2;
+                url = `${host}${path}/256/{z}/{x}/{y}/${colorScheme}/1_1.png`;
+            }
+
+            if (radarTileLayer) map.removeLayer(radarTileLayer);
+            radarTileLayer = L.tileLayer(url, { opacity: 0.75, zIndex: 10 }).addTo(map);
+
+            const date = new Date(frame.time * 1000);
+            const timeStr = date.toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true });
+            if (frame.hrrr) {
+                const minsAhead = Math.max(0, Math.round((frame.time * 1000 - Date.now()) / 60000));
+                document.getElementById('frameTimeBadge').textContent = '🔮 Forecast • ' + timeStr + ' (in ~' + minsAhead + ' min)';
+            } else {
+                const isLive = (index === radarFrames.length - 1);
+                document.getElementById('frameTimeBadge').textContent = isLive ? `🔴 ${timeStr} (Live)` : timeStr;
+                if (isLive) {
+                    const upd = document.getElementById('radarUpdated');
+                    if (upd) upd.textContent = 'Radar data updated: ' + date.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + ' \u2022 Source: RainViewer / NOAA NEXRAD';
+                }
+            }
+            document.getElementById('radarTimeSlider').value = index;
+        }
+
+        function toggleRadarPlay() {
+            if (isPlaying) stopRadarLoop();
+            else startRadarLoop();
+        }
+
+        function stepRadarFrame(step) {
+            if (!radarFrames.length || (radarLayerType === 'noaa_nexrad' && radarTimeframe !== 'future')) return;
+            stopRadarLoop();
+            currentFrameIndex = (currentFrameIndex + step + radarFrames.length) % radarFrames.length;
+            showFrame(currentFrameIndex);
+        }
+
+        function startRadarLoop() {
+            if (!radarFrames.length || (radarLayerType === 'noaa_nexrad' && radarTimeframe !== 'future')) return;
+            if (playInterval) clearInterval(playInterval); // idempotent: never run two loops at once
+            isPlaying = true;
+            window._radarPausedByUser = false;
+            document.getElementById('playBtn').textContent = '⏸ Pause';
+            document.getElementById('loopStatusBadge').textContent = radarTimeframe === 'future' ? '🔮 Future Radar • Next 2 Hours' : '🔴 Loop Running';
+            playInterval = setInterval(() => {
+                currentFrameIndex = (currentFrameIndex + 1) % radarFrames.length;
+                showFrame(currentFrameIndex);
+            }, loopSpeed);
+        }
+
+        function stopRadarLoop() {
+            isPlaying = false;
+            window._radarPausedByUser = true;
+            document.getElementById('playBtn').textContent = '▶ Play Loop';
+            if (radarLayerType !== 'noaa_nexrad') {
+                document.getElementById('loopStatusBadge').textContent = '⏸ Loop Paused';
+            }
+            if (playInterval) clearInterval(playInterval);
+        }
+
+        function onTimeSliderChange(val) {
+            stopRadarLoop();
+            currentFrameIndex = parseInt(val, 10);
+            showFrame(currentFrameIndex);
+        }
+
+        function changeLoopSpeed(spd) {
+            loopSpeed = parseInt(spd, 10);
+            if (isPlaying) {
+                stopRadarLoop();
+                startRadarLoop();
+            }
+        }
+
+        // ==========================================
+        // STEP 4 — FUTURE RADAR: NEXT 2 HOURS (2026-11-09)
+        // ==========================================
+        // RainViewer's free public Weather Maps API publishes PAST radar only.
+        // Verified 9 Nov 2026: the live weather-maps.json returns "nowcast":[]
+        // and RainViewer's own API-example README states "Past radar data only
+        // (no forecast/nowcast, no satellite)" for the personal-use API. The
+        // 30-min nowcast is a free-APP feature and 120-min is a paid app plan —
+        // neither is served by the public API. So the future view below uses
+        // NOAA's HRRR model instead (documented working alternative):
+        // simulated reflectivity tiles from Iowa State University's IEM service
+        // (mesonet.agron.iastate.edu) — the same service that already serves
+        // this site's NOAA NEXRAD layer. Docs:
+        // https://mesonet.agron.iastate.edu/GIS/model.phtml
+        // Template hrrr::REFD-FXXXX-0, FXXXX = forecast minute (15-min steps,
+        // out to 18 h). The latest run is available ~:50 past the hour for the
+        // previous hour's initialization, so the run init is computed that way.
+        // The four frames are picked dynamically: the first forecast minute
+        // strictly ahead of now (+15 min buffer) on the 15-min grid, then
+        // +30 min steps — so every frame is genuinely in the future and the
+        // view covers roughly the next 2 hours. Never replays the past as
+        // "future": the badge shows each frame's valid time and minutes ahead.
+        function hrrrRunInit() {
+            const now = new Date();
+            const init = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate(), now.getUTCHours(), 0, 0));
+            if (now.getUTCMinutes() < 50) init.setUTCHours(init.getUTCHours() - 1);
+            return init;
+        }
+        function hrrrFrames() {
+            const init = hrrrRunInit();
+            const initSec = Math.floor(init.getTime() / 1000);
+            const nowSec = Math.floor(Date.now() / 1000);
+            let first = Math.ceil((nowSec + 900 - initSec) / 900) * 15;
+            if (first < 15) first = 15;
+            return [first, first + 30, first + 60, first + 90].map(function (m) {
+                return {
+                    time: initSec + m * 60,
+                    minutes: m,
+                    hrrr: true,
+                    layer: 'hrrr::REFD-F' + String(m).padStart(4, '0') + '-0',
+                    runInit: init
+                };
+            });
+        }
+        function hrrrTileUrl(frame) {
+            return 'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/' + frame.layer + '/{z}/{x}/{y}.png';
+        }
+        function formatHrrrRunTime(date) {
+            return date.toLocaleString('en-US', { timeZone: 'UTC', month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+        }
+        function futureRadarUpdatedText(runInit) {
+            return 'Forecast radar: NOAA HRRR model run ' + formatHrrrRunTime(runInit) + ' UTC \u2022 Simulated reflectivity \u2014 a forecast, not observed radar \u2022 Source: NOAA HRRR via Iowa State IEM';
+        }
+        function restorePastFrames() {
+            if (radarLayerType === 'noaa_nexrad') {
+                changeRadarLayer('noaa_nexrad');
+            } else {
+                radarFrames = radarLayerType === 'satellite' ? (window._rvSatPast || []) : (window._rvRadarPast || []);
+                const slider = document.getElementById('radarTimeSlider');
+                slider.max = radarFrames.length - 1;
+                currentFrameIndex = radarFrames.length - 1;
+                slider.value = currentFrameIndex;
+                showFrame(currentFrameIndex);
+                if (!window._radarPausedByUser) startRadarLoop();
+            }
+        }
+        function switchRadarTimeframe(dir) {
+            if (dir === radarTimeframe) return;
+            stopRadarLoop();
+            const btnPast = document.getElementById('btnPastRadar');
+            const btnFuture = document.getElementById('btnFutureRadar');
+            const layerSelect = document.getElementById('layerSelect');
+            const statusBadge = document.getElementById('loopStatusBadge');
+            const playBtn = document.getElementById('playBtn');
+            if (dir === 'future') {
+                radarTimeframe = 'future';
+                if (btnPast) btnPast.classList.remove('active');
+                if (btnFuture) btnFuture.classList.add('active');
+                if (layerSelect) { layerSelect.disabled = true; layerSelect.title = 'Layers apply to the past radar loop'; }
+                radarFrames = hrrrFrames();
+                const slider = document.getElementById('radarTimeSlider');
+                slider.max = radarFrames.length - 1;
+                currentFrameIndex = 0;
+                slider.value = 0;
+                showFrame(0);
+                const upd = document.getElementById('radarUpdated');
+                if (upd) upd.textContent = futureRadarUpdatedText(radarFrames[0].runInit);
+                if (statusBadge) statusBadge.textContent = '🔮 Future Radar • Next 2 Hours';
+                if (playBtn) { playBtn.disabled = false; playBtn.style.opacity = '1'; }
+                // Switching views is an explicit request to watch this loop:
+                // restart playback (stopRadarLoop above sets _radarPausedByUser,
+                // which would otherwise block the auto-start forever).
+                window._radarPausedByUser = false;
+                setTimeout(() => { if (radarTimeframe === 'future') startRadarLoop(); }, 500);
+            } else {
+                radarTimeframe = 'past';
+                if (btnFuture) btnFuture.classList.remove('active');
+                if (btnPast) btnPast.classList.add('active');
+                if (layerSelect) { layerSelect.disabled = false; layerSelect.title = ''; }
+                if (statusBadge && radarLayerType !== 'noaa_nexrad') statusBadge.textContent = '🔴 Loop Running';
+                window._radarPausedByUser = false;
+                restorePastFrames();
+            }
+        }
+
+        function changeRadarLayer(type) {
+            if (radarTimeframe === 'future') {
+                // Leaving the future view: restore the past-view toggle state
+                // (inline reset, no recursion into switchRadarTimeframe).
+                radarTimeframe = 'past';
+                const btnPast = document.getElementById('btnPastRadar');
+                const btnFuture = document.getElementById('btnFutureRadar');
+                if (btnPast) btnPast.classList.add('active');
+                if (btnFuture) btnFuture.classList.remove('active');
+                const layerSelect = document.getElementById('layerSelect');
+                if (layerSelect) { layerSelect.disabled = false; layerSelect.title = ''; }
+            }
+            radarLayerType = type;
+            stopRadarLoop();
+
+            if (type === 'noaa_nexrad') {
+                if (radarTileLayer) map.removeLayer(radarTileLayer);
+                radarTileLayer = L.tileLayer('https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-n0q-900913/{z}/{x}/{y}.png', {
+                    opacity: 0.78,
+                    zIndex: 10
+                }).addTo(map);
+
+                document.getElementById('frameTimeBadge').textContent = '🔴 NOAA NEXRAD (Live US Feed)';
+                const updNoaa = document.getElementById('radarUpdated');
+                if (updNoaa) updNoaa.textContent = 'Radar data updated: ' + formatFeedTime(new Date()) + ' \u2022 Source: NOAA NEXRAD live feed';
+                const statusBadge = document.getElementById('loopStatusBadge');
+                if (statusBadge) statusBadge.textContent = '🇺🇸 NOAA Live Feed';
+                document.getElementById('playBtn').disabled = true;
+                document.getElementById('playBtn').style.opacity = '0.5';
+            } else {
+                document.getElementById('playBtn').disabled = false;
+                document.getElementById('playBtn').style.opacity = '1';
+                const statusBadge = document.getElementById('loopStatusBadge');
+                if (statusBadge) statusBadge.textContent = '🔴 Loop Running';
+
+                radarFrames = radarLayerType === 'satellite' ? (window._rvSatPast || []) : (window._rvRadarPast || []);
+                const slider = document.getElementById('radarTimeSlider');
+                slider.max = radarFrames.length - 1;
+                currentFrameIndex = radarFrames.length - 1;
+                showFrame(currentFrameIndex);
+                startRadarLoop();
+            }
+        }
+
+        function refreshRadarData() {
+            if (radarTimeframe === 'future') {
+                // Rebuild future frames from the latest HRRR run (new run every hour).
+                radarFrames = hrrrFrames();
+                showFrame(currentFrameIndex);
+                const upd = document.getElementById('radarUpdated');
+                if (upd) upd.textContent = futureRadarUpdatedText(radarFrames[0].runInit);
+            } else if (radarLayerType === 'noaa_nexrad') {
+                changeRadarLayer('noaa_nexrad');
+            } else {
+                loadRainViewer();
+            }
+            const img = document.getElementById('mosaicImg');
+            if (img) img.src = img.src.split('?')[0] + '?t=' + Date.now();
+        }
+
+        function switchRadarView(view) {
+            const mapEl = document.getElementById('radarMap');
+            const mosaicEl = document.getElementById('mosaicContainer');
+            const btnInteractive = document.getElementById('btnInteractiveView');
+            const btnMosaic = document.getElementById('btnMosaicView');
+
+            if (view === 'mosaic') {
+                mapEl.style.display = 'none';
+                mosaicEl.style.display = 'flex';
+                btnInteractive.classList.remove('active');
+                btnMosaic.classList.add('active');
+            } else {
+                mosaicEl.style.display = 'none';
+                mapEl.style.display = 'block';
+                btnMosaic.classList.remove('active');
+                btnInteractive.classList.add('active');
+                if (map) map.invalidateSize();
+            }
+        }
+
+        function toggleRadarFullscreen() {
+            const el = document.querySelector('.radar-box');
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (el.requestFullscreen) el.requestFullscreen();
+                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+        }
+        document.addEventListener('fullscreenchange', () => {
+            if (map) setTimeout(() => map.invalidateSize(), 200);
+        });
+
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        }
+
+        // Live NOAA Alerts for Sidebar & Map Polygons
+        // Step 1 fix (2026-11-07): retry transient NWS failures (was one-shot,
+        // no retry, no timestamp) and auto-refresh every 5 minutes, with a real
+        // last-updated time. Also fixes the RainViewer-fallback call below,
+        // which used the undefined changeLayer() instead of changeRadarLayer().
+        let lastAlertsUpdate = null;
+        function formatFeedTime(date) {
+            return date.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+        }
+        async function fetchSidebarAlerts(attempt) {
+            attempt = attempt || 0;
+            const feed = document.getElementById('alertsFeed');
+            if (!feed) return;
+            const upd = document.getElementById('alertsUpdated');
+            try {
+                const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert');
+                if (!res.ok) throw new Error('NWS alerts API returned status ' + res.status);
+                const data = await res.json();
+                const features = data.features || [];
+                lastAlertsUpdate = new Date();
+                if (upd) upd.textContent = 'Alerts last updated: ' + formatFeedTime(lastAlertsUpdate) + ' \u2022 Source: National Weather Service (api.weather.gov)';
+
+                renderAlertPolygonsOnMap(data);
+
+                if (!features.length) {
+                    feed.innerHTML = '<div style="font-size:0.85rem;color:var(--text-muted);">No major severe emergency alerts right now. Radar operations normal.</div>';
+                    return;
+                }
+                feed.innerHTML = features.slice(0, 5).map(f => {
+                    const p = f.properties;
+                    return `
+                        <div style="background:var(--bg-elevated);border-left:3px solid var(--danger);border-radius:6px;padding:8px 12px;font-size:0.82rem;">
+                            <strong style="color:var(--danger);">${p.event || 'Severe Alert'}</strong>
+                            <div style="color:var(--text-muted);margin-top:2px;">\uD83D\uDCCD ${p.areaDesc?.slice(0, 50) || 'USA'}</div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (err) {
+                console.warn('NWS Alerts fetch error:', err);
+                if (attempt < 2) {
+                    setTimeout(() => fetchSidebarAlerts(attempt + 1), 3000);
+                    return;
+                }
+                const lastOk = lastAlertsUpdate ? ' Last successful update: ' + formatFeedTime(lastAlertsUpdate) + '.' : '';
+                feed.innerHTML = '<div style="font-size:0.85rem;color:var(--text-muted);">Alert feed temporarily unavailable. Last checked: ' + formatFeedTime(new Date()) + '.' + lastOk + ' Retrying automatically &mdash; see radar.weather.gov.</div>';
+                setTimeout(() => fetchSidebarAlerts(0), 60000);
+            }
+        }
+
+        function renderAlertPolygonsOnMap(data) {
+            if (!map || !alertsLayerGroup) return;
+            alertsLayerGroup.clearLayers();
+            if (!data || !data.features || !RADAR_CONFIG.showWarningPolygons) return;
+
+            const validFeatures = data.features.filter(f => f.geometry && (f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon'));
+
+            L.geoJSON({ type: 'FeatureCollection', features: validFeatures }, {
+                style: function(feature) {
+                    const p = feature.properties || {};
+                    const ev = (p.event || '').toLowerCase();
+                    let color = '#eab308';
+                    let fillColor = '#eab308';
+
+                    if (ev.includes('tornado')) {
+                        color = '#ef4444';
+                        fillColor = '#dc2626';
+                    } else if (ev.includes('thunderstorm')) {
+                        color = '#f97316';
+                        fillColor = '#ea580c';
+                    } else if (ev.includes('flood')) {
+                        color = '#10b981';
+                        fillColor = '#059669';
+                    } else if (ev.includes('winter') || ev.includes('snow') || ev.includes('blizzard')) {
+                        color = '#06b6d4';
+                        fillColor = '#0891b2';
+                    }
+
+                    return {
+                        color: color,
+                        weight: 2.2,
+                        opacity: 0.9,
+                        fillColor: fillColor,
+                        fillOpacity: 0.28,
+                        dashArray: ev.includes('tornado') ? '4, 4' : null
+                    };
+                },
+                onEachFeature: function(feature, layer) {
+                    const p = feature.properties || {};
+                    const eventName = p.event || 'Severe Weather Warning';
+                    const headline = p.headline || p.areaDesc || '';
+                    const expires = p.expires ? new Date(p.expires).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : 'Until further notice';
+                    
+                    layer.bindPopup(`
+                        <div style="font-family:'Inter',sans-serif;font-size:0.88rem;color:#0f172a;line-height:1.4;max-width:260px;">
+                            <div style="font-weight:800;color:#dc2626;font-size:0.95rem;margin-bottom:4px;">🚨 ${eventName}</div>
+                            <div style="font-weight:600;margin-bottom:4px;">${p.areaDesc || 'United States'}</div>
+                            <div style="font-size:0.8rem;color:#475569;margin-bottom:6px;">${headline}</div>
+                            <div style="font-size:0.75rem;color:#64748b;border-top:1px solid #e2e8f0;padding-top:4px;">Expires: <strong>${expires}</strong> • Source: NOAA NWS</div>
+                        </div>
+                    `);
+                }
+            }).addTo(alertsLayerGroup);
+        }
+
+        function toggleAlertPolygons() {
+            showPolygons = !showPolygons;
+            const btn = document.getElementById('toggleAlertsBtn');
+            if (alertsLayerGroup) {
+                if (showPolygons) {
+                    if (!map.hasLayer(alertsLayerGroup)) map.addLayer(alertsLayerGroup);
+                    btn.textContent = '⚠️ Warnings: ON';
+                    btn.style.color = 'var(--text-sub)';
+                } else {
+                    if (map.hasLayer(alertsLayerGroup)) map.removeLayer(alertsLayerGroup);
+                    btn.textContent = '⚠️ Warnings: OFF';
+                    btn.style.color = 'var(--text-muted)';
+                }
+            }
+        }
+
+        function checkCookieConsent() {
+            if (!localStorage.getItem('wr_cookie_consent')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookieBanner');
+                    if (banner) banner.classList.add('show');
+                }, 1200);
+            }
+        }
+
+        function acceptCookieConsent() {
+            localStorage.setItem('wr_cookie_consent', 'accepted');
+            const banner = document.getElementById('cookieBanner');
+            if (banner) banner.classList.remove('show');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            initMap();
+            fetchSidebarAlerts();
+            setInterval(fetchSidebarAlerts, 300000);
+            setInterval(refreshRadarData, 300000);
+            checkCookieConsent();
+
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const reg = params.get('region');
+                if (reg && typeof zoomRegion === 'function') {
+                    setTimeout(() => zoomRegion(reg), 250);
+                }
+            } catch (e) {}
+        });
+    </script>
+</body>
+</html>
