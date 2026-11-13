@@ -31,6 +31,12 @@
     <priority>0.85</priority>
   </url>
   <url>
+    <loc>https://weatherradarusa.online/radar-rain-totals.html</loc>
+    <lastmod>2026-11-13</lastmod>
+    <changefreq>hourly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
     <loc>https://weatherradarusa.online/hurricane-tracker.html</loc>
     <lastmod>2026-11-10</lastmod>
     <changefreq>hourly</changefreq>
