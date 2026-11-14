@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Title targeting: echo tops radar, storm height map, how tall is a thunderstorm, NEXRAD echo tops -->
+    <title>Echo Tops Radar – Live US Storm Height Map (NEXRAD EET)</title>
+    
+    <meta name="description" content="Live US echo tops map: how tall storms are, in thousands of feet, from NOAA NEXRAD — plus how to read the scale and what storm height means.">
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    <meta name="author" content="Weather Radar USA">
+    <meta name="keywords" content="echo tops radar, storm height map, echo tops map, NEXRAD echo tops, how tall is a thunderstorm, thunderstorm height radar, EET radar, severe storm tops">
+    <meta name="geo.region" content="US">
+    <meta name="theme-color" content="#f1f5fa">
+    <meta name="googlebot" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+    
+    <!-- Canonical -->
+    <link rel="canonical" href="https://weatherradarusa.online/radar-echo-tops.html">
+    
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Echo Tops Radar – Live US Storm Height Map (NEXRAD EET)">
+    <meta property="og:description" content="Live US echo tops map: how tall storms are, in thousands of feet, from NOAA NEXRAD — plus how to read the scale and what storm height means.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta property="og:url" content="https://weatherradarusa.online/radar-echo-tops.html">
+    <meta property="og:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="675">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:site_name" content="Weather Radar USA">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Echo Tops Radar – Live US Storm Height Map (NEXRAD EET)">
+    <meta name="twitter:description" content="Live US echo tops map: how tall storms are, in thousands of feet, from NOAA NEXRAD — plus how to read the scale and what storm height means.">
+    <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
+    <meta name="twitter:image:alt" content="Live US Echo Tops Radar Map &amp; NOAA NEXRAD">
+    <meta property="og:image:alt" content="Live US Echo Tops Radar Map &amp; NOAA NEXRAD">
+    <meta name="application-name" content="Weather Radar USA">
+    <meta name="apple-mobile-web-app-title" content="Weather Radar USA">
+    
+    <!-- Core Web Vitals Resource Hints -->
+    <link rel="dns-prefetch" href="https://mesonet.agron.iastate.edu">
+    <link rel="dns-prefetch" href="https://api.weather.gov">
+    <link rel="preconnect" href="https://mesonet.agron.iastate.edu" crossorigin>
+    
+    <!-- Google Fonts & Leaflet Map CSS -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+    
+    <!-- BreadcrumbList & WebApplication Schema -->
+    <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://weatherradarusa.online/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Echo Tops Radar",
+          "item": "https://weatherradarusa.online/radar-echo-tops.html"
+        }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Echo Tops Radar \u2013 Live US Storm Height Map (NEXRAD EET)",
+      "url": "https://weatherradarusa.online/radar-echo-tops.html",
+      "applicationCategory": "WeatherApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Live US Echo Tops Map (Storm Height in Thousands of Feet)",
+        "NOAA NEXRAD Enhanced Echo Tops (EET) via Iowa State IEM",
+        "Echo Tops Scale: 5,000 to 70,000 Feet Explained",
+        "How Radar Measures Storm Height, and Its Limits",
+        "Interactive Zoom and Pan to Local Street Level"
+      ]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is an echo top on a radar map?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "An echo top is the height of the top of a storm's precipitation core, in thousands of feet. The National Weather Service defines it as the height of the highest radar echo of 18 dBZ or stronger in a vertical column \u2014 in other words, how high the rain, snow or hail inside a storm reaches. On this map, blue means a shallow echo top under about 15,000 feet, green and yellow mean a developing or strong thunderstorm, and orange, red and pink mean a very tall, severe storm reaching 40,000 to 60,000 feet and beyond."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How high do severe thunderstorm echo tops reach?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ordinary showers top out below about 20,000 feet. A strong thunderstorm usually reaches 30,000 to 40,000 feet, and a severe thunderstorm often reaches 40,000 to 50,000 feet. The strongest storms \u2014 supercells \u2014 reach 50,000 to 60,000 feet and beyond, and the scale on this map runs to 70,000 feet. Tops that tall mean a very powerful updraft is holding rain and hail high in the sky, which is why forecasters watch echo tops closely when a storm is growing."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can echo tops tell me if a storm has hail?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Echo tops alone do not prove hail, but they are one of the best clues. Forecasters look at how high the strong core of a storm is held up: when a 50 or 60 dBZ echo \u2014 the very heavy rain and hail core \u2014 reaches high into a storm, large hail is likely being held aloft by the updraft. A 30 dBZ echo top held high is also closely linked to lightning. A tall echo top plus strong reflectivity is a much stronger hail signal than either one by itself \u2014 but only a Severe Thunderstorm Warning or a ground report confirms hail."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are echo tops the same as cloud tops?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Echo tops show the top of the precipitation inside a storm \u2014 the rain, snow and hail the radar can see. Cloud tops are the visible top of the cloud, measured by satellite, and they are usually 5,000 to 10,000 feet higher than the echo top in an intense storm, because the cloud extends above the precipitation core and the radar cannot see the smallest cloud droplets. Never use an echo top as a cloud top \u2014 for example, when judging whether an aircraft can fly over a storm."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why is the echo tops map blank over my area?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "A blank map usually means good news: there is no precipitation strong enough for the radar to measure a top, because echo tops only exist where reflectivity reaches 18 dBZ. Clear skies, very light drizzle and thin cloud all leave the map blank. It can also happen when showers are far from the nearest radar \u2014 the beam rises with distance and can pass over low precipitation entirely. In winter, snow bands often have low tops that show as blue rather than blank."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the echo tops map on this page live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The map shows the latest NEXRAD Enhanced Echo Tops mosaic from the Iowa State University IEM, built from more than 160 NEXRAD radars across the United States and updated about every 5 minutes. The page re-fetches it automatically, and the 'last checked' time under the map tells you exactly when it was fetched."
+          }
+        }
+      ]
+    }
+  ]
+}
+    </script>
+
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        /* Pure Blue Sky & Crisp White American Theme */
+        :root {
+            --bg-body: #f0f7ff;
+            --bg-header: rgba(255, 255, 255, 0.96);
+            --bg-card: #ffffff;
+            --bg-elevated: #f0f7ff;
+            --border: #bae6fd;
+            --border-hover: #0284c7;
+            --text-primary: #0f172a;
+            --text-muted: #475569;
+            --text-sub: #1e293b;
+            --primary: #0284c7;
+            --primary-hover: #0369a1;
+            --accent: #0284c7;
+            --accent-glow: rgba(2, 132, 199, 0.16);
+            --danger: #dc2626;
+            --radius: 14px;
+            --radius-lg: 20px;
+            --shadow: 0 10px 28px -4px rgba(2, 132, 199, 0.08);
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #f0f7ff;
+            background: linear-gradient(180deg, #dbeafe 0%, #e0f2fe 180px, #f0f7ff 500px, #ffffff 1000px);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+        body.theme-dark, body.theme-light {
+            background-color: #f0f7ff !important;
+            background: linear-gradient(180deg, #dbeafe 0%, #e0f2fe 180px, #f0f7ff 500px, #ffffff 1000px) !important;
+            color: #0f172a !important;
+        }
+        .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 20px; }
+        a { color: var(--accent); text-decoration: none; transition: 0.2s; }
+        a:hover { color: #7dd3fc; }
+
+        /* Header */
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg-header);
+            backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header .container { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; font-family: 'Outfit', sans-serif; }
+        .logo-radar-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-radar-icon svg { width: 22px; height: 22px; }
+        .logo-text { color: var(--text-primary); }
+        .highlight {
+            background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .nav { display: flex; align-items: center; gap: 20px; }
+        .nav a { color: var(--text-muted); font-weight: 500; font-size: 0.92rem; }
+        .nav a:hover, .nav a.active { color: var(--text-primary); }
+        .theme-btn {
+            background: var(--bg-elevated); border: 1px solid var(--border);
+            color: var(--text-primary); width: 36px; height: 36px; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            padding: 14px 0 6px;
+            font-size: 0.82rem;
+            color: var(--text-muted);
+        }
+        .breadcrumbs a { color: var(--text-muted); }
+        .breadcrumbs a:hover { color: var(--accent); }
+        .breadcrumbs span { margin: 0 6px; }
+
+        /* Hero */
+        .loop-hero {
+            padding: 16px 0 20px;
+            text-align: center;
+        }
+        .loop-hero h1 {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+        .loop-hero p {
+            color: var(--text-muted);
+            max-width: 720px;
+            margin: 0 auto;
+            font-size: 1rem;
+        }
+
+        /* Regional Quick-Zoom Bar */
+        .region-bar {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin: 14px 0 20px;
+        }
+        .region-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            color: var(--text-sub);
+            padding: 6px 13px;
+            border-radius: 999px;
+            font-size: 0.83rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .region-btn:hover, .region-btn.active {
+            border-color: var(--accent);
+            color: var(--text-primary);
+            background: rgba(56, 189, 248, 0.12);
+        }
+
+        /* Radar Container */
+        .radar-box {
+            background: var(--bg-card);
+            border: 1px solid rgba(56, 189, 248, 0.28);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: 0 0 35px -5px rgba(14, 165, 233, 0.22), var(--shadow);
+            margin-bottom: 30px;
+            position: relative;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .radar-box:hover {
+            border-color: rgba(56, 189, 248, 0.45);
+            box-shadow: 0 0 45px -5px rgba(14, 165, 233, 0.30), var(--shadow);
+        }
+        .radar-header-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            background: var(--bg-elevated);
+            border-bottom: 1px solid var(--border);
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .radar-title-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .radar-title-group h2 { font-size: 1.1rem; font-weight: 700; margin: 0; }
+        .live-dot {
+            width: 8px; height: 8px; background: var(--danger); border-radius: 50%;
+            animation: pulseDot 1.4s infinite;
+        }
+        @keyframes pulseDot {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.4; transform: scale(1.3); }
+        }
+        .badge {
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 999px; font-size: 0.78rem;
+            display: inline-flex; align-items: center; gap: 6px; font-weight: 600;
+        }
+
+        #radarMap {
+            width: 100%; height: 560px; background: #e0f2fe; position: relative;
+        }
+        #mosaicContainer {
+            width: 100%; height: 560px; background: #f0f7ff; display: none;
+            align-items: center; justify-content: center;
+        }
+        #mosaicContainer img { max-height: 100%; width: 100%; object-fit: contain; }
+
+        /* Floating On-Map Rain or Snow Legend Bar */
+        .radar-legend-overlay {
+            position: absolute;
+            bottom: 22px;
+            left: 12px;
+            z-index: 500;
+            background: rgba(255, 255, 255, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 7px 12px;
+            box-shadow: 0 8px 24px rgba(2, 132, 199, 0.12);
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            pointer-events: auto;
+            max-width: 320px;
+        }
+        .legend-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+        }
+        .legend-title {
+            font-size: 0.72rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--accent);
+        }
+        .legend-scale-bar {
+            display: flex;
+            border-radius: 5px;
+            overflow: hidden;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+        }
+        .scale-color {
+            font-size: 0.62rem;
+            font-weight: 800;
+            color: #ffffff;
+            padding: 2px 5px;
+            flex: 1;
+            text-align: center;
+            line-height: 14px;
+            white-space: nowrap;
+        }
+        .legend-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.64rem;
+            color: var(--text-muted);
+            padding-top: 1px;
+        }
+
+        /* Fullscreen */
+        :fullscreen .radar-box, :-webkit-full-screen .radar-box {
+            border-radius: 0; width: 100vw; height: 100vh; display: flex; flex-direction: column;
+        }
+        :fullscreen #radarMap, :-webkit-full-screen #radarMap {
+            flex: 1; height: calc(100vh - 120px) !important;
+        }
+
+        /* Toolbar */
+        .radar-toolbar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 12px 18px; background: var(--bg-elevated); border-top: 1px solid var(--border);
+            flex-wrap: wrap; gap: 12px;
+        }
+        .player-controls { display: flex; align-items: center; gap: 8px; flex: 1; min-width: 290px; }
+        .play-btn {
+            background: var(--primary); color: #ffffff; border: none; border-radius: 8px;
+            padding: 8px 14px; font-weight: 700; font-size: 0.88rem; cursor: pointer;
+            transition: background 0.2s; white-space: nowrap;
+        }
+        .play-btn:hover { background: var(--primary-hover); }
+        .radar-step-btn {
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-primary);
+            border-radius: 8px; padding: 8px 11px; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; transition: all 0.2s;
+        }
+        .radar-step-btn:hover { border-color: var(--accent); background: var(--bg-card-hover); color: var(--accent); }
+        .time-slider-wrap { flex: 1; display: flex; align-items: center; gap: 10px; }
+        .time-slider {
+            flex: 1; -webkit-appearance: none; appearance: none;
+            height: 6px; border-radius: 3px; background: var(--border); outline: none; cursor: pointer;
+        }
+        .time-slider::-webkit-slider-thumb {
+            -webkit-appearance: none; appearance: none; width: 16px; height: 16px;
+            border-radius: 50%; background: var(--accent); cursor: pointer;
+        }
+        .time-badge {
+            font-size: 0.82rem; font-weight: 700; color: var(--accent);
+            background: var(--bg-card); border: 1px solid var(--border);
+            padding: 4px 10px; border-radius: 6px; min-width: 110px; text-align: center;
+        }
+        .secondary-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .radar-ctrl-btn, .radar-ctrl-select {
+            background: var(--bg-card); border: 1px solid var(--border); color: var(--text-sub);
+            padding: 6px 12px; border-radius: 8px; font-size: 0.82rem; font-weight: 600; cursor: pointer;
+            transition: all 0.2s;
+        }
+        .radar-ctrl-btn:hover, .radar-ctrl-select:hover { border-color: var(--accent); color: var(--text-primary); }
+
+        /* Guide & Content Sections */
+        .content-section {
+            padding: 30px 0 50px;
+        }
+        .content-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 28px;
+        }
+        @media (max-width: 860px) {
+            .content-grid { grid-template-columns: 1fr; }
+            #radarMap, #mosaicContainer { height: 420px; }
+            .nav { display: none; }
+        }
+        .article-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 26px;
+        }
+        .article-card h2 {
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.45rem;
+            margin-bottom: 12px;
+            color: var(--text-primary);
+        }
+        .article-card h3 {
+            font-size: 1.15rem;
+            margin: 20px 0 8px;
+            color: var(--accent);
+        }
+        .article-card p {
+            color: var(--text-muted);
+            margin-bottom: 14px;
+            font-size: 0.95rem;
+        }
+        .article-card ul {
+            padding-left: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 16px;
+        }
+        .article-card li { margin-bottom: 6px; }
+
+        .sidebar-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 22px;
+            height: fit-content;
+        }
+        .sidebar-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* FAQ Accordion */
+        .faq-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+        .faq-question {
+            width: 100%; text-align: left; background: none; border: none;
+            padding: 14px 18px; color: var(--text-primary); font-weight: 600;
+            font-size: 0.95rem; display: flex; justify-content: space-between;
+            align-items: center; cursor: pointer;
+        }
+        .faq-answer {
+            display: none; padding: 0 18px 14px;
+            color: var(--text-muted); font-size: 0.9rem; line-height: 1.6;
+        }
+        .faq-item.open .faq-answer { display: block; }
+        .faq-item.open .faq-icon { transform: rotate(45deg); }
+
+        /* Footer */
+        .footer {
+            background: var(--bg-header);
+            border-top: 1px solid var(--border);
+            padding: 36px 0 24px;
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.88rem;
+        }
+        .footer-links {
+            display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-bottom: 14px;
+        }
+
+        /* AdSense Responsive Slot Placeholders (Anti-CLS) */
+        .ad-slot-wrap {
+            width: 100%; max-width: 970px; margin: 18px auto; text-align: center;
+        }
+        .ad-slot-label {
+            font-size: 0.68rem; letter-spacing: 0.08em; text-transform: uppercase;
+            color: var(--text-muted); margin-bottom: 4px; display: block;
+        }
+        .ad-slot-box {
+            min-height: 90px; background: rgba(255, 255, 255, 0.02);
+            border: 1px dashed rgba(255, 255, 255, 0.12); border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--text-muted); font-size: 0.82rem; padding: 10px;
+        }
+
+        /* Cookie Consent Banner */
+        .cookie-banner {
+            position: fixed; bottom: 0; left: 0; right: 0; z-index: 9999;
+            background: rgba(15, 23, 42, 0.95); backdrop-filter: blur(12px);
+            border-top: 1px solid var(--border); padding: 14px 20px;
+            display: flex; align-items: center; justify-content: space-between;
+            gap: 16px; box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.4);
+            transform: translateY(100%); transition: transform 0.3s ease;
+        }
+        .cookie-banner.show { transform: translateY(0); }
+        .cookie-text { font-size: 0.86rem; color: var(--text-sub); line-height: 1.4; flex: 1; }
+        .cookie-text a { color: var(--accent); font-weight: 600; }
+        .cookie-btn {
+            background: var(--primary); color: #ffffff; border: none;
+            padding: 8px 18px; border-radius: 8px; font-weight: 700; font-size: 0.85rem;
+            cursor: pointer; white-space: nowrap; transition: background 0.2s;
+        }
+        .cookie-btn:hover { background: var(--primary-hover); }
+        @media (max-width: 600px) {
+            .cookie-banner { flex-direction: column; align-items: stretch; text-align: center; }
+        }
+    </style>
+
+    <!-- Monetag Site Verification -->
+    <meta name="monetag" content="30aaf71eab099197f934568b5d3c17d0">
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "yvkks26wwu");
+    </script>
+    <!-- Adsterra Monetization Script (Social Bar) -->
+    <script data-cfasync="false" src="https://bauval.org/14/38a872a5126d119c08717b9adf6fc253"></script>
+</head>
+<body class="theme-light">
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo" aria-label="Weather Radar USA Homepage">
+                <div class="logo-radar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10"></path>
+                        <path d="M12 6a6 6 0 1 0 6 6"></path>
+                        <path d="M12 10a2 2 0 1 0 2 2"></path>
+                        <line x1="12" y1="12" x2="20" y2="4"></line>
+                    </svg>
+                </div>
+                <div class="logo-text">Weather Radar <span class="highlight">USA</span></div>
+            </a>
+
+            <nav class="nav" aria-label="Navigation">
+                <a href="/">Full Weather Radar Map</a>
+                <a href="/national-radar-loop.html">National Radar Loop</a>
+                <a href="/hurricane-tracker.html" style="color:#ef4444;font-weight:700;">🌀 Hurricane Tracker</a>
+                <a href="/#severe-alerts">NWS Alerts</a>
+                <a href="/#popular-cities">US Cities</a>
+                <a href="/radar-tools.html">Radar Tools</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Breadcrumbs -->
+        <nav class="breadcrumbs" aria-label="Breadcrumb">
+            <a href="/">Home</a>
+            <span>›</span>
+            <strong>Echo Tops Radar</strong>
+        </nav>
+
+        <!-- Hero Section -->
+        <section class="loop-hero">
+            <h1>Echo Tops Radar – Live US Storm Height Map (NEXRAD EET)</h1>
+            <p>Live US echo tops map: see how tall the storms are — the height of the precipitation core in thousands of feet, from NOAA NEXRAD — and learn how radar measures storm height, how to read the echo tops scale, and what a tall storm top means for severe weather, hail and lightning.</p>
+        </section>
+
+        <!-- Regional Quick-Zoom Bar -->
+        <div class="region-bar" aria-label="Regional Radar Shortcuts">
+            <span style="font-size:0.8rem;color:var(--text-muted);font-weight:600;">QUICK REGIONS:</span>
+            <button class="region-btn active" onclick="zoomRegion('us')">🇺🇸 Entire USA</button>
+            <button class="region-btn" onclick="zoomRegion('southeast')">🏖️ Florida &amp; Southeast</button>
+            <button class="region-btn" onclick="zoomRegion('texas')">🤠 Texas &amp; Gulf Coast</button>
+            <button class="region-btn" onclick="zoomRegion('northeast')">🗽 Northeast Corridor</button>
+            <button class="region-btn" onclick="zoomRegion('midwest')">🌾 Midwest &amp; Ohio Valley</button>
+            <button class="region-btn" onclick="zoomRegion('west')">🌴 West Coast &amp; California</button>
+            <button class="region-btn" onclick="zoomRegion('plains')">🌪️ Central Plains</button>
+        </div>
+
+        <!-- Adsterra: Top Leaderboard / Native Display Banner Unit -->
+        <div class="ad-slot-wrap" aria-label="Sponsored Advertisement">
+            <span class="ad-slot-label">Sponsored Advertisement</span>
+            <div class="ad-slot-box" style="padding:6px;border:1px solid var(--border);background:var(--bg-card);min-height:90px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                <div id="container-3b6f409a46a74a66ee65f44221bce59b"></div>
+                <script async="async" data-cfasync="false" src="https://bauval.org/21/3b6f409a46a74a66ee65f44221bce59b"></script>
+            </div>
+        </div>
+
+        <!-- Radar Map Box -->
+        <section class="radar-box">
+            <div class="radar-header-bar">
+                <div class="radar-title-group">
+                    <span class="live-dot"></span>
+                    <h2>Live US Echo Tops Map</h2>
+                    <span class="badge" id="eetStatusBadge" style="background:rgba(56,189,248,0.12);color:var(--accent);border-color:var(--accent);">🟢 Echo Tops Live</span>
+                </div>
+                <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap;">
+                    <button class="radar-ctrl-btn" onclick="toggleRadarFullscreen()" title="Fullscreen Mode">⛶ Fullscreen</button>
+                    <a href="/radar-tools.html" class="radar-ctrl-btn" style="background:linear-gradient(135deg, #0284c7, #2563eb);color:#ffffff;border:none;font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px;box-shadow:0 2px 8px rgba(37,99,235,0.3);" title="Open Weather Radar Tools & Utilities">⚡ Radar Tools »</a>
+                    <a href="/national-radar-loop.html" class="radar-ctrl-btn" style="background:var(--bg-card);border:1px solid var(--border);color:var(--text-sub);font-weight:700;text-decoration:none;display:inline-flex;align-items:center;gap:4px;" title="Open the full 2-hour National Radar Loop">📡 National HD Loop »</a>
+                </div>
+            </div>
+
+            <!-- Leaflet Echo Tops Map -->
+            <div id="radarMap" aria-label="Interactive Echo Tops Map">
+                <!-- Floating On-Map Echo Tops Legend -->
+                <div class="radar-legend-overlay" id="eetLegendOverlay" aria-label="Echo Tops Scale">
+                    <div class="legend-header">
+                        <span class="legend-title" id="eetLegendTitle">🌩️ Echo Tops — Storm Height (thousands of feet)</span>
+                    </div>
+                    <div class="legend-scale-bar" id="eetLegendBar"></div>
+                    <div class="legend-labels">
+                        <span>Trace</span>
+                        <span>Light</span>
+                        <span>Heavy rain</span>
+                        <span>Extreme</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Totals Toolbar -->
+            <div class="radar-toolbar">
+                <p id="radarUpdated" style="font-size:0.8rem;color:var(--text-muted);margin:6px 0;">Echo tops: loading the latest NEXRAD data&hellip;</p>
+                <div class="secondary-controls">
+                    <button class="radar-ctrl-btn" id="toggleAlertsBtn" onclick="toggleAlertPolygons()" title="Toggle NWS Severe Storm Warning Polygons on Map">⚠️ Warnings: ON</button>
+                    <button class="radar-ctrl-btn" onclick="zoomRegion('us')" title="Reset to Continental US">🇺🇸 Center US</button>
+                    <button class="radar-ctrl-btn" onclick="refreshEetData()" title="Fetch the newest echo tops">↻ Refresh</button>
+                </div>
+            </div>
+            <div id="eetError" style="display:none;border-top:1px solid var(--border);padding:12px 16px;font-size:0.85rem;color:var(--text-muted);"></div>
+            <div style="border-top:1px solid var(--border);padding:12px 16px;font-size:0.85rem;color:var(--text-muted);">
+                <strong style="color:var(--text-primary);">⏱️ About echo tops:</strong>
+                The map shows the latest NOAA NEXRAD Enhanced Echo Tops (EET) mosaic from the Iowa State University IEM — the height of the top of the precipitation core, in thousands of feet, on a national mosaic updated about every 5 minutes. This page re-fetches it automatically every 5 minutes. Echo tops are the top of the precipitation, not the visible cloud top — the cloud usually extends 5,000 to 10,000 feet higher. A blank map means no precipitation strong enough to measure a top, not a broken map. To watch precipitation falling right now, open the <a href="/national-radar-loop.html">live national radar loop</a>; to compare with the raw reflectivity, open the <a href="/radar-reflectivity.html">reflectivity map</a>.
+            </div>
+        </section>
+
+        <!-- Sponsored Severe Weather Alert & Doppler Feed (Adsterra Direct Link) -->
+        <div class="ad-slot-wrap" aria-label="Sponsored Weather Partner">
+            <span class="ad-slot-label">Sponsored Partner • Severe Weather Alert Feed</span>
+            <div style="background:linear-gradient(135deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.95));border:1px solid rgba(56, 189, 248, 0.3);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;box-shadow:0 6px 24px rgba(0,0,0,0.18);">
+                <div style="display:flex;align-items:center;gap:14px;text-align:left;">
+                    <div style="width:44px;height:44px;border-radius:10px;background:rgba(56, 189, 248, 0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">
+                        ⛈️
+                    </div>
+                    <div>
+                        <div style="font-weight:700;font-size:1rem;color:#f8fafc;display:flex;align-items:center;gap:8px;">
+                            Live US Severe Storm & Emergency Doppler Feed
+                            <span style="font-size:0.68rem;padding:2px 6px;border-radius:4px;background:#ef4444;color:#fff;font-weight:700;">LIVE</span>
+                        </div>
+                        <div style="font-size:0.84rem;color:#94a3b8;margin-top:2px;">
+                            High-resolution radar loops, localized flash flood alerts, and instant severe storm updates.
+                        </div>
+                    </div>
+                </div>
+                <a href="/#severe-alerts" style="background:#0284c7;color:#ffffff;padding:10px 18px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;white-space:nowrap;" onmouseover="this.style.background='#0369a1'" onmouseout="this.style.background='#0284c7'">
+                    Check NWS Alerts →
+                </a>
+            </div>
+        </div>
+
+        <!-- Detailed Guide & FAQs -->
+        <section class="content-section">
+            <div class="content-grid">
+                <div class="article-card">
+                    <h2>What Echo Tops Show</h2>
+                    <p>The map above answers a different question from the live radar loop: not "is it raining now?" or "how hard is it raining?" but <strong>"how tall is the storm?"</strong> Every colored area is the height of the top of the precipitation core — the highest point where the radar still sees an echo of 18 dBZ or stronger, the National Weather Service definition of an echo top. Heights are in thousands of feet (kft). A blank map is good news: it means no precipitation strong enough to measure a top, not that the map is broken.</p>
+                    <p>Low tops (blue, under about 15,000 feet) mean shallow showers and light rain. Tall tops (yellow, orange and red, 35,000 to 60,000 feet and beyond) mean deep thunderstorms with powerful updrafts holding rain and hail high in the sky. The taller the top, the stronger the storm — which is why forecasters watch echo tops when a storm is growing, and why pilots use them to judge whether they can fly over a storm or must go around it.</p>
+
+                    <h3>How to Read It: The Echo Tops Scale</h3>
+                    <p>Colors on this map are heights in thousands of feet, not radar intensity — warmer colors mean a taller storm. The scale below is the official Iowa State IEM scale for the NEXRAD Enhanced Echo Tops product, with one step per thousand feet from 1,000 to 70,000 feet.</p>
+                    <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:18px;font-size:0.88rem;line-height:1.9;">
+                        <div><strong style="color:#415b9e;">1 – 10 kft:</strong> Shallow showers — blue; tops barely above the low clouds</div>
+                        <div><strong style="color:#599fc7;">11 – 15 kft:</strong> Moderate showers — light blue to cyan; tops reaching the mid-levels</div>
+                        <div><strong style="color:#11d117;">16 – 20 kft:</strong> Developing thunderstorms — green</div>
+                        <div><strong style="color:#09730c;">21 – 30 kft:</strong> Strong thunderstorms — dark green; tops near the middle of the troposphere</div>
+                        <div><strong style="color:#ffdd00;">31 – 40 kft:</strong> Very strong storms — yellow; tops pushing toward the tropopause</div>
+                        <div><strong style="color:#ffa200;">41 – 49 kft:</strong> Severe storms likely — orange; large hail possible</div>
+                        <div><strong style="color:#ff0000;">50 – 60 kft:</strong> Intense storms, often supercells — red; large hail and tornadoes possible</div>
+                        <div><strong style="color:#e10be3;">61 – 70+ kft:</strong> Extreme overshooting tops — pink to magenta; among the tallest storms on Earth</div>
+                    </div>
+                    <p>Two things to keep in mind. First, height is not the same as intensity — a tall, thin storm can drop less rain than a shorter, wider one, so check the <a href="/radar-rain-totals.html">rain totals map</a> for how much rain actually fell. Second, the scale tops out at 70,000 feet, the limit of the NWS echo tops product — the very tallest storms reach that ceiling, they do not go beyond it on this map.</p>
+
+                    <h3>What Echo Tops Are For</h3>
+                    <ul>
+                        <li><strong>Finding the strongest storms:</strong> the tallest tops mark the strongest updrafts — scan the map for the red and orange cores and you have found the storms that matter most.</li>
+                        <li><strong>Severe weather:</strong> forecasters watch tops above about 35,000 to 40,000 feet combined with strong reflectivity; when a 50 or 60 dBZ core is held high, large hail is likely, and the 30 dBZ echo-top height tracks lightning activity closely.</li>
+                        <li><strong>Aviation:</strong> pilots use echo tops to judge whether they can fly over a storm — a top above the aircraft's altitude means go around, not over. Never use an echo top as a cloud top: the visible cloud runs 5,000 to 10,000 feet higher.</li>
+                        <li><strong>Watching a storm grow or die:</strong> tops rising fast over a few scans mean a storm is strengthening; tops collapsing mean the updraft is weakening and the storm is dying.</li>
+                        <li><strong>Winter weather:</strong> snow bands have low tops — lake-effect snow often tops out under 15,000 feet — so blue on this map in winter still means a real storm, just a shallow one.</li>
+                        <li><strong>Comparing storms:</strong> two storms can look the same on the reflectivity map and be very different heights — the echo tops map shows which one is the deep, dangerous one.</li>
+                    </ul>
+
+                    <h3>How Echo Tops Are Made</h3>
+                    <p>The picture starts at more than 160 <strong>WSR-88D NEXRAD</strong> Doppler radar stations across the United States, jointly operated by the National Weather Service, the Department of Defense, and the Federal Aviation Administration. Each radar scans the sky in a volume coverage pattern — a series of tilts from near the horizon up to high elevation angles — measuring reflectivity at each height.</p>
+                    <p>At every point on the map, the <strong>Enhanced Echo Tops (EET)</strong> algorithm scans the vertical column from the top down and finds the highest altitude where reflectivity reaches 18 dBZ, interpolating between the two nearest elevation scans. The Iowa State University <strong>IEM</strong> then mosaics the echo tops from all the radars into one national picture, on a 1-kilometre grid, about every 5 minutes — that mosaic is the tile layer on this page. The legacy NEXRAD echo tops product used a 4-by-4-kilometre grid and 5,000-foot steps; the enhanced product resolves heights to 1,000 feet.</p>
+
+                    <h3>What Echo Tops Can't Tell You</h3>
+                    <ul>
+                        <li><strong>Cloud tops:</strong> the visible cloud is usually 5,000 to 10,000 feet higher than the echo top — radar cannot see the smallest cloud droplets, so the echo top is always lower than the cloud top.</li>
+                        <li><strong>How much rain will fall:</strong> height is not intensity — a tall, thin storm can drop less rain than a short, wide one. For rainfall amounts, see the <a href="/radar-rain-totals.html">rain totals map</a>.</li>
+                        <li><strong>The exact height far from a radar:</strong> the beam widens with distance and the Earth curves away, so tops can be over- or underestimated far from a radar site, and low precipitation can be overshot entirely.</li>
+                        <li><strong>Clouds with no precipitation:</strong> no echo does not mean no cloud — thin cirrus anvils and developing cumulus may be invisible to the radar while still being there.</li>
+                        <li><strong>Hail size directly:</strong> high tops plus strong reflectivity suggest hail, but only a Severe Thunderstorm Warning or a ground report confirms it.</li>
+                        <li><strong>Whether a storm is severe:</strong> height is one clue among many — warnings combine reflectivity, velocity, lightning, and spotter reports, so always follow the warning, not the height alone.</li>
+                    </ul>
+                                        <p>For the full beginner's guide to reading a radar map — velocity colors, loop controls, and common storm patterns — see <a href="/guides/how-to-read-doppler-radar.html">How to Read Doppler Radar</a>. For the animated national loop, open the <a href="/national-radar-loop.html">National Radar Loop</a>. To see the same map in raw reflectivity, with the full NOAA dBZ scale, open the <a href="/radar-reflectivity.html">Radar Reflectivity (dBZ)</a> page. To read the same map as how hard it is raining right now, open the <a href="/radar-rain-rate.html">Rain Rate Radar</a> page. To tell whether the precipitation is rain, snow, sleet or freezing rain, open the <a href="/radar-rain-or-snow.html">Rain or Snow Radar</a> page. To see how much rain has already fallen, open the <a href="/radar-rain-totals.html">Rain Totals Radar</a> page.</p>
+
+                    <h3>Echo Tops FAQ</h3>
+                    <div class="faq-item open">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What is an echo top on a radar map?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            An echo top is the height of the top of a storm's precipitation core, in thousands of feet. The National Weather Service defines it as the height of the highest radar echo of 18 dBZ or stronger in a vertical column — in other words, how high the rain, snow or hail inside a storm reaches. On this map, blue means a shallow echo top under about 15,000 feet, green and yellow mean a developing or strong thunderstorm, and orange, red and pink mean a very tall, severe storm reaching 40,000 to 60,000 feet and beyond.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How high do severe thunderstorm echo tops reach?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Ordinary showers top out below about 20,000 feet. A strong thunderstorm usually reaches 30,000 to 40,000 feet, and a severe thunderstorm often reaches 40,000 to 50,000 feet. The strongest storms — supercells — reach 50,000 to 60,000 feet and beyond, and the scale on this map runs to 70,000 feet. Tops that tall mean a very powerful updraft is holding rain and hail high in the sky, which is why forecasters watch echo tops closely when a storm is growing.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Can echo tops tell me if a storm has hail?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Echo tops alone do not prove hail, but they are one of the best clues. Forecasters look at how high the strong core of a storm is held up: when a 50 or 60 dBZ echo — the very heavy rain and hail core — reaches high into a storm, large hail is likely being held aloft by the updraft. A 30 dBZ echo top held high is also closely linked to lightning. A tall echo top plus strong reflectivity is a much stronger hail signal than either one by itself — but only a Severe Thunderstorm Warning or a ground report confirms hail.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Are echo tops the same as cloud tops?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            No. Echo tops show the top of the precipitation inside a storm — the rain, snow and hail the radar can see. Cloud tops are the visible top of the cloud, measured by satellite, and they are usually 5,000 to 10,000 feet higher than the echo top in an intense storm, because the cloud extends above the precipitation core and the radar cannot see the smallest cloud droplets. Never use an echo top as a cloud top — for example, when judging whether an aircraft can fly over a storm.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Why is the echo tops map blank over my area?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            A blank map usually means good news: there is no precipitation strong enough for the radar to measure a top, because echo tops only exist where reflectivity reaches 18 dBZ. Clear skies, very light drizzle and thin cloud all leave the map blank. It can also happen when showers are far from the nearest radar — the beam rises with distance and can pass over low precipitation entirely. In winter, snow bands often have low tops that show as blue rather than blank.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Is the echo tops map on this page live?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Yes. The map shows the latest NEXRAD Enhanced Echo Tops mosaic from the Iowa State University IEM, built from more than 160 NEXRAD radars across the United States and updated about every 5 minutes. The page re-fetches it automatically, and the 'last checked' time under the map tells you exactly when it was fetched.
+                        </div>
+                    </div>
+                    <h3>About This Page</h3>
+                    <p style="font-size:0.88rem;">Published: 14 November 2026 &bull; Updated: 14 November 2026. Sources: NOAA / National Weather Service &mdash; Glossary: Echo Tops (forecast.weather.gov); NOAA Warning Decision Training Division &mdash; xx dBZ Echo Top (ET) (vlab.noaa.gov); National Weather Service / NEXRAD Radar Operations Center &mdash; Echo Tops product specification (5,000&ndash;70,000 ft, 18 dBZ threshold); Iowa State University IEM &mdash; composite_eet raster documentation and tile service (mesonet.agron.iastate.edu); Flying Magazine &mdash; &ldquo;What Are Echo Tops?&rdquo; (echo tops vs cloud tops). Echo tops update about every 5 minutes. Note: echo tops show the top of the precipitation core, not the visible cloud top — the cloud usually extends 5,000 to 10,000 feet higher.</p>
+                </div>
+
+                <!-- Sidebar -->
+                <div>
+                    <div class="sidebar-card">
+                        <h3>🚨 Active NWS Alerts</h3>
+                        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">Live watches & warnings across the US:</p>
+                        <p id="alertsUpdated" style="font-size:0.8rem;color:var(--text-muted);margin:0 0 12px;">Alerts feed: checking live data from the National Weather Service&hellip;</p>
+                        <div id="alertsFeed" style="display:flex;flex-direction:column;gap:10px;">
+                            <div style="font-size:0.85rem;color:var(--text-muted);">Fetching NOAA emergency warnings…</div>
+                        </div>
+                    </div>
+
+                    <div class="sidebar-card" style="margin-top:20px;">
+                        <h3>🔍 Search Local Forecast</h3>
+                        <p style="font-size:0.85rem;color:var(--text-muted);margin-bottom:12px;">Want detailed hourly forecasts, temperature, UV, and Air Quality (AQI) for your location?</p>
+                        <a href="/" class="play-btn" style="text-align:center;display:block;text-decoration:none;">Go to City & ZIP Search →</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-links">
+                <a href="/">Live Weather Radar Map</a>
+                <a href="/national-radar-loop.html">National Radar Loop (HD)</a>
+                <a href="/hurricane-tracker.html" style="color:#ef4444;font-weight:700;">Live Hurricane Tracker</a>
+                <a href="/radar-tools.html">Radar Tools</a>
+                <a href="/cities/miami-fl.html">Miami Radar</a>
+                <a href="/cities/tampa-fl.html">Tampa Radar</a>
+                <a href="/cities/houston-tx.html">Houston Radar</a>
+                <a href="/cities/chicago-il.html">Chicago Radar</a>
+                <a href="/cities/oklahoma-city-ok.html">Oklahoma City Radar</a>
+                <a href="/privacy-policy.html">Privacy Policy</a>
+                <a href="/terms-of-service.html">Terms of Service</a>
+                <a href="/about.html">About Us</a>
+                <a href="/contact.html">Contact Us</a>
+            </div>
+            <p>© 2026 Weather Radar USA • Data Source: NOAA / NWS NEXRAD EET via IEM • Canonical: <a href="https://weatherradarusa.online/radar-echo-tops.html">https://weatherradarusa.online/radar-echo-tops.html</a></p>
+        </div>
+    </footer>
+
+    <!-- Cookie Consent Banner -->
+    <div id="cookieBanner" class="cookie-banner" role="dialog" aria-label="Cookie and Privacy Consent">
+        <div class="cookie-text">
+            🍪 <strong>Cookie & Privacy Notice:</strong> We use cookies to analyze radar traffic, remember preferences, and serve relevant Google advertisements. By using our site, you agree to our <a href="/privacy-policy.html">Privacy Policy</a> and <a href="/terms-of-service.html">Terms</a>.
+        </div>
+        <button class="cookie-btn" onclick="acceptCookieConsent()">Accept & Continue</button>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <script>
+        // ==========================================
+        // 🛰️ ECHO TOPS ENGINE (Step 5, layer 5 — 2026-11-14)
+        // ==========================================
+        // Live echo tops come from the Iowa State University IEM
+        // tile service — the NEXRAD Enhanced Echo Tops (EET) mosaic,
+        // the height of the highest 18 dBZ echo, in thousands of feet,
+        // composited from 160+ NEXRAD radars and updated about every
+        // 5 minutes. Verified live 14 Nov 2026: the nexrad-eet tile
+        // returns 200 PNGs with real data, and the legend colors below
+        // are the official IEM composite_eet lookup table
+        // (mesonet.agron.iastate.edu/GIS/rasters.php?rid=9).
+        const EET_TILE_URL = 'https://mesonet.agron.iastate.edu/cache/tile.py/1.0.0/nexrad-eet/{z}/{x}/{y}.png';
+        const EET_SCALES = {
+            // Representative stops from the official IEM composite_eet
+            // lookup table (1-kft steps, 1 to 70+ kft).
+            stops: [
+                { v: '5', c: '#415b9e' },
+                { v: '10', c: '#599fc7' },
+                { v: '15', c: '#61d6c5' },
+                { v: '20', c: '#11d117' },
+                { v: '30', c: '#09730c' },
+                { v: '40', c: '#ffdd00' },
+                { v: '45', c: '#ffa200' },
+                { v: '50', c: '#ff0000' },
+                { v: '60+', c: '#e10be3' }
+            ]
+        };
+
+        let currentTheme = 'light';
+        let map = null;
+        let baseTileLayer = null;
+        let alertsLayerGroup = null;
+        let showPolygons = true;
+        let eetLayer = null;
+        let eetSeq = 0;
+        let eetMoveTimer = null;
+        let eetRetryTimer = null;
+        let lastEetUpdate = null;
+        let eetLoaded = false;
+
+        // Regional Presets
+        const REGIONS = {
+            us: { center: [38.5, -96.5], zoom: 4 },
+            southeast: { center: [29.5, -84.0], zoom: 6 },
+            texas: { center: [31.0, -97.5], zoom: 6 },
+            northeast: { center: [41.5, -74.5], zoom: 6 },
+            midwest: { center: [41.0, -87.5], zoom: 6 },
+            west: { center: [37.0, -119.5], zoom: 6 },
+            plains: { center: [36.5, -97.5], zoom: 6 }
+        };
+
+        function zoomRegion(reg) {
+            const conf = REGIONS[reg] || REGIONS.us;
+            if (map) map.flyTo(conf.center, conf.zoom, { duration: 1.1 });
+            document.querySelectorAll('.region-btn').forEach(btn => btn.classList.remove('active'));
+            if (event && event.target) event.target.classList.add('active');
+        }
+
+        function initTheme() {
+            try { localStorage.removeItem('w_theme'); } catch(e){}
+            currentTheme = 'light';
+            document.body.classList.remove('theme-dark');
+            document.body.classList.add('theme-light');
+            const metaTheme = document.querySelector('meta[name="theme-color"]');
+            if (metaTheme) metaTheme.setAttribute('content', '#dbeafe');
+            updateBaseMap('light');
+        }
+
+        function setTheme(theme) {
+            try { localStorage.removeItem('w_theme'); } catch(e){}
+            currentTheme = 'light';
+            document.body.classList.remove('theme-dark');
+            document.body.classList.add('theme-light');
+            updateBaseMap('light');
+        }
+
+        function toggleTheme() {
+            updateBaseMap('light');
+        }
+
+        function initMap() {
+            map = L.map('radarMap', {
+                center: [38.5, -96.5],
+                zoom: 4,
+                minZoom: 3,
+                maxZoom: 12,
+                zoomControl: true,
+                attributionControl: false
+            });
+
+            L.control.attribution({ position: 'bottomright', prefix: false })
+                .addAttribution('&copy; CARTO &copy; OSM | Echo tops: <a href="https://mesonet.agron.iastate.edu/GIS/rasters.php?rid=9">IEM / NOAA NEXRAD EET</a>')
+                .addTo(map);
+
+            alertsLayerGroup = L.layerGroup().addTo(map);
+
+            updateBaseMap('light');
+            renderEetLegend();
+            loadEet();
+
+            map.on('moveend', function () {
+                clearTimeout(eetMoveTimer);
+                eetMoveTimer = setTimeout(loadEet, 400);
+            });
+
+            // Invalidate size after layout completes
+            setTimeout(() => { if (map) map.invalidateSize(); }, 150);
+            setTimeout(() => { if (map) map.invalidateSize(); }, 600);
+            window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
+        }
+
+        function updateBaseMap(theme) {
+            if (!map) return;
+            if (baseTileLayer) map.removeLayer(baseTileLayer);
+            const tileUrl = 'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png?key=cb1_552e_1_9ae0169e1876e5cd9d3919cd';
+            baseTileLayer = L.tileLayer(tileUrl, { subdomains: 'abcd', maxZoom: 19 }).addTo(map);
+
+            baseTileLayer.on('tileerror', function() {
+                if (!window._osmFallback) {
+                    window._osmFallback = true;
+                    map.removeLayer(baseTileLayer);
+                    baseTileLayer = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(map);
+                }
+            });
+        }
+
+        function renderEetLegend() {
+            const scale = EET_SCALES;
+            const title = document.getElementById('eetLegendTitle');
+            if (title) title.textContent = '🌩️ Echo Tops — Storm Height (thousands of feet)';
+            const bar = document.getElementById('eetLegendBar');
+            if (!bar) return;
+            bar.innerHTML = scale.stops.map(function (s) {
+                const dark = (s.c === '#ffdd00' || s.c === '#11d117' || s.c === '#61d6c5' || s.c === '#599fc7');
+                return '<span class="scale-color" style="background:' + s.c + ';color:' + (dark ? '#000' : '#fff') + ';" title="' + s.v + ' thousand feet">' + s.v + '</span>';
+            }).join('');
+        }
+
+
+        function loadEet() {
+            if (!map) return;
+            const seq = ++eetSeq;
+            eetLoaded = false;
+            clearTimeout(eetRetryTimer);
+            const badge = document.getElementById('eetStatusBadge');
+            if (badge) badge.textContent = '⏳ Loading Echo Tops…';
+            if (eetLayer) map.removeLayer(eetLayer);
+            eetLayer = L.tileLayer(EET_TILE_URL + '?t=' + Date.now(), {
+                opacity: 0.78,
+                zIndex: 10
+            });
+            eetLayer.on('load', function () {
+                if (seq !== eetSeq) return;
+                eetLoaded = true;
+                lastEetUpdate = new Date();
+                const upd = document.getElementById('radarUpdated');
+                if (upd) upd.textContent = 'Echo tops last checked: ' + formatFeedTime(lastEetUpdate) + ' \u2022 Source: NOAA NEXRAD EET via Iowa State IEM (updates about every 5 minutes)';
+                if (badge) badge.textContent = '🟢 Echo Tops Live';
+                const err = document.getElementById('eetError');
+                if (err) err.style.display = 'none';
+            });
+            eetLayer.on('tileerror', function () {
+                if (seq !== eetSeq || eetLoaded) return;
+                // Give the remaining tiles a chance, then report honestly.
+                clearTimeout(eetRetryTimer);
+                eetRetryTimer = setTimeout(function () {
+                    if (seq !== eetSeq || eetLoaded) return;
+                    if (badge) badge.textContent = '⚠️ Echo Tops Unavailable';
+                    const upd = document.getElementById('radarUpdated');
+                    if (upd) upd.textContent = 'Echo tops: the IEM layer did not load. Last successful check: ' + (lastEetUpdate ? formatFeedTime(lastEetUpdate) : 'none yet') + '.';
+                    const err = document.getElementById('eetError');
+                    if (err) {
+                        err.style.display = 'block';
+                        err.innerHTML = 'The live echo tops layer is temporarily unavailable — the Iowa State IEM tile service did not return tiles. The live radar loop still works: <a href="/national-radar-loop.html">open the National Radar Loop</a>, or check echo tops directly at the <a href="https://mesonet.agron.iastate.edu/GIS/rasters.php?rid=9" target="_blank" rel="noopener">IEM echo tops raster page</a>. This page retries automatically.';
+                    }
+                    eetRetryTimer = setTimeout(loadEet, 60000);
+                }, 12000);
+            });
+            eetLayer.addTo(map);
+        }
+
+
+        function refreshEetData() {
+            loadEet();
+        }
+
+        function toggleRadarFullscreen() {
+            const el = document.querySelector('.radar-box');
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
+                if (el.requestFullscreen) el.requestFullscreen();
+                else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+            } else {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+            }
+        }
+        document.addEventListener('fullscreenchange', () => {
+            if (map) setTimeout(() => map.invalidateSize(), 200);
+        });
+
+        function toggleFaq(btn) {
+            const item = btn.closest('.faq-item');
+            const isOpen = item.classList.contains('open');
+            document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+            if (!isOpen) item.classList.add('open');
+        }
+
+        // Live NOAA Alerts for Sidebar & Map Polygons
+        // Step 1 fix (2026-11-07): retry transient NWS failures (was one-shot,
+        // no retry, no timestamp) and auto-refresh every 5 minutes, with a real
+        // last-updated time.
+        let lastAlertsUpdate = null;
+        function formatFeedTime(date) {
+            return date.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+        }
+        async function fetchSidebarAlerts(attempt) {
+            attempt = attempt || 0;
+            const feed = document.getElementById('alertsFeed');
+            if (!feed) return;
+            const upd = document.getElementById('alertsUpdated');
+            try {
+                const res = await fetch('https://api.weather.gov/alerts/active?status=actual&message_type=alert');
+                if (!res.ok) throw new Error('NWS alerts API returned status ' + res.status);
+                const data = await res.json();
+                const features = data.features || [];
+                lastAlertsUpdate = new Date();
+                if (upd) upd.textContent = 'Alerts last updated: ' + formatFeedTime(lastAlertsUpdate) + ' \u2022 Source: National Weather Service (api.weather.gov)';
+
+                renderAlertPolygonsOnMap(data);
+
+                if (!features.length) {
+                    feed.innerHTML = '<div style="font-size:0.85rem;color:var(--text-muted);">No major severe emergency alerts right now. Radar operations normal.</div>';
+                    return;
+                }
+                feed.innerHTML = features.slice(0, 5).map(f => {
+                    const p = f.properties;
+                    return `
+                        <div style="background:var(--bg-elevated);border-left:3px solid var(--danger);border-radius:6px;padding:8px 12px;font-size:0.82rem;">
+                            <strong style="color:var(--danger);">${p.event || 'Severe Alert'}</strong>
+                            <div style="color:var(--text-muted);margin-top:2px;">\uD83D\uDCCD ${p.areaDesc?.slice(0, 50) || 'USA'}</div>
+                        </div>
+                    `;
+                }).join('');
+            } catch (err) {
+                console.warn('NWS Alerts fetch error:', err);
+                if (attempt < 2) {
+                    setTimeout(() => fetchSidebarAlerts(attempt + 1), 3000);
+                    return;
+                }
+                const lastOk = lastAlertsUpdate ? ' Last successful update: ' + formatFeedTime(lastAlertsUpdate) + '.' : '';
+                feed.innerHTML = '<div style="font-size:0.85rem;color:var(--text-muted);">Alert feed temporarily unavailable. Last checked: ' + formatFeedTime(new Date()) + '.' + lastOk + ' Retrying automatically &mdash; see radar.weather.gov.</div>';
+                setTimeout(() => fetchSidebarAlerts(0), 60000);
+            }
+        }
+
+        function renderAlertPolygonsOnMap(data) {
+            if (!map || !alertsLayerGroup) return;
+            alertsLayerGroup.clearLayers();
+            if (!data || !data.features || !data.features.length) return;
+
+            const validFeatures = data.features.filter(f => f.geometry && (f.geometry.type === 'Polygon' || f.geometry.type === 'MultiPolygon'));
+
+            L.geoJSON({ type: 'FeatureCollection', features: validFeatures }, {
+                style: function(feature) {
+                    const p = feature.properties || {};
+                    const ev = (p.event || '').toLowerCase();
+                    let color = '#eab308';
+                    let fillColor = '#eab308';
+
+                    if (ev.includes('tornado')) {
+                        color = '#ef4444';
+                        fillColor = '#dc2626';
+                    } else if (ev.includes('thunderstorm')) {
+                        color = '#f97316';
+                        fillColor = '#ea580c';
+                    } else if (ev.includes('flood')) {
+                        color = '#10b981';
+                        fillColor = '#059669';
+                    } else if (ev.includes('winter') || ev.includes('snow') || ev.includes('blizzard')) {
+                        color = '#06b6d4';
+                        fillColor = '#0891b2';
+                    }
+
+                    return {
+                        color: color,
+                        weight: 2.2,
+                        opacity: 0.9,
+                        fillColor: fillColor,
+                        fillOpacity: 0.28,
+                        dashArray: ev.includes('tornado') ? '4, 4' : null
+                    };
+                },
+                onEachFeature: function(feature, layer) {
+                    const p = feature.properties || {};
+                    const eventName = p.event || 'Severe Weather Warning';
+                    const headline = p.headline || p.areaDesc || '';
+                    const expires = p.expires ? new Date(p.expires).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit', hour12: true }) : 'Until further notice';
+
+                    layer.bindPopup(`
+                        <div style="font-family:'Inter',sans-serif;font-size:0.88rem;color:#0f172a;line-height:1.4;max-width:260px;">
+                            <div style="font-weight:800;color:#dc2626;font-size:0.95rem;margin-bottom:4px;">🚨 ${eventName}</div>
+                            <div style="font-weight:600;margin-bottom:4px;">${p.areaDesc || 'United States'}</div>
+                            <div style="font-size:0.8rem;color:#475569;margin-bottom:6px;">${headline}</div>
+                            <div style="font-size:0.75rem;color:#64748b;border-top:1px solid #e2e8f0;padding-top:4px;">Expires: <strong>${expires}</strong> • Source: NOAA NWS</div>
+                        </div>
+                    `);
+                }
+            }).addTo(alertsLayerGroup);
+        }
+
+        function toggleAlertPolygons() {
+            showPolygons = !showPolygons;
+            const btn = document.getElementById('toggleAlertsBtn');
+            if (alertsLayerGroup) {
+                if (showPolygons) {
+                    if (!map.hasLayer(alertsLayerGroup)) map.addLayer(alertsLayerGroup);
+                    btn.textContent = '⚠️ Warnings: ON';
+                    btn.style.color = 'var(--text-sub)';
+                } else {
+                    if (map.hasLayer(alertsLayerGroup)) map.removeLayer(alertsLayerGroup);
+                    btn.textContent = '⚠️ Warnings: OFF';
+                    btn.style.color = 'var(--text-muted)';
+                }
+            }
+        }
+
+        function checkCookieConsent() {
+            if (!localStorage.getItem('wr_cookie_consent')) {
+                setTimeout(() => {
+                    const banner = document.getElementById('cookieBanner');
+                    if (banner) banner.classList.add('show');
+                }, 1200);
+            }
+        }
+
+        function acceptCookieConsent() {
+            localStorage.setItem('wr_cookie_consent', 'accepted');
+            const banner = document.getElementById('cookieBanner');
+            if (banner) banner.classList.remove('show');
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            initTheme();
+            initMap();
+            fetchSidebarAlerts();
+            setInterval(fetchSidebarAlerts, 300000);
+            setInterval(loadEet, 300000);
+            checkCookieConsent();
+
+            try {
+                const params = new URLSearchParams(window.location.search);
+                const reg = params.get('region');
+                if (reg && typeof zoomRegion === 'function') {
+                    setTimeout(() => zoomRegion(reg), 250);
+                }
+            } catch (e) {}
+        });
+    </script>
+</body>
+</html>
