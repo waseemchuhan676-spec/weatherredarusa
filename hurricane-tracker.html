@@ -43,7 +43,7 @@
     {
       "@context": "https://schema.org",
       "@type": "WebApplication",
-      "name": "Live Hurricane Tracker & Atlantic Doppler Radar",
+      "name": "Live Hurricane Tracker – Storm Map, Path & Alerts",
       "url": "https://weatherradarusa.online/hurricane-tracker.html",
       "description": "Real-time interactive tropical storm and hurricane tracking radar covering the Atlantic Basin, Caribbean Sea, and Gulf of Mexico.",
       "applicationCategory": "WeatherApplication",
@@ -85,7 +85,7 @@
           "name": "How does Doppler radar track hurricanes when they are offshore?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Land-based coastal NEXRAD radars have an effective range of about 230 nautical miles (approx. 250 miles). As a hurricane approaches within range of coastal radars (such as Miami, Tampa, Key West, or Houston), the radar scans the eyewall and spiral rainbands in high resolution. When storms are further out at sea, meteorologists rely on geostationary weather satellites (GOES-East) and NOAA 'Hurricane Hunter' reconnaissance aircraft equipped with tail Doppler radar."
+            "text": "Land-based coastal NEXRAD radars see reflectivity to about 460 km (around 250 nautical miles / 285 miles), while Doppler velocity data only reaches about 230 km (around 124 nautical miles). As a hurricane approaches within range of coastal radars (such as Miami, Tampa, Key West, or Houston), the radar scans the eyewall and spiral rainbands in high resolution. When storms are further out at sea, meteorologists rely on geostationary weather satellites (GOES-East) and NOAA \"Hurricane Hunter\" reconnaissance aircraft equipped with tail Doppler radar."
           }
         },
         {
@@ -106,10 +106,34 @@
         },
         {
           "@type": "Question",
-          "name": "Which NOAA NEXRAD stations monitor Atlantic and Gulf hurricanes?",
+          "name": "Which coastal NOAA NEXRAD stations monitor Atlantic and Gulf hurricanes?",
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Key coastal Doppler radar stations include KAMX (Miami, FL), KBYX (Key West, FL), KTBW (Tampa Bay, FL), KJAX (Jacksonville, FL), KTLH (Tallahassee, FL), KMOB (Mobile, AL), KLIX (New Orleans, LA), KLCH (Lake Charles, LA), KHGX (Houston, TX), and KBRO (Brownsville, TX)."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "When is Atlantic hurricane season?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The Atlantic hurricane season officially runs from 1 June to 30 November. The peak is 10 September, with most activity between mid-August and mid-October — though storms can occasionally form outside the official dates."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between a tropical storm and a hurricane?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "It is wind speed: a tropical storm has sustained winds of 39–73 mph, and once sustained winds reach 74 mph it becomes a hurricane — Category 1 on the Saffir-Simpson scale."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Where can I see the NHC 7-day tropical outlook?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The National Hurricane Center publishes a Tropical Weather Outlook for the next 2 and 7 days at nhc.noaa.gov. It marks every disturbance being watched with a coloured X and a development chance, and it is the first place a new storm appears."
           }
         }
       ]
@@ -456,7 +480,7 @@
             <p>During the Atlantic hurricane season (June 1 through November 30), tracking tropical systems requires a multi-layered remote sensing network. When tropical depressions, tropical storms, or hurricanes are thousands of miles out in the open ocean, meteorologists rely primarily on NOAA geostationary satellites (GOES-East) and U.S. Air Force Reserve "Hurricane Hunter" reconnaissance flights that drop GPS dropsondes directly through the storm's eyewall.</p>
 
             <h3>Coastal NEXRAD WSR-88D Network</h3>
-            <p>Once a hurricane approaches within 200 to 250 miles of the United States coastline, the National Weather Service's coastal network of WSR-88D Doppler radar stations takes over. Operating with dual-polarization S-band microwave pulses, stations like KAMX (Miami), KTBW (Tampa), and KHGX (Houston) scan storm circulation at multiple elevation angles:</p>
+            <p>Once a hurricane approaches within about 285 miles (460 km) of the United States coastline, the National Weather Service's coastal network of WSR-88D Doppler radar stations takes over. Operating with dual-polarization S-band microwave pulses, stations like KAMX (Miami), KTBW (Tampa), and KHGX (Houston) scan storm circulation at multiple elevation angles:</p>
             <ul style="padding-left:22px;color:var(--text-sub);margin-bottom:14px;">
                 <li style="margin-bottom:6px;"><strong>Eyewall Replacement Cycles (ERC):</strong> High-resolution radar reflectivity reveals when an outer rainband contracts around the inner eye, causing temporary intensity fluctuations.</li>
                 <li style="margin-bottom:6px;"><strong>Base Velocity &amp; Radial Wind Shear:</strong> Doppler shift measures extreme horizontal wind velocity toward or away from the radar dish, detecting embedded tornadoes in outer feeder bands.</li>
@@ -474,7 +498,7 @@
                 <details class="faq-item" open>
                     <summary>How does Doppler radar track hurricanes when they are offshore?</summary>
                     <div class="faq-answer">
-                        Land-based coastal NEXRAD radars have an effective range of about 230 nautical miles (approx. 250 miles). As a hurricane approaches within range of coastal radars (such as Miami, Tampa, Key West, or Houston), the radar scans the eyewall and spiral rainbands in high resolution. When storms are further out at sea, meteorologists rely on geostationary weather satellites (GOES-East) and NOAA "Hurricane Hunter" reconnaissance aircraft equipped with tail Doppler radar.
+                        Land-based coastal NEXRAD radars see reflectivity to about 460 km (around 250 nautical miles / 285 miles), while Doppler velocity data only reaches about 230 km (around 124 nautical miles). As a hurricane approaches within range of coastal radars (such as Miami, Tampa, Key West, or Houston), the radar scans the eyewall and spiral rainbands in high resolution. When storms are further out at sea, meteorologists rely on geostationary weather satellites (GOES-East) and NOAA "Hurricane Hunter" reconnaissance aircraft equipped with tail Doppler radar.
                     </div>
                 </details>
 
@@ -496,6 +520,27 @@
                     <summary>Which coastal NOAA NEXRAD stations monitor Atlantic and Gulf hurricanes?</summary>
                     <div class="faq-answer">
                         Key coastal Doppler radar stations include KAMX (Miami, FL), KBYX (Key West, FL), KTBW (Tampa Bay, FL), KJAX (Jacksonville, FL), KTLH (Tallahassee, FL), KMOB (Mobile, AL), KLIX (New Orleans, LA), KLCH (Lake Charles, LA), KHGX (Houston, TX), and KBRO (Brownsville, TX).
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>When is Atlantic hurricane season?</summary>
+                    <div class="faq-answer">
+                        The Atlantic hurricane season officially runs from 1 June to 30 November. The peak is 10 September, with most activity between mid-August and mid-October — though storms can occasionally form outside the official dates.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What is the difference between a tropical storm and a hurricane?</summary>
+                    <div class="faq-answer">
+                        It is wind speed: a tropical storm has sustained winds of 39–73 mph, and once sustained winds reach 74 mph it becomes a hurricane — Category 1 on the Saffir-Simpson scale.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Where can I see the NHC 7-day tropical outlook?</summary>
+                    <div class="faq-answer">
+                        The National Hurricane Center publishes a Tropical Weather Outlook for the next 2 and 7 days at nhc.noaa.gov. It marks every disturbance being watched with a coloured X and a development chance, and it is the first place a new storm appears.
                     </div>
                 </details>
             </div>
