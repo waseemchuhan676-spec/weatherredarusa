@@ -147,6 +147,22 @@
                 "@type": "Answer",
                 "text": "Yes. The map animates the past 2 hours of observed reflectivity, with new frames every 5 to 10 minutes, and the layer selector also offers the live NOAA NEXRAD feed. The 'Next 2 hours' view is different: it is a NOAA HRRR model forecast of simulated reflectivity, not observed radar, and it is most accurate in the first 30 to 60 minutes."
               }
+            },
+            {
+              "@type": "Question",
+              "name": "How much rain does 40 dBZ mean?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "About 10 mm of rain per hour (roughly 0.4 inches per hour) under the Marshall-Palmer Z-R relation \u2014 moderate rain. For comparison, 20 dBZ is about 0.6 mm/h and 50 dBZ is about 49 mm/h. Hail can push the value higher than the real rain rate, so treat it as an estimate, not a gauge reading."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "What is the highest dBZ value radar can show?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The WSR-88D reflectivity scale runs from about -35 dBZ to +85 dBZ. In practice, values above about 75 dBZ are almost always hail or debris, not rain \u2014 the brightest white and magenta cores on the map."
+              }
             }
           ]
         }
@@ -778,6 +794,15 @@
                         <div><strong style="color:#ff7f00;">50 – 65 dBZ:</strong> Heavy precipitation, or some hail</div>
                         <div><strong style="color:#ff00ff;">65+ dBZ:</strong> Extremely heavy precipitation, including water-coated hail</div>
                     </div>
+                    <h3>How Much Rain Is That? dBZ to Rain Rate</h3>
+                    <p>The dBZ number is not a rainfall amount, but the Marshall&ndash;Palmer Z&ndash;R relation (Z = 200&middot;R<sup>1.6</sup>) turns it into an approximate rain rate:</p>
+                    <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:18px;font-size:0.88rem;line-height:1.9;">
+                        <div><strong>20 dBZ:</strong> about 0.6 mm/h &mdash; light rain or drizzle</div>
+                        <div><strong>30 dBZ:</strong> about 2.7 mm/h &mdash; light rain</div>
+                        <div><strong>40 dBZ:</strong> about 10 mm/h &mdash; moderate rain</div>
+                        <div><strong>50 dBZ:</strong> about 49 mm/h &mdash; very heavy rain</div>
+                    </div>
+                    <p>These are estimates, not gauge readings: hail inflates the value, snow returns less energy than rain at the same rate, and only a rain gauge measures the real total.</p>
                     <p>Two things to keep in mind. First, the radar does <strong>not</strong> measure rainfall directly — it measures returned power, and a rainfall rate is only estimated from it with a Z–R relationship. Hail inflates that estimate, because a water-coated hailstone reflects far more energy than the same amount of rain. Second, colors are a guide, not a verdict: a 55 dBZ core means a strong storm, but only a National Weather Service warning tells you it is officially dangerous. Always pair the map with the live warnings feed on this page.</p>
 
                     <h3>What Reflectivity Is For</h3>
@@ -866,8 +891,28 @@
                         </div>
                     </div>
 
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>How much rain does 40 dBZ mean?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            About 10 mm of rain per hour (roughly 0.4 inches per hour) under the Marshall&ndash;Palmer Z&ndash;R relation &mdash; moderate rain. For comparison, 20 dBZ is about 0.6 mm/h and 50 dBZ is about 49 mm/h. Hail can push the value higher than the real rain rate, so treat it as an estimate, not a gauge reading.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What is the highest dBZ value radar can show?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            The WSR-88D reflectivity scale runs from about &minus;35 dBZ to +85 dBZ. In practice, values above about 75 dBZ are almost always hail or debris, not rain &mdash; the brightest white and magenta cores on the map.
+                        </div>
+                    </div>
+
                     <h3>About This Page</h3>
-                    <p style="font-size:0.88rem;">Published: 10 November 2026 &bull; Updated: 10 November 2026. Sources: NOAA JetStream &mdash; Radar Images: Reflectivity (noaa.gov/jetstream/reflectivity); National Weather Service &mdash; NEXRAD radar (radar.weather.gov); RainViewer radar API; Iowa State University IEM NEXRAD tile service. Radar data updates every 5 to 10 minutes; the "Next 2 hours" view is a NOAA HRRR forecast, not observed radar.</p>
+                    <p style="font-size:0.88rem;">Published: 10 November 2026 &bull; Updated: 25 November 2026. Sources: NOAA JetStream &mdash; Radar Images: Reflectivity (noaa.gov/jetstream/reflectivity); National Weather Service &mdash; NEXRAD radar (radar.weather.gov); RainViewer radar API; Iowa State University IEM NEXRAD tile service. dBZ-to-rain-rate values use the Marshall&ndash;Palmer Z&ndash;R relation. Radar data updates every 5 to 10 minutes; the "Next 2 hours" view is a NOAA HRRR forecast, not observed radar.</p>
                 </div>
 
                 <!-- Sidebar -->
