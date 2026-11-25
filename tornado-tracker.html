@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Tornado Tracker – US Tornado Warnings Map (2026)</title>
-    <meta name="description" content="Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, rotation signatures and tornado safety guidance.">
-    <meta name="keywords" content="live tornado tracker, tornado warnings radar, tornado watch vs warning, tornado radar rotation, US tornado map">
+    <meta name="description" content="Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, SPC Day 1 and Day 2 convective outlooks, recently expired warnings and tornado safety guidance.">
+    <meta name="keywords" content="live tornado tracker, tornado warnings radar, tornado watch vs warning, tornado radar rotation, US tornado map, SPC convective outlook, SPC day 1 outlook, SPC day 2 outlook, tornado outlook">
     <meta name="author" content="Weather Radar USA">
     <meta name="robots" content="index, follow, max-image-preview:large">
         <!-- Monetag Site Verification -->
@@ -15,7 +15,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Live Tornado Tracker – US Tornado Warnings Map (2026)">
-    <meta property="og:description" content="Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, rotation signatures and tornado safety guidance.">
+    <meta property="og:description" content="Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, SPC Day 1 and Day 2 convective outlooks, recently expired warnings and tornado safety guidance.">
     <meta property="og:url" content="https://weatherradarusa.online/tornado-tracker.html">
     <meta property="og:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
     <meta property="og:site_name" content="Weather Radar USA">
@@ -23,7 +23,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Live Tornado Tracker – US Tornado Warnings Map (2026)">
-    <meta name="twitter:description" content="Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, rotation signatures and tornado safety guidance.">
+    <meta name="twitter:description" content="Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, SPC Day 1 and Day 2 convective outlooks, recently expired warnings and tornado safety guidance.">
     <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -45,7 +45,7 @@
       "@type": "WebApplication",
       "name": "Live Tornado Tracker – US Tornado Warnings Map (2026)",
       "url": "https://weatherradarusa.online/tornado-tracker.html",
-      "description": "Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, rotation signatures and tornado safety guidance.",
+      "description": "Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, SPC Day 1 and Day 2 convective outlooks, recently expired warnings and tornado safety guidance.",
       "applicationCategory": "WeatherApplication",
       "operatingSystem": "All",
       "provider": {
@@ -118,6 +118,22 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "You can see it right here on this page. The Live US Tornado Doppler Radar Loop at the top shows active National Weather Service tornado warnings on the map across the United States, with real-time Doppler radar. A tornado warning means a tornado has been sighted or indicated by weather radar, so if a warning covers your area, take shelter immediately in an interior room on the lowest floor, away from windows."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What is the SPC Day 1 convective outlook?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The SPC Day 1 convective outlook is the Storm Prediction Center's forecast of severe thunderstorm potential for the current convective day, through 12:00 UTC tomorrow. It maps categorical risk levels from Marginal to High and shows tornado, wind and hail probabilities. It is a forecast of potential, not a warning: a Slight risk does not mean a tornado will happen, and a Marginal risk does not mean you are safe. The Day 2 outlook covers the following day, so you can see severe weather potential a day ahead."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "What does a 5% or 10% tornado probability mean on the SPC outlook?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "On a Storm Prediction Center outlook, a 5% tornado probability means there is a 5% chance of a tornado within 25 miles of any point inside the outlined area, and a 10% probability means a 10% chance within 25 miles. Even a 5% tornado contour is a real signal: it is enough for the SPC to highlight the area, so people there should monitor forecasts and have a shelter plan ready. Higher contours such as 15% or 30% mark a much greater tornado threat."
       }
     }
   ]
@@ -346,6 +362,15 @@
         .alert-area { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 6px; }
         .alert-desc { font-size: 0.88rem; color: var(--text-sub); }
 
+        /* SPC outlook cards */
+        .outlook-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin: 18px 0 8px; }
+        .outlook-card { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 18px 20px; background: #f8fafc; }
+        .outlook-card h3 { font-size: 1.1rem; margin: 0 0 6px; }
+        .outlook-card p { font-size: 0.9rem; color: var(--text-sub); margin-bottom: 12px; }
+        .outlook-btn { display: inline-block; padding: 9px 18px; background: var(--primary); color: #fff; border-radius: var(--radius-sm); text-decoration: none; font-weight: 700; font-size: 0.9rem; }
+        .outlook-btn:hover { background: var(--primary-hover); }
+        .expired-time { font-size: 0.85rem; color: var(--text-muted); }
+
     </style>
     <!-- Adsterra Monetization Script (Social Bar) -->
     <script data-cfasync="false" src="https://bauval.org/14/38a872a5126d119c08717b9adf6fc253"></script>
@@ -422,6 +447,51 @@
             <p style="color:var(--text-muted);font-size:0.85rem;margin-top:14px;">Alerts are fetched live in your browser from the official National Weather Service API (api.weather.gov). Always confirm warnings with weather.gov and local emergency officials.</p>
         </section>
 
+        <!-- SPC Convective Outlooks -->
+        <section class="guide-section" id="spc-outlook">
+            <h2>SPC Convective Outlook: Day 1 &amp; Day 2 Tornado Outlook</h2>
+            <p>The NOAA Storm Prediction Center (SPC) publishes a convective outlook that forecasts where severe thunderstorms, including tornadoes, are most likely to develop. The <strong>Day 1 outlook</strong> covers the current convective day, through 12:00 UTC tomorrow, and the <strong>Day 2 outlook</strong> covers the following day, so you can see severe-weather potential a day ahead. Both outlooks are updated several times a day by SPC forecasters. Open the official outlook below for the live map — it is the authoritative source, updated directly by NOAA.</p>
+            <div class="outlook-grid">
+                <div class="outlook-card">
+                    <h3>Day 1 Outlook — Today</h3>
+                    <p>Severe thunderstorm and tornado potential for the current convective day, through 12:00 UTC tomorrow. Check this first every morning during severe weather season.</p>
+                    <a class="outlook-btn" href="https://www.spc.noaa.gov/products/outlook/day1otlk.html" target="_blank" rel="noopener">View Day 1 Outlook on SPC &rarr;</a>
+                </div>
+                <div class="outlook-card">
+                    <h3>Day 2 Outlook — Tomorrow</h3>
+                    <p>Severe thunderstorm and tornado potential for the following day, valid 12:00 UTC tomorrow to 12:00 UTC the day after. Use it to plan ahead when storms are expected.</p>
+                    <a class="outlook-btn" href="https://www.spc.noaa.gov/products/outlook/day2otlk.html" target="_blank" rel="noopener">View Day 2 Outlook on SPC &rarr;</a>
+                </div>
+            </div>
+            <h3>How to read the SPC outlook</h3>
+            <p>The outlook maps the United States into categorical risk levels. The higher the category, the greater the forecast severe-weather threat in that area. A separate tornado probability map shows the chance of a tornado within 25 miles of any point inside each outlined contour.</p>
+            <div class="table-wrap">
+                <table class="scale-table">
+                    <thead>
+                        <tr><th>Category</th><th>What it means</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td><span class="cat-badge" style="background:#16a34a;">MRGL</span> Marginal</td><td>Isolated severe storms possible. Stay aware, but widespread severe weather is unlikely.</td></tr>
+                        <tr><td><span class="cat-badge" style="background:#eab308;">SLGT</span> Slight</td><td>Scattered severe storms expected. Damaging wind, hail or an isolated tornado is possible.</td></tr>
+                        <tr><td><span class="cat-badge" style="background:#f97316;">ENH</span> Enhanced</td><td>Numerous severe storms expected, with a greater chance of tornadoes, damaging wind or large hail.</td></tr>
+                        <tr><td><span class="cat-badge" style="background:#ef4444;">MDT</span> Moderate</td><td>Widespread severe storms likely, with a significant tornado threat in the outlined area.</td></tr>
+                        <tr><td><span class="cat-badge" style="background:#7e22ce;">HIGH</span> High</td><td>A major severe weather outbreak is expected. Take every warning in this area extremely seriously.</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>Outlook vs warning — do not confuse them</h3>
+            <p>An outlook is a <strong>forecast of potential</strong>: it says severe weather is possible in an area over the coming day. A Tornado Watch means conditions are favorable right now, and a Tornado Warning means a tornado is happening or imminent. A Slight risk does not mean a tornado will happen, and a Marginal risk does not mean you are safe — tornadoes can still form outside the highlighted areas. When a warning is issued for your location, take shelter immediately, whatever the outlook said.</p>
+            <p style="color:var(--text-muted);font-size:0.85rem;">Source: NOAA / NWS Storm Prediction Center (spc.noaa.gov). Outlooks are issued and updated by SPC forecasters; this page links to the live official outlook rather than copying a map that would go stale.</p>
+        </section>
+
+        <!-- Expired Tornado Warnings (48h) -->
+        <section class="alerts-section" id="expired-warnings">
+            <h2>Recently Expired Tornado Warnings (Last 48 Hours)</h2>
+            <p class="alerts-status" id="expiredStatus">Loading recently expired tornado warnings...</p>
+            <div class="alerts-feed-grid" id="expiredGrid"></div>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:14px;">Warnings listed here have already expired — they show where tornado warnings were in effect over the last 48 hours. For warnings active right now, see the live feed above. Data: National Weather Service API (api.weather.gov).</p>
+        </section>
+
         <!-- Guide -->
         <section class="guide-section">
             <h2>How to Read Tornado Rotation on Doppler Radar</h2>
@@ -470,6 +540,20 @@
                     <summary>Where can I see a live tornado warning map for the USA?</summary>
                     <div class="faq-answer">
                         You can see it right here on this page. The Live US Tornado Doppler Radar Loop at the top shows active National Weather Service tornado warnings on the map across the United States, with real-time Doppler radar. A tornado warning means a tornado has been sighted or indicated by weather radar, so if a warning covers your area, take shelter immediately in an interior room on the lowest floor, away from windows.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What is the SPC Day 1 convective outlook?</summary>
+                    <div class="faq-answer">
+                        The SPC Day 1 convective outlook is the Storm Prediction Center's forecast of severe thunderstorm potential for the current convective day, through 12:00 UTC tomorrow. It maps categorical risk levels from Marginal to High and shows tornado, wind and hail probabilities. It is a forecast of potential, not a warning: a Slight risk does not mean a tornado will happen, and a Marginal risk does not mean you are safe. The Day 2 outlook covers the following day, so you can see severe weather potential a day ahead. Both outlooks are linked in the SPC outlook section above and open on the official spc.noaa.gov site.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>What does a 5% or 10% tornado probability mean on the SPC outlook?</summary>
+                    <div class="faq-answer">
+                        On a Storm Prediction Center outlook, a 5% tornado probability means there is a 5% chance of a tornado within 25 miles of any point inside the outlined area, and a 10% probability means a 10% chance within 25 miles. Even a 5% tornado contour is a real signal: it is enough for the SPC to highlight the area, so people there should monitor forecasts and have a shelter plan ready. Higher contours such as 15% or 30% mark a much greater tornado threat.
                     </div>
                 </details>
             </div>
@@ -566,6 +650,7 @@
 
             loadRadarData();
             fetchTopicAlerts();
+            fetchExpiredWarnings();
 
             setTimeout(() => { if (map) map.invalidateSize(); }, 200);
             window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
@@ -644,6 +729,42 @@
         window.addEventListener('DOMContentLoaded', () => {
             initMap();
         });
+        // ---- Expired tornado warnings, last 48h (NWS API: alerts sent in the window, expired only) ----
+        async function fetchExpiredWarnings() {
+            const grid = document.getElementById('expiredGrid');
+            const status = document.getElementById('expiredStatus');
+            const fmt = (iso) => new Date(iso).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+            const now = new Date();
+            const start = new Date(now.getTime() - 48 * 60 * 60 * 1000).toISOString();
+            const end = now.toISOString();
+            const stamp = () => 'Last updated: ' + now.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+            try {
+                const res = await fetch('https://api.weather.gov/alerts?event=Tornado%20Warning&start=' + encodeURIComponent(start) + '&end=' + encodeURIComponent(end) + '&limit=50');
+                const data = await res.json();
+                let features = (data.features || []).filter(f => {
+                    const p = f.properties || {};
+                    return p.expires && new Date(p.expires) <= now;
+                });
+                features.sort((a, b) => new Date(b.properties.sent) - new Date(a.properties.sent));
+                if (!features.length) {
+                    status.textContent = 'No tornado warnings expired in the last 48 hours. ' + stamp() + '.';
+                    grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:24px;">No tornado warnings have expired in the last 48 hours. The live feed above shows any warnings active right now.</div>';
+                    return;
+                }
+                status.textContent = features.length + ' expired tornado warning(s) in the last 48 hours. ' + stamp() + '.';
+                grid.innerHTML = features.slice(0, 10).map(f => {
+                    const p = f.properties || {};
+                    return '<div class="alert-card"><div class="alert-headline">' + (p.event || 'Tornado Warning') + ' — Expired</div>'
+                        + '<div class="alert-area">\uD83D\uDCCD ' + (p.areaDesc || 'United States Area') + '</div>'
+                        + '<div class="alert-desc">' + (p.headline || '') + '</div>'
+                        + '<div class="expired-time">Issued: ' + (p.sent ? fmt(p.sent) : '—') + ' &bull; Expired: ' + (p.expires ? fmt(p.expires) : '—') + '</div></div>';
+                }).join('');
+            } catch (err) {
+                console.warn('NWS expired warnings fetch error:', err);
+                status.textContent = 'Expired warnings feed temporarily unavailable as of ' + now.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + '. Please verify with weather.gov.';
+                grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:20px;">Expired warnings feed temporarily unavailable as of ' + now.toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + '. Please verify with weather.gov.</div>';
+            }
+        }
         // ---- NWS live alerts (same pattern as index.html: api.weather.gov active alerts, client-side filter) ----
         async function fetchTopicAlerts() {
             const grid = document.getElementById('alertsGrid');
