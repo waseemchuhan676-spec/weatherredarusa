@@ -43,6 +43,7 @@
       "@type": "WeatherForecast",
       "name": "Chicago Weather Radar & Live Forecast",
       "url": "https://weatherradarusa.online/cities/chicago-il.html",
+      "dateModified": "2026-11-22",
       "areaServed": {
         "@type": "City",
         "name": "Chicago",
@@ -102,7 +103,7 @@
           "name": "Which NOAA NEXRAD radar station covers Chicago, Illinois?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "The primary National Weather Service Doppler radar serving the Chicago metropolitan area is station KLOT, located in Romeoville, Illinois. It operates with high-frequency S-band dual-polarization technology to monitor severe storms, squall lines, and Lake Michigan lake-effect snow within a 230-nautical-mile radius."
+            "text": "The primary National Weather Service Doppler radar serving the Chicago metropolitan area is station KLOT, located in Romeoville, Illinois. It operates with S-band dual-polarization technology to monitor severe storms, squall lines, and Lake Michigan lake-effect snow within a 248-nautical-mile (460 km) reflectivity range."
           }
         },
         {
@@ -110,7 +111,7 @@
           "name": "How do I read precipitation radar colors on the Chicago Doppler map?",
           "acceptedAnswer": {
             "@type": "Answer",
-            "text": "Radar reflectivity is measured in dBZ: Light green (15-30 dBZ) signifies light rain or drizzle; yellow and orange (35-45 dBZ) represent moderate to heavy downpours; red, purple, and magenta (50-65+ dBZ) signal intense thunderstorms, hail, or severe tornadic supercells."
+            "text": "Radar reflectivity is measured in dBZ: Light green (15-30 dBZ) signifies light rain or drizzle; yellow and orange (35-45 dBZ) represent moderate to heavy downpours; red, purple, and magenta (50-65+ dBZ) signal intense thunderstorms, hail cores, or severe tornadic supercells."
           }
         },
         {
@@ -119,6 +120,22 @@
           "acceptedAnswer": {
             "@type": "Answer",
             "text": "Active National Weather Service warnings for Chicago and surrounding counties are automatically streamed directly above our radar map. You can also view active warning polygons and detailed bulletins across Illinois on our NWS Severe Alerts feed."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How much snow does Chicago get in a year?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Chicago averages 38.4 inches of snow per year, based on the National Weather Service 1991-2020 climate normals recorded at O'Hare. January is the snowiest month, averaging 11.3 inches, followed by February at 10.7 inches. The biggest single snowstorm on record dropped 23.0 inches on January 26-27, 1967."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the rainiest month in Chicago?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "May is Chicago's wettest month, averaging 4.49 inches of precipitation, followed by August at 4.25 inches. Chicago averages 37.86 inches of precipitation a year (1991-2020 normals, O'Hare). Summer thunderstorms deliver most of the year's rain, while winter precipitation falls mainly as snow."
           }
         }
       ]
@@ -380,6 +397,11 @@
             font-weight: 600;
             text-align: center;
         }
+        .climate-table { width: 100%; border-collapse: collapse; font-size: 0.86rem; margin: 14px 0; }
+        .climate-table th, .climate-table td { border: 1px solid var(--border); padding: 7px 8px; text-align: center; }
+        .climate-table th { background: var(--bg-elevated); color: var(--text-sub); }
+        .climate-table td:first-child, .climate-table th:first-child { text-align: left; font-weight: 700; }
+        .climate-table tr:last-child td { font-weight: 700; background: var(--bg-elevated); }
 
         /* FAQ Section */
         .city-faq-section {
@@ -620,7 +642,7 @@
             <p>Chicago's location along the southwestern shore of Lake Michigan creates one of the most dynamic, rapidly shifting microclimates in North America. Known as the "Windy City," Chicagoland experiences sharp weather contrasts driven by lake-breeze fronts, severe midwestern squall lines, and winter lake-effect snow squalls. Having access to high-resolution, real-time Doppler radar is essential for tracking sudden rain bands, thunderstorm gust fronts, and winter blizzards across Cook, DuPage, Lake, and Will counties.</p>
 
             <h3>&#128225; NOAA NEXRAD Station: KLOT (Romeoville / Chicago)</h3>
-            <p>Our interactive Chicago radar connects directly to NOAA's Level-III NEXRAD radar station <strong>KLOT</strong>, situated in Romeoville, Illinois (approximately 30 miles southwest of downtown Chicago). KLOT transmits dual-polarization S-band Doppler microwave pulses that detect both horizontal and vertical hydrometeor dimensions, allowing meteorologists and residents to distinguish between light rain, hail cores, sleet, snow, and tornadic debris signatures.</p>
+            <p>Our interactive Chicago radar connects directly to NOAA's Level-III NEXRAD radar station <strong>KLOT</strong>, situated in Romeoville, Illinois (about 30 miles (48 km) southwest of downtown Chicago). KLOT transmits dual-polarization S-band Doppler microwave pulses that detect both horizontal and vertical hydrometeor dimensions, allowing meteorologists and residents to distinguish between light rain, hail cores, sleet, snow, and tornadic debris signatures.</p>
 
             <div class="radar-meta-grid">
                 <div class="radar-meta-item">
@@ -629,7 +651,7 @@
                 </div>
                 <div class="radar-meta-item">
                     <div class="radar-meta-label">Coverage Radius</div>
-                    <div class="radar-meta-val">230 Nautical Miles</div>
+                    <div class="radar-meta-val">248 nmi (460 km)</div>
                 </div>
                 <div class="radar-meta-item">
                     <div class="radar-meta-label">Radar Frequency</div>
@@ -638,6 +660,10 @@
                 <div class="radar-meta-item">
                     <div class="radar-meta-label">Serving Region</div>
                     <div class="radar-meta-val">Chicagoland &amp; Lake Michigan</div>
+                </div>
+                <div class="radar-meta-item">
+                    <div class="radar-meta-label">Distance from Downtown</div>
+                    <div class="radar-meta-val">~30 miles (48 km)</div>
                 </div>
             </div>
 
@@ -652,6 +678,36 @@
 
             <h3>&#9888;&#65039; Seasonal Severe Storm Threats in Chicagoland</h3>
             <p>During spring and summer (April through August), fast-moving squall lines, derecho winds, and tornadic supercells frequently develop along frontal boundaries across northern Illinois and northwest Indiana. In winter, cold polar air streaming across Lake Michigan triggers intense lake-effect snow bands that can dump several inches of snow per hour over narrow corridors while areas just a few miles inland remain clear.</p>
+
+            <h3>&#127777;&#65039; Chicago Climate Normals: Average Weather by Month</h3>
+            <p>Chicago's climate runs from freezing, snowy winters to warm, humid summers. The table below shows the official 1991&ndash;2020 climate normals recorded at Chicago O'Hare, published by the National Weather Service Chicago office &mdash; use it to judge whether today's radar picture is normal for the season. May is the wettest month (4.49 inches of precipitation) and January the snowiest (11.3 inches of snow).</p>
+            <table class="climate-table">
+                <thead>
+                    <tr><th>Month</th><th>Avg High</th><th>Avg Low</th><th>Precipitation</th><th>Snowfall</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td>January</td><td>31.6&deg;F</td><td>18.8&deg;F</td><td>1.99 in</td><td>11.3 in</td></tr>
+                    <tr><td>February</td><td>35.7&deg;F</td><td>21.8&deg;F</td><td>1.97 in</td><td>10.7 in</td></tr>
+                    <tr><td>March</td><td>47.0&deg;F</td><td>31.0&deg;F</td><td>2.45 in</td><td>5.5 in</td></tr>
+                    <tr><td>April</td><td>59.0&deg;F</td><td>40.3&deg;F</td><td>3.75 in</td><td>1.3 in</td></tr>
+                    <tr><td>May</td><td>70.5&deg;F</td><td>50.6&deg;F</td><td>4.49 in</td><td>Trace</td></tr>
+                    <tr><td>June</td><td>80.4&deg;F</td><td>60.8&deg;F</td><td>4.10 in</td><td>0.0 in</td></tr>
+                    <tr><td>July</td><td>84.5&deg;F</td><td>66.4&deg;F</td><td>3.71 in</td><td>0.0 in</td></tr>
+                    <tr><td>August</td><td>82.5&deg;F</td><td>65.1&deg;F</td><td>4.25 in</td><td>0.0 in</td></tr>
+                    <tr><td>September</td><td>75.5&deg;F</td><td>57.1&deg;F</td><td>3.19 in</td><td>0.0 in</td></tr>
+                    <tr><td>October</td><td>62.7&deg;F</td><td>45.4&deg;F</td><td>3.43 in</td><td>0.2 in</td></tr>
+                    <tr><td>November</td><td>48.4&deg;F</td><td>34.1&deg;F</td><td>2.42 in</td><td>1.8 in</td></tr>
+                    <tr><td>December</td><td>36.6&deg;F</td><td>24.4&deg;F</td><td>2.11 in</td><td>7.6 in</td></tr>
+                    <tr><td>Annual</td><td>59.5&deg;F</td><td>43.0&deg;F</td><td>37.86 in</td><td>38.4 in</td></tr>
+                </tbody>
+            </table>
+            <p style="font-size:0.82rem;">Source: National Weather Service Chicago, 1991&ndash;2020 Monthly and Yearly Normals for Chicago (O'Hare).</p>
+
+            <h3>&#10052;&#65039; Historic Chicago Weather Events</h3>
+            <p><strong>The Blizzard of January 26&ndash;27, 1967</strong> remains Chicago's biggest snowstorm on record: 23.0 inches fell in about 29 hours, with peak wind gusts of 53 mph at Midway Airport. An estimated 20,000 to 50,000 cars and 800 to 1,000 buses were stranded or abandoned, and about 60 people died. Two days earlier, on January 24, Chicago had set a record warm temperature of 65&deg;F.</p>
+            <p><strong>The Groundhog Day Blizzard of January 31 &ndash; February 2, 2011</strong> buried Chicago under 21.2 inches of snow, the city's third-largest storm total. Its peak wind gust of 61 mph was the strongest of Chicago's four biggest snowstorms, visibility at O'Hare stayed at or below a quarter-mile for 11 consecutive hours, and 11 people died &mdash; many drivers abandoned their cars on DuSable Lake Shore Drive.</p>
+            <p><strong>Tornadoes have struck the Chicago area too.</strong> On April 21, 1967, a violent F4 tornado formed in Palos Hills, travelled through Oak Lawn and the south side of Chicago, killing 33 people and injuring 500 &mdash; the deadliest tornado in Chicago-area history. The only F5 tornado ever to strike the Chicago area hit Plainfield on August 28, 1990, killing 29 people, injuring 350, and causing $165 million in damage along a 16-mile path. Source: National Weather Service Chicago.</p>
+            <p style="font-size:0.82rem;color:var(--text-muted);margin-top:18px;">Page last updated: November 22, 2026. Climate and historic-event figures on this page are from the National Weather Service Chicago office.</p>
         </section>
 
         <!-- Chicago Weather Radar FAQ -->
@@ -670,7 +726,7 @@
                 <details class="faq-item">
                     <summary class="faq-question">Which NOAA NEXRAD radar station covers Chicago, Illinois?</summary>
                     <div class="faq-answer">
-                        The primary National Weather Service Doppler radar serving the Chicago metropolitan area is station <strong>KLOT</strong>, located in Romeoville, Illinois. It operates with high-frequency S-band dual-polarization technology to monitor severe storms, squall lines, and Lake Michigan lake-effect snow within a 230-nautical-mile radius.
+                        The primary National Weather Service Doppler radar serving the Chicago metropolitan area is station <strong>KLOT</strong>, located in Romeoville, Illinois. It operates with S-band dual-polarization technology to monitor severe storms, squall lines, and Lake Michigan lake-effect snow within a 248-nautical-mile (460 km) reflectivity range.
                     </div>
                 </details>
 
@@ -685,6 +741,20 @@
                     <summary class="faq-question">How can I see active tornado or severe thunderstorm warnings for Chicago?</summary>
                     <div class="faq-answer">
                         Active National Weather Service warnings for Chicago and surrounding counties are automatically streamed directly above our radar map. You can also view active warning polygons and detailed bulletins across Illinois on our NWS Severe Alerts feed.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">How much snow does Chicago get in a year?</summary>
+                    <div class="faq-answer">
+                        Chicago averages 38.4 inches of snow per year, based on the National Weather Service 1991-2020 climate normals recorded at O'Hare. January is the snowiest month, averaging 11.3 inches, followed by February at 10.7 inches. The biggest single snowstorm on record dropped 23.0 inches on January 26-27, 1967.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">What is the rainiest month in Chicago?</summary>
+                    <div class="faq-answer">
+                        May is Chicago's wettest month, averaging 4.49 inches of precipitation, followed by August at 4.25 inches. Chicago averages 37.86 inches of precipitation a year (1991-2020 normals, O'Hare). Summer thunderstorms deliver most of the year's rain, while winter precipitation falls mainly as snow.
                     </div>
                 </details>
             </div>
@@ -751,6 +821,7 @@
                     <h4>Legal &amp; Info</h4>
                     <a href="/privacy-policy.html">Privacy Policy</a>
                     <a href="/terms-of-service.html">Terms of Service</a>
+                    <a href="/disclaimer.html">Disclaimer</a>
                     <a href="/about.html">About Us</a>
                     <a href="/contact.html">Contact Us</a>
                 </div>

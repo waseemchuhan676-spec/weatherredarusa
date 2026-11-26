@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Disclaimer | Weather Radar USA</title>
+    <meta name="description" content="Disclaimer for Weather Radar USA. Radar maps, forecasts and alerts are estimates for general information only — always follow official NWS warnings.">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://weatherradarusa.online/disclaimer.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Outfit:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --bg-body: #060913;
+            --bg-header: rgba(10, 15, 29, 0.88);
+            --bg-card: rgba(14, 21, 38, 0.82);
+            --bg-elevated: rgba(22, 33, 56, 0.75);
+            --border: rgba(255, 255, 255, 0.08);
+            --text-primary: #f8fafc;
+            --text-muted: #94a3b8;
+            --text-sub: #cbd5e1;
+            --primary: #2563eb;
+            --accent: #38bdf8;
+            --radius: 14px;
+        }
+        body.theme-light {
+            --bg-body: #f8fafc;
+            --bg-header: rgba(255, 255, 255, 0.92);
+            --bg-card: rgba(255, 255, 255, 0.92);
+            --bg-elevated: #f1f5f9;
+            --border: rgba(226, 232, 240, 0.95);
+            --text-primary: #0f172a;
+            --text-muted: #64748b;
+            --text-sub: #334155;
+        }
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-body);
+            background-image: 
+                radial-gradient(ellipse 90% 50% at 50% -10%, rgba(14, 165, 233, 0.16), transparent 75%),
+                radial-gradient(circle 600px at 10% 25%, rgba(37, 99, 235, 0.08), transparent 70%);
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            color: var(--text-primary);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+        .container { width: 100%; max-width: 900px; margin: 0 auto; padding: 0 20px; }
+        a { color: var(--accent); text-decoration: none; }
+        a:hover { text-decoration: underline; }
+        
+        .header {
+            position: sticky; top: 0; z-index: 100;
+            background: var(--bg-header); backdrop-filter: blur(16px);
+            border-bottom: 1px solid var(--border);
+        }
+        .header .container { display: flex; align-items: center; justify-content: space-between; height: 68px; }
+        .logo { display: flex; align-items: center; gap: 12px; font-weight: 800; font-size: 1.25rem; font-family: 'Outfit', sans-serif; }
+        .logo-radar-icon {
+            width: 36px; height: 36px; border-radius: 10px;
+            background: linear-gradient(135deg, #0284c7, #2563eb);
+            display: flex; align-items: center; justify-content: center;
+        }
+        .logo-radar-icon svg { width: 22px; height: 22px; }
+        .logo-text { color: var(--text-primary); }
+        .highlight {
+            background: linear-gradient(135deg, #38bdf8 0%, #3b82f6 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .nav { display: flex; align-items: center; gap: 20px; }
+        .nav a { color: var(--text-muted); font-size: 0.92rem; font-weight: 500; }
+        .nav a:hover { color: var(--text-primary); text-decoration: none; }
+        
+        .content-wrap { padding: 40px 0 60px; }
+        .policy-card {
+            background: var(--bg-card); border: 1px solid var(--border);
+            border-radius: var(--radius); padding: 36px 32px;
+        }
+        h1 { font-family: 'Outfit', sans-serif; font-size: 2.2rem; margin-bottom: 8px; }
+        .last-updated { font-size: 0.88rem; color: var(--text-muted); margin-bottom: 28px; }
+        h2 { font-family: 'Outfit', sans-serif; font-size: 1.35rem; margin: 28px 0 12px; color: var(--text-primary); }
+        h3 { font-size: 1.05rem; margin: 18px 0 8px; color: var(--accent); }
+        p { margin-bottom: 14px; color: var(--text-sub); font-size: 0.96rem; }
+        ul { padding-left: 24px; margin-bottom: 16px; color: var(--text-sub); }
+        li { margin-bottom: 8px; font-size: 0.95rem; }
+        
+        .footer {
+            background: var(--bg-header); border-top: 1px solid var(--border);
+            padding: 30px 0; text-align: center; color: var(--text-muted); font-size: 0.85rem;
+        }
+        .footer a { color: var(--text-muted); margin: 0 10px; }
+        .footer a:hover { color: var(--accent); }
+    </style>
+
+    <!-- Monetag Site Verification -->
+    <meta name="monetag" content="30aaf71eab099197f934568b5d3c17d0">
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function(c,l,a,r,i,t,y){
+            c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+            t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+            y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "yvkks26wwu");
+    </script>
+    <!-- Adsterra Monetization Script (Social Bar) -->
+    <script data-cfasync="false" src="https://bauval.org/14/38a872a5126d119c08717b9adf6fc253"></script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "name": "Disclaimer",
+      "url": "https://weatherradarusa.online/disclaimer.html",
+      "description": "Disclaimer for Weather Radar USA. Radar maps, forecasts and alerts are estimates for general information only.",
+      "inLanguage": "en",
+      "isPartOf": {
+        "@type": "WebSite",
+        "name": "Weather Radar USA",
+        "url": "https://weatherradarusa.online/"
+      }
+    }
+    </script>
+</head>
+<body class="theme-dark">
+
+    <header class="header">
+        <div class="container">
+            <a href="/" class="logo">
+                <div class="logo-radar-icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 2a10 10 0 1 0 10 10"></path>
+                        <path d="M12 6a6 6 0 1 0 6 6"></path>
+                        <path d="M12 10a2 2 0 1 0 2 2"></path>
+                        <line x1="12" y1="12" x2="20" y2="4"></line>
+                    </svg>
+                </div>
+                <div class="logo-text">Weather Radar <span class="highlight">USA</span></div>
+            </a>
+            <nav class="nav">
+                <a href="/">Live Radar</a>
+                <a href="/national-radar-loop.html">Radar Loop (HD)</a>
+                <a href="/about.html">About</a>
+                <a href="/contact.html">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="content-wrap">
+        <div class="container">
+            <!-- Adsterra: Leaderboard / Native Display Banner Unit -->
+            <div class="ad-slot-wrap" style="width:100%;max-width:970px;margin:18px auto;text-align:center;">
+                <span style="font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:4px;display:block;">Sponsored Advertisement</span>
+                <div style="padding:6px;border:1px solid var(--border);border-radius:8px;background:var(--bg-card);min-height:90px;display:flex;align-items:center;justify-content:center;overflow:hidden;">
+                    <div id="container-3b6f409a46a74a66ee65f44221bce59b"></div>
+                <script async="async" data-cfasync="false" src="https://bauval.org/21/3b6f409a46a74a66ee65f44221bce59b"></script>
+                </div>
+            </div>
+
+            <article class="policy-card">
+                <h1>Disclaimer</h1>
+                <div class="last-updated">Last Updated: November 26, 2026</div>
+
+                <p>Welcome to <strong>Weather Radar USA</strong> ("we," "our," or "us"), available at <a href="https://weatherradarusa.online/">https://weatherradarusa.online/</a>. This Disclaimer explains the limits of the weather information shown on this website. By using this website, you accept this Disclaimer.</p>
+
+                <h2>1. General Information Only</h2>
+                <p>The radar maps, forecasts, alerts, and other weather information on Weather Radar USA are provided for general information purposes only. They are not professional meteorological advice and are not a substitute for official warnings or guidance from the National Weather Service (NWS) or your local emergency authorities.</p>
+
+                <h2>2. Radar Data Is an Estimate, Not a Measurement</h2>
+                <p>Radar does not measure rainfall or weather directly. It measures reflected energy, which is converted into estimates — for example, reflectivity is converted into an estimated rain rate using the Marshall&ndash;Palmer Z&ndash;R relationship. Hail, snow, ground clutter, and the distance from a radar station can all shift the estimate. Treat the maps as a guide to what is happening, not as an exact measurement.</p>
+
+                <h2>3. Forecasts Are Not Observations</h2>
+                <p>Some views on this website, such as the "Next 2 hours" view, are forecasts from the NOAA HRRR weather model, not observed radar. A forecast is an estimate of what may happen and may differ from what actually occurs.</p>
+
+                <h2>4. Always Follow Official Warnings</h2>
+                <p>Always follow official warnings, watches, and advisories issued by the National Weather Service and instructions from your local authorities. Do not rely solely on this website for safety-critical decisions during severe weather, including tornadoes, flash floods, hurricanes, and blizzards.</p>
+
+                <h2>5. No Guarantee of Accuracy or Availability</h2>
+                <p>Weather data on this website comes from third-party sources, including the National Oceanic and Atmospheric Administration (NOAA), the National Weather Service, RainViewer, and the Iowa State University IEM service. Data may be delayed, incomplete, or temporarily unavailable. We do not warrant that the information on this website is complete, accurate, or up to date at all times, and we do not warrant that the website will be available without interruption.</p>
+
+                <h2>6. Third-Party Links and Trademarks</h2>
+                <p>This website may link to third-party websites and services. We do not control, endorse, or accept responsibility for the content of third-party websites. Names such as NOAA, National Weather Service, and NEXRAD are used to identify data sources and do not imply endorsement by those organizations.</p>
+
+                <h2>7. Affiliate Links &amp; Advertising Disclosure</h2>
+                <p>Weather Radar USA participates in affiliate marketing programs, including the Amazon Services LLC Associates Program. We may earn a small commission when you purchase products through links on this site, at no additional cost to you.</p>
+
+                <h2>8. Limitation of Liability</h2>
+                <p>To the fullest extent permitted by law, Weather Radar USA and its operators are not liable for any loss, damage, or injury arising from the use of, or reliance on, the information on this website.</p>
+
+                <h2>9. Changes to This Disclaimer</h2>
+                <p>We may update this Disclaimer from time to time. The "Last Updated" date at the top of this page shows when it was last revised.</p>
+
+                <h2>10. Contact Us</h2>
+                <p>If you have any questions about this Disclaimer, please reach out through our <a href="/contact.html">Contact Us</a> page.</p>
+            </article>
+
+            <!-- Sponsored Severe Weather Alert & Doppler Feed (Adsterra Direct Link) -->
+            <div class="ad-slot-wrap" style="width:100%;max-width:970px;margin:24px auto;text-align:left;">
+                <span style="font-size:0.68rem;letter-spacing:0.08em;text-transform:uppercase;color:var(--text-muted);margin-bottom:6px;display:block;">Sponsored Partner • Severe Weather Alert Feed</span>
+                <div style="background:linear-gradient(135deg, rgba(30, 41, 59, 0.75), rgba(15, 23, 42, 0.95));border:1px solid rgba(56, 189, 248, 0.3);border-radius:12px;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;box-shadow:0 6px 24px rgba(0,0,0,0.18);">
+                    <div style="display:flex;align-items:center;gap:14px;text-align:left;">
+                        <div style="width:44px;height:44px;border-radius:10px;background:rgba(56, 189, 248, 0.15);display:flex;align-items:center;justify-content:center;font-size:1.5rem;flex-shrink:0;">
+                            ⛈️
+                        </div>
+                        <div>
+                            <div style="font-weight:700;font-size:1rem;color:#f8fafc;display:flex;align-items:center;gap:8px;">
+                                Live US Severe Storm & Emergency Doppler Feed
+                                <span style="font-size:0.68rem;padding:2px 6px;border-radius:4px;background:#ef4444;color:#fff;font-weight:700;">LIVE</span>
+                            </div>
+                            <div style="font-size:0.84rem;color:#94a3b8;margin-top:2px;">
+                                High-resolution radar loops, localized flash flood alerts, and instant severe storm updates.
+                            </div>
+                        </div>
+                    </div>
+                    <a href="/national-radar-loop.html" style="background:#0284c7;color:#ffffff;padding:10px 18px;border-radius:8px;font-weight:700;font-size:0.9rem;text-decoration:none;display:inline-flex;align-items:center;gap:6px;transition:background 0.2s;white-space:nowrap;" onmouseover="this.style.background='#0369a1'" onmouseout="this.style.background='#0284c7'">
+                        Launch Radar Loop →
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>
+                <a href="/">Home</a> •
+                <a href="/national-radar-loop.html">National Radar Loop</a> •
+                <a href="/privacy-policy.html">Privacy Policy</a> •
+                <a href="/terms-of-service.html">Terms of Service</a>
+                <a href="/disclaimer.html">Disclaimer</a> •
+                <a href="/about.html">About Us</a> •
+                <a href="/contact.html">Contact Us</a>
+            </p>
+            <p style="margin-top:10px;">© 2026 Weather Radar USA • All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
