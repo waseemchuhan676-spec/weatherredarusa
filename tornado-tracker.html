@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Live Tornado Tracker – US Tornado Warnings Map (2026)</title>
-    <meta name="description" content="Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, SPC Day 1 and Day 2 convective outlooks, recently expired warnings and tornado safety guidance.">
+    <meta name="description" content="Live tornado warnings across the US with Doppler radar, NWS alerts, SPC Day 1 &amp; Day 2 outlooks, a 48-hour, 7-day and 30-day storm replay, county tornado history since 1950 and alerts near you.">
     <meta name="keywords" content="live tornado tracker, tornado warnings radar, tornado watch vs warning, tornado radar rotation, US tornado map, SPC convective outlook, SPC day 1 outlook, SPC day 2 outlook, tornado outlook">
     <meta name="author" content="Weather Radar USA">
     <meta name="robots" content="index, follow, max-image-preview:large">
@@ -15,7 +15,7 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:title" content="Live Tornado Tracker – US Tornado Warnings Map (2026)">
-    <meta property="og:description" content="Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, SPC Day 1 and Day 2 convective outlooks, recently expired warnings and tornado safety guidance.">
+    <meta property="og:description" content="Live tornado warnings across the US with Doppler radar, NWS alerts, SPC Day 1 &amp; Day 2 outlooks, a 48-hour, 7-day and 30-day storm replay, county tornado history since 1950 and alerts near you.">
     <meta property="og:url" content="https://weatherradarusa.online/tornado-tracker.html">
     <meta property="og:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
     <meta property="og:site_name" content="Weather Radar USA">
@@ -23,7 +23,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Live Tornado Tracker – US Tornado Warnings Map (2026)">
-    <meta name="twitter:description" content="Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, SPC Day 1 and Day 2 convective outlooks, recently expired warnings and tornado safety guidance.">
+    <meta name="twitter:description" content="Live tornado warnings across the US with Doppler radar, NWS alerts, SPC Day 1 &amp; Day 2 outlooks, a 48-hour, 7-day and 30-day storm replay, county tornado history since 1950 and alerts near you.">
     <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
 
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
@@ -45,7 +45,7 @@
       "@type": "WebApplication",
       "name": "Live Tornado Tracker – US Tornado Warnings Map (2026)",
       "url": "https://weatherradarusa.online/tornado-tracker.html",
-      "description": "Track live tornado warnings across the US with Doppler radar, NWS watches and warnings, SPC Day 1 and Day 2 convective outlooks, recently expired warnings and tornado safety guidance.",
+      "description": "Live tornado warnings across the US with Doppler radar, NWS alerts, SPC Day 1 & Day 2 outlooks, a 48-hour, 7-day and 30-day storm replay, county tornado history since 1950 and alerts near you.",
       "applicationCategory": "WeatherApplication",
       "operatingSystem": "All",
       "provider": {
@@ -125,7 +125,7 @@
       "name": "What is the SPC Day 1 convective outlook?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "The SPC Day 1 convective outlook is the Storm Prediction Center's forecast of severe thunderstorm potential for the current convective day, through 12:00 UTC tomorrow. It maps categorical risk levels from Marginal to High and shows tornado, wind and hail probabilities. It is a forecast of potential, not a warning: a Slight risk does not mean a tornado will happen, and a Marginal risk does not mean you are safe. The Day 2 outlook covers the following day, so you can see severe weather potential a day ahead."
+        "text": "The SPC Day 1 convective outlook is the Storm Prediction Center's forecast of severe thunderstorm potential for the current convective day, through 12:00 UTC tomorrow. It maps categorical risk levels from Marginal to High and shows tornado, wind and hail probabilities. It is a forecast of potential, not a warning: a Slight risk does not mean a tornado will happen, and a Marginal risk does not mean you are safe. The Day 2 outlook covers the following day, so you can see severe weather potential a day ahead. Both outlooks are linked in the SPC outlook section above and open on the official spc.noaa.gov site."
       }
     },
     {
@@ -134,6 +134,22 @@
       "acceptedAnswer": {
         "@type": "Answer",
         "text": "On a Storm Prediction Center outlook, a 5% tornado probability means there is a 5% chance of a tornado within 25 miles of any point inside the outlined area, and a 10% probability means a 10% chance within 25 miles. Even a 5% tornado contour is a real signal: it is enough for the SPC to highlight the area, so people there should monitor forecasts and have a shelter plan ready. Higher contours such as 15% or 30% mark a much greater tornado threat."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I replay past tornado storms on this page?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. The Storm Replay section steps through every tornado warning and watch the National Weather Service issued in the last 48 hours, 7 days or 30 days, oldest first, with the area, issue time and expiry for each event. For any event you can also load the archived national NEXRAD radar mosaic for that exact time from the Iowa Environmental Mesonet archive. A replay is a record of what happened — it is not a forecast and not an official warning channel."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How do tornado alerts near me work — is my location stored?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "The \"Tornado Alerts Near Me\" section uses your browser's geolocation only when you press the button. Your coordinates are sent only to the National Weather Service (api.weather.gov) to look up active alerts at that point. We do not store your location, no account or signup is needed, and if you decline permission you can still see every active tornado warning in the live feed at the top of this page."
       }
     }
   ]
@@ -371,6 +387,29 @@
         .outlook-btn:hover { background: var(--primary-hover); }
         .expired-time { font-size: 0.85rem; color: var(--text-muted); }
 
+        /* Storm replay */
+        .replay-window-btns { display: flex; flex-wrap: wrap; gap: 8px; margin: 16px 0 12px; }
+        .replay-btn { padding: 8px 16px; border-radius: var(--radius-sm); border: 1px solid var(--border); background: #f8fafc; color: var(--text-primary); font-weight: 700; font-size: 0.9rem; cursor: pointer; }
+        .replay-btn:hover { border-color: var(--primary); color: var(--primary); }
+        .replay-btn.active { background: var(--primary); border-color: var(--primary); color: #fff; }
+        .replay-controls { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: 12px 0; }
+        .replay-step { font-size: 0.9rem; font-weight: 700; color: var(--text-muted); }
+        .replay-detail { border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 16px 18px; background: #f8fafc; margin-top: 12px; }
+        .event-badge { display: inline-block; padding: 3px 10px; border-radius: 6px; font-weight: 800; font-size: 0.82rem; color: #fff; margin-bottom: 6px; }
+        .badge-warning { background: #dc2626; }
+        .badge-watch { background: #ea580c; }
+        .replay-list { max-height: 260px; overflow-y: auto; margin-top: 14px; border-top: 1px solid var(--border); }
+        .replay-item { display: block; width: 100%; text-align: left; padding: 10px 12px; border: none; border-bottom: 1px solid var(--border); background: none; cursor: pointer; font-size: 0.88rem; color: var(--text-sub); }
+        .replay-item:hover { background: #f0f7ff; }
+        .replay-item.current { background: #e0f2fe; font-weight: 700; color: var(--text-primary); }
+        .replay-figure { margin-top: 12px; }
+        .replay-figure img { width: 100%; height: auto; border-radius: 8px; border: 1px solid var(--border); display: block; }
+
+        /* County history + alerts near me */
+        .county-controls { display: flex; gap: 10px; flex-wrap: wrap; align-items: center; margin: 16px 0 12px; }
+        .county-select { padding: 9px 12px; border-radius: var(--radius-sm); border: 1px solid var(--border); font-size: 0.92rem; font-weight: 600; color: var(--text-primary); background: #fff; max-width: 100%; }
+        .nearme-note { font-size: 0.85rem; color: var(--text-muted); margin-top: 10px; }
+
     </style>
     <!-- Adsterra Monetization Script (Social Bar) -->
     <script data-cfasync="false" src="https://bauval.org/14/38a872a5126d119c08717b9adf6fc253"></script>
@@ -492,6 +531,87 @@
             <p style="color:var(--text-muted);font-size:0.85rem;margin-top:14px;">Warnings listed here have already expired — they show where tornado warnings were in effect over the last 48 hours. For warnings active right now, see the live feed above. Data: National Weather Service API (api.weather.gov).</p>
         </section>
 
+        <!-- Storm Replay (48h / 7d / 30d) -->
+        <section class="guide-section" id="storm-replay">
+            <h2>Storm Replay: Tornado Warnings from the Last 48 Hours, 7 Days &amp; 30 Days</h2>
+            <p>Missed a storm? Replay every tornado warning and watch the National Weather Service issued in the window you choose. Step through each event in time order, oldest first, and see where it was, when it was issued and when it expired. For any step you can also load the archived national NEXRAD radar mosaic for that exact time, from the Iowa Environmental Mesonet archive.</p>
+            <div class="replay-window-btns" role="group" aria-label="Replay window">
+                <button class="replay-btn" data-window="2" onclick="setReplayWindow(2, this)">Last 48 hours</button>
+                <button class="replay-btn active" data-window="7" onclick="setReplayWindow(7, this)">Last 7 days</button>
+                <button class="replay-btn" data-window="30" onclick="setReplayWindow(30, this)">Last 30 days</button>
+            </div>
+            <p class="alerts-status" id="replayStatus">Loading storm replay...</p>
+            <div class="replay-controls">
+                <button class="replay-btn" onclick="replayPrev()">&larr; Prev</button>
+                <button class="replay-btn" id="replayPlayBtn" onclick="toggleReplayPlay()">&#9654; Play</button>
+                <button class="replay-btn" onclick="replayNext()">Next &rarr;</button>
+                <span class="replay-step" id="replayStep"></span>
+            </div>
+            <div class="replay-detail" id="replayDetail"></div>
+            <div class="replay-list" id="replayList"></div>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:14px;">Replay data: National Weather Service API (api.weather.gov), warnings and watches as issued. Archived radar mosaics: Iowa Environmental Mesonet (IEM) NEXRAD national composite archive. A replay is a record of what happened — it is not a forecast, and it is not an official warning channel. Always confirm warnings with weather.gov.</p>
+        </section>
+
+        <!-- County Tornado History -->
+        <section class="guide-section" id="county-history">
+            <h2>County Tornado History: Where Tornadoes Strike Most</h2>
+            <p>Tornadoes have been recorded county by county in the NOAA Storm Prediction Center Severe Weather Database since 1950. The counties below have the most recorded tornadoes in that database. Big counties collect more tornadoes partly because they cover more ground — so a high count marks where tornadoes happen often and get written down, not necessarily where they hit hardest.</p>
+            <div class="table-wrap">
+                <table class="scale-table">
+                    <thead>
+                        <tr><th>#</th><th>County</th><th>Tornadoes, 1950&ndash;2024</th><th>Strongest rating</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>1</td><td>Weld County, CO</td><td>298</td><td>EF3</td></tr>
+                        <tr><td>2</td><td>Harris County, TX</td><td>251</td><td>F4</td></tr>
+                        <tr><td>3</td><td>Washington County, CO</td><td>232</td><td>EF3</td></tr>
+                        <tr><td>4</td><td>Palm Beach County, FL</td><td>197</td><td>EF3</td></tr>
+                        <tr><td>5</td><td>Adams County, CO</td><td>189</td><td>F3</td></tr>
+                        <tr><td>6</td><td>Polk County, FL</td><td>171</td><td>F4</td></tr>
+                        <tr><td>7</td><td>Hillsborough County, FL</td><td>152</td><td>F4</td></tr>
+                        <tr><td>8</td><td>Miami-Dade County, FL</td><td>152</td><td>F3</td></tr>
+                        <tr><td>9</td><td>Pinellas County, FL</td><td>149</td><td>F4</td></tr>
+                        <tr><td>10</td><td>Broward County, FL</td><td>146</td><td>F3</td></tr>
+                    </tbody>
+                </table>
+            </div>
+            <p>By area, the most tornado-dense county is <strong>Pinellas County, Florida</strong> — 425 tornadoes per 1,000 square miles among counties of at least 200 square miles — followed by Galveston County, Texas (294). Oklahoma County, Oklahoma, just outside the top 10 with 137 tornadoes, holds the strongest rating on this list: F5.</p>
+            <h3>Check a county's recent tornado warnings</h3>
+            <p>Pick a county to see every tornado warning the National Weather Service issued there in the last 30 days, live from api.weather.gov.</p>
+            <div class="county-controls">
+                <select class="county-select" id="countySelect" aria-label="Choose a county">
+                    <option value="COC123">Weld County, CO</option>
+                    <option value="TXC201" selected>Harris County, TX</option>
+                    <option value="COC121">Washington County, CO</option>
+                    <option value="FLC099">Palm Beach County, FL</option>
+                    <option value="COC001">Adams County, CO</option>
+                    <option value="FLC105">Polk County, FL</option>
+                    <option value="FLC057">Hillsborough County, FL</option>
+                    <option value="FLC086">Miami-Dade County, FL</option>
+                    <option value="FLC103">Pinellas County, FL</option>
+                    <option value="FLC011">Broward County, FL</option>
+                    <option value="OKC109">Oklahoma County, OK</option>
+                    <option value="TXC113">Dallas County, TX</option>
+                </select>
+                <button class="replay-btn" onclick="checkCountyHistory()">Check last 30 days</button>
+            </div>
+            <p class="alerts-status" id="countyStatus">Choose a county and press "Check last 30 days".</p>
+            <div class="alerts-feed-grid" id="countyGrid"></div>
+            <p style="color:var(--text-muted);font-size:0.85rem;margin-top:14px;">County counts: NOAA Storm Prediction Center Severe Weather Database, tornadoes 1950&ndash;2024 (public domain), via twisters.us. For the full history of any county since 1950, search the official <a href="https://www.ncdc.noaa.gov/stormevents/" target="_blank" rel="noopener">NOAA Storm Events Database</a> by county and date.</p>
+        </section>
+
+        <!-- Alerts Near Me -->
+        <section class="guide-section" id="alerts-near-me">
+            <h2>Tornado Alerts Near Me</h2>
+            <p>See the active weather alerts for exactly where you are right now — no account, no signup. Press the button and your browser asks for your location; your coordinates are sent only to the National Weather Service (api.weather.gov) to look up alerts at that point. Your location is not stored by us and is not sent anywhere else.</p>
+            <div class="county-controls">
+                <button class="replay-btn" id="nearmeBtn" onclick="checkAlertsNearMe()">&#128205; Use my location</button>
+            </div>
+            <p class="alerts-status" id="nearmeStatus">Your location is only used when you press the button.</p>
+            <div class="alerts-feed-grid" id="nearmeGrid"></div>
+            <p class="nearme-note">If location access is blocked, you can still see every active tornado warning in the live feed at the top of this page. This tool is not an official warning channel — always confirm warnings with weather.gov and local emergency officials.</p>
+        </section>
+
         <!-- Guide -->
         <section class="guide-section">
             <h2>How to Read Tornado Rotation on Doppler Radar</h2>
@@ -554,6 +674,20 @@
                     <summary>What does a 5% or 10% tornado probability mean on the SPC outlook?</summary>
                     <div class="faq-answer">
                         On a Storm Prediction Center outlook, a 5% tornado probability means there is a 5% chance of a tornado within 25 miles of any point inside the outlined area, and a 10% probability means a 10% chance within 25 miles. Even a 5% tornado contour is a real signal: it is enough for the SPC to highlight the area, so people there should monitor forecasts and have a shelter plan ready. Higher contours such as 15% or 30% mark a much greater tornado threat.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>Can I replay past tornado storms on this page?</summary>
+                    <div class="faq-answer">
+                        Yes. The Storm Replay section steps through every tornado warning and watch the National Weather Service issued in the last 48 hours, 7 days or 30 days, oldest first, with the area, issue time and expiry for each event. For any event you can also load the archived national NEXRAD radar mosaic for that exact time from the Iowa Environmental Mesonet archive. A replay is a record of what happened — it is not a forecast and not an official warning channel.
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary>How do tornado alerts near me work — is my location stored?</summary>
+                    <div class="faq-answer">
+                        The "Tornado Alerts Near Me" section uses your browser's geolocation only when you press the button. Your coordinates are sent only to the National Weather Service (api.weather.gov) to look up active alerts at that point. We do not store your location, no account or signup is needed, and if you decline permission you can still see every active tornado warning in the live feed at the top of this page.
                     </div>
                 </details>
             </div>
@@ -651,6 +785,7 @@
             loadRadarData();
             fetchTopicAlerts();
             fetchExpiredWarnings();
+            loadReplay(7);
 
             setTimeout(() => { if (map) map.invalidateSize(); }, 200);
             window.addEventListener('resize', () => { if (map) map.invalidateSize(); });
@@ -797,6 +932,221 @@
                 status.textContent = 'Alerts feed temporarily unavailable as of ' + new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + '. Please verify with weather.gov.';
                 grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:20px;">Active alerts feed temporarily unavailable as of ' + new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) + '. Please verify with weather.gov.</div>';
             }
+        }
+        // ---- Storm replay: NWS tornado warnings + watches, 48h / 7d / 30d ----
+        let replayEvents = [];
+        let replayIndex = 0;
+        let replayTimer = null;
+        let replayPlaying = false;
+        let replayWindowDays = 7;
+        const replayFmt = (iso) => iso ? new Date(iso).toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true }) : '—';
+        const replayStamp = () => new Date().toLocaleString('en-US', { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit', hour12: true });
+        function setReplayWindow(days, btn) {
+            document.querySelectorAll('.replay-window-btns .replay-btn').forEach(b => b.classList.remove('active'));
+            if (btn) btn.classList.add('active');
+            stopReplay();
+            loadReplay(days);
+        }
+        async function loadReplay(days) {
+            replayWindowDays = days;
+            replayEvents = [];
+            replayIndex = 0;
+            const status = document.getElementById('replayStatus');
+            const detail = document.getElementById('replayDetail');
+            const list = document.getElementById('replayList');
+            const step = document.getElementById('replayStep');
+            const label = days === 2 ? '48 hours' : (days === 7 ? '7 days' : '30 days');
+            status.textContent = 'Loading tornado warnings and watches from the last ' + label + '...';
+            detail.innerHTML = '';
+            list.innerHTML = '';
+            step.textContent = '';
+            const now = new Date();
+            const start = new Date(now.getTime() - days * 24 * 60 * 60 * 1000).toISOString();
+            const end = now.toISOString();
+            try {
+                const urls = ['Tornado%20Warning', 'Tornado%20Watch'].map(ev =>
+                    fetch('https://api.weather.gov/alerts?event=' + ev + '&start=' + encodeURIComponent(start) + '&end=' + encodeURIComponent(end) + '&limit=500').then(r => r.json()));
+                const results = await Promise.all(urls);
+                let events = [];
+                results.forEach(d => (d.features || []).forEach(f => events.push(f)));
+                events.sort((a, b) => new Date(a.properties.sent) - new Date(b.properties.sent));
+                replayEvents = events;
+                const warns = events.filter(f => (f.properties.event || '').toLowerCase().includes('warning')).length;
+                const watches = events.length - warns;
+                if (!events.length) {
+                    status.textContent = 'No tornado warnings or watches were issued in the last ' + label + '. Last checked: ' + replayStamp() + '.';
+                    detail.innerHTML = '<div style="color:var(--text-muted);">No storms to replay in this window. Try a longer window — the last 7 or 30 days.</div>';
+                    return;
+                }
+                status.textContent = events.length + ' event(s) in the last ' + label + ': ' + warns + ' warning(s), ' + watches + ' watch(es). Last checked: ' + replayStamp() + '.';
+                renderReplayList();
+                replayIndex = 0;
+                renderReplayStep();
+            } catch (err) {
+                console.warn('Storm replay fetch error:', err);
+                status.textContent = 'Storm replay temporarily unavailable as of ' + replayStamp() + '. Please verify with weather.gov.';
+                detail.innerHTML = '<div style="color:var(--text-muted);">Storm replay temporarily unavailable as of ' + replayStamp() + '. Please verify with weather.gov.</div>';
+            }
+        }
+        function renderReplayList() {
+            const list = document.getElementById('replayList');
+            list.innerHTML = replayEvents.map((f, i) => {
+                const p = f.properties || {};
+                return '<button class="replay-item" data-idx="' + i + '" onclick="jumpReplay(' + i + ')">' + replayFmt(p.sent) + ' — ' + (p.event || 'Alert') + ' — ' + (p.areaDesc || '').slice(0, 80) + '</button>';
+            }).reverse().join('');
+        }
+        function renderReplayStep() {
+            const f = replayEvents[replayIndex];
+            if (!f) return;
+            const p = f.properties || {};
+            const isWarn = (p.event || '').toLowerCase().includes('warning');
+            document.getElementById('replayStep').textContent = 'Event ' + (replayIndex + 1) + ' of ' + replayEvents.length;
+            document.getElementById('replayDetail').innerHTML =
+                '<span class="event-badge ' + (isWarn ? 'badge-warning' : 'badge-watch') + '">' + (p.event || 'Alert') + '</span>'
+                + '<div class="alert-headline">' + (p.headline || p.event || 'Tornado alert') + '</div>'
+                + '<div class="alert-area">\uD83D\uDCCD ' + (p.areaDesc || 'United States Area') + '</div>'
+                + '<div class="alert-desc">' + (p.description ? p.description.slice(0, 400) + '\u2026' : '') + '</div>'
+                + '<div class="expired-time">Issued: ' + replayFmt(p.sent) + ' &bull; Expires: ' + replayFmt(p.expires) + '</div>'
+                + '<div style="margin-top:12px;"><button class="replay-btn" onclick="showReplayRadar()">Show archived radar at this time</button></div>'
+                + '<div class="replay-figure" id="replayFigure"></div>';
+            document.querySelectorAll('.replay-item').forEach(el => el.classList.toggle('current', parseInt(el.getAttribute('data-idx'), 10) === replayIndex));
+        }
+        function jumpReplay(i) {
+            stopReplay();
+            replayIndex = i;
+            renderReplayStep();
+        }
+        function replayPrev() {
+            stopReplay();
+            if (!replayEvents.length) return;
+            replayIndex = (replayIndex - 1 + replayEvents.length) % replayEvents.length;
+            renderReplayStep();
+        }
+        function replayNext() {
+            stopReplay();
+            if (!replayEvents.length) return;
+            replayIndex = (replayIndex + 1) % replayEvents.length;
+            renderReplayStep();
+        }
+        function toggleReplayPlay() {
+            if (replayPlaying) { stopReplay(); return; }
+            if (!replayEvents.length) return;
+            replayPlaying = true;
+            document.getElementById('replayPlayBtn').innerHTML = '&#9208; Pause';
+            replayTimer = setInterval(() => {
+                replayIndex = (replayIndex + 1) % replayEvents.length;
+                renderReplayStep();
+            }, 2500);
+        }
+        function stopReplay() {
+            replayPlaying = false;
+            if (replayTimer) clearInterval(replayTimer);
+            const btn = document.getElementById('replayPlayBtn');
+            if (btn) btn.innerHTML = '&#9654; Play';
+        }
+        function showReplayRadar() {
+            const f = replayEvents[replayIndex];
+            const fig = document.getElementById('replayFigure');
+            if (!f || !fig) return;
+            const sent = new Date(f.properties.sent);
+            sent.setUTCMinutes(Math.floor(sent.getUTCMinutes() / 5) * 5, 0, 0);
+            const pad = (n) => String(n).padStart(2, '0');
+            const ts = sent.getUTCFullYear() + pad(sent.getUTCMonth() + 1) + pad(sent.getUTCDate()) + pad(sent.getUTCHours()) + pad(sent.getUTCMinutes());
+            const url = 'https://mesonet.agron.iastate.edu/archive/data/' + sent.getUTCFullYear() + '/' + pad(sent.getUTCMonth() + 1) + '/' + pad(sent.getUTCDate()) + '/GIS/uscomp/n0q_' + ts + '.png';
+            fig.innerHTML = '<p id="replayRadarNote" style="font-size:0.85rem;color:var(--text-muted);">Loading archived NEXRAD national radar mosaic for ' + replayFmt(f.properties.sent) + ' (about 7 MB)…</p>'
+                + '<img src="' + url + '" alt="Archived US NEXRAD radar mosaic at ' + replayFmt(f.properties.sent) + '" loading="lazy" onload="replayRadarLoaded(this)" onerror="replayRadarMissing(this)">';
+        }
+        function replayRadarLoaded(img) {
+            const note = document.getElementById('replayRadarNote');
+            if (note) note.style.display = 'none';
+        }
+        function replayRadarMissing(img) {
+            const note = document.getElementById('replayRadarNote');
+            if (note) note.textContent = 'Archived radar image not available for this time. Try the next event.';
+            if (img) img.remove();
+        }
+        // ---- County tornado history: last-30-days warnings for one county zone ----
+        async function checkCountyHistory() {
+            const sel = document.getElementById('countySelect');
+            const zone = sel.value;
+            const countyName = sel.options[sel.selectedIndex].text;
+            const status = document.getElementById('countyStatus');
+            const grid = document.getElementById('countyGrid');
+            status.textContent = 'Checking tornado warnings for ' + countyName + ' (last 30 days)...';
+            grid.innerHTML = '';
+            const now = new Date();
+            const start = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString();
+            try {
+                const res = await fetch('https://api.weather.gov/alerts?event=Tornado%20Warning&start=' + encodeURIComponent(start) + '&end=' + encodeURIComponent(now.toISOString()) + '&zone=' + zone + '&limit=50');
+                const data = await res.json();
+                const features = (data.features || []).slice().sort((a, b) => new Date(b.properties.sent) - new Date(a.properties.sent));
+                if (!features.length) {
+                    status.textContent = 'No tornado warnings were issued for ' + countyName + ' in the last 30 days. Last checked: ' + replayStamp() + '.';
+                    grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:20px;">No tornado warnings in this county in the last 30 days. For its full history since 1950, search the NOAA Storm Events Database.</div>';
+                    return;
+                }
+                status.textContent = features.length + ' tornado warning(s) for ' + countyName + ' in the last 30 days. Last checked: ' + replayStamp() + '.';
+                grid.innerHTML = features.slice(0, 9).map(f => {
+                    const p = f.properties || {};
+                    return '<div class="alert-card"><div class="alert-headline">' + (p.event || 'Tornado Warning') + '</div>'
+                        + '<div class="alert-area">\uD83D\uDCCD ' + (p.areaDesc || countyName) + '</div>'
+                        + '<div class="alert-desc">' + (p.headline || '') + '</div>'
+                        + '<div class="expired-time">Issued: ' + replayFmt(p.sent) + ' &bull; Expired: ' + replayFmt(p.expires) + '</div></div>';
+                }).join('');
+            } catch (err) {
+                console.warn('County history fetch error:', err);
+                status.textContent = 'County check temporarily unavailable as of ' + replayStamp() + '. Please verify with weather.gov.';
+            }
+        }
+        // ---- Alerts near me: browser geolocation, data stays in the browser ----
+        async function checkAlertsNearMe() {
+            const status = document.getElementById('nearmeStatus');
+            const grid = document.getElementById('nearmeGrid');
+            const btn = document.getElementById('nearmeBtn');
+            if (!('geolocation' in navigator)) {
+                status.textContent = 'Geolocation is not supported by this browser. Use the live warnings feed at the top of this page instead.';
+                return;
+            }
+            btn.disabled = true;
+            status.textContent = 'Asking your browser for your location...';
+            navigator.geolocation.getCurrentPosition(async (pos) => {
+                const lat = pos.coords.latitude;
+                const lon = pos.coords.longitude;
+                const latStr = lat.toFixed(4), lonStr = lon.toFixed(4);
+                status.textContent = 'Checking active alerts for your location (' + Math.abs(lat).toFixed(2) + '\u00B0 ' + (lat >= 0 ? 'N' : 'S') + ', ' + Math.abs(lon).toFixed(2) + '\u00B0 ' + (lon >= 0 ? 'E' : 'W') + ')...';
+                try {
+                    const res = await fetch('https://api.weather.gov/alerts/active?point=' + latStr + ',' + lonStr);
+                    const data = await res.json();
+                    const features = (data.features || []).slice().sort((a, b) => {
+                        const rank = (e) => (e || '').toLowerCase().includes('tornado') ? 0 : ((e || '').toLowerCase().includes('severe thunderstorm') ? 1 : ((e || '').toLowerCase().includes('flash flood') ? 2 : 3));
+                        return rank(a.properties.event) - rank(b.properties.event);
+                    });
+                    if (!features.length) {
+                        status.textContent = 'No active weather alerts at your location as of ' + replayStamp() + '.';
+                        grid.innerHTML = '<div style="text-align:center;grid-column:1/-1;color:var(--text-muted);padding:20px;">No active weather alerts where you are right now. If a warning is issued, it will appear here and in the live feed above.</div>';
+                    } else {
+                        status.textContent = features.length + ' active alert(s) at your location. Last checked: ' + replayStamp() + '.';
+                        grid.innerHTML = features.slice(0, 9).map(f => {
+                            const p = f.properties || {};
+                            return '<div class="alert-card"><div class="alert-headline">' + (p.event || 'Weather Alert') + '</div>'
+                                + '<div class="alert-area">\uD83D\uDCCD ' + (p.areaDesc || 'Your area') + '</div>'
+                                + '<div class="alert-desc">' + (p.headline || (p.description ? p.description.slice(0, 160) + '\u2026' : '')) + '</div>'
+                                + '<div class="expired-time">Expires: ' + replayFmt(p.expires) + '</div></div>';
+                        }).join('');
+                    }
+                } catch (err) {
+                    console.warn('Alerts near me fetch error:', err);
+                    status.textContent = 'Alerts lookup temporarily unavailable as of ' + replayStamp() + '. Please verify with weather.gov.';
+                }
+                btn.disabled = false;
+            }, (err) => {
+                btn.disabled = false;
+                if (err && err.code === 1) {
+                    status.textContent = 'Location permission denied — your location was not shared. You can still see every active tornado warning in the live feed at the top of this page.';
+                } else {
+                    status.textContent = 'Could not get your location (' + (err && err.message ? err.message : 'try again') + '). The live warnings feed at the top of this page still shows all active warnings.';
+                }
+            }, { timeout: 10000 });
         }
     </script>
 </body>
