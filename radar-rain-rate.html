@@ -7,7 +7,7 @@
     <!-- Title targeting: rain rate radar, live rain rate map, how hard is it raining, rainfall rate mm/h -->
     <title>Rain Rate Radar – Live US Rain Rate Map (mm/h)</title>
     
-    <meta name="description" content="Live US rain rate radar map: see how hard it is raining right now in mm/h and inches per hour, learn the rain rate scale, and how radar estimates rainfall from reflectivity.">
+    <meta name="description" content="Live US rain rate radar: how hard it is raining now in mm/h and in/h, the rain rate scale, and how radar turns reflectivity into rainfall.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Weather Radar USA">
     <meta name="keywords" content="rain rate radar, live rain rate map, how hard is it raining, rainfall rate mm/h, rain rate inches per hour, NEXRAD rain rate, radar rainfall estimate">
@@ -24,7 +24,7 @@
     
     <!-- Open Graph -->
     <meta property="og:title" content="Rain Rate Radar – Live US Rain Rate Map (mm/h)">
-    <meta property="og:description" content="Live US rain rate radar map: see how hard it is raining right now in mm/h and inches per hour, learn the rain rate scale, and how radar estimates rainfall from reflectivity.">
+    <meta property="og:description" content="Live US rain rate radar: how hard it is raining now in mm/h and in/h, the rain rate scale, and how radar turns reflectivity into rainfall.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://weatherradarusa.online/radar-rain-rate.html">
@@ -37,7 +37,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Rain Rate Radar – Live US Rain Rate Map (mm/h)">
-    <meta name="twitter:description" content="Live US rain rate radar map: see how hard it is raining right now in mm/h and inches per hour, learn the rain rate scale, and how radar estimates rainfall from reflectivity.">
+    <meta name="twitter:description" content="Live US rain rate radar: how hard it is raining now in mm/h and in/h, the rain rate scale, and how radar turns reflectivity into rainfall.">
     <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
     <meta name="twitter:image:alt" content="Live US Rain Rate Radar Map (mm/h) &amp; NOAA NEXRAD">
     <meta property="og:image:alt" content="Live US Rain Rate Radar Map (mm/h) &amp; NOAA NEXRAD">
@@ -121,7 +121,7 @@
               "name": "What rain rate counts as heavy rain?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "The bands most forecasters use are: light rain under 2.5 mm/h (under 0.1 in/h); moderate rain 2.5 to 10 mm/h (0.1 to 0.4 in/h); heavy rain 10 to 50 mm/h (0.4 to 2 in/h); and violent rain over 50 mm/h (over 2 in/h). Rain falling faster than about 25 mm/h (1 in/h) can overwhelm drains and start flash flooding on hard ground, especially if it keeps falling for an hour or more."
+                "text": "The American Meteorological Society classes are: light rain up to 2.5 mm/h (0.1 in/h); moderate rain 2.5 to 7.6 mm/h (0.1 to 0.3 in/h); heavy rain over 7.6 mm/h (over 0.3 in/h); and violent rain over 50 mm/h (over 2 in/h). Rain falling faster than about 25 mm/h (1 in/h) can overwhelm drains and flood streets, and over 50 mm/h (2 in/h) flash flooding is likely, especially in cities — if a Flash Flood Warning is issued, act within minutes."
               }
             },
             {
@@ -129,7 +129,7 @@
               "name": "How accurate is radar rain rate?",
               "acceptedAnswer": {
                 "@type": "Answer",
-                "text": "It is an estimate, good to about a factor of two in steady rain. It runs high when hail is mixed in, because hail reflects far more energy than the same amount of rain, and it runs low when the radar beam overshoots low rain far from the station or when the rain type differs from the standard drop-size assumption. Rain gauges are the only true measurement, which is why the National Weather Service blends gauge reports into its rainfall totals. Treat the map as how hard it is raining, not as an exact gauge reading."
+                "text": "It is an estimate. Modern gauge-adjusted radar algorithms are typically accurate to about 10–15%, while uncalibrated radar totals are usually within 20–40% of gauge measurements. It runs high when hail is mixed in, because hail reflects far more energy than the same amount of rain, and it runs low when the radar beam overshoots low rain far from the station — the beam is already about 3,000 m up at 150 km — or when the rain type differs from the standard drop-size assumption. Rain gauges are the only true measurement, which is why the National Weather Service blends gauge reports into its rainfall totals. Treat the map as how hard it is raining, not as an exact gauge reading."
               }
             },
             {
@@ -146,6 +146,30 @@
               "acceptedAnswer": {
                 "@type": "Answer",
                 "text": "Yes. The map animates the past 2 hours of observed radar, with new frames every 5 to 10 minutes, and the layer selector also offers the live NOAA NEXRAD feed. The 'Next 2 hours' view is different: it is a NOAA HRRR model forecast of simulated reflectivity, converted to an estimated rain rate the same way, and it is most accurate in the first 30 to 60 minutes."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does the radar show rain when it is not raining?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Usually virga: rain that evaporates on the way down, so the radar sees it but the ground stays dry. The bright band of melting snow, ground clutter and anomalous propagation can do the same — a lone bright patch on a clear day is usually one of these, not rain."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why does the radar show nothing when it is raining?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "The beam rises with distance and the Earth curves away, so far from a radar the beam can overshoot low rain — radar is most useful within about 150–250 km of a station — and hills can block the beam entirely."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Why do two radar apps show different rain?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Each app converts reflectivity to a rain rate with its own Z–R relationship, and the conversion changes with drop size, precipitation type and temperature. The Marshall–Palmer relationship (Z = 200·R^1.6) is the standard one, but tropical, stratiform and convective rain each use different relations, so identical raw radar data can give different rain rates."
               }
             }
           ]
@@ -676,8 +700,8 @@
                     </div>
                     <div class="legend-scale-bar">
                         <span class="scale-color" style="background:#00e400;color:#000;" title="15 dBZ: Drizzle, about 0.3 mm/h">0.3</span>
-                        <span class="scale-color" style="background:#009e00;color:#fff;" title="30 dBZ: Light rain, about 2.7 mm/h">2.7</span>
-                        <span class="scale-color" style="background:#ffff00;color:#000;" title="40 dBZ: Moderate rain, about 12 mm/h">12</span>
+                        <span class="scale-color" style="background:#009e00;color:#fff;" title="30 dBZ: Moderate rain, about 2.7 mm/h">2.7</span>
+                        <span class="scale-color" style="background:#ffff00;color:#000;" title="40 dBZ: Heavy rain, about 12 mm/h">12</span>
                         <span class="scale-color" style="background:#ff7e00;color:#000;" title="48 dBZ: Heavy rain, about 36 mm/h">36</span>
                         <span class="scale-color" style="background:#ff0000;color:#fff;" title="55 dBZ: Very heavy rain, about 100 mm/h">100</span>
                         <span class="scale-color" style="background:#99004c;color:#fff;" title="65+ dBZ: Hail-inflated, not a real rain rate">400+</span>
@@ -780,6 +804,7 @@
                         <div><strong style="color:#ff00ff;">60+ dBZ:</strong> 205+ mm/h (8+ in/h) — Usually hail, not real rain: the rate is inflated</div>
                     </div>
                     <p>Two things to keep in mind. First, the map shows <strong>intensity now</strong>, not how much rain has fallen in total — a 15-minute burst at 40 mm/h adds only 10 mm to the ground. Second, colors are a guide, not a verdict: a red core means very heavy rain is likely, but only a National Weather Service warning tells you it is officially dangerous. Always pair the map with the live warnings feed on this page.</p>
+                    <p>Average and peak rates also differ: 30 mm of rain over 6 hours averages 5 mm/h, but the same 30 mm in 30 minutes averages 60 mm/h — and flash flooding is driven by the short, intense bursts, not the hourly average.</p>
 
                     <h3>What Rain Rate Is For</h3>
                     <ul>
@@ -792,8 +817,8 @@
                     </ul>
 
                     <h3>How Rain Rate Is Made</h3>
-                    <p>The picture starts at more than 160 <strong>WSR-88D NEXRAD</strong> Doppler radar stations across the United States, jointly operated by the National Weather Service, the Department of Defense, and the Federal Aviation Administration. Each radar sends out pulses of microwave energy and listens for the echo. The strength of the returning energy at each point is the reflectivity, measured in dBZ.</p>
-                    <p>Reflectivity is then converted to a rain rate with a <strong>Z–R relationship</strong>. The standard one, published by Marshall and Palmer in 1948, is Z = 200·R<sup>1.6</sup>, where Z is the reflectivity factor and R is the rain rate in mm/h. The National Weather Service's MRMS system refines that estimate by blending radar with rain-gauge reports and weather-model data into quantitative precipitation estimates (QPE). This page reads the live composite reflectivity mosaic through the Marshall–Palmer scale, so every color is an estimated rain rate — the same method forecasters use to turn a radar picture into rainfall.</p>
+                    <p>The picture starts at 160 <strong>WSR-88D NEXRAD</strong> Doppler radar stations across the United States, jointly operated by the National Weather Service, the Department of Defense, and the Federal Aviation Administration. Each radar sends out pulses of microwave energy and listens for the echo. The strength of the returning energy at each point is the reflectivity, measured in dBZ.</p>
+                    <p>Reflectivity is then converted to a rain rate with a <strong>Z–R relationship</strong>. The standard one, published by Marshall and Palmer in 1948, is Z = 200·R<sup>1.6</sup>, where Z is the reflectivity factor and R is the rain rate in mm/h. The National Weather Service's MRMS system refines that estimate by blending radar with rain-gauge reports and weather-model data into quantitative precipitation estimates (QPE). This page reads the live composite reflectivity mosaic through the Marshall–Palmer scale, so every color is an estimated rain rate — the same basic approach forecasters use, refined by the National Weather Service's MRMS system, which blends radar with gauge reports and weather-model data. Marshall–Palmer assumes one typical drop-size distribution; tropical, stratiform and convective rain each use different Z–R relations, which is why two radar apps can show different rain rates from the same raw data.</p>
                     <p>The live map on this page is that composite reflectivity mosaic, served through RainViewer's radar API as an animated 2-hour loop, with the official NOAA NEXRAD base reflectivity feed available in the layer selector (via Iowa State University's IEM service). The "Next 2 hours" view is different: it is simulated reflectivity from the NOAA HRRR weather model, converted to an estimated rain rate the same way — a forecast rather than an observation.</p>
 
                     <h3>What Rain Rate Can't Tell You</h3>
@@ -833,7 +858,7 @@
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-answer">
-                            The bands most forecasters use are: light rain under 2.5 mm/h (under 0.1 in/h); moderate rain 2.5 to 10 mm/h (0.1 to 0.4 in/h); heavy rain 10 to 50 mm/h (0.4 to 2 in/h); and violent rain over 50 mm/h (over 2 in/h). Rain falling faster than about 25 mm/h (1 in/h) can overwhelm drains and start flash flooding on hard ground, especially if it keeps falling for an hour or more.
+                            The American Meteorological Society classes are: light rain up to 2.5 mm/h (0.1 in/h); moderate rain 2.5 to 7.6 mm/h (0.1 to 0.3 in/h); heavy rain over 7.6 mm/h (over 0.3 in/h); and violent rain over 50 mm/h (over 2 in/h). Rain falling faster than about 25 mm/h (1 in/h) can overwhelm drains and flood streets, and over 50 mm/h (2 in/h) flash flooding is likely, especially in cities — if a Flash Flood Warning is issued, act within minutes.
                         </div>
                     </div>
 
@@ -843,7 +868,7 @@
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-answer">
-                            It is an estimate, good to about a factor of two in steady rain. It runs high when hail is mixed in, because hail reflects far more energy than the same amount of rain, and it runs low when the radar beam overshoots low rain far from the station or when the rain type differs from the standard drop-size assumption. Rain gauges are the only true measurement, which is why the National Weather Service blends gauge reports into its rainfall totals. Treat the map as how hard it is raining, not as an exact gauge reading.
+                            It is an estimate. Modern gauge-adjusted radar algorithms are typically accurate to about 10–15%, while uncalibrated radar totals are usually within 20–40% of gauge measurements. It runs high when hail is mixed in, because hail reflects far more energy than the same amount of rain, and it runs low when the radar beam overshoots low rain far from the station — the beam is already about 3,000 m up at 150 km — or when the rain type differs from the standard drop-size assumption. Rain gauges are the only true measurement, which is why the National Weather Service blends gauge reports into its rainfall totals. Treat the map as how hard it is raining, not as an exact gauge reading.
                         </div>
                     </div>
 
@@ -865,10 +890,40 @@
                         <div class="faq-answer">
                             Yes. The map animates the past 2 hours of observed radar, with new frames every 5 to 10 minutes, and the layer selector also offers the live NOAA NEXRAD feed. The 'Next 2 hours' view is different: it is a NOAA HRRR model forecast of simulated reflectivity, converted to an estimated rain rate the same way, and it is most accurate in the first 30 to 60 minutes.
                         </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Why does the radar show rain when it is not raining?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Usually virga: rain that evaporates on the way down, so the radar sees it but the ground stays dry. The bright band of melting snow, ground clutter and anomalous propagation can do the same — a lone bright patch on a clear day is usually one of these, not rain.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Why does the radar show nothing when it is raining?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            The beam rises with distance and the Earth curves away, so far from a radar the beam can overshoot low rain — radar is most useful within about 150–250 km of a station — and hills can block the beam entirely.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Why do two radar apps show different rain?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Each app converts reflectivity to a rain rate with its own Z–R relationship, and the conversion changes with drop size, precipitation type and temperature. The Marshall–Palmer relationship (Z = 200·R^1.6) is the standard one, but tropical, stratiform and convective rain each use different relations, so identical raw radar data can give different rain rates.
+                        </div>
+                    </div>
+
                     </div>
 
                     <h3>About This Page</h3>
-                    <p style="font-size:0.88rem;">Published: 11 November 2026 &bull; Updated: 11 November 2026. Sources: NOAA JetStream &mdash; Radar Images: Reflectivity (noaa.gov/jetstream/reflectivity); National Weather Service &mdash; NEXRAD radar (radar.weather.gov); RainViewer radar API; Iowa State University IEM NEXRAD tile service; Marshall &amp; Palmer (1948) Z&ndash;R relationship. Radar data updates every 5 to 10 minutes; the "Next 2 hours" view is a NOAA HRRR forecast, not observed radar.</p>
+                    <p style="font-size:0.88rem;">Published: 11 November 2026 &bull; Updated: 26 November 2026. Sources: NOAA JetStream &mdash; Radar Images: Reflectivity (noaa.gov/jetstream/reflectivity); National Weather Service &mdash; NEXRAD radar (radar.weather.gov); RainViewer radar API; Iowa State University IEM NEXRAD tile service; Marshall &amp; Palmer (1948) Z&ndash;R relationship. Radar data updates every 5 to 10 minutes; the "Next 2 hours" view is a NOAA HRRR forecast, not observed radar.</p>
                 </div>
 
                 <!-- Sidebar -->
