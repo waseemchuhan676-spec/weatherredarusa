@@ -7,7 +7,7 @@
     <!-- Title targeting: rain or snow radar, is it rain or snow, precipitation type radar, rain vs snow radar -->
     <title>Rain or Snow Radar – Live US Precipitation Type Map</title>
     
-    <meta name="description" content="Live US rain or snow radar map: tell whether precipitation is rain, snow, sleet or freezing rain, with the dBZ scale, temperature check, and dual-pol guide.">
+    <meta name="description" content="Live US rain or snow radar map: tell whether precipitation is rain, snow, sleet or freezing rain, with the dBZ scale, temperature check and dual-pol guide.">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
     <meta name="author" content="Weather Radar USA">
     <meta name="keywords" content="rain or snow radar, is it rain or snow, precipitation type radar, rain vs snow radar, snow or rain radar, NWS dual polarization, rain snow line">
@@ -24,7 +24,7 @@
     
     <!-- Open Graph -->
     <meta property="og:title" content="Rain or Snow Radar – Live US Precipitation Type Map">
-    <meta property="og:description" content="Live US rain or snow radar map: tell whether precipitation is rain, snow, sleet or freezing rain, with the dBZ scale, temperature check, and dual-pol guide.">
+    <meta property="og:description" content="Live US rain or snow radar map: tell whether precipitation is rain, snow, sleet or freezing rain, with the dBZ scale, temperature check and dual-pol guide.">
     <meta property="og:type" content="website">
     <meta property="og:locale" content="en_US">
     <meta property="og:url" content="https://weatherradarusa.online/radar-rain-or-snow.html">
@@ -37,7 +37,7 @@
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Rain or Snow Radar – Live US Precipitation Type Map">
-    <meta name="twitter:description" content="Live US rain or snow radar map: tell whether precipitation is rain, snow, sleet or freezing rain, with the dBZ scale, temperature check, and dual-pol guide.">
+    <meta name="twitter:description" content="Live US rain or snow radar map: tell whether precipitation is rain, snow, sleet or freezing rain, with the dBZ scale, temperature check and dual-pol guide.">
     <meta name="twitter:image" content="https://weatherradarusa.online/og-radar-preview.jpg">
     <meta name="twitter:image:alt" content="Live US Rain or Snow Radar Map &amp; NOAA NEXRAD">
     <meta property="og:image:alt" content="Live US Rain or Snow Radar Map &amp; NOAA NEXRAD">
@@ -58,100 +58,131 @@
     
     <!-- BreadcrumbList & WebApplication Schema -->
     <script type="application/ld+json">
+    
+{
+  "@context": "https://schema.org",
+  "@graph": [
     {
-      "@context": "https://schema.org",
-      "@graph": [
+      "@type": "BreadcrumbList",
+      "itemListElement": [
         {
-          "@type": "BreadcrumbList",
-          "itemListElement": [
-            {
-              "@type": "ListItem",
-              "position": 1,
-              "name": "Home",
-              "item": "https://weatherradarusa.online/"
-            },
-            {
-              "@type": "ListItem",
-              "position": 2,
-              "name": "Rain or Snow Radar",
-              "item": "https://weatherradarusa.online/radar-rain-or-snow.html"
-            }
-          ]
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://weatherradarusa.online/"
         },
         {
-          "@type": "WebApplication",
-          "name": "Rain or Snow Radar – Live US Precipitation Type Map",
-          "url": "https://weatherradarusa.online/radar-rain-or-snow.html",
-          "applicationCategory": "WeatherApplication",
-          "operatingSystem": "All",
-          "offers": {
-            "@type": "Offer",
-            "price": "0",
-            "priceCurrency": "USD"
-          },
-          "featureList": [
-            "Live US Rain or Snow Radar Map (Precipitation Type)",
-            "2-Hour Animated Radar Loop (Past + Future)",
-            "Rain vs Snow Scale: dBZ, Temperature & Dual-Pol Guide",
-            "Sleet, Freezing Rain & Mixed Precipitation Explained",
-            "Interactive Zoom and Pan to Local Street Level"
-          ]
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Rain or Snow Radar",
+          "item": "https://weatherradarusa.online/radar-rain-or-snow.html"
+        }
+      ]
+    },
+    {
+      "@type": "WebApplication",
+      "name": "Rain or Snow Radar – Live US Precipitation Type Map",
+      "url": "https://weatherradarusa.online/radar-rain-or-snow.html",
+      "applicationCategory": "WeatherApplication",
+      "operatingSystem": "All",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "featureList": [
+        "Live US Rain or Snow Radar Map (Precipitation Type)",
+        "2-Hour Animated Radar Loop (Past + Future)",
+        "Rain vs Snow Scale: dBZ, Temperature & Dual-Pol Guide",
+        "Sleet, Freezing Rain & Mixed Precipitation Explained",
+        "Interactive Zoom and Pan to Local Street Level"
+      ]
+    },
+    {
+      "@type": "WebPage",
+      "@id": "https://weatherradarusa.online/radar-rain-or-snow.html",
+      "dateModified": "2026-11-27"
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How do forecasters tell rain from snow on radar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Forecasters combine three things: reflectivity, temperature, and dual-polarization data. Snow rarely returns more than about 35 to 40 dBZ, so a strong echo above 45 dBZ in winter is almost certainly rain or hail, not snow. Then they check the temperature profile: snow stays snow only while the air from cloud to ground stays below 0 degrees C (32 degrees F). Finally, dual-polarization data confirms it: snow has differential reflectivity near zero, under about 0.2 dB when reflectivity is below 35 dBZ, while rain shows higher values, and a sharp dip in correlation coefficient marks the melting layer where snow turns to rain. No single clue settles it; the three together do."
+          }
         },
-                {
-          "@type": "FAQPage",
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "How do forecasters tell rain from snow on radar?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Forecasters combine three things: reflectivity, temperature, and dual-polarization data. Snow rarely returns more than about 35 to 40 dBZ, so a strong echo above 45 dBZ in winter is almost certainly rain or hail, not snow. Then they check the temperature profile: snow stays snow only while the air from cloud to ground stays below 0 degrees C (32 degrees F). Finally, dual-polarization data confirms it: snow has differential reflectivity near zero, under about 0.2 to 0.5 dB below 35 dBZ, while rain shows higher values, and a sharp dip in correlation coefficient marks the melting layer where snow turns to rain. No single clue settles it; the three together do."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "At what temperature does rain turn to snow?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Snow reaches the ground when the whole column of air from the cloud to the surface stays below 0 degrees C (32 degrees F). If the air aloft is cold but a layer near the ground is warmer, snow melts into rain before it lands. If a warm layer sits in the middle with cold air at the surface, the result is sleet or freezing rain instead. The surface temperature alone is not enough: snow can fall at 34 degrees F if the air above is cold, and rain can fall at 30 degrees F if the air above is warm. The National Weather Service hourly forecast gives the official precipitation type for your exact location."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What is sleet and freezing rain, and how do they show on radar?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Sleet is snow that melts in a warm layer aloft and then refreezes into ice pellets as it falls through cold air near the ground. Freezing rain is snow that melts completely and then freezes on contact with surfaces at or below 0 degrees C, coating roads, trees and power lines in ice. Both are more dangerous than plain rain or snow. On radar they look like ordinary rain, with similar reflectivity values, so you cannot tell them apart from the colors alone. The temperature profile and the National Weather Service winter weather warnings are what identify them."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How does dual-polarization radar identify snow?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Dual-polarization radar sends out both horizontal and vertical pulses, so it can measure the shape and uniformity of what it hits. Snowflakes tumble as they fall, so their differential reflectivity stays near zero, under about 0.2 to 0.5 dB when reflectivity is below 35 dBZ, while flattened raindrops give higher values. The correlation coefficient stays high, near 0.97 to 1.0, for uniform snow or uniform rain, and dips sharply in the melting layer where snow turns to rain. The radar's hydrometeor classification algorithm combines these clues and labels each echo as dry snow, wet snow, rain, heavy rain, graupel or hail."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "What does mixed precipitation look like on radar?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Mixed precipitation looks patchy and noisy: reflectivity values jump around, often 25 to 45 dBZ, with no clean pattern, and the correlation coefficient drops in the melting layer where snow is turning to rain. You may see a bright band, a ring or band of higher reflectivity around the radar where snow is melting. Several types can fall in the same county at the same time, rain on one side of a line and snow on the other, so the map shows where precipitation is falling while the temperature profile decides which type it is. Check the National Weather Service hourly forecast for the official call at your location."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Is the rain or snow map on this page live?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. The map animates the past 2 hours of observed radar, with new frames every 5 to 10 minutes, and the layer selector also offers the live NOAA NEXRAD feed. The 'Next 2 hours' view is different: it is a NOAA HRRR model forecast of simulated reflectivity, read through the same rain-or-snow scale, with the model's temperature profile deciding whether the precipitation will fall as rain or snow, and it is most accurate in the first 30 to 60 minutes."
-              }
-            }
-          ]
+        {
+          "@type": "Question",
+          "name": "At what temperature does rain turn to snow?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Snow reaches the ground when the whole column of air from the cloud to the surface stays below 0 degrees C (32 degrees F). If the air aloft is cold but a layer near the ground is warmer, snow melts into rain before it lands. If a warm layer sits in the middle with cold air at the surface, the result is sleet or freezing rain instead. The surface temperature alone is not enough: snow can fall at 34 degrees F if the air above is cold, and liquid rain reaching the ground when the surface air is below 32 degrees F is freezing rain — it freezes on contact with roads, trees and power lines. The National Weather Service hourly forecast gives the official precipitation type for your exact location."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is sleet and freezing rain, and how do they show on radar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Sleet is snow that melts in a warm layer aloft and then refreezes into ice pellets as it falls through cold air near the ground. Freezing rain is snow that melts completely and then freezes on contact with surfaces at or below 0 degrees C, coating roads, trees and power lines in ice. Both are more dangerous than plain rain or snow. On radar they look like ordinary rain, with similar reflectivity values, so you cannot tell them apart from the colors alone. The temperature profile and the National Weather Service winter weather warnings are what identify them."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How does dual-polarization radar identify snow?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Dual-polarization radar sends out both horizontal and vertical pulses, so it can measure the shape and uniformity of what it hits. Snowflakes tumble as they fall, so their differential reflectivity stays near zero, under about 0.2 dB when reflectivity is below 35 dBZ, while flattened raindrops give higher values. The correlation coefficient stays high, near 0.97 to 1.0, for uniform snow or uniform rain, and dips sharply in the melting layer where snow turns to rain. The radar's hydrometeor classification algorithm combines these clues and labels each echo as dry snow, wet snow, rain, heavy rain, graupel or hail."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What does mixed precipitation look like on radar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Mixed precipitation looks patchy and noisy: reflectivity values jump around, often 25 to 45 dBZ, with no clean pattern, and the correlation coefficient drops in the melting layer where snow is turning to rain. You may see a bright band, a ring or band of higher reflectivity around the radar where snow is melting. Several types can fall in the same county at the same time, rain on one side of a line and snow on the other, so the map shows where precipitation is falling while the temperature profile decides which type it is. Check the National Weather Service hourly forecast for the official call at your location."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the rain or snow map on this page live?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. The map animates the past 2 hours of observed radar, with new frames about every 10 minutes, and the layer selector also offers the live NOAA NEXRAD feed. The 'Next 2 hours' view is different: it is a NOAA HRRR model forecast of simulated reflectivity, read through the same rain-or-snow scale, with the model's temperature profile deciding whether the precipitation will fall as rain or snow, and it is most useful in the first hour."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What color is snow on radar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "On a winter-mode or precipitation-type radar, snow is drawn in white or pale blue, from light blue for light snow to deeper blue for heavier bands, while rain keeps its usual green, yellow and red colors. On a plain reflectivity map like the one on this page, snow has no color of its own: light to moderate snow usually shows as green or light blue, the same colors as light rain, so check the temperature to tell them apart. Color schemes differ from app to app, so check the legend of the map you are using."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Why does the radar show snow when nothing is falling?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The radar beam climbs as it travels: for the usual lowest scan it sits about 1.5 km above the ground 100 km from the radar and about 4 km up at 200 km. Snow seen up there can evaporate in dry air before it lands, which forecasters call virga. The opposite happens in the mountains, where peaks block the beam and shallow snow can fall in a valley with nothing on the map."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does freezing rain show on radar?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Freezing rain looks like ordinary rain on a reflectivity radar, because it is liquid water until it hits the ground — its reflectivity is similar to plain rain. On precipitation-type maps it may show as pink or red. What identifies it is the temperature: rain falling into surface air at or below 0 degrees C (32 degrees F) freezes on contact, coating roads, trees and power lines in ice. Check the National Weather Service winter weather warnings for your location."
+          }
         }
       ]
     }
+  ]
+}
+    
     </script>
 
     <style>
@@ -675,13 +706,12 @@
                         <span class="legend-title">🌧️❄️ Rain or Snow (dBZ)</span>
                     </div>
                     <div class="legend-scale-bar">
-                        <span class="scale-color" style="background:#00e400;color:#000;" title="15 dBZ: Very light precipitation, drizzle or flurries">15</span>
-                        <span class="scale-color" style="background:#009e00;color:#fff;" title="25 dBZ: Light rain or light snow">25</span>
-                        <span class="scale-color" style="background:#ffff00;color:#000;" title="35 dBZ: Moderate rain or steady snow">35</span>
-                        <span class="scale-color" style="background:#ff7e00;color:#000;" title="45 dBZ: Heavy rain, rarely snow">45</span>
-                        <span class="scale-color" style="background:#ff0000;color:#fff;" title="55 dBZ: Very heavy rain, hail possible">55</span>
-                        <span class="scale-color" style="background:#99004c;color:#fff;" title="65+ dBZ: Hail core, not rain or snow">65+</span>
-                        <span class="scale-color" style="background:#00bfff;color:#000;" title="Snow: check the temperature, color alone cannot tell rain from snow">❄️</span>
+                        <span class="scale-color" style="background:#00e400;color:#000;" title="5-15 dBZ: Very light precipitation, drizzle or flurries">5-15</span>
+                        <span class="scale-color" style="background:#009e00;color:#fff;" title="15-25 dBZ: Light rain or light snow">15-25</span>
+                        <span class="scale-color" style="background:#22c55e;color:#000;" title="25-35 dBZ: Moderate rain or steady snow">25-35</span>
+                        <span class="scale-color" style="background:#ffff00;color:#000;" title="35-45 dBZ: Heavy rain, rarely snow">35-45</span>
+                        <span class="scale-color" style="background:#ff7f00;color:#000;" title="45-55 dBZ: Very heavy rain, almost never snow">45-55</span>
+                        <span class="scale-color" style="background:#ff0000;color:#fff;" title="55+ dBZ: Hail core, not rain or snow">55+</span>
                     </div>
                     <div class="legend-labels">
                         <span>Light</span>
@@ -766,10 +796,10 @@
                 <div class="article-card">
                     <h2>What Rain or Snow Shows</h2>
                     <p>The map above is the <strong>precipitation-type layer</strong> — the same live NEXRAD radar picture as the reflectivity map, read as what kind of precipitation is falling. Every colored pixel is precipitation; the question is which kind. In summer the answer is almost always rain. In winter it depends on the temperature of the air the precipitation falls through: snow that falls through air below freezing stays snow, snow that falls through a warm layer melts into rain, and rain that falls into freezing air at the ground becomes freezing rain or sleet.</p>
-                    <p>One honest limit first: the colors on this map are reflectivity, not precipitation type. No public radar feed colors rain blue and snow white — the live hydrometeor-classification and MRMS precipitation-type tiles are not served as public map tiles (checked 12 November 2026). What the colors do tell you is intensity, in dBZ, and intensity plus temperature is how forecasters tell rain from snow. The scale below is that method, and the map is live, so you can use it right now.</p>
+                    <p>One honest limit first: the colors on this map are reflectivity, not precipitation type. No public tile feed serves a true precipitation-type layer directly (checked 12 November 2026); some sites recolor reflectivity using NOAA's MRMS precipitation-type data. What the colors do tell you is intensity, in dBZ, and intensity plus temperature is how forecasters tell rain from snow. The scale below is that method, and the map is live, so you can use it right now.</p>
 
                     <h3>How to Read It: The Rain-or-Snow Scale</h3>
-                    <p>Snow is made of ice crystals, and ice reflects far less radar energy than liquid water, so snow echoes are weaker than rain echoes at the same rate. The table below turns any color on the map into a likely precipitation type — always together with the temperature. Three rules cover most cases: check the temperature first, remember snow rarely tops 35 to 40 dBZ, and watch for the bright band, the ring of higher reflectivity where snow melts into rain.</p>
+                    <p>Snow is made of ice crystals, and ice reflects far less radar energy than liquid water, so snow echoes are weaker than rain echoes at the same rate. The dBZ scale is logarithmic: every 10 dBZ is ten times more returned energy, so the jump from green to red is a much bigger change than it looks. The table below turns any color on the map into a likely precipitation type — always together with the temperature. Three rules cover most cases: check the temperature first, remember snow rarely tops 35 to 40 dBZ, and watch for the bright band, the ring of higher reflectivity where snow melts into rain.</p>
                     <div style="background:var(--bg-elevated);border:1px solid var(--border);border-radius:8px;padding:14px;margin-bottom:18px;font-size:0.88rem;line-height:1.9;">
                         <div><strong style="color:#00e400;">5 – 15 dBZ:</strong> Very light — drizzle or flurries; snow likely if below freezing</div>
                         <div><strong style="color:#009e00;">15 – 25 dBZ:</strong> Light — light rain or light snow</div>
@@ -779,6 +809,9 @@
                         <div><strong style="color:#ff0000;">55+ dBZ:</strong> Severe — hail, not rain or snow</div>
                     </div>
                     <p>Two things to keep in mind. First, a 20 dBZ echo can mean light rain or moderate to heavy snow — the same value, two different types — which is why the temperature check matters more than the color. Second, colors are a guide, not a verdict: a red core in a winter storm is almost certainly rain, but only a National Weather Service warning tells you it is officially dangerous. Always pair the map with the live warnings feed on this page.</p>
+
+                    <h3>Winter Radar Colors</h3>
+                    <p>On winter-mode radar and on apps that color by precipitation type, snow usually shows as white or light blue, a rain–snow mix as pink or purple, sleet as pink or purple patches near freezing, and freezing rain as pink or red mixed with rain colors. The colors differ from app to app, and on a plain reflectivity map like the one above, sleet and freezing rain look like ordinary rain — only the temperature profile tells them apart. Check the legend of the map you are looking at.</p>
 
                     <h3>What Rain or Snow Is For</h3>
                     <ul>
@@ -791,16 +824,16 @@
                     </ul>
 
                     <h3>How Rain or Snow Is Made</h3>
-                    <p>The picture starts at more than 160 <strong>WSR-88D NEXRAD</strong> Doppler radar stations across the United States, jointly operated by the National Weather Service, the Department of Defense, and the Federal Aviation Administration. Each radar sends out pulses of microwave energy and listens for the echo. The strength of the returning energy at each point is the reflectivity, measured in dBZ.</p>
+                    <p>The picture starts at about 160 <strong>NEXRAD</strong> Doppler radar stations across the United States, jointly operated by the National Weather Service, the Department of Defense, and the Federal Aviation Administration. Each radar sends out pulses of microwave energy and listens for the echo. The strength of the returning energy at each point is the reflectivity, measured in dBZ.</p>
                     <p>In 2011 to 2013 the whole network was upgraded to <strong>dual-polarization</strong>: every radar now sends both horizontal and vertical pulses, so it can measure the shape and uniformity of the particles it hits. Snowflakes tumble and look nearly round to the radar, giving differential reflectivity near zero, while raindrops flatten as they fall and give positive values. The radar's <strong>hydrometeor classification</strong> algorithm combines reflectivity, differential reflectivity, correlation coefficient and specific differential phase and labels each echo as dry snow, wet snow, rain, heavy rain, graupel or hail.</p>
-                    <p>The National Weather Service's MRMS system also produces a precipitation-type product, but it is not served as a public map tile feed — the hydrometeor-classification and MRMS precipitation-type tiles were checked on 12 November 2026 and are not available. So this page reads the live composite reflectivity mosaic through the rain-or-snow scale above, paired with the temperature rule, which is the same method forecasters use when a dedicated type layer is not in front of them. The live map is that composite reflectivity mosaic, served through RainViewer's radar API as an animated 2-hour loop, with the official NOAA NEXRAD base reflectivity feed available in the layer selector (via Iowa State University's IEM service). The 'Next 2 hours' view is different: it is simulated reflectivity from the NOAA HRRR weather model, read the same way, with the model's temperature profile deciding whether the precipitation will fall as rain or snow — a forecast rather than an observation.</p>
+                    <p>The National Weather Service's MRMS system also produces a precipitation-type product, but no public tile feed serves it as a true precipitation-type layer directly — the hydrometeor-classification and MRMS precipitation-type tiles were checked on 12 November 2026 and are not available as a public tile service (some sites recolor reflectivity using NOAA's MRMS precipitation-type data). So this page reads the live composite reflectivity mosaic through the rain-or-snow scale above, paired with the temperature rule, which is the same method forecasters use when a dedicated type layer is not in front of them. The live map is that composite reflectivity mosaic, served through RainViewer's radar API as an animated 2-hour loop, with the official NOAA NEXRAD base reflectivity feed available in the layer selector (via Iowa State University's IEM service). The 'Next 2 hours' view is different: it is simulated reflectivity from the NOAA HRRR weather model, read the same way, with the model's temperature profile deciding whether the precipitation will fall as rain or snow — a forecast rather than an observation.</p>
 
                     <h3>What Rain or Snow Can't Tell You</h3>
                     <ul>
                         <li><strong>The exact type from color alone:</strong> light rain and steady snow can share the same dBZ. The temperature profile, not the color, makes the call.</li>
-                        <li><strong>How much snow will fall:</strong> radar estimates snow from reflectivity, but the snow-to-liquid ratio varies — the 10-to-1 rule (10 inches of snow per inch of water) is only a rough average, from about 5-to-1 for wet snow to 20-to-1 or more for dry powder.</li>
+                        <li><strong>How much snow will fall:</strong> radar estimates snow from reflectivity, but the snow-to-liquid ratio varies — the 10-to-1 rule (10 inches of snow per inch of water) is only a rough average. Wet heavy snow around 0 degrees C runs about 5-to-1 to 8-to-1, average snow a few degrees below freezing is about 10-to-1, and light fluffy snow near −10 degrees C with light wind runs 15-to-1 to 20-to-1; the fluffiest snow falls near −9.5 degrees C with light winds (NOAA Weather Prediction Center).</li>
                         <li><strong>Rain versus freezing rain, from color alone:</strong> freezing rain and plain rain have similar reflectivity. Only the temperature at the ground separates them.</li>
-                        <li><strong>Weather behind the beam:</strong> the beam rises with distance and the Earth curves away, so far from a radar the beam can overshoot low snow — and hills can block it entirely.</li>
+                        <li><strong>Weather behind the beam:</strong> the beam rises with distance and the Earth curves away, so far from a radar the beam can overshoot low snow — and hills can block it entirely. About 120 miles from a radar, even the lowest scan is passing more than 10,000 feet above the ground, so shallow snow can sit underneath the beam and go unseen.</li>
                         <li><strong>Precipitation that never lands:</strong> virga — rain or snow evaporating on the way down — lights up the radar while the ground stays dry.</li>
                         <li><strong>False echoes:</strong> the bright band of melting snow, ground clutter, and anomalous propagation can all paint colors where there is no weather. A lone bright patch on a clear day is usually one of these, not precipitation.</li>
                     </ul>
@@ -814,7 +847,7 @@
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-answer">
-                            Forecasters combine three things: reflectivity, temperature, and dual-polarization data. Snow rarely returns more than about 35 to 40 dBZ, so a strong echo above 45 dBZ in winter is almost certainly rain or hail, not snow. Then they check the temperature profile: snow stays snow only while the air from cloud to ground stays below 0 degrees C (32 degrees F). Finally, dual-polarization data confirms it: snow has differential reflectivity near zero, under about 0.2 to 0.5 dB below 35 dBZ, while rain shows higher values, and a sharp dip in correlation coefficient marks the melting layer where snow turns to rain. No single clue settles it; the three together do.
+                            Forecasters combine three things: reflectivity, temperature, and dual-polarization data. Snow rarely returns more than about 35 to 40 dBZ, so a strong echo above 45 dBZ in winter is almost certainly rain or hail, not snow. Then they check the temperature profile: snow stays snow only while the air from cloud to ground stays below 0 degrees C (32 degrees F). Finally, dual-polarization data confirms it: snow has differential reflectivity near zero, under about 0.2 dB when reflectivity is below 35 dBZ, while rain shows higher values, and a sharp dip in correlation coefficient marks the melting layer where snow turns to rain. No single clue settles it; the three together do.
                         </div>
                     </div>
 
@@ -824,7 +857,7 @@
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-answer">
-                            Snow reaches the ground when the whole column of air from the cloud to the surface stays below 0 degrees C (32 degrees F). If the air aloft is cold but a layer near the ground is warmer, snow melts into rain before it lands. If a warm layer sits in the middle with cold air at the surface, the result is sleet or freezing rain instead. The surface temperature alone is not enough: snow can fall at 34 degrees F if the air above is cold, and rain can fall at 30 degrees F if the air above is warm. The National Weather Service hourly forecast gives the official precipitation type for your exact location.
+                            Snow reaches the ground when the whole column of air from the cloud to the surface stays below 0 degrees C (32 degrees F). If the air aloft is cold but a layer near the ground is warmer, snow melts into rain before it lands. If a warm layer sits in the middle with cold air at the surface, the result is sleet or freezing rain instead. The surface temperature alone is not enough: snow can fall at 34 degrees F if the air above is cold, and liquid rain reaching the ground when the surface air is below 32 degrees F is freezing rain — it freezes on contact with roads, trees and power lines. The National Weather Service hourly forecast gives the official precipitation type for your exact location.
                         </div>
                     </div>
 
@@ -844,7 +877,7 @@
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-answer">
-                            Dual-polarization radar sends out both horizontal and vertical pulses, so it can measure the shape and uniformity of what it hits. Snowflakes tumble as they fall, so their differential reflectivity stays near zero, under about 0.2 to 0.5 dB when reflectivity is below 35 dBZ, while flattened raindrops give higher values. The correlation coefficient stays high, near 0.97 to 1.0, for uniform snow or uniform rain, and dips sharply in the melting layer where snow turns to rain. The radar's hydrometeor classification algorithm combines these clues and labels each echo as dry snow, wet snow, rain, heavy rain, graupel or hail.
+                            Dual-polarization radar sends out both horizontal and vertical pulses, so it can measure the shape and uniformity of what it hits. Snowflakes tumble as they fall, so their differential reflectivity stays near zero, under about 0.2 dB when reflectivity is below 35 dBZ, while flattened raindrops give higher values. The correlation coefficient stays high, near 0.97 to 1.0, for uniform snow or uniform rain, and dips sharply in the melting layer where snow turns to rain. The radar's hydrometeor classification algorithm combines these clues and labels each echo as dry snow, wet snow, rain, heavy rain, graupel or hail.
                         </div>
                     </div>
 
@@ -864,12 +897,40 @@
                             <span class="faq-icon">+</span>
                         </button>
                         <div class="faq-answer">
-                            Yes. The map animates the past 2 hours of observed radar, with new frames every 5 to 10 minutes, and the layer selector also offers the live NOAA NEXRAD feed. The 'Next 2 hours' view is different: it is a NOAA HRRR model forecast of simulated reflectivity, read through the same rain-or-snow scale, with the model's temperature profile deciding whether the precipitation will fall as rain or snow, and it is most accurate in the first 30 to 60 minutes.
+                            Yes. The map animates the past 2 hours of observed radar, with new frames about every 10 minutes, and the layer selector also offers the live NOAA NEXRAD feed. The 'Next 2 hours' view is different: it is a NOAA HRRR model forecast of simulated reflectivity, read through the same rain-or-snow scale, with the model's temperature profile deciding whether the precipitation will fall as rain or snow, and it is most useful in the first hour.
+                        </div>
+                    </div>
+
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>What color is snow on radar?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            On a winter-mode or precipitation-type radar, snow is drawn in white or pale blue, from light blue for light snow to deeper blue for heavier bands, while rain keeps its usual green, yellow and red colors. On a plain reflectivity map like the one on this page, snow has no color of its own: light to moderate snow usually shows as green or light blue, the same colors as light rain, so check the temperature to tell them apart. Color schemes differ from app to app, so check the legend of the map you are using.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Why does the radar show snow when nothing is falling?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            The radar beam climbs as it travels: for the usual lowest scan it sits about 1.5 km above the ground 100 km from the radar and about 4 km up at 200 km. Snow seen up there can evaporate in dry air before it lands, which forecasters call virga. The opposite happens in the mountains, where peaks block the beam and shallow snow can fall in a valley with nothing on the map.
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <button class="faq-question" onclick="toggleFaq(this)">
+                            <span>Does freezing rain show on radar?</span>
+                            <span class="faq-icon">+</span>
+                        </button>
+                        <div class="faq-answer">
+                            Freezing rain looks like ordinary rain on a reflectivity radar, because it is liquid water until it hits the ground — its reflectivity is similar to plain rain. On precipitation-type maps it may show as pink or red. What identifies it is the temperature: rain falling into surface air at or below 0 degrees C (32 degrees F) freezes on contact, coating roads, trees and power lines in ice. Check the National Weather Service winter weather warnings for your location.
                         </div>
                     </div>
 
                     <h3>About This Page</h3>
-                    <p style="font-size:0.88rem;">Published: 12 November 2026 &bull; Updated: 12 November 2026. Sources: National Weather Service &mdash; Dual-Polarization Radar: Rain vs. Snow (weather.gov); NOAA VLab &mdash; Dual-Pol References (vlab.noaa.gov); Ryzhkov &amp; Zrnic (1998) Discrimination between Rain and Snow with a Polarimetric Radar; National Weather Service &mdash; NEXRAD radar (radar.weather.gov); RainViewer radar API; Iowa State University IEM NEXRAD tile service. Radar data updates every 5 to 10 minutes; the "Next 2 hours" view is a NOAA HRRR forecast, not observed radar. Note: no public tile feed serves a true precipitation-type layer (NEXRAD hydrometeor-classification and MRMS precipitation-type tiles checked 12 November 2026 &mdash; not available), so this page reads the live reflectivity mosaic through the rain-or-snow scale and the temperature rule.</p>
+                    <p style="font-size:0.88rem;">Published: 12 November 2026 &bull; Updated: 27 November 2026. Sources: National Weather Service &mdash; Dual-Polarization Radar: Rain vs. Snow (weather.gov); NOAA VLab &mdash; Dual-Pol References (vlab.noaa.gov); Ryzhkov &amp; Zrnic (1998) Discrimination between Rain and Snow with a Polarimetric Radar; National Weather Service &mdash; NEXRAD radar (radar.weather.gov); RainViewer radar API; Iowa State University IEM NEXRAD tile service. Radar data updates about every 10 minutes; the "Next 2 hours" view is a NOAA HRRR forecast, not observed radar. Note: no public tile feed serves a true precipitation-type layer directly (NEXRAD hydrometeor-classification and MRMS precipitation-type tiles checked 12 November 2026 &mdash; not available as a public tile service; some sites recolor reflectivity using NOAA's MRMS precipitation-type data), so this page reads the live reflectivity mosaic through the rain-or-snow scale and the temperature rule.</p>
                 </div>
 
                 <!-- Sidebar -->
