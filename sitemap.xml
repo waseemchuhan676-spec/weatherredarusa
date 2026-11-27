@@ -228,6 +228,11 @@
     <loc>https://weatherradarusa.online/snow-blizzard-radar.html</loc>
   </url>
   <url>
+    <loc>https://weatherradarusa.online/how-to-prevent-frozen-pipes.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://weatherradarusa.online/states/texas-weather-radar.html</loc>
   </url>
   <url>
